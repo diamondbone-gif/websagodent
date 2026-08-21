@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SagoDent - THE VENEER WORKFLOW</title>
+
+    <style>
+        /* ============================================================
+           FONT FACE
+           ============================================================ */
+
+        @font-face {
+            font-family: 'Google Sans';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Google Sans';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Google Sans';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Google Sans';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Playfair Display';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-Medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Playfair Display';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Playfair Display';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Playfair Display';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-MediumItalic.ttf') format('truetype');
+            font-weight: 500;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Playfair Display';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-SemiBoldItalic.ttf') format('truetype');
+            font-weight: 600;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Gotham';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/SVN-Gotham%20Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Gotham';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/SVN-Gotham%20Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Gotham';
+            src: url('/wp-content/themes/flatsome-child/assets/fonts/SVN-Gotham%20Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ============================================================
+           VENEER PAGE ROOT VARIABLES
+           ============================================================ */
+
+        :root {
+            --sgd-veneer-blue: #062d48;
+            --sgd-veneer-light-blue: #6ebce5;
+            --sgd-veneer-content-width: 1730px;
+            --sgd-veneer-page-width: 1920px;
+            --sgd-veneer-page-gutter: 95px;
+            --sgd-veneer-white: #ffffff;
+            --sgd-veneer-text: #333333;
+            --sgd-veneer-gray-300: #d1d5db;
+            --sgd-veneer-gray-500: #6b7280;
+            --sgd-veneer-gray-700: #374151;
+            --sgd-veneer-gray-800: #1f2937;
+        }
+
+        body.sgd-veneer-page {
+            margin: 0;
+            overflow-x: hidden;
+            font-family: 'Gotham', Arial, sans-serif;
+            color: var(--sgd-veneer-text);
+            background: var(--sgd-veneer-white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            /* Ghi đè màu Menu chung cho trang Veneer */
+            --menu-blue: #062d48;
+            --menu-sky: #6ebce5;
+        }
+
+        .sgd-veneer-page,
+        .sgd-veneer-page *,
+        .sgd-veneer-page *::before,
+        .sgd-veneer-page *::after {
+            box-sizing: border-box;
+        }
+
+        .sgd-veneer-page img {
+            max-width: 100%;
+        }
+
+        .sgd-veneer-page a {
+            text-decoration: none;
+        }
+
+        .sgd-veneer-page button,
+        .sgd-veneer-page a {
+            font-family: inherit;
+        }
+
+        .sgd-veneer-content-container {
+            width: 100%;
+            max-width: var(--sgd-veneer-page-width);
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .sgd-veneer-inner-content {
+            width: 100%;
+            max-width: var(--sgd-veneer-content-width);
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           HERO SECTION (Tối ưu lại theo hình mẫu)
+           ============================================================ */
+
+        .sgd-veneer-hero-section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            /* Thay vì height cứng, dùng min-height 100vh để đảm bảo hiển thị đẹp trên mọi màn hình */
+            padding-top: var(--menu-admin-offset, 0px);
+            /* Bù trừ khoảng trống menu admin nếu có */
+            overflow: hidden;
+            background: #020c15;
+            /* Nền tối an toàn */
+        }
+
+        .sgd-veneer-hero-bg-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .sgd-veneer-hero-bg-image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center right;
+            /* Căn sang phải để thấy rõ răng hơn */
+            /* opacity: 0.9; */
+            /* Không cần thiết nếu ảnh đã xử lý tốt */
+        }
+
+        /* Overlay gradient để phần text bên trái dễ đọc hơn, mờ dần sang phải */
+
+        .sgd-veneer-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(3, 20, 33, 0.95) 0%, rgba(3, 20, 33, 0.7) 40%, rgba(3, 20, 33, 0) 75%);
+        }
+
+        .sgd-veneer-hero-content {
+            position: relative;
+            z-index: 1;
+            /* Đẩy nội dung xuống một chút để cân đối với khoảng header */
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .sgd-veneer-hero-copy {
+            max-width: 800px;
+            /* Tăng độ rộng để chứa text to */
+        }
+
+        .sgd-veneer-hero-eyebrow {
+            margin: 0 0 16px;
+            color: rgba(255, 255, 255, 0.8);
+            /* Màu trắng hơi mờ cho chữ nhỏ */
+            font-size: 15px;
+            line-height: 1.5;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .sgd-veneer-hero-title-main,
+        .sgd-veneer-hero-title-sub {
+            margin-top: 0;
+            font-family: 'Google Sans', 'SVN-Gotham', Arial, sans-serif;
+            /* Ưu tiên Google Sans nếu có */
+            font-size: clamp(60px, 8vw, 130px);
+            /* Responsive font to */
+            line-height: 0.95;
+            /* Khoảng cách dòng sít lại */
+            letter-spacing: -0.02em;
+        }
+
+        .sgd-veneer-hero-title-main {
+            margin-bottom: 0;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .sgd-veneer-hero-title-sub {
+            margin-bottom: 40px;
+            color: var(--sgd-veneer-light-blue);
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        .sgd-veneer-hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-top: 50px;
+        }
+
+        .sgd-veneer-hero-tagline {
+            max-width: 180px;
+            margin: 0;
+            color: #ffffff;
+            font-size: 15px;
+            line-height: 1.4;
+            opacity: 0.85;
+            font-weight: 300;
+        }
+
+        .sgd-veneer-hero-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 38px;
+            border-radius: 9999px;
+            background: var(--sgd-veneer-light-blue);
+            color: #031421;
+            /* Chữ đậm hơn để nổi bật trên nền nút sáng */
+            font-size: 16px;
+            line-height: 1;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .sgd-veneer-hero-cta:hover,
+        .sgd-veneer-hero-cta:focus-visible {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ============================================================
+           FEATURE SECTION
+           ============================================================ */
+
+        .sgd-veneer-feature-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding-top: 112px;
+            padding-bottom: 112px;
+            background: linear-gradient(45deg, #2a4c6b 0%, #062d48 100%);
+            color: #ffffff;
+        }
+
+        .sgd-veneer-feature-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -3;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            opacity: 0.40;
+            pointer-events: none;
+        }
+
+        .sgd-veneer-feature-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background: linear-gradient(90deg, rgba(24, 65, 96, 0.76) 0%, rgba(11, 54, 82, 0.68) 46%, rgba(5, 38, 60, 0.72) 100%);
+        }
+
+        .sgd-veneer-feature-fade {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 18%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .sgd-veneer-feature-copy {
+            width: 100%;
+            max-width: var(--sgd-veneer-content-width);
+        }
+
+        .sgd-veneer-feature-copy-block {
+            width: 100%;
+        }
+
+        .sgd-veneer-feature-copy-block+.sgd-veneer-feature-copy-block {
+            margin-top: 40px;
+        }
+
+        .sgd-veneer-feature-title {
+            margin: 0 0 22px;
+            color: #ffffff;
+            font-size: clamp(30px, 2.45vw, 48px);
+            line-height: 1.08;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+        }
+
+        .sgd-veneer-feature-text {
+            width: 100%;
+            margin: 0;
+            color: #ffffff;
+            font-size: clamp(17px, 1.2vw, 23px);
+            line-height: 1.4;
+            font-weight: 400;
+            opacity: 0.94;
+        }
+
+        .sgd-veneer-feature-text+.sgd-veneer-feature-text {
+            margin-top: 28px;
+        }
+
+        /* ============================================================
+           PROGRAM SECTION
+           ============================================================ */
+
+        .sgd-veneer-program-section {
+            padding-top: 96px;
+            padding-bottom: 96px;
+            background: #ffffff;
+        }
+
+        .sgd-veneer-program-title {
+            margin: 0 0 40px;
+            color: var(--sgd-veneer-blue);
+            font-size: 48px;
+            line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: 0.025em;
+            text-transform: uppercase;
+        }
+
+        .sgd-veneer-program-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sgd-veneer-program-divider {
+            width: 100%;
+            margin: 0;
+            border: 0;
+            border-top: 2px solid rgba(6, 45, 72, 0.24);
+        }
+
+        .sgd-veneer-program-row {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 48px;
+            padding-top: 48px;
+            padding-bottom: 48px;
+        }
+
+        .sgd-veneer-program-part-col {
+            width: 25%;
+            flex-shrink: 0;
+        }
+
+        .sgd-veneer-program-info-col {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .sgd-veneer-program-action-col {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 0;
+        }
+
+        .sgd-veneer-program-part-title {
+            margin: 0;
+            color: var(--sgd-veneer-blue);
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .sgd-veneer-program-kicker,
+        .sgd-veneer-program-count {
+            margin: 0;
+            color: var(--sgd-veneer-blue);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .sgd-veneer-program-kicker {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        .sgd-veneer-program-count {
+            padding-top: 12px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .sgd-veneer-program-meta {
+            color: var(--sgd-veneer-blue);
+            font-size: 20px;
+            line-height: 1.375;
+            font-weight: 700;
+        }
+
+        .sgd-veneer-program-meta p,
+        .sgd-veneer-program-details p {
+            margin: 0;
+        }
+
+        .sgd-veneer-program-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: var(--sgd-veneer-gray-700);
+            font-size: 16px;
+            line-height: 1.625;
+        }
+
+        .sgd-veneer-program-details.sgd-veneer-program-details-spaced {
+            padding-top: 4px;
+        }
+
+        .sgd-veneer-program-details-label {
+            margin-bottom: 4px !important;
+            color: var(--sgd-veneer-gray-500);
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .sgd-veneer-program-download-btn {
+            width: auto;
+            min-width: 292px;
+            min-height: 58px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            border: 2px solid rgba(6, 45, 72, 0.72);
+            border-radius: 14px;
+            background: #ffffff;
+            color: var(--sgd-veneer-blue);
+            font-size: 16px;
+            line-height: 1.15;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            box-shadow: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sgd-veneer-program-download-btn:hover,
+        .sgd-veneer-program-download-btn:focus {
+            background: var(--sgd-veneer-blue);
+            color: #ffffff;
+            border-color: var(--sgd-veneer-blue);
+            outline: none;
+        }
+
+        .sgd-veneer-program-summary {
+            margin-top: 48px;
+            text-align: center;
+        }
+
+        .sgd-veneer-program-summary p {
+            margin: 0;
+            color: var(--sgd-veneer-gray-800);
+            font-size: 18px;
+            line-height: 1.5;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ============================================================
+           DOCTOR SECTION
+           ============================================================ */
+
+        .sgd-veneer-doctor-section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: visible;
+            background: linear-gradient(45deg, #555555 0%, #494949 31%, #343434 60%, #232323 100%);
+            color: #ffffff;
+        }
+
+        .sgd-veneer-doctor-layout {
+            position: relative;
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: clamp(28px, 4vw, 72px);
+            min-height: 500px;
+            overflow: visible;
+        }
+
+        .sgd-veneer-doctor-media {
+            position: relative;
+            z-index: 3;
+            width: 41%;
+            align-self: stretch;
+            margin-top: -58px;
+            padding-top: 58px;
+            overflow: hidden;
+        }
+
+        .sgd-veneer-doctor-photo {
+            position: absolute;
+            left: 8px;
+            bottom: 0;
+            z-index: 3;
+            width: auto;
+            height: 100%;
+            max-width: 112%;
+            display: block;
+            margin: 0;
+            object-fit: contain;
+            object-position: left bottom;
+        }
+
+        .sgd-veneer-doctor-copy {
+            position: relative;
+            z-index: 4;
+            width: 59%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 72px;
+            padding-right: 56px;
+            padding-bottom: 72px;
+        }
+
+        .sgd-veneer-doctor-name {
+            margin: 0 0 32px;
+            color: #ffffff;
+            font-size: 60px;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .sgd-veneer-doctor-bio {
+            color: var(--sgd-veneer-gray-300);
+            font-size: 20px;
+            line-height: 1.625;
+            font-weight: 300;
+        }
+
+        .sgd-veneer-doctor-bio p {
+            margin: 0;
+        }
+
+        .sgd-veneer-doctor-bio p+p {
+            margin-top: 24px;
+        }
+
+        /* ============================================================
+           CERTIFICATE SECTION
+           ============================================================ */
+
+        .sgd-veneer-certificate-section {
+            padding-top: 112px;
+            padding-bottom: 112px;
+            background: #ffffff;
+            color: var(--sgd-veneer-blue);
+            text-align: center;
+        }
+
+        .sgd-veneer-certificate-copy {
+            max-width: 896px;
+            margin: 0 auto;
+        }
+
+        .sgd-veneer-certificate-copy>* {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .sgd-veneer-certificate-copy>*+* {
+            margin-top: 32px;
+        }
+
+        .sgd-veneer-certificate-title {
+            color: var(--sgd-veneer-blue);
+            font-size: 36px;
+            line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: 0.025em;
+            text-transform: uppercase;
+        }
+
+        .sgd-veneer-certificate-intro,
+        .sgd-veneer-certificate-note {
+            color: var(--sgd-veneer-gray-700);
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        .sgd-veneer-certificate-experience {
+            padding-top: 16px;
+            padding-bottom: 8px;
+        }
+
+        .sgd-veneer-certificate-experience-title {
+            margin: 0 0 16px;
+            color: var(--sgd-veneer-blue);
+            font-size: 20px;
+            line-height: 1.5;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .sgd-veneer-certificate-experience-text {
+            max-width: 768px;
+            margin: 0 auto;
+            color: var(--sgd-veneer-gray-700);
+            font-size: 16px;
+            line-height: 1.625;
+        }
+
+        .sgd-veneer-certificate-note {
+            padding-top: 16px;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        /* ============================================================
+           FOOTER CTA
+           ============================================================ */
+
+        .sgd-veneer-footer-cta {
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            padding-top: 60px;
+            padding-bottom: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: linear-gradient(45deg, #5c5c5c 0%, #4a4a4a 24%, #333333 58%, #1b1b1b 100%);
+        }
+
+        .sgd-veneer-footer-row {
+            width: max-content;
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(64px, 5vw, 96px);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sgd-veneer-footer-course-title {
+            min-width: max-content;
+            display: inline-flex;
+            flex: 0 0 auto;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .sgd-veneer-footer-title-main,
+        .sgd-veneer-footer-title-sub {
+            margin: 0;
+            font-family: 'SVN-Gotham', Arial, sans-serif;
+            text-transform: uppercase;
+        }
+
+        .sgd-veneer-footer-title-main {
+            color: #ffffff;
+            font-size: clamp(92px, 5.6vw, 112px);
+            line-height: 0.96;
+            font-weight: 800;
+            letter-spacing: -3px;
+        }
+
+        .sgd-veneer-footer-title-sub {
+            margin-top: 6px;
+            color: #66b7e5;
+            font-size: clamp(98px, 6vw, 120px);
+            line-height: 0.94;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: -4px;
+            transform: scaleX(0.99);
+            transform-origin: center center;
+        }
+
+        .sgd-veneer-register-wrap {
+            position: relative;
+            isolation: isolate;
+            flex: 0 0 auto;
+        }
+
+        .sgd-veneer-register-wrap::after {
+            content: '';
+            position: absolute;
+            left: 8%;
+            right: 4%;
+            bottom: -24px;
+            z-index: -1;
+            height: 54px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 42%, rgba(255, 255, 255, 0) 72%);
+            filter: blur(11px);
+            pointer-events: none;
+        }
+
+        .sgd-veneer-register-btn {
+            width: 360px;
+            min-height: 114px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            background: linear-gradient(105deg, #232323 0%, #2f2f2f 44%, #5b5b5b 100%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 30px rgba(255, 255, 255, 0.10), 0 14px 30px rgba(0, 0, 0, 0.34);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .sgd-veneer-register-btn-title {
+            color: #ffffff;
+            font-size: 24px;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -0.35px;
+            transition: color 0.3s ease;
+        }
+
+        .sgd-veneer-register-btn-sub {
+            margin-top: 8px;
+            color: #d9dde2;
+            font-size: 17px;
+            line-height: 1.15;
+            font-weight: 400;
+        }
+
+        .sgd-veneer-register-btn:hover {
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 0 34px rgba(255, 255, 255, 0.14), 0 16px 34px rgba(0, 0, 0, 0.38);
+            transform: translateY(-2px);
+        }
+
+        .sgd-veneer-register-btn:hover .sgd-veneer-register-btn-title {
+            color: #66b7e5;
+        }
+
+        /* ============================================================
+           RESPONSIVE EXCEPTIONS (Chỉ tinh chỉnh khi màn hình nhỏ hơn)
+           ============================================================ */
+
+        @media (max-width: 1023px) {
+            .sgd-veneer-hero-section {
+                min-height: 70vh;
+                padding-top: 88px;
+            }
+
+            .sgd-veneer-hero-title-main,
+            .sgd-veneer-hero-title-sub {
+                font-size: clamp(50px, 9vw, 80px);
+            }
+
+            .sgd-veneer-program-row {
+                flex-direction: column;
+                gap: 24px;
+                padding-top: 32px;
+                padding-bottom: 32px;
+            }
+
+            .sgd-veneer-program-part-col,
+            .sgd-veneer-program-info-col,
+            .sgd-veneer-program-action-col {
+                width: 100%;
+            }
+
+            .sgd-veneer-program-action-col {
+                justify-content: flex-start;
+                margin-top: 8px;
+            }
+
+            .sgd-veneer-doctor-layout {
+                min-height: 460px;
+                gap: 28px;
+            }
+
+            .sgd-veneer-doctor-media {
+                width: 40%;
+                margin-top: -42px;
+                padding-top: 42px;
+            }
+
+            .sgd-veneer-doctor-copy {
+                width: 60%;
+                padding-top: 56px;
+                padding-right: 0;
+                padding-bottom: 56px;
+            }
+
+            .sgd-veneer-doctor-photo {
+                left: 0;
+                bottom: 0;
+                width: auto;
+                height: 100%;
+                max-width: 115%;
+                margin: 0;
+            }
+
+            .sgd-veneer-footer-cta {
+                min-height: 260px;
+                padding-top: 48px;
+                padding-bottom: 48px;
+            }
+
+            .sgd-veneer-footer-row {
+                gap: 40px;
+            }
+
+            .sgd-veneer-footer-title-main {
+                font-size: clamp(62px, 7.2vw, 82px);
+                line-height: 0.96;
+            }
+
+            .sgd-veneer-footer-title-sub {
+                margin-top: 5px;
+                font-size: clamp(68px, 8vw, 90px);
+                line-height: 0.94;
+            }
+
+            .sgd-veneer-register-btn {
+                width: 300px;
+                min-height: 98px;
+                padding: 16px 24px;
+            }
+
+            .sgd-veneer-register-btn-title {
+                font-size: 21px;
+            }
+
+            .sgd-veneer-register-btn-sub {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sgd-veneer-hero-section {
+                min-height: 80vh;
+                padding-top: 82px;
+            }
+
+            .sgd-veneer-hero-content {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .sgd-veneer-hero-title-main,
+            .sgd-veneer-hero-title-sub {
+                font-size: clamp(42px, 12vw, 60px);
+            }
+
+            .sgd-veneer-hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+                margin-top: 30px;
+            }
+
+            .sgd-veneer-feature-title {
+                margin-bottom: 14px;
+                font-size: clamp(24px, 7.6vw, 31px);
+                line-height: 1.12;
+            }
+
+            .sgd-veneer-feature-text {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .sgd-veneer-program-download-btn {
+                width: 100%;
+                min-width: 0;
+                min-height: 52px;
+                padding: 13px 20px;
+                border-radius: 12px;
+                font-size: 14px;
+            }
+
+            .sgd-veneer-doctor-layout {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+                min-height: auto;
+            }
+
+            .sgd-veneer-doctor-copy,
+            .sgd-veneer-doctor-media {
+                width: 100%;
+            }
+
+            .sgd-veneer-doctor-copy {
+                order: 1;
+                padding-top: 32px;
+                padding-right: 0;
+                padding-bottom: 0;
+            }
+
+            .sgd-veneer-doctor-media {
+                order: 2;
+                height: clamp(330px, 92vw, 500px);
+                margin-top: -20px;
+                padding-top: 20px;
+            }
+
+            .sgd-veneer-doctor-photo {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: auto;
+                height: 100%;
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .sgd-veneer-footer-row {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .sgd-veneer-footer-course-title {
+                width: 100%;
+                align-items: center;
+                text-align: center;
+            }
+
+            .sgd-veneer-footer-title-main {
+                font-size: clamp(46px, 11.5vw, 66px);
+                line-height: 0.98;
+            }
+
+            .sgd-veneer-footer-title-sub {
+                margin-top: 4px;
+                font-size: clamp(52px, 12.5vw, 74px);
+                line-height: 0.96;
+            }
+
+            .sgd-veneer-register-wrap,
+            .sgd-veneer-register-btn {
+                width: 100%;
+            }
+
+            .sgd-veneer-register-btn {
+                min-height: 92px;
+            }
+        }
+
+        /* ==========================================================
+           VENEER PAGE: MENU OVERRIDE LOGIC & GRADIENT LOGIC
+           (KHÔNG XÓA - Dùng để tương tác với Javascript)
+        ========================================================== */
+        /* CSS này ép menu lấy Gradient màu nếu JS xác nhận chạm khối Gradient */
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-gradient-feature-blue {
+            /* 1. Đổi màu chữ Text và Link thành Gradient */
+            background-image: linear-gradient(45deg, #2a4c6b 0%, #062d48 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            color: transparent !important;
+            /* Fallback */
+        }
+
+        /* 2. Ép Logo xanh hiển thị, ẩn Logo trắng */
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-gradient-feature-blue .--sgd-logo-white {
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-gradient-feature-blue .--sgd-logo-blue {
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        /* 3. Xử lý Nút Burger Menu (Nút MỤC CHÍNH) */
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-gradient-feature-blue .--sgd-menu-button>span::before,
+        body.sgd-veneer-page .--sgd-topbar.--veneer-gradient-feature-blue .--sgd-menu-button>span::after {
+            background: #062d48 !important;
+            /* Lấy màu đậm nhất của gradient làm màu nét */
+            color: #062d48 !important;
+        }
+
+        /* Box-shadow của nét gạch burger trên desktop */
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-gradient-feature-blue .--sgd-menu-button>span::before {
+            box-shadow: 0 calc((clamp(21px, 1.9vw, 34px) - 1.5px) / 2) 0 #062d48 !important;
+        }
+
+        /* Cập nhật lại box-shadow burger cho mobile/tablet nếu cần theo đúng CSS gốc */
+
+        @media (max-width: 900px) {
+            body.sgd-veneer-page .--sgd-topbar.--veneer-gradient-feature-blue .--sgd-menu-button>span::before {
+                box-shadow: 0 9.25px 0 #062d48 !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body.sgd-veneer-page .--sgd-topbar.--veneer-gradient-feature-blue .--sgd-menu-button>span::before {
+                box-shadow: 0 8.25px 0 #062d48 !important;
+            }
+        }
+
+        /* 4. Định nghĩa các màu thông thường (Chạm mép chính xác) */
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-force-dark {
+            /* Khôi phục màu trắng nếu vào khối Dark */
+            background-image: none !important;
+            -webkit-background-clip: border-box !important;
+            background-clip: border-box !important;
+            -webkit-text-fill-color: initial !important;
+            color: #ffffff !important;
+        }
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-force-dark .--sgd-logo-white {
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-force-dark .--sgd-logo-blue {
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-force-dark .--sgd-menu-button>span::before,
+        body.sgd-veneer-page .--sgd-topbar.--veneer-force-dark .--sgd-menu-button>span::after {
+            background: currentColor !important;
+            color: inherit !important;
+        }
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-force-light {
+            /* Khôi phục màu xanh riêng của Veneer nếu vào khối Light */
+            background-image: none !important;
+            -webkit-background-clip: border-box !important;
+            background-clip: border-box !important;
+            -webkit-text-fill-color: initial !important;
+            color: #062d48 !important;
+        }
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-force-light .--sgd-logo-white {
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-force-light .--sgd-logo-blue {
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        body.sgd-veneer-page .--sgd-topbar.--veneer-force-light .--sgd-menu-button>span::before,
+        body.sgd-veneer-page .--sgd-topbar.--veneer-force-light .--sgd-menu-button>span::after {
+            background: currentColor !important;
+            color: inherit !important;
+        }
+    </style>
+</head>
+
+<body class="sgd-veneer-page">
+
+    <!-- 
+        CHÚ Ý VỚI HEADER TRANG CHỦ: 
+        Tôi không chèn mã HTML của top menu vào đây để tránh trùng lặp khi bạn copy vào Flatsome. 
+        Mã CSS & JS trong file này sẽ TỰ ĐỘNG BẮT ĐƯỢC menu hệ thống của bạn đang chạy.
+    -->
+
+    <!-- Khối 1: Hero -->
+    <section class="sgd-veneer-hero-section" data-menu-tone="dark">
+        <div class="sgd-veneer-hero-bg-wrap">
+            <!-- Đã điều chỉnh ảnh gốc theo reference của bạn (răng nằm bên phải) -->
+            <img src="http://sagodent.com/wp-content/uploads/2026/08/veneer-workflow.jpg" alt="The Veneer Workflow"
+                class="sgd-veneer-hero-bg-image">
+            <div class="sgd-veneer-hero-overlay"></div>
+        </div>
+
+        <div class="sgd-veneer-content-container sgd-veneer-hero-content">
+            <div class="sgd-veneer-inner-content">
+                <div class="sgd-veneer-hero-copy">
+                    <p class="sgd-veneer-hero-eyebrow">KHÓA HỌC SẮP DIỄN RA</p>
+                    <h1 class="sgd-veneer-hero-title-main">THE VENEER</h1>
+                    <h2 class="sgd-veneer-hero-title-sub">WORKFLOW</h2>
+
+                    <div class="sgd-veneer-hero-actions">
+                        <p class="sgd-veneer-hero-tagline">From preparation<br>to predictable beauty</p>
+                        <a href="#" class="sgd-veneer-hero-cta">Tham gia ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Khối 2: Ai nên tham dự (ĐÃ THÊM data-veneer-gradient ĐỂ BẮT LOGIC JS) -->
+    <section class="sgd-veneer-feature-section" data-menu-tone="dark" data-veneer-gradient="feature-blue">
+        <img src="http://sagodent.com/wp-content/uploads/2026/08/Dr-diem-01@3x-scaled.png" alt="Dr. Diem background"
+            class="sgd-veneer-feature-bg">
+        <div class="sgd-veneer-feature-overlay"></div>
+        <div class="sgd-veneer-feature-fade"></div>
+
+        <div class="sgd-veneer-content-container">
+            <div class="sgd-veneer-inner-content">
+                <div class="sgd-veneer-feature-copy">
+                    <div class="sgd-veneer-feature-copy-block">
+                        <h2 class="sgd-veneer-feature-title">LÀM CHỦ TOÀN BỘ VENEER WORKFLOW</h2>
+                        <p class="sgd-veneer-feature-text">
+                            THE VENEER WORKFLOW là khóa học chuyên sâu dành cho bác sĩ muốn làm chủ toàn bộ quy trình
+                            Veneer — từ phân tích thẩm mỹ, lựa chọn ca, Mock-up, sửa soạn, ghi dấu đến CAD/CAM, Try-in,
+                            dán Veneer và xử lý biến chứng.
+                        </p>
+                        <p class="sgd-veneer-feature-text">
+                            Trong 03 ngày, học viên được thực hành 11 Hands-on trên răng thật và mô hình, đồng thời quan
+                            sát trực tiếp quy trình CAD/CAM Chairside, giúp kết nối toàn bộ workflow từ lâm sàng đến
+                            phục hình.
+                        </p>
+                    </div>
+
+                    <div class="sgd-veneer-feature-copy-block">
+                        <h2 class="sgd-veneer-feature-title">AI NÊN THAM DỰ?</h2>
+                        <p class="sgd-veneer-feature-text">
+                            Khóa học dành cho bác sĩ nha khoa muốn xây dựng một Veneer Workflow rõ ràng, có hệ thống và
+                            có thể ứng dụng ngay trong thực hành lâm sàng — với sự kiểm soát tốt hơn về sửa soạn, vật
+                            liệu, màu sắc, Digital Workflow và các tình huống thất bại thường gặp.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Khối 3: Tổng quan chương trình -->
+    <section class="sgd-veneer-program-section" data-menu-tone="light">
+        <div class="sgd-veneer-content-container">
+            <div class="sgd-veneer-inner-content">
+                <h2 class="sgd-veneer-program-title">TỔNG QUAN CHƯƠNG TRÌNH</h2>
+
+                <div class="sgd-veneer-program-list">
+                    <hr class="sgd-veneer-program-divider">
+
+                    <div class="sgd-veneer-program-row">
+                        <div class="sgd-veneer-program-part-col">
+                            <h3 class="sgd-veneer-program-part-title">Phần 1</h3>
+                        </div>
+
+                        <div class="sgd-veneer-program-info-col">
+                            <p class="sgd-veneer-program-kicker">PRE-CLASS</p>
+
+                            <div class="sgd-veneer-program-details">
+                                <p class="sgd-veneer-program-details-label">NỀN TẢNG VENEER WORKFLOW</p>
+                                <p>Chẩn đoán, lựa chọn ca &amp; lập kế hoạch</p>
+                                <p>Phân tích thẩm mỹ, Wax-up &amp; Mock-up</p>
+                                <p>Sửa soạn, kiểm soát mô mềm &amp; ghi dấu</p>
+                                <p>Vật liệu, màu sắc &amp; Digital Workflow</p>
+                            </div>
+
+                            <p class="sgd-veneer-program-count">13 CHUYÊN ĐỀ PRE-CLASS</p>
+                        </div>
+
+                        <div class="sgd-veneer-program-action-col">
+                            <button type="button" class="sgd-veneer-program-download-btn">Tải file chi tiết</button>
+                        </div>
+                    </div>
+
+                    <hr class="sgd-veneer-program-divider">
+
+                    <div class="sgd-veneer-program-row">
+                        <div class="sgd-veneer-program-part-col">
+                            <h3 class="sgd-veneer-program-part-title">Phần 2</h3>
+                        </div>
+
+                        <div class="sgd-veneer-program-info-col">
+                            <div class="sgd-veneer-program-meta">
+                                <p>17-19.09.2026</p>
+                                <p>Trung tâm Sagodent – TP. Hồ Chí Minh</p>
+                            </div>
+
+                            <div class="sgd-veneer-program-details sgd-veneer-program-details-spaced">
+                                <p class="sgd-veneer-program-details-label">THỰC CHIẾN VENEER WORKFLOW</p>
+                                <p>Sửa soạn Veneer &amp; kiểm soát độ sâu</p>
+                                <p>Mock-up, ghi dấu &amp; quản lý điểm tiếp xúc</p>
+                                <p>CAD/CAM Chairside &amp; Try-in</p>
+                                <p>Cementation &amp; kiểm soát khớp cắn</p>
+                                <p>Xử lý các tình huống thất bại</p>
+                            </div>
+                        </div>
+
+                        <div class="sgd-veneer-program-action-col">
+                            <button type="button" class="sgd-veneer-program-download-btn">Tải file chi tiết</button>
+                        </div>
+                    </div>
+
+                    <hr class="sgd-veneer-program-divider">
+                </div>
+
+                <div class="sgd-veneer-program-summary">
+                    <p>03 NGÀY ĐÀO TẠO TRỰC TIẾP 11 HANDS-ON + OBSERVATION CAD/CAM CHAIRSIDE</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Khối 4: Doctor -->
+    <section class="sgd-veneer-doctor-section" data-menu-tone="dark">
+        <div class="sgd-veneer-content-container">
+            <div class="sgd-veneer-inner-content">
+                <div class="sgd-veneer-doctor-layout">
+                    <div class="sgd-veneer-doctor-media">
+                        <img src="http://sagodent.com/wp-content/uploads/2026/08/Dr-diem@3x.png" alt="Dr. Diem Le"
+                            class="sgd-veneer-doctor-photo">
+                    </div>
+
+                    <div class="sgd-veneer-doctor-copy">
+                        <h2 class="sgd-veneer-doctor-name">Dr. Diem Le</h2>
+                        <div class="sgd-veneer-doctor-bio">
+                            <p>
+                                Hơn 20 năm kinh nghiệm lâm sàng, chuyên sâu về cấy ghép Implant và phục hình toàn hàm,
+                                tiên phong ứng dụng quy trình nha khoa kỹ thuật số trong điều trị.
+                            </p>
+                            <p>
+                                Giảng viên thỉnh giảng tại Đại học Y Dược Cần Thơ, báo cáo viên trong nước và quốc tế;
+                                đối tác chuyên môn của Medit, Osstem Implant và Dentium Implant.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Khối 5: Chứng nhận hoàn thành -->
+    <section class="sgd-veneer-certificate-section" data-menu-tone="light">
+        <div class="sgd-veneer-content-container">
+            <div class="sgd-veneer-inner-content">
+                <div class="sgd-veneer-certificate-copy">
+                    <h2 class="sgd-veneer-certificate-title">CHỨNG NHẬN HOÀN THÀNH</h2>
+
+                    <p class="sgd-veneer-certificate-intro">
+                        Học viên hoàn thành chương trình THE VENEER WORKFLOW sẽ được trao Giấy chứng nhận hoàn thành
+                        khóa học từ Sagodent.
+                    </p>
+
+                    <div class="sgd-veneer-certificate-experience">
+                        <p class="sgd-veneer-certificate-experience-title">TRẢI NGHIỆM KHÓA HỌC BAO GỒM:</p>
+                        <p class="sgd-veneer-certificate-experience-text">
+                            Pre-class chuyên sâu / 11 Hands-on thực chiến / Thực hành trên răng thật &amp; mô hình
+                            chuyên biệt / CAD/CAM Chairside Observation / Digital Workflow / Try-in &amp; Cementation /
+                            Xử lý các tình huống thất bại thường gặp
+                        </p>
+                    </div>
+
+                    <p class="sgd-veneer-certificate-note">
+                        Không chỉ là một khóa học Veneer — mà là hành trình kết nối toàn bộ workflow từ lập kế hoạch đến
+                        hoàn tất phục hình.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Khối 6: Footer CTA -->
+    <footer class="sgd-veneer-footer-cta" data-menu-tone="dark">
+        <div class="sgd-veneer-content-container">
+            <div class="sgd-veneer-inner-content sgd-veneer-footer-row">
+                <div class="sgd-veneer-footer-course-title">
+                    <h2 class="sgd-veneer-footer-title-main">THE VENEER</h2>
+                    <h2 class="sgd-veneer-footer-title-sub">WORKFLOW</h2>
+                </div>
+
+                <div class="sgd-veneer-register-wrap">
+                    <a href="#" class="sgd-veneer-register-btn">
+                        <span class="sgd-veneer-register-btn-title">Đăng ký tham gia</span>
+                        <span class="sgd-veneer-register-btn-sub">vào tháng 9 năm 2026</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====================================================================
+         JAVASCRIPT LOGIC TÍNH TOÁN "ĐIỂM CHẠM MÉP" ĐỔI MÀU MENU
+         (Chỉ hoạt động khi đứng ở trang body.sgd-veneer-page)
+         ==================================================================== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 1. Chỉ kích hoạt toàn bộ logic này nếu đang ở trang Veneer
+            if (!document.body.classList.contains('sgd-veneer-page')) return;
+
+            const header = document.querySelector('.--sgd-topbar');
+            if (!header) return;
+
+            // Bỏ qua CSS đổi màu mặc định của JS trang chủ bằng thẻ !important trong CSS.
+            // JS này sẽ tính toán điểm chạm cực kỳ chính xác.
+
+            const sections = document.querySelectorAll('.sgd-veneer-page section, .sgd-veneer-page footer');
+            let currentVeneerClass = '';
+
+            function checkMenuIntersection() {
+                // Tính toán vị trí đáy menu hiện tại so với toàn trang
+                const headerRect = header.getBoundingClientRect();
+                // triggerLine = Tọa độ đỉnh màn hình + Chiều cao menu 
+                const triggerLine = window.scrollY + headerRect.height + (window.scrollY === 0 ? 0 : headerRect.top);
+
+                let activeSection = null;
+
+                // Quét xem điểm chạm đang lọt thỏm vào section nào
+                sections.forEach(sec => {
+                    const secTop = sec.offsetTop;
+                    const secBottom = secTop + sec.offsetHeight;
+
+                    if (triggerLine >= secTop && triggerLine < secBottom) {
+                        activeSection = sec;
+                    }
+                });
+
+                if (activeSection) {
+                    // Đọc thuộc tính của Section đang chạm
+                    const tone = activeSection.getAttribute('data-menu-tone');
+                    const gradient = activeSection.getAttribute('data-veneer-gradient');
+
+                    // Xóa class cũ
+                    if (currentVeneerClass) {
+                        header.classList.remove(currentVeneerClass);
+                    }
+
+                    // Gán class mới theo độ ưu tiên: Gradient -> Tone Đen/Trắng
+                    if (gradient) {
+                        currentVeneerClass = `--veneer-gradient-${gradient}`;
+                    } else if (tone === 'dark') {
+                        currentVeneerClass = '--veneer-force-dark';
+                    } else if (tone === 'light') {
+                        currentVeneerClass = '--veneer-force-light';
+                    }
+
+                    // Apply lên Topbar Menu
+                    if (currentVeneerClass) {
+                        header.classList.add(currentVeneerClass);
+                    }
+                }
+            }
+
+            // Tối ưu hóa event scroll (Chống giật lag)
+            let ticking = false;
+            window.addEventListener('scroll', function () {
+                if (!ticking) {
+                    window.requestAnimationFrame(function () {
+                        checkMenuIntersection();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, {
+                passive: true
+            });
+
+            // Trigger ngay khi load
+            setTimeout(checkMenuIntersection, 100);
+
+            // Cập nhật lại khi resize cửa sổ
+            window.addEventListener('resize', function () {
+                checkMenuIntersection();
+            });
+        });
+    </script>
+</body>
+
+</html>

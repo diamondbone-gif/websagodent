@@ -1,0 +1,707 @@
+/*@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");*/
+
+/* ============================================================
+   FONT FACE: TRUY XUẤT TRỰC TIẾP TỪ HOSTING
+   ============================================================ */
+
+/* ============================================================
+   FONT FACE: TRUY XUẤT TRỰC TIẾP TỪ HOSTING (ĐƯỜNG DẪN TUYỆT ĐỐI)
+   ============================================================ */
+
+
+/* 1. GOOGLE SANS (Sử dụng file Product Sans để hiển thị) */
+
+@font-face {
+    font-family: 'Google Sans';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Google Sans';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Google Sans';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Google Sans';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* 2. PLAYFAIR DISPLAY */
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* Thêm định dạng nghiêng (Italic) cho các thẻ <em> */
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+/* =========================================================
+   SAGODENT FOOTER
+   File: sagodent-footer.css
+
+   Desktop: 4 cột
+   Tablet:  2 cột
+   Mobile:  1 cột
+   ========================================================= */
+
+
+/* =========================================================
+   1. BIẾN FOOTER
+   ========================================================= */
+
+.sagodent-footer {
+    --sg-footer-background: var(--sg-color-blue, #075d98);
+    --sg-footer-color: var(--sg-color-white, #ffffff);
+    --sg-footer-font: var(--sg-font-family-primary, "Montserrat", Arial, Helvetica, sans-serif);
+    --sg-footer-border: rgba(255, 255, 255, 0.16);
+    --sg-footer-title-size: clamp(14px, 1.05vw, 20px);
+    --sg-footer-text-size: clamp(17px, 1.25vw, 24px);
+    --sg-footer-padding-x: clamp(28px, 5vw, 96px);
+    --sg-footer-padding-top: clamp(38px, 3.2vw, 62px);
+    --sg-footer-padding-bottom: clamp(42px, 3.6vw, 70px);
+    --sg-footer-logo-width: clamp(190px, 11.5vw, 220px);
+    --sg-footer-column-gap: clamp(32px, 3vw, 58px);
+    --sg-footer-row-gap: clamp(26px, 2vw, 40px);
+}
+
+
+/* =========================================================
+   2. RESET TRONG FOOTER
+   ========================================================= */
+
+.sagodent-footer,
+.sagodent-footer *,
+.sagodent-footer *::before,
+.sagodent-footer *::after {
+    box-sizing: border-box;
+}
+
+.sagodent-footer h1,
+.sagodent-footer h2,
+.sagodent-footer h3,
+.sagodent-footer h4,
+.sagodent-footer h5,
+.sagodent-footer h6,
+.sagodent-footer p,
+.sagodent-footer ul,
+.sagodent-footer ol,
+.sagodent-footer address,
+.sagodent-footer figure {
+    margin: 0;
+    padding: 0;
+}
+
+.sagodent-footer ul,
+.sagodent-footer ol {
+    list-style: none;
+}
+
+.sagodent-footer address {
+    font-style: normal;
+}
+
+.sagodent-footer a {
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+}
+
+.sagodent-footer img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* =========================================================
+   3. KHUNG FOOTER
+   ========================================================= */
+
+.sagodent-footer {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: var(--sg-footer-color);
+    background-color: var(--sg-footer-background);
+    border-top: 1px solid var(--sg-footer-border);
+    font-family: var(--sg-footer-font);
+    text-align: left;
+}
+
+
+/* =========================================================
+   4. KHUNG NỘI DUNG BÊN TRONG
+   ========================================================= */
+
+.sagodent-footer__inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    /* Cập nhật phần này để khoảng cách gần lại và căn giữa theo chiều dọc */
+    grid-template-rows: auto auto;
+    align-content: center;
+    width: min(100%, 1920px);
+    min-height: clamp(460px, 25.5vw, 500px);
+    margin: 0 auto;
+    padding: var(--sg-footer-padding-top) var(--sg-footer-padding-x) var(--sg-footer-padding-bottom);
+    row-gap: var(--sg-footer-row-gap);
+}
+
+
+/* =========================================================
+   5. LOGO CHÍNH
+   ========================================================= */
+
+.sagodent-footer__logo {
+    position: relative;
+    z-index: 3;
+    display: block;
+    width: var(--sg-footer-logo-width);
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.sagodent-footer__logo img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: left top;
+}
+
+
+/* Hỗ trợ class logo-footer cũ */
+
+.sagodent-footer .logo-footer {
+    display: block;
+    width: var(--sg-footer-logo-width);
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.sagodent-footer .logo-footer img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* =========================================================
+   6. LƯỚI 4 CỘT
+   ========================================================= */
+
+.sagodent-footer__grid {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    column-gap: var(--sg-footer-column-gap);
+    row-gap: 40px;
+    align-items: start;
+}
+
+.sagodent-footer__column {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   7. TIÊU ĐỀ
+   ========================================================= */
+
+.sagodent-footer__title {
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: var(--sg-footer-color);
+    font-family: var(--sg-footer-font);
+    font-size: var(--sg-footer-title-size);
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+
+/* Hỗ trợ HTML cũ dùng thẻ small */
+
+.sagodent-footer small {
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: var(--sg-footer-color);
+    opacity: 1;
+    font-family: var(--sg-footer-font);
+    font-size: var(--sg-footer-title-size);
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   8. NỘI DUNG
+   ========================================================= */
+
+.sagodent-footer__text,
+.sagodent-footer__list {
+    margin: clamp(16px, 1.45vw, 28px) 0 0;
+    padding: 0;
+    color: var(--sg-footer-color);
+    font-family: var(--sg-footer-font);
+    font-size: var(--sg-footer-text-size);
+    font-weight: 300;
+    line-height: 1.45;
+    letter-spacing: -0.015em;
+}
+
+.sagodent-footer__text {
+    font-style: normal;
+    overflow-wrap: anywhere;
+}
+
+.sagodent-footer__list {
+    list-style: none;
+}
+
+.sagodent-footer__list li {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   9. LIÊN KẾT
+   ========================================================= */
+
+.sagodent-footer__link {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    color: var(--sg-footer-color);
+    font-family: var(--sg-footer-font);
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    text-decoration: none;
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.sagodent-footer__link:hover {
+    color: var(--sg-footer-color);
+    opacity: 0.78;
+    transform: translateX(4px);
+}
+
+.sagodent-footer__link:focus-visible {
+    color: var(--sg-footer-color);
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+}
+
+
+/* Số điện thoại và email không di chuyển khi hover */
+
+.sagodent-footer__text .sagodent-footer__link:hover {
+    transform: none;
+}
+
+
+/* =========================================================
+   10. LOGO CHÌM PHÍA PHẢI
+   ========================================================= */
+
+.sagodent-footer__mark {
+    position: absolute;
+    z-index: 1;
+    right: -2vw;
+    bottom: -4vw;
+    display: block;
+    width: 50vw;
+    height: 18.5vw;
+    min-width: 720px;
+    min-height: 266px;
+    max-width: 960px;
+    max-height: 355px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0.11;
+    pointer-events: none;
+    user-select: none;
+    background-image: url("http://sagodent.com/wp-content/uploads/2026/08/logo-white.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% auto;
+}
+
+
+/* Hỗ trợ class footer-mark cũ */
+
+.sagodent-footer .footer-mark {
+    position: absolute;
+    z-index: 1;
+    right: -2vw;
+    bottom: -4vw;
+    display: block;
+    width: 50vw;
+    height: 18.5vw;
+    min-width: 720px;
+    min-height: 266px;
+    max-width: 960px;
+    max-height: 355px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: transparent;
+    font-size: 0;
+    opacity: 0.11;
+    pointer-events: none;
+    user-select: none;
+    background-image: url("http://sagodent.com/wp-content/uploads/2026/08/logo-white.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% auto;
+}
+
+
+/* =========================================================
+   11. DESKTOP RỘNG
+   Từ 1440px trở lên
+   ========================================================= */
+
+@media screen and (min-width: 1440px) {
+    .sagodent-footer__inner {
+        min-height: clamp(480px, 25.5vw, 500px);
+    }
+
+    .sagodent-footer__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .sagodent-footer__mark,
+    .sagodent-footer .footer-mark {
+        right: -2vw;
+        bottom: -4vw;
+        width: 50vw;
+        height: 18.5vw;
+        min-width: 720px;
+        min-height: 266px;
+        max-width: 960px;
+        max-height: 355px;
+    }
+}
+
+
+/* =========================================================
+   12. LAPTOP
+   1101px đến 1439px
+   ========================================================= */
+
+@media screen and (min-width: 1101px) and (max-width: 1439px) {
+    .sagodent-footer__inner {
+        min-height: 430px;
+        padding: 40px 5vw 62px;
+    }
+
+    .sagodent-footer__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: clamp(30px, 4vw, 58px);
+    }
+
+    .sagodent-footer__title,
+    .sagodent-footer small {
+        font-size: clamp(14px, 1.2vw, 18px);
+    }
+
+    .sagodent-footer__text,
+    .sagodent-footer__list {
+        font-size: clamp(16px, 1.45vw, 21px);
+    }
+
+    .sagodent-footer__mark,
+    .sagodent-footer .footer-mark {
+        right: -5vw;
+        bottom: -5vw;
+        width: 58vw;
+        height: 21.46vw;
+        min-width: 650px;
+        min-height: 240px;
+        max-width: none;
+        max-height: none;
+    }
+}
+
+
+/* =========================================================
+   13. TABLET
+   769px đến 1100px
+   ========================================================= */
+
+@media screen and (min-width: 769px) and (max-width: 1100px) {
+    .sagodent-footer__inner {
+        min-height: 0;
+        padding: clamp(48px, 6vw, 70px) clamp(32px, 7vw, 72px) clamp(110px, 13vw, 145px);
+        row-gap: clamp(40px, 5vw, 58px);
+    }
+
+    .sagodent-footer__logo,
+    .sagodent-footer .logo-footer {
+        width: clamp(185px, 23vw, 220px);
+    }
+
+    .sagodent-footer__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: clamp(48px, 9vw, 90px);
+        row-gap: clamp(40px, 6vw, 58px);
+    }
+
+    .sagodent-footer__title,
+    .sagodent-footer small {
+        font-size: clamp(15px, 2vw, 18px);
+    }
+
+    .sagodent-footer__text,
+    .sagodent-footer__list {
+        margin-top: 16px;
+        font-size: clamp(17px, 2.35vw, 22px);
+    }
+
+    .sagodent-footer__mark,
+    .sagodent-footer .footer-mark {
+        right: -18vw;
+        bottom: -5vw;
+        width: 88vw;
+        height: 32.56vw;
+        min-width: 0;
+        min-height: 0;
+        max-width: none;
+        max-height: none;
+        opacity: 0.10;
+    }
+}
+
+
+/* =========================================================
+   14. TABLET NHỎ
+   601px đến 768px
+   ========================================================= */
+
+@media screen and (min-width: 601px) and (max-width: 768px) {
+    .sagodent-footer__inner {
+        padding: 48px clamp(28px, 7vw, 52px) 135px;
+        row-gap: 40px;
+    }
+
+    .sagodent-footer__logo,
+    .sagodent-footer .logo-footer {
+        width: clamp(175px, 28vw, 210px);
+    }
+
+    .sagodent-footer__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: clamp(30px, 8vw, 58px);
+        row-gap: 40px;
+    }
+
+    .sagodent-footer__title,
+    .sagodent-footer small {
+        font-size: clamp(14px, 2.4vw, 17px);
+    }
+
+    .sagodent-footer__text,
+    .sagodent-footer__list {
+        margin-top: 14px;
+        font-size: clamp(16px, 2.9vw, 20px);
+        line-height: 1.5;
+    }
+
+    .sagodent-footer__mark,
+    .sagodent-footer .footer-mark {
+        right: -24vw;
+        bottom: -6vw;
+        width: 105vw;
+        height: 38.85vw;
+        min-width: 0;
+        min-height: 0;
+        max-width: none;
+        max-height: none;
+        opacity: 0.09;
+    }
+}
+
+
+/* =========================================================
+   15. MOBILE
+   Tối đa 600px
+   ========================================================= */
+
+@media screen and (max-width: 600px) {
+    .sagodent-footer__inner {
+        min-height: 0;
+        padding: 42px clamp(20px, 7vw, 32px) 155px;
+        row-gap: 34px;
+    }
+
+    .sagodent-footer__logo,
+    .sagodent-footer .logo-footer {
+        width: clamp(170px, 52vw, 205px);
+    }
+
+    .sagodent-footer__grid {
+        grid-template-columns: minmax(0, 1fr);
+        column-gap: 0;
+        row-gap: 32px;
+    }
+
+    .sagodent-footer__title,
+    .sagodent-footer small {
+        font-size: 14px;
+        line-height: 1.35;
+    }
+
+    .sagodent-footer__text,
+    .sagodent-footer__list {
+        margin-top: 12px;
+        font-size: clamp(16px, 4.6vw, 19px);
+        line-height: 1.5;
+    }
+
+    .sagodent-footer__mark,
+    .sagodent-footer .footer-mark {
+        right: -35vw;
+        bottom: -7vw;
+        width: 125vw;
+        height: 46.25vw;
+        min-width: 0;
+        min-height: 0;
+        max-width: none;
+        max-height: none;
+        opacity: 0.09;
+    }
+}
+
+
+/* =========================================================
+   16. MOBILE NHỎ
+   Tối đa 380px
+   ========================================================= */
+
+@media screen and (max-width: 380px) {
+    .sagodent-footer__inner {
+        padding-right: 18px;
+        padding-bottom: 140px;
+        padding-left: 18px;
+    }
+
+    .sagodent-footer__logo,
+    .sagodent-footer .logo-footer {
+        width: 165px;
+    }
+
+    .sagodent-footer__text,
+    .sagodent-footer__list {
+        font-size: 16px;
+    }
+
+    .sagodent-footer__mark,
+    .sagodent-footer .footer-mark {
+        right: -42vw;
+        bottom: -7vw;
+        width: 140vw;
+        height: 51.8vw;
+    }
+}
+
+
+/* =========================================================
+   17. THIẾT BỊ KHÔNG CÓ HOVER
+   ========================================================= */
+
+@media (hover: none) {
+    .sagodent-footer__link:hover {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* =========================================================
+   18. GIẢM CHUYỂN ĐỘNG
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .sagodent-footer__link {
+        transition: none;
+    }
+}
