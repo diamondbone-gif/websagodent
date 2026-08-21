@@ -419,8 +419,13 @@
     background: #ffffff;
 }
 
+
+/* Đã bổ sung border-bottom và padding để tạo đường kẻ ngang dưới tiêu đề */
+
 .sgd-veneer-program-title {
-    margin: 0 0 32px;
+    margin: 0 0 20px;
+    padding-bottom: 0;
+    border-bottom: 0;
     color: var(--sgd-veneer-blue);
     font-size: 30px;
     line-height: 1.2;
@@ -434,11 +439,15 @@
     flex-direction: column;
 }
 
+
+/* Đã chỉnh lại màu xanh đậm hơn một chút (0.3 thay vì 0.2) */
+
 .sgd-veneer-program-divider {
     width: 100%;
     margin: 0;
     border: 0;
-    border-top: 2px solid rgba(6, 45, 72, 0.24);
+    border-top: 2px solid rgba(6, 45, 72, 0.34);
+    opacity: 1;
 }
 
 .sgd-veneer-program-row {
@@ -509,6 +518,7 @@
     color: var(--sgd-veneer-gray-700);
     font-size: 14px;
     line-height: 1.625;
+    max-width: 340px;
 }
 
 .sgd-veneer-program-details.sgd-veneer-program-details-spaced {
@@ -549,15 +559,15 @@
     white-space: nowrap;
     box-shadow: none;
     cursor: pointer;
-    transition: none;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-.sgd-veneer-program-download-btn:hover,
-.sgd-veneer-program-download-btn:focus {
+.sgd-veneer-program-download-btn:focus-visible {
     background: #ffffff;
     color: var(--sgd-veneer-blue);
-    border-color: rgba(6, 45, 72, 0.72);
-    outline: none;
+    border-color: rgba(6, 45, 72, 0.82);
+    outline: 3px solid rgba(110, 188, 229, 0.32);
+    outline-offset: 3px;
 }
 
 .sgd-veneer-program-summary {
@@ -751,7 +761,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(64px, 5vw, 90px);
+    gap: clamp(110px, 8vw, 155px);
     margin-left: auto;
     margin-right: auto;
 }
@@ -804,14 +814,14 @@
 .sgd-veneer-register-wrap::after {
     content: '';
     position: absolute;
-    left: 8%;
-    right: 4%;
-    bottom: -24px;
+    left: 5%;
+    right: 5%;
+    bottom: -32px;
     z-index: -1;
-    height: 54px;
+    height: 68px;
     border-radius: 50%;
-    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 42%, rgba(255, 255, 255, 0) 72%);
-    filter: blur(11px);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.44) 0%, rgba(255, 255, 255, 0.24) 34%, rgba(255, 255, 255, 0.09) 56%, rgba(255, 255, 255, 0) 78%);
+    filter: blur(15px);
     pointer-events: none;
 }
 
@@ -826,7 +836,7 @@
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: clamp(16px, 1.25vw, 24px);
     background: linear-gradient(105deg, #232323 0%, #2f2f2f 44%, #5b5b5b 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 30px rgba(255, 255, 255, 0.10), 0 14px 30px rgba(0, 0, 0, 0.34);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 0 26px rgba(255, 255, 255, 0.16), 0 18px 38px rgba(0, 0, 0, 0.42);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -867,22 +877,28 @@
     }
 
     .sgd-veneer-program-section {
-        padding-top: 96px;
-        padding-bottom: 96px;
+        padding-top: clamp(36px, 3vw, 48px);
+        padding-bottom: clamp(42px, 3.5vw, 56px);
+    }
+
+    .sgd-veneer-program-section .sgd-veneer-content-container {
+        /* padding-right: clamp(36px, 4.6vw, 80px);
+        padding-left: clamp(36px, 4.6vw, 80px); */
+        padding: clamp(36px, 4.6vw, 80px);
     }
 
     .sgd-veneer-program-title {
-        margin-bottom: 40px;
-        font-size: 48px;
+        margin-bottom: clamp(16px, 1.35vw, 22px);
+        font-size: clamp(30px, 2.35vw, 38px);
     }
 
     .sgd-veneer-program-row {
         display: grid;
-        grid-template-columns: 22% minmax(0, 48%) minmax(190px, 30%);
+        grid-template-columns: 27% minmax(0, 48%) minmax(190px, 25%);
         align-items: center;
         gap: 0;
-        padding-top: 48px;
-        padding-bottom: 48px;
+        padding-top: clamp(20px, 1.65vw, 27px);
+        padding-bottom: clamp(20px, 1.65vw, 27px);
     }
 
     .sgd-veneer-program-part-col,
@@ -893,7 +909,8 @@
     }
 
     .sgd-veneer-program-info-col {
-        padding-right: clamp(20px, 3vw, 40px);
+        gap: 7px;
+        padding-right: clamp(18px, 2.5vw, 36px);
     }
 
     .sgd-veneer-program-action-col {
@@ -902,20 +919,24 @@
     }
 
     .sgd-veneer-program-part-title {
-        font-size: 48px;
+        font-size: clamp(35px, 2.8vw, 45px);
     }
 
     .sgd-veneer-program-kicker,
     .sgd-veneer-program-meta {
-        font-size: 20px;
+        font-size: clamp(18px, 1.4vw, 23px);
     }
 
     .sgd-veneer-program-count {
-        font-size: 18px;
+        padding-top: 5px;
+        font-size: clamp(17px, 1.3vw, 21px);
     }
 
     .sgd-veneer-program-details {
-        font-size: 16px;
+        gap: 1px;
+        max-width: 430px;
+        font-size: clamp(17px, 1.3vw, 21px);
+        line-height: 1.38;
     }
 
     .sgd-veneer-program-action-col {
@@ -924,18 +945,23 @@
 
     .sgd-veneer-program-download-btn {
         width: auto;
+        min-width: clamp(190px, 19vw, 270px);
+        min-height: 48px;
+        padding: 11px 22px;
+        border-radius: 10px;
+        font-size: clamp(17px, 1.3vw, 21px);
     }
 
     .sgd-veneer-program-summary {
-        margin-top: 48px;
+        margin-top: clamp(18px, 1.5vw, 24px);
     }
 
     .sgd-veneer-program-summary p {
-        font-size: 16px;
+        font-size: clamp(15px, 1.15vw, 18px);
     }
 
     .sgd-veneer-program-summary {
-        font-size: 16px;
+        font-size: clamp(15px, 1.15vw, 18px);
     }
 
     .sgd-veneer-doctor-name {
@@ -973,7 +999,7 @@
 
     .sgd-veneer-program-row {
         display: grid;
-        grid-template-columns: 25% 50% 25%;
+        grid-template-columns: 27% 48% 25%;
         align-items: center;
         gap: 0;
     }
@@ -1010,6 +1036,19 @@
 
     .sgd-veneer-doctor-bio {
         font-size: 20px;
+    }
+}
+
+
+/* Hover chỉ dành cho desktop có thiết bị trỏ chính xác. */
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+    .sgd-veneer-program-download-btn:hover {
+        background: var(--sgd-veneer-blue);
+        color: #ffffff;
+        border-color: var(--sgd-veneer-blue);
+        box-shadow: 0 10px 24px rgba(6, 45, 72, 0.2);
+        transform: translateY(-3px);
     }
 }
 
