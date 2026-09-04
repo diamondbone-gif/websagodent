@@ -22,7 +22,7 @@ Options -Indexes
 
     # Lazy-gen folders: missing file → hand off to WP index.php for on-the-fly generation
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(avatar|localres)/.+ /index.php [L]
+    RewriteRule ^(avatar|localres)/.+ /websagodent/index.php [L]
 
     # Default deny
     RewriteRule .* - [F,L]

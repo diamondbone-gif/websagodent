@@ -2,10 +2,10 @@
 Contributors: rankmath
 Plugin link: https://rankmath.com/?utm_source=LP&utm_campaign=WP
 Tags: seo, google search console, schema, redirection, xml sitemap
-Tested up to: 7.0
+Tested up to: 7.1
 Requires at least: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.276
+Stable tag: 1.0.277.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -407,12 +407,21 @@ Terms of service: https://developers.facebook.com/terms/
 
 == Changelog ==
 
-= 1.0.276 [Aug 11, 2026] =
-- Added [Polylang Compatibility](https://rankmath.com/kb/polylang-compatibility/) to natively support the Polylang translation plugin without manual configuration.
-- Improved the free "Account Connection" CTA copy in AI Visibility to mention the connection is free.
-- Fixed permission error for domain properties in [Google URL Inspection API Integration](https://rankmath.com/kb/url-inspection-api-integration/).
-- Fixed compatibility issue with the Divi Carousel module throwing an error in the visual builder.
-- Fixed alignment issue in the ToggleGroup field used across the settings UI.
+= 1.0.277 [Aug 26, 2026] =
+- [HUGE!] Added a [Support Agent](https://rankmath.com/kb/support-agent/) that answers support questions anytime, directly from the plugin.
+- Added abilities for [AI assistants to configure Rank Math's settings](https://rankmath.com/kb/set-up-rank-math-using-mcp/).
+- [Added a filter](https://rankmath.com/kb/filters-hooks-api-developer/#change-post-description-llms.txt) to use the SEO description instead of the post excerpt in [llms.txt](https://rankmath.com/kb/llms-txt/).
+- Fixed Import Redirection Plugin Data via Setup Wizard failing on the first attempt.
+- Fixed local business Schema `openingHours` property outputting full day names instead of the required two-letter abbreviation.
+- Fixed the link options search input and results layout being distorted in the Classic Editor.
+- Strengthened the security of the plugin. Thanks to Patchstack, Project Black, Mohammed Abd Alrahman, and Usama Arshad for revealing it responsibly.
+
+= 1.0.277.1 [Aug 27, 2026] =
+- Updated: Rank Math SEO is now tested up to WordPress 7.1
+- Fixed the [Help & Support AI Assistant](https://rankmath.com/kb/support-agent/) incorrectly showing an HTTPS-required notice on every admin page, even on HTTPS sites when Application Passwords were disabled by another plugin.
+
+= 1.0.277.2 [Aug 31, 2026] =
+- Temporarily paused the Support Agent introduced in 1.0.277 while we add further transparency to how it requests site access. [Details here](https://rankmath.com/kb/support-agent-paused-temporarily/)
 
 
 Full changelog can be found here - **[Rank Math changelog](https://rankmath.com/changelog/?utm_source=Plugin&utm_medium=Changelog&utm_campaign=WP)**

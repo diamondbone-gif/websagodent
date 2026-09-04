@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 7.1.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-08-19 22:52:04+0000\n"
+"PO-Revision-Date: 2026-09-02 02:33:19+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -315,6 +315,10 @@ msgstr "Tabs"
 msgctxt "block title"
 msgid "Playlist"
 msgstr "Danh sách phát"
+
+#: wp-login.php:1551
+msgid "Selecting \"Remember Me\" increases the length of time until you&#8217;re asked to log in again on this device. To keep your account secure, use this option only on your personal devices."
+msgstr "Chọn \"Ghi nhớ đăng nhập\" sẽ kéo dài thời gian bạn được duy trì trạng thái đăng nhập trên thiết bị này mà không cần đăng nhập lại. Để bảo mật tài khoản, chỉ nên sử dụng tùy chọn này trên thiết bị cá nhân của bạn."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:164
 #: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:307

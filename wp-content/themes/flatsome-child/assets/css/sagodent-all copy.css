@@ -1,0 +1,4449 @@
+/*@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap");*/
+
+
+/* ============================================================
+   FONT FACE: TRUY XUẤT TRỰC TIẾP TỪ HOSTING (ĐƯỜNG DẪN TUYỆT ĐỐI)
+   ============================================================ */
+
+
+/* 1. GOOGLE SANS (Sử dụng file Product Sans để hiển thị) */
+
+@font-face {
+    font-family: 'Google Sans';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Google Sans';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Google Sans';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Google Sans';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/ProductSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* 2. PLAYFAIR DISPLAY */
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* Thêm định dạng nghiêng (Italic) cho các thẻ <em> */
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/PlayfairDisplay-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+/* 3. GOTHAM (Sử dụng file SVN-Gotham đã Việt hóa) 
+   Lưu ý nghề nghiệp: Các file có khoảng trắng ở tên (ví dụ: SVN-Gotham Light.ttf) 
+   tôi đã chuyển thành %20 để trình duyệt không bị lỗi khi đọc link.
+*/
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/SVN-Gotham%20Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/SVN-Gotham%20Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('/wp-content/themes/flatsome-child/assets/fonts/SVN-Gotham%20Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ============================================================
+   PHẦN 1 — MENU SAGODENT (Giữ nguyên toàn bộ code cũ của bạn từ đây trở xuống)
+   ============================================================ */
+
+
+/* ============================================================
+   SAGODENT MENU — MOBILE FIX + LIQUID GLASS
+   .--sgd-scroll-progress, .--sgd-topbar, .--sgd-sagodent-logo, .--sgd-header-actions,
+   .--sgd-language, .--sgd-menu-button, .--sgd-menu-panel
+
+   Bản gộp: phần MENU được đặt trước, phần SAGODENT nằm phía dưới.
+   Selector menu dùng namespace riêng để không phụ thuộc thứ tự của phần nội dung.
+   ============================================================ */
+
+:root {
+    --scroll: 0;
+    --menu-section-bg: #021b2c;
+    --menu-foreground: #ffffff;
+    --menu-border: rgba(255, 255, 255, 0.20);
+    --menu-hover: rgba(255, 255, 255, 0.08);
+    --menu-sky: #72bae3;
+    --menu-blue: #075d98;
+    --menu-header-height: 76px;
+    --menu-page-gutter: clamp(22px, 5.8vw, 112px);
+    --menu-admin-offset: 0px;
+    --sgd-lock-top: 0px;
+    --sgd-mobile-viewport-width: 100vw;
+    --sgd-mobile-viewport-height: 100dvh;
+    /* Liquid Glass: JS đổi màu nền kính theo section hiện tại. */
+    --menu-glass-bg: rgba(3, 31, 49, 0.48);
+    --menu-panel-glass-bg: rgba(3, 31, 49, 0.62);
+    --menu-glass-highlight: rgba(255, 255, 255, 0.14);
+    --menu-glass-blur: 18px;
+    --menu-glass-saturation: 125%;
+}
+
+body.admin-bar {
+    --menu-admin-offset: 32px;
+}
+
+@media (max-width: 782px) {
+    body.admin-bar {
+        --menu-admin-offset: 46px;
+    }
+}
+
+
+/* ------------------------------------------------------------
+   FIX KHOẢNG TRẮNG TRÊN MENU
+   - Không dùng offset cứng của WordPress.
+   - JS sẽ tính đúng chiều cao admin bar nếu admin bar thực sự đang hiển thị.
+   - Nếu admin bar bị ẩn, menu bám sát mép trên viewport.
+   ------------------------------------------------------------ */
+
+body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+body>.--sgd-scroll-progress.--sgd-sagodent-menu-mounted {
+    margin-top: 0 !important;
+}
+
+
+/*
+ * Menu mở nhưng html/body không trở thành scroll container mới.
+ * Đây là điều kiện để position: sticky trong .difference tiếp tục hoạt động.
+ */
+
+html.--sgd-sagodent-menu-open,
+html.--sgd-sagodent-menu-open body {
+    overflow: visible !important;
+}
+
+
+/*
+ * MOBILE/TABLET: khi drawer mở phải khóa trang phía sau.
+ * JS sẽ lưu scrollY vào --sgd-lock-top rồi cố định body đúng vị trí cũ.
+ * Drawer vẫn được phép cuộn riêng bằng touch-action: pan-y.
+ */
+
+@media (max-width: 900px) {
+    html.--sgd-sagodent-menu-open {
+        overflow: hidden !important;
+        overscroll-behavior: none !important;
+        touch-action: none !important;
+    }
+
+    html.--sgd-sagodent-menu-open body {
+        /*
+         * QUAN TRỌNG: không position:fixed BODY.
+         * Mobile Safari/Chrome có thể kéo cả fixed header theo body khi overscroll.
+         */
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        overscroll-behavior: none !important;
+        transform: none !important;
+        translate: none !important;
+        scale: none !important;
+        filter: none !important;
+        perspective: none !important;
+        contain: none !important;
+    }
+
+    /*
+     * Chỉ khóa phần nội dung WordPress tại scrollY hiện tại.
+     * Header / drawer / backdrop nằm ngoài #wrapper nên vẫn fixed theo viewport.
+     */
+    html.--sgd-sagodent-menu-open body>#wrapper {
+        position: fixed !important;
+        top: var(--sgd-lock-top, 0px) !important;
+        right: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        transform: none !important;
+        translate: none !important;
+        overscroll-behavior: none !important;
+    }
+}
+
+body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted,
+body>.--sgd-scroll-progress.--sgd-sagodent-menu-mounted,
+body>.--sgd-sagodent-menu-backdrop,
+body>.--sgd-topbar.--sgd-sagodent-menu-mounted *,
+body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted * {
+    box-sizing: border-box !important;
+}
+
+
+/* Trang Sagodent dùng menu riêng: bỏ header theme để hero bắt đầu sát đỉnh. */
+
+body.sagodent-page #header {
+    display: none !important;
+}
+
+body.sagodent-page #wrapper,
+body.sagodent-page #main,
+body.sagodent-page #content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+
+/* ============================================================
+   1. THANH TIẾN TRÌNH
+   ============================================================ */
+
+body>.--sgd-scroll-progress.--sgd-sagodent-menu-mounted,
+main#--sgd-top>.--sgd-scroll-progress {
+    position: fixed !important;
+    z-index: 1000004 !important;
+    top: var(--menu-admin-offset) !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 3px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+    background: var(--menu-sky) !important;
+    box-shadow: 0 0 16px var(--menu-sky) !important;
+    transform: scaleX(var(--scroll)) !important;
+    transform-origin: left center !important;
+    will-change: transform;
+}
+
+
+/* ============================================================
+   2. HEADER GỐC
+   ============================================================ */
+
+body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+main#--sgd-top>.--sgd-topbar {
+    position: fixed !important;
+    z-index: 1000003 !important;
+    top: var(--menu-admin-offset) !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: var(--menu-header-height) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    margin: 0 !important;
+    padding: 8px var(--menu-page-gutter) !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--menu-border) !important;
+    color: var(--menu-foreground) !important;
+    /* LIQUID GLASS: chỉ nền trong suốt; logo/chữ/icon vẫn rõ 100%. */
+    background: var(--menu-glass-bg) !important;
+    -webkit-backdrop-filter: blur(var(--menu-glass-blur)) saturate(var(--menu-glass-saturation)) !important;
+    backdrop-filter: blur(var(--menu-glass-blur)) saturate(var(--menu-glass-saturation)) !important;
+    box-shadow: 0 10px 34px rgba(2, 25, 42, 0.20) !important;
+    font-family: "Google Sans", Arial, sans-serif !important;
+    direction: ltr !important;
+    isolation: isolate;
+    transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important;
+}
+
+
+/*
+ * MOBILE/TABLET FIXED STABILITY
+ * Ép header lên compositor layer riêng để thao tác touch/overscroll không kéo header theo nội dung.
+ */
+
+@media (max-width: 900px) {
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted {
+        position: fixed !important;
+        top: var(--menu-admin-offset, 0px) !important;
+        right: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+        will-change: transform !important;
+        touch-action: manipulation !important;
+    }
+
+    body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted {
+        overscroll-behavior: contain !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
+
+/* Đầu trang: header nằm trên hero và không có lớp background. */
+
+body>.--sgd-topbar.--sgd-sagodent-menu-mounted:not(.--sgd-scrolled),
+main#--sgd-top>.--sgd-topbar:not(.--sgd-scrolled) {
+    background: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border-bottom-color: transparent !important;
+    box-shadow: none !important;
+}
+
+body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-sagodent-logo,
+main#--sgd-top>.--sgd-topbar>.--sgd-sagodent-logo {
+    order: 0 !important;
+    flex: 0 0 auto !important;
+    float: none !important;
+    display: block !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 auto 0 0 !important;
+    padding: 0 !important;
+    color: inherit !important;
+    line-height: 0 !important;
+    text-align: left !important;
+}
+
+body .--sgd-topbar .--sgd-logo-swap {
+    position: relative !important;
+    display: block !important;
+    width: 102px !important;
+    height: 58px !important;
+    line-height: 0 !important;
+}
+
+body .--sgd-topbar .--sgd-sagodent-logo img {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    float: none !important;
+    width: 102px !important;
+    height: 58px !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: contain !important;
+    transition: opacity 0.28s ease, visibility 0.28s ease !important;
+}
+
+body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+    order: 1 !important;
+    flex: 0 0 auto !important;
+    float: none !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: clamp(24px, 3vw, 54px) !important;
+    margin: 0 0 0 auto !important;
+    padding: 0 !important;
+    color: var(--menu-foreground) !important;
+    font-size: clamp(17px, 1.25vw, 23px) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.025em !important;
+    direction: ltr !important;
+    white-space: nowrap !important;
+}
+
+
+/* VN/ENG không được ẩn ở tablet/mobile. */
+
+body .--sgd-topbar .--sgd-language {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: var(--menu-foreground) !important;
+    font-family: "Google Sans", Arial, sans-serif !important;
+    font-size: inherit !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    letter-spacing: inherit !important;
+    white-space: nowrap !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+body .--sgd-topbar .--sgd-language i {
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 0.42em !important;
+    background: transparent !important;
+    color: inherit !important;
+    font-style: normal !important;
+    line-height: 1 !important;
+}
+
+body .--sgd-topbar .--sgd-language i::after {
+    content: "/" !important;
+    display: inline !important;
+    color: currentColor !important;
+    font-style: normal !important;
+}
+
+
+/* ============================================================
+   3. NÚT MỤC CHÍNH
+   ============================================================ */
+
+body .--sgd-topbar .--sgd-menu-button {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: clamp(18px, 2.25vw, 38px) !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 8px 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    color: var(--menu-foreground) !important;
+    box-shadow: none !important;
+    font-family: "Google Sans", Arial, sans-serif !important;
+    font-size: inherit !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    letter-spacing: 0.035em !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    touch-action: manipulation !important;
+}
+
+body .--sgd-topbar .--sgd-menu-button>span {
+    position: relative !important;
+    flex: 0 0 auto !important;
+    display: block !important;
+    width: clamp(34px, 3.2vw, 56px) !important;
+    height: clamp(21px, 1.9vw, 34px) !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    color: inherit !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    letter-spacing: 0 !important;
+    transform: none !important;
+}
+
+body .--sgd-topbar .--sgd-menu-button>span::before,
+body .--sgd-topbar .--sgd-menu-button>span::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 1.5px !important;
+    background: currentColor !important;
+    color: inherit !important;
+    transition: top 0.3s ease, bottom 0.3s ease, transform 0.35s ease, box-shadow 0.25s ease !important;
+}
+
+body .--sgd-topbar .--sgd-menu-button>span::before {
+    top: 0 !important;
+    box-shadow: 0 calc((clamp(21px, 1.9vw, 34px) - 1.5px) / 2) 0 currentColor !important;
+}
+
+body .--sgd-topbar .--sgd-menu-button>span::after {
+    bottom: 0 !important;
+    box-shadow: none !important;
+}
+
+body .--sgd-topbar.--sgd-menu-open .--sgd-menu-button>span::before {
+    top: 50% !important;
+    box-shadow: none !important;
+    transform: translateY(-50%) rotate(45deg) !important;
+}
+
+body .--sgd-topbar.--sgd-menu-open .--sgd-menu-button>span::after {
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) rotate(-45deg) !important;
+}
+
+
+/* ============================================================
+   4. LOGO THEO TONE
+   Dùng lại tên class gốc menu-tone-dark/menu-tone-light.
+   ============================================================ */
+
+body .--sgd-topbar.--sgd-menu-tone-dark,
+body .--sgd-topbar.--sgd-menu-tone-dark .--sgd-header-actions,
+body .--sgd-topbar.--sgd-menu-tone-dark .--sgd-language,
+body .--sgd-topbar.--sgd-menu-tone-dark .--sgd-menu-button,
+body .--sgd-menu-panel.--sgd-menu-tone-dark,
+body .--sgd-menu-panel.--sgd-menu-tone-dark a {
+    color: #ffffff !important;
+}
+
+body .--sgd-topbar.--sgd-menu-tone-dark .--sgd-logo-white {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+body .--sgd-topbar.--sgd-menu-tone-dark .--sgd-logo-blue {
+    display: block !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+body .--sgd-topbar.--sgd-menu-tone-light,
+body .--sgd-topbar.--sgd-menu-tone-light .--sgd-header-actions,
+body .--sgd-topbar.--sgd-menu-tone-light .--sgd-language,
+body .--sgd-topbar.--sgd-menu-tone-light .--sgd-menu-button,
+body .--sgd-menu-panel.--sgd-menu-tone-light,
+body .--sgd-menu-panel.--sgd-menu-tone-light a {
+    color: var(--menu-blue) !important;
+}
+
+body .--sgd-topbar.--sgd-menu-tone-light .--sgd-logo-white {
+    display: block !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+body .--sgd-topbar.--sgd-menu-tone-light .--sgd-logo-blue {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+/* ============================================================
+   5. LỚP PHỦ
+   ============================================================ */
+
+body>.--sgd-sagodent-menu-backdrop {
+    position: fixed !important;
+    z-index: 1000001 !important;
+    inset: var(--menu-admin-offset) 0 0 !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: rgba(0, 0, 0, 0.18) !important;
+    -webkit-backdrop-filter: blur(1.5px) !important;
+    backdrop-filter: blur(1.5px) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    touch-action: none !important;
+    overscroll-behavior: none !important;
+}
+
+body>.--sgd-sagodent-menu-backdrop.--sgd-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+
+/* ============================================================
+   6. DRAWER — LUÔN BÁM MÉP PHẢI
+   ============================================================ */
+
+body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted,
+main#--sgd-top>.--sgd-menu-panel {
+    position: fixed !important;
+    z-index: 1000002 !important;
+    top: var(--menu-admin-offset) !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    width: min(520px, 100vw) !important;
+    max-width: 100vw !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: calc(var(--menu-header-height) + 32px) var(--menu-page-gutter) 40px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+    /* Drawer cũng dùng kính mờ nhưng đậm hơn header để link dễ đọc. */
+    background: var(--menu-panel-glass-bg) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(130%) !important;
+    backdrop-filter: blur(22px) saturate(130%) !important;
+    color: var(--menu-foreground) !important;
+    border: 0 !important;
+    border-left: 1px solid var(--menu-border) !important;
+    box-shadow: -24px 0 60px rgba(0, 0, 0, 0.18) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translate3d(102%, 0, 0) !important;
+    transition: transform 0.68s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s ease, visibility 0.38s ease, background 0.35s ease, color 0.35s ease !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-open,
+main#--sgd-top>.--sgd-menu-panel.--sgd-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translate3d(0, 0, 0) !important;
+}
+
+
+/*
+ * Desktop: drawer không giữ bánh xe chuột trong một vùng cuộn riêng.
+ * Link vẫn bấm được, còn wheel tiếp tục đi tới window/Lenis để sticky chạy.
+ */
+
+@media (min-width: 901px) {
+
+    body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-menu-panel {
+        overflow: visible !important;
+        pointer-events: none !important;
+    }
+
+    body .--sgd-menu-panel a {
+        pointer-events: auto !important;
+    }
+}
+
+body .--sgd-menu-panel a,
+body .--sgd-menu-panel a:link,
+body .--sgd-menu-panel a:visited {
+    display: grid !important;
+    grid-template-columns: 40px minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 22px 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--menu-border) !important;
+    background: transparent !important;
+    color: var(--menu-foreground) !important;
+    font-family: "Google Sans", Arial, sans-serif !important;
+    font-size: clamp(20px, 1.5vw, 25px) !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+    text-decoration: none !important;
+    opacity: 0 !important;
+    transform: translateX(26px) !important;
+    transition: opacity 0.42s ease, transform 0.58s cubic-bezier(0.22, 1, 0.36, 1), padding-left 0.25s ease, background-color 0.25s ease, color 0.35s ease, border-color 0.35s ease !important;
+}
+
+body .--sgd-menu-panel.--sgd-open a {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+body .--sgd-menu-panel.--sgd-open a:nth-child(1) {
+    transition-delay: 0.08s !important;
+}
+
+body .--sgd-menu-panel.--sgd-open a:nth-child(2) {
+    transition-delay: 0.12s !important;
+}
+
+body .--sgd-menu-panel.--sgd-open a:nth-child(3) {
+    transition-delay: 0.16s !important;
+}
+
+body .--sgd-menu-panel.--sgd-open a:nth-child(4) {
+    transition-delay: 0.20s !important;
+}
+
+body .--sgd-menu-panel.--sgd-open a:nth-child(5) {
+    transition-delay: 0.24s !important;
+}
+
+body .--sgd-menu-panel a:hover,
+body .--sgd-menu-panel a:focus-visible {
+    padding-left: 12px !important;
+    background: var(--menu-hover) !important;
+}
+
+body .--sgd-menu-panel small {
+    color: var(--menu-sky) !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+}
+
+body .--sgd-menu-panel a>span:last-child {
+    color: var(--menu-foreground) !important;
+    font-size: 18px !important;
+}
+
+
+/* ============================================================
+   7. TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+    :root {
+        --menu-header-height: 68px;
+        --menu-page-gutter: clamp(18px, 5vw, 38px);
+    }
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-topbar {
+        height: var(--menu-header-height) !important;
+        gap: 14px !important;
+        padding: 5px var(--menu-page-gutter) !important;
+    }
+
+    body .--sgd-topbar .--sgd-logo-swap,
+    body .--sgd-topbar .--sgd-sagodent-logo img {
+        width: 90px !important;
+        height: 54px !important;
+    }
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        display: flex !important;
+        gap: 16px !important;
+        font-size: 16px !important;
+    }
+
+    body .--sgd-topbar .--sgd-language {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        font-size: 16px !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button {
+        display: flex !important;
+        gap: 14px !important;
+        font-size: 16px !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button>span {
+        width: 32px !important;
+        height: 20px !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button>span::before {
+        box-shadow: 0 9.25px 0 currentColor !important;
+    }
+
+    /* Vẫn ở bên phải trên tablet. */
+    body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-menu-panel {
+        position: fixed !important;
+        top: var(--menu-admin-offset, 0px) !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: auto !important;
+        width: min(520px, var(--sgd-mobile-viewport-width, 100vw)) !important;
+        max-width: var(--sgd-mobile-viewport-width, 100vw) !important;
+        height: calc(var(--sgd-mobile-viewport-height, 100dvh) - var(--menu-admin-offset, 0px)) !important;
+        max-height: calc(var(--sgd-mobile-viewport-height, 100dvh) - var(--menu-admin-offset, 0px)) !important;
+        margin: 0 0 0 auto !important;
+        padding: calc(68px + 28px) clamp(24px, 6vw, 40px) 34px !important;
+        border-right: 0 !important;
+        border-left: 1px solid var(--menu-border) !important;
+        box-shadow: -24px 0 60px rgba(0, 0, 0, 0.22) !important;
+        transform: translate3d(105%, 0, 0) !important;
+    }
+
+    body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-open,
+    main#--sgd-top>.--sgd-menu-panel.--sgd-open {
+        transform: translate3d(0, 0, 0) !important;
+    }
+
+    body .--sgd-menu-panel a {
+        grid-template-columns: 32px minmax(0, 1fr) auto !important;
+        padding: 20px 0 !important;
+        font-size: clamp(18px, 4.4vw, 23px) !important;
+    }
+}
+
+
+/* ============================================================
+   8. MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+    :root {
+        --menu-page-gutter: 16px;
+    }
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-topbar {
+        gap: 8px !important;
+        padding-inline: 16px !important;
+    }
+
+    body .--sgd-topbar .--sgd-logo-swap,
+    body .--sgd-topbar .--sgd-sagodent-logo img {
+        width: 82px !important;
+        height: 50px !important;
+    }
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        gap: 10px !important;
+        font-size: 14px !important;
+    }
+
+    body .--sgd-topbar .--sgd-language {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        font-size: 14px !important;
+        letter-spacing: 0 !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button {
+        display: flex !important;
+        gap: 9px !important;
+        font-size: 14px !important;
+        letter-spacing: 0.01em !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button>span {
+        width: 29px !important;
+        height: 18px !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button>span::before {
+        box-shadow: 0 8.25px 0 currentColor !important;
+    }
+
+    body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-menu-panel {
+        position: fixed !important;
+        top: var(--menu-admin-offset, 0px) !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: auto !important;
+        width: var(--sgd-mobile-viewport-width, 100vw) !important;
+        min-width: var(--sgd-mobile-viewport-width, 100vw) !important;
+        max-width: var(--sgd-mobile-viewport-width, 100vw) !important;
+        height: calc(var(--sgd-mobile-viewport-height, 100dvh) - var(--menu-admin-offset, 0px)) !important;
+        max-height: calc(var(--sgd-mobile-viewport-height, 100dvh) - var(--menu-admin-offset, 0px)) !important;
+        margin: 0 !important;
+        padding: calc(var(--menu-header-height) + 24px) 7vw 28px !important;
+        border-left: 0 !important;
+        transform: translate3d(105%, 0, 0) !important;
+    }
+
+    body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-open,
+    main#--sgd-top>.--sgd-menu-panel.--sgd-open {
+        transform: translate3d(0, 0, 0) !important;
+    }
+}
+
+@media (max-width: 380px) {
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-topbar {
+        padding-inline: 12px !important;
+    }
+
+    body .--sgd-topbar .--sgd-logo-swap,
+    body .--sgd-topbar .--sgd-sagodent-logo img {
+        width: 72px !important;
+        height: 44px !important;
+    }
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        gap: 7px !important;
+    }
+
+    body .--sgd-topbar .--sgd-language {
+        display: flex !important;
+        font-size: 13px !important;
+    }
+
+    /* Màn hình rất hẹp: chỉ ẩn chữ MỤC CHÍNH, giữ VN/ENG. */
+    body .--sgd-topbar .--sgd-menu-button {
+        width: 29px !important;
+        min-width: 29px !important;
+        overflow: hidden !important;
+        gap: 0 !important;
+        font-size: 0 !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button>span {
+        width: 29px !important;
+    }
+}
+
+
+/* ============================================================
+   9. FALLBACK — trình duyệt không hỗ trợ backdrop-filter
+   ============================================================ */
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-topbar {
+        background: var(--menu-section-bg) !important;
+    }
+
+    body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-menu-panel {
+        background: var(--menu-section-bg) !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    body .--sgd-topbar,
+    body .--sgd-menu-panel,
+    body .--sgd-menu-panel a,
+    body .--sgd-sagodent-menu-backdrop,
+    body .--sgd-menu-button>span::before,
+    body .--sgd-menu-button>span::after {
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* ============================================================
+   PHẦN 2 — SAGODENT (NỘI DUNG TRANG)
+   ============================================================ */
+
+
+/* ===== Sagodent styles: independent sections for Flatsome ===== */
+
+.sagodent-page {
+    /* Original font families; Google Sans and Playfair Display load from Google Fonts. */
+    --font-google: "Google Sans", "GoogleSans", Arial, sans-serif;
+    --font-gotham: "Gotham", Arial, sans-serif;
+    --font-playfair: "Playfair Display", "Playfair", serif;
+    /* Core colors */
+    --navy: #062d48;
+    --blue: #075d98;
+    --sky: #72bae3;
+    --pale: #eaf6fd;
+    --white: #fff;
+    --sagodent-white: #ffffff;
+    --ink: #062d48;
+    --hero: #021b2c;
+    --near-black: #050708;
+    --gray-blue: #aeb9c8;
+    --pale-light: #f0f8fd;
+    --blue-mid: #095f98;
+    --blue-deep: #0b679f;
+    --blue-bright: #0d70a7;
+    --navy-08: #062d4814;
+    --navy-14: #062d4824;
+    --navy-shadow: #18364a33;
+    --black-20: #0003;
+    --white-09: #ffffff18;
+    --white-12: #ffffff1f;
+    --white-13: #ffffff22;
+    --white-25: #ffffff40;
+    --white-53: #ffffff88;
+    --navy-overlay-98: rgba(5, 45, 72, .98);
+    --navy-overlay-86: rgba(5, 45, 72, .86);
+    --navy-overlay-82: rgba(5, 45, 72, .82);
+    --navy-90: rgba(2, 45, 72, .9);
+    --navy-88: rgba(2, 45, 72, .88);
+    --navy-32: rgba(2, 45, 72, .32);
+    --navy-12: rgba(2, 45, 72, .12);
+    --navy-05: rgba(2, 45, 72, .05);
+    --blue-95: rgba(7, 93, 152, .95);
+    --blue-94: rgba(7, 93, 152, .94);
+    --blue-88: rgba(7, 93, 152, .88);
+    --blue-72: rgba(7, 93, 152, .72);
+    --blue-18: rgba(7, 93, 152, .18);
+    --blue-05: rgba(7, 93, 152, .05);
+    --blue-04: rgba(7, 93, 152, .04);
+    --blue-mid-32: rgba(9, 95, 152, .32);
+    --blue-gray-24: rgba(7, 65, 105, .24);
+    --sky-24: rgba(113, 188, 230, .24);
+    --sky-22: rgba(113, 188, 230, .22);
+    --sky-18: rgba(113, 188, 230, .18);
+    --sky-alt-22: rgba(114, 186, 227, .22);
+    --dark-blue-62: rgba(3, 31, 49, .62);
+    --dark-blue-48: rgba(3, 31, 49, .48);
+    --dark-navy-20: rgba(2, 25, 42, .2);
+    --navy-alt-14: rgba(4, 45, 73, .14);
+    --black-97: rgba(0, 0, 0, .97);
+    --black-95: rgba(0, 0, 0, .95);
+    --black-32: rgba(0, 0, 0, .32);
+    --black-28: rgba(0, 0, 0, .28);
+    --black-18: rgba(0, 0, 0, .18);
+    --black-08: rgba(0, 0, 0, .08);
+    --near-black-92: rgba(5, 8, 10, .92);
+    --near-black-76: rgba(5, 8, 10, .76);
+    --white-90: rgba(255, 255, 255, .9);
+    --white-78: rgba(255, 255, 255, .78);
+    --white-76: rgba(255, 255, 255, .76);
+    --white-58: rgba(255, 255, 255, .58);
+    --white-34: rgba(255, 255, 255, .34);
+    --white-20: rgba(255, 255, 255, .2);
+    --white-16: rgba(255, 255, 255, .16);
+    --white-15: rgba(255, 255, 255, .15);
+    --white-14: rgba(255, 255, 255, .14);
+    --white-035: rgba(255, 255, 255, .035);
+    /* Reused padding, margin and gap values */
+    --page-gutter: 5vw;
+    --page-gutter-mobile: 7vw;
+    --space-8: 8px;
+    --space-12: 12px;
+    --space-18: 18px;
+    --space-20: 20px;
+    --space-22: 22px;
+    --space-24: 24px;
+    --space-25: 25px;
+    --space-28: 28px;
+    --space-36: 36px;
+    --space-55: 55px;
+    --space-70: 70px;
+    --space-80: 80px;
+    --space-1-25vw: 1.25vw;
+    --space-1-5vw: 1.5vw;
+    --space-2-25vw: 2.25vw;
+    --space-3vw: 3vw;
+    --space-3-5vw: 3.5vw;
+    --space-4vw: 4vw;
+    --space-5-2vw: 5.2vw;
+    --space-6vw: 6vw;
+    --space-8vw: 8vw;
+    --space-5: 5px;
+    --space-11: 11px;
+    --space-14: 14px;
+    --space-30: 30px;
+    --space-32: 32px;
+    --space-38: 38px;
+    --space-45: 45px;
+    --space-60: 60px;
+    --space-90: 90px;
+    --space-120: 120px;
+    --space-0-58vw: .58vw;
+    --space-0-95vw: .95vw;
+    --space-1vw: 1vw;
+    --space-1-3vw: 1.3vw;
+    --space-2vw: 2vw;
+    --space-2-8vw: 2.8vw;
+    --space-4-5vw: 4.5vw;
+    --space-6-5vw: 6.5vw;
+    /* Existing typography, spacing and radius values centralized without changing them. */
+    --font-size-12px: 12px;
+    --font-size-14px: 14px;
+    --font-size-25px: 25px;
+    --font-size-10px: 10px;
+    --font-size-11px: 11px;
+    --font-size-clamp-60px-8vw-142px: clamp(60px, 8vw, 142px);
+    --font-size-clamp-66px-8-5vw-150px: clamp(66px, 8.5vw, 150px);
+    --font-size-15px: 15px;
+    --font-size-13px: 13px;
+    --font-size-clamp-36px-3-8vw-64px: clamp(36px, 3.8vw, 64px);
+    --font-size-clamp-50px-5vw-84px: clamp(50px, 5vw, 84px);
+    --font-size-clamp-10px-8vw-13px: clamp(10px, .8vw, 13px);
+    --font-size-clamp-13px-1-1vw-18px: clamp(13px, 1.1vw, 18px);
+    --font-size-clamp-10px-83vw-13px: clamp(10px, .83vw, 13px);
+    --font-size-clamp-38px-4-5vw-76px: clamp(38px, 4.5vw, 76px);
+    --font-size-clamp-78px-8vw-132px: clamp(78px, 8vw, 132px);
+    --font-size-clamp-32px-3-5vw-58px: clamp(32px, 3.5vw, 58px);
+    --font-size-clamp-11px-9vw-14px: clamp(11px, .9vw, 14px);
+    --font-size-clamp-44px-5vw-80px: clamp(44px, 5vw, 80px);
+    --font-size-clamp-38px-4-3vw-68px: clamp(38px, 4.3vw, 68px);
+    --font-size-18px: 18px;
+    --font-size-27px: 27px;
+    --font-size-24px: 24px;
+    --font-size-clamp-25px-2-8vw-42px: clamp(25px, 2.8vw, 42px);
+    --font-size-clamp-42px-4-2vw-70px: clamp(42px, 4.2vw, 70px);
+    --font-size-clamp-18px-1-7vw-27px: clamp(18px, 1.7vw, 27px);
+    --font-size-clamp-11px-95vw-15px: clamp(11px, .95vw, 15px);
+    --font-size-clamp-25px-3vw-48px: clamp(25px, 3vw, 48px);
+    --font-size-480px: 480px;
+    --font-size-clamp-44px-4-2vw-80px: clamp(44px, 4.2vw, 80px);
+    --font-size-clamp-12px-95vw-18px: clamp(12px, .95vw, 18px);
+    --font-size-clamp-18px-1-4vw-27px: clamp(18px, 1.4vw, 27px);
+    --font-size-clamp-10px-74vw-14px: clamp(10px, .74vw, 14px);
+    --font-size-clamp-10px-78vw-15px: clamp(10px, .78vw, 15px);
+    --font-size-clamp-25px-2-45vw-42px: clamp(25px, 2.45vw, 42px);
+    --font-size-clamp-25px-2-45vw-48px: clamp(25px, 2.45vw, 48px);
+    --font-size-clamp-8px-58vw-11px: clamp(8px, .58vw, 11px);
+    --font-size-25vw: 25vw;
+    --font-size-9px: 9px;
+    --font-size-50px: 50px;
+    --font-size-58px: 58px;
+    --font-size-42px: 42px;
+    --font-size-36px: 36px;
+    --font-size-300px: 300px;
+    --font-size-clamp-34px-8vw-56px: clamp(34px, 8vw, 56px);
+    --font-size-clamp-12px-9vw-16px: clamp(12px, .9vw, 16px);
+    --font-size-clamp-13px-1-05vw-19px: clamp(13px, 1.05vw, 19px);
+    --font-size-clamp-16px-1-45vw-28px: clamp(16px, 1.45vw, 28px);
+    --font-size-clamp-12px-1-05vw-20px: clamp(12px, 1.05vw, 20px);
+    --font-size-clamp-15px-1-25vw-24px: clamp(15px, 1.25vw, 24px);
+    --font-weight-700: 700;
+    --font-weight-600: 600;
+    --font-weight-500: 500;
+    --font-weight-300: 300;
+    --font-weight-bold: bold;
+    --font-weight-400: 400;
+    --line-height-82: .82;
+    --line-height-92: .92;
+    --line-height-1-02: 1.02;
+    --line-height-1-4: 1.4;
+    --line-height-1-45: 1.45;
+    --line-height-9: .9;
+    --line-height-8: .8;
+    --line-height-1-08: 1.08;
+    --line-height-1-55: 1.55;
+    --line-height-1-12: 1.12;
+    --line-height-1: 1;
+    --letter-spacing-12em: .12em;
+    --letter-spacing-neg-3px: -3px;
+    --letter-spacing-1em: .1em;
+    --letter-spacing-neg-05em: -.05em;
+    --letter-spacing-neg-04em: -.04em;
+    --letter-spacing-neg-035em: -.035em;
+    --letter-spacing-neg-025em: -.025em;
+    --letter-spacing-08em: .08em;
+    --letter-spacing-025em: .025em;
+    --letter-spacing-035em: .035em;
+    --letter-spacing-02em: .02em;
+    --padding-62vw-0: .62vw 0;
+    --padding-2-35vw: 2.35vw;
+    --padding-108px: 108px;
+    --padding-5px: 5px;
+    --padding-92px: 92px;
+    --padding-10vw: 10vw;
+    --margin-26px-0-0: 26px 0 0;
+    --margin-0-0-10px: 0 0 10px;
+    --margin-1-35vw: 1.35vw;
+    --margin-2-6vw: 2.6vw;
+    --margin-3-8vw: 3.8vw;
+    --margin-0-auto: 0 auto;
+    --margin-15em: .15em;
+    --margin-0-4em: 0 .4em;
+    --margin-0-42em: 0 .42em;
+    --gap-9px: 9px;
+    --gap-7px: 7px;
+    --gap-1-45vw: 1.45vw;
+    --gap-16px: 16px;
+    --radius-99px: 99px;
+    --radius-50pct: 50%;
+    --font-size-clamp-34px-4-5vw-68px: clamp(34px, 4.5vw, 68px);
+    --line-height-1-15: 1.15;
+    --line-height-1-5: 1.5;
+    --font-size-clamp-38px-4-2vw-76px: clamp(38px, 4.2vw, 76px);
+    --font-size-clamp-14px-1-2vw-22px: clamp(14px, 1.2vw, 22px);
+    --line-height-1-35: 1.35;
+    --font-size-2em: .2em;
+    /* Responsive variables for the Difference section. */
+    --difference-rwd-head-height: 285px;
+    --difference-rwd-head-padding-inline: 7vw;
+    --difference-rwd-head-title-size: clamp(34px, 8.4vw, 46px);
+    --difference-rwd-head-script-size: clamp(40px, 10.2vw, 52px);
+    --difference-rwd-head-line-height: .94;
+    --difference-rwd-head-title-width: max-content;
+    --difference-rwd-head-text-align: left;
+    --difference-rwd-script-margin: 0;
+    --difference-rwd-script-padding: 0;
+    --difference-rwd-script-indent: 0;
+    --difference-rwd-script-transform: none;
+    --difference-rwd-row-min-height: 500px;
+    --difference-rwd-text-padding: 200px 7vw 54px 14vw;
+    --difference-rwd-line-left: 10vw;
+    --difference-rwd-line-width: 2px;
+    --difference-rwd-dot-size: 12px;
+    --difference-rwd-dot-border: 3px;
+    --difference-rwd-dot-left-offset: 5px;
+    --difference-rwd-dot-top: 230px;
+    --difference-rwd-number-left: 13vw;
+    --difference-rwd-number-top: 92px;
+    --difference-rwd-number-size: clamp(70px, 15vw, 104px);
+    --difference-rwd-title-size: clamp(32px, 7.8vw, 40px);
+    --difference-rwd-title-line-height: 1.08;
+    /* ĐÃ SỬA: Tăng kích thước font trên mobile/tablet để tương xứng với desktop */
+    --difference-rwd-body-size: clamp(14px, 3.2vw, 18px);
+    --difference-rwd-body-line-height: 1.5;
+    --difference-rwd-title-margin: 0 0 24px;
+    --difference-rwd-image-height: clamp(420px, 72vw, 620px);
+    /* Quote isolation variables for Flatsome. */
+    --quote-theme-border: none;
+    --quote-theme-outline: none;
+    --quote-theme-shadow: none;
+    --quote-rwd-width: 100%;
+    --quote-rwd-max-width: 100%;
+    --quote-rwd-padding: 90px 7vw;
+    --quote-rwd-title-width: 100%;
+    --quote-rwd-title-max-width: 100%;
+    --quote-rwd-white-space: normal;
+    /* Course isolation variables for Flatsome. */
+    --course-heading-color: var(--navy);
+    --course-accent-color: var(--sky);
+    --course-visual-title-color: var(--sagodent-white);
+    --course-info-title-color: var(--navy);
+    --course-tab-color: var(--blue);
+    --course-tab-background: var(--sagodent-white);
+    --course-tab-active-line: var(--sky);
+    --course-frame-border: none;
+    --course-frame-outline: none;
+    --course-frame-shadow: none;
+    --course-nav-size: 48px;
+    --course-motion-duration: 520ms;
+    --course-motion-distance: 18px;
+    --course-motion-ease: cubic-bezier(.22, 1, .36, 1);
+    /* Library grid isolation for Flatsome and responsive containers. */
+    --library-grid-columns: repeat(2, minmax(0, 1fr));
+    --library-grid-columns-mobile: minmax(0, 1fr);
+    --library-card-background: var(--sagodent-white);
+    --library-card-hover-background: var(--sky);
+    --library-card-color: var(--navy);
+    --library-card-min-height: 220px;
+    --library-more-size: 14px;
+    --library-card-mobile-min-height: 195px;
+    --library-card-mobile-padding: 36px;
+    --library-card-focus-outline: 2px solid var(--navy);
+    /* iD-4 typography isolation from Flatsome heading defaults. */
+    --id4-title-color: var(--sagodent-white);
+    --id4-subtitle-color: var(--white-90);
+    --id4-body-color: var(--white-90);
+    --id4-link-color: var(--sagodent-white);
+    --id4-title-line-height: 1.05;
+    --id4-subtitle-line-height: 1.25;
+    --id4-body-line-height: 1.45;
+    --id4-mobile-copy-width: 86%;
+    --id4-mobile-copy-max-width: 620px;
+    --id4-mobile-text-align: center;
+}
+
+.sagodent-page * {
+    box-sizing: border-box
+}
+
+
+/* ĐÃ XÓA SCROLL-BEHAVIOR ĐỂ KHÔNG XUNG ĐỘT LENIS */
+
+.sagodent-page {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-gotham);
+    background: var(--white)
+}
+
+.sagodent-page button,
+.sagodent-page a {
+    font: inherit
+}
+
+.sagodent-page a {
+    color: inherit;
+    text-decoration: none
+}
+
+.sagodent-page h1,
+.sagodent-page h2,
+.sagodent-page h3,
+.sagodent-page p {
+    margin-top: 0
+}
+
+
+/* Flatsome/WordPress can inject a paragraph between two pasted sections. */
+
+.sagodent-page .intro+p {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    line-height: 0 !important;
+}
+
+
+/* Typography map from the packaged Illustrator document */
+
+.sagodent-page h1,
+.sagodent-page h2,
+.sagodent-page h3,
+.sagodent-page .course-tabs button {
+    font-family: var(--font-google)
+}
+
+.sagodent-page .hero-copy h1,
+.sagodent-page .intro-copy h2,
+.sagodent-page .difference-head h2,
+.sagodent-page .difference-text h3,
+.sagodent-page .courses h2,
+.sagodent-page .course-info h3,
+.sagodent-page .library h2,
+.sagodent-page .library-grid h3,
+.sagodent-page .id4-copy h2,
+.sagodent-page .contact h2 {
+    font-weight: var(--font-weight-700)
+}
+
+.sagodent-page .hero-copy em,
+.sagodent-page .intro-copy em,
+.sagodent-page .difference-head em,
+.sagodent-page .courses h2 em,
+.sagodent-page .library h2 em,
+.sagodent-page .contact h2 em {
+    font-family: var(--font-playfair);
+    font-style: italic;
+    font-weight: var(--font-weight-600)
+}
+
+.sagodent-page .doctor-copy h2 {
+    font-family: var(--font-playfair);
+    font-style: normal;
+    font-weight: var(--font-weight-500)
+}
+
+.sagodent-page .socials a {
+    font-family: var(--font-gotham);
+    font-weight: var(--font-weight-300)
+}
+
+.sagodent-page .kicker,
+.sagodent-page .hero-copy>p,
+.sagodent-page .course-visual small,
+.sagodent-page .course-tabs button {
+    font-weight: var(--font-weight-700)
+}
+
+.sagodent-page .difference-text>span {
+    font-family: var(--font-google);
+    font-weight: var(--font-weight-300)
+}
+
+.sagodent-page .hero {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 720px;
+    isolation: isolate;
+    background: var(--hero);
+    overflow: hidden;
+    color: var(--white)
+}
+
+.sagodent-page .hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background: url("http://sagodent.com//wp-content/uploads/2026/08/veneer-workflow.jpg") center/cover no-repeat;
+    transform: scale(1.04);
+    animation: heroZoom 12s ease-out both
+}
+
+.sagodent-page .hero-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(90deg, var(--navy-90) 0%, var(--navy-32) 45%, transparent 70%)
+}
+
+.sagodent-page .hero-copy {
+    position: absolute;
+    left: 5.2vw;
+    top: 52%;
+    transform: translateY(-34%);
+    z-index: 2
+}
+
+.sagodent-page .hero-copy p,
+.sagodent-page .kicker {
+    font-size: var(--font-size-11px);
+    letter-spacing: var(--letter-spacing-1em)
+}
+
+.sagodent-page .hero-copy>p,
+.sagodent-page .hero-copy>span {
+    color: var(--white)
+}
+
+.sagodent-page .hero-copy h1 {
+    font-size: var(--font-size-clamp-60px-8vw-142px);
+    line-height: var(--line-height-82);
+    letter-spacing: var(--letter-spacing-neg-05em);
+    margin: var(--margin-26px-0-0);
+    color: var(--sagodent-white) !important
+}
+
+.sagodent-page .hero-copy em {
+    display: block;
+    font-family: var(--font-playfair);
+    font-weight: var(--font-weight-600);
+    font-size: var(--font-size-clamp-66px-8-5vw-150px);
+    line-height: var(--line-height-92);
+    color: var(--sky)
+}
+
+.sagodent-page .hero-copy>span {
+    display: inline-block;
+    margin: var(--space-25) var(--space-25) 0 0;
+    font-size: var(--font-size-15px);
+}
+
+
+/* ============================================================
+   ĐÃ SỬA: Bổ sung căn giữa ngang và dọc tuyệt đối cho nút .pill
+   ============================================================ */
+
+.sagodent-page .pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* ĐÃ SỬA: Bổ sung để ép chữ nằm chính giữa theo trục ngang */
+    gap: var(--space-28);
+    border-radius: var(--radius-99px);
+    padding: var(--space-11) var(--space-18) var(--space-11) 23px;
+    font-size: var(--font-size-13px);
+    line-height: 1;
+    /* ĐÃ SỬA: Triệt tiêu khoảng trống thừa của line-height đẩy chữ lệch lên trên */
+    transition: .3s;
+}
+
+.sagodent-page .pill b {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-50pct);
+    line-height: 1;
+    /* ĐÃ SỬA: Đồng bộ chiều cao dòng với text */
+}
+
+.sagodent-page .pill.light {
+    background: var(--sky);
+    color: var(--white)
+}
+
+.sagodent-page .pill.light b {
+    display: none
+}
+
+.sagodent-page .pill.blue b {
+    background: var(--sky)
+}
+
+.sagodent-page .pill:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px var(--black-20)
+}
+
+.sagodent-page .scroll-hint {
+    display: none
+}
+
+@keyframes heroZoom {
+    from {
+        transform: scale(1.1)
+    }
+
+    to {
+        transform: scale(1.02)
+    }
+}
+
+.sagodent-page .intro {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1920/500;
+    display: grid;
+    grid-template-columns: 1fr 1fr
+}
+
+.sagodent-page .intro-photo {
+    background: linear-gradient(90deg, transparent 62%, var(--white-90) 91%, white), url("http://sagodent.com/wp-content/uploads/2026/08/BF-AT-200-scaled.jpg") center 48%/cover no-repeat
+}
+
+.sagodent-page .intro-copy {
+    padding: var(--space-4vw) var(--page-gutter);
+    display: flex;
+    align-items: center;
+    background: var(--white)
+}
+
+.sagodent-page .intro-copy h2,
+.sagodent-page .courses h2,
+.sagodent-page .library h2,
+.sagodent-page .contact h2 {
+    font-size: var(--font-size-clamp-36px-3-8vw-64px);
+    line-height: var(--line-height-1-02);
+    letter-spacing: var(--letter-spacing-neg-04em);
+    margin: 0
+}
+
+.sagodent-page .intro-copy h2 {
+    color: var(--ink) !important
+}
+
+.sagodent-page .intro-copy h2 em,
+.sagodent-page .courses h2 em,
+.sagodent-page .library h2 em,
+.sagodent-page .contact h2 em {
+    font-family: var(--font-playfair);
+    color: var(--sky);
+    font-weight: var(--font-weight-600)
+}
+
+.sagodent-page .intro-copy h2 em {
+    color: var(--sky) !important
+}
+
+.sagodent-page .kicker {
+    color: var(--blue);
+    margin-bottom: var(--space-20)
+}
+
+.sagodent-page .doctor {
+    display: grid;
+    grid-template-columns: 55.2% 44.8%;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1920/875;
+    min-height: 0;
+    background: var(--pale);
+    overflow: hidden
+}
+
+.sagodent-page .doctor-copy {
+    padding: 4.2vw var(--space-5-2vw);
+    color: var(--ink) !important
+}
+
+.sagodent-page .doctor-copy h2 {
+    font-family: var(--font-playfair);
+    font-size: var(--font-size-clamp-50px-5vw-84px);
+    font-weight: var(--font-weight-600);
+    letter-spacing: var(--letter-spacing-neg-04em);
+    margin: var(--margin-0-0-10px);
+    color: var(--ink) !important
+}
+
+.sagodent-page .doctor-role {
+    font-size: var(--font-size-clamp-10px-8vw-13px);
+    color: var(--ink) !important
+}
+
+.sagodent-page .doctor-lead {
+    font-size: var(--font-size-clamp-13px-1-1vw-18px) !important;
+    font-weight: var(--font-weight-700);
+    line-height: var(--line-height-1-4) !important;
+    margin: var(--space-22) 0;
+    color: var(--ink) !important
+}
+
+.sagodent-page .doctor-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2-8vw)
+}
+
+.sagodent-page .doctor-copy p:not(.kicker) {
+    line-height: var(--line-height-1-45);
+    font-size: var(--font-size-clamp-10px-83vw-13px);
+    max-width: 760px;
+    color: var(--ink) !important
+}
+
+.sagodent-page .doctor-portrait {
+    position: relative;
+    background: var(--gray-blue);
+    overflow: hidden
+}
+
+.sagodent-page .doctor-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center top;
+    filter: drop-shadow(0 30px 30px var(--navy-shadow));
+    transition: transform 1s
+}
+
+.sagodent-page .doctor-portrait:hover img {
+    transform: scale(1.015)
+}
+
+.sagodent-page .difference-head {
+    position: relative;
+    height: auto;
+    aspect-ratio: 1920/500;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--blue);
+    overflow: hidden
+}
+
+.sagodent-page .difference-head img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(.75);
+    opacity: .78
+}
+
+.sagodent-page .difference-head:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 0 50% 0 0;
+    background: linear-gradient(90deg, var(--blue-05), var(--blue-95))
+}
+
+.sagodent-page .difference-head>div {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white)
+}
+
+.sagodent-page .difference-head .kicker {
+    display: none
+}
+
+.sagodent-page .difference-head h2 {
+    font-family: var(--font-google) !important;
+    font-weight: var(--font-weight-700) !important;
+    font-size: var(--font-size-clamp-38px-4-5vw-76px);
+    line-height: var(--line-height-9);
+    letter-spacing: var(--letter-spacing-neg-04em);
+    margin: 0;
+    text-align: left;
+    color: var(--sagodent-white) !important
+}
+
+.sagodent-page .difference-head em {
+    font-family: var(--font-playfair) !important;
+    font-style: italic !important;
+    font-weight: var(--font-weight-600) !important;
+    color: var(--sky) !important
+}
+
+
+/* FIX LỖI GIẬT/CHỚP HÌNH SCROLL Ở SỐ 3: Đã gỡ bỏ will-change, translateZ và backface-visibility */
+
+.sagodent-page .difference-row {
+    position: sticky;
+    top: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1920/900;
+    min-height: 0;
+    background: var(--blue);
+    color: var(--white);
+    overflow: hidden;
+    box-shadow: 0 -1px 0 var(--white-13);
+}
+
+.sagodent-page .difference-row:nth-child(1) {
+    z-index: 1;
+    color: var(--white)
+}
+
+.sagodent-page .difference-row:nth-child(2) {
+    z-index: 2;
+    background: var(--sky);
+    color: var(--navy)
+}
+
+.sagodent-page .difference-row:nth-child(3) {
+    z-index: 3;
+    background: var(--pale);
+    color: var(--navy)
+}
+
+.sagodent-page .difference-text {
+    padding: var(--page-gutter);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: inherit;
+    position: relative
+}
+
+.sagodent-page .difference-text>span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: var(--font-playfair);
+    font-size: var(--font-size-clamp-78px-8vw-132px);
+    line-height: var(--line-height-8);
+    opacity: .42;
+    color: var(--sky) !important
+}
+
+.sagodent-page .difference-text h3 {
+    font-family: var(--font-google) !important;
+    font-weight: var(--font-weight-700) !important;
+    font-size: var(--font-size-clamp-32px-3-5vw-58px);
+    line-height: var(--line-height-1-08);
+    letter-spacing: var(--letter-spacing-neg-035em);
+    margin: var(--space-20) 0 var(--space-24);
+    color: var(--sagodent-white) !important
+}
+
+.sagodent-page .difference-text p {
+    font-family: var(--font-google) !important;
+    font-weight: var(--font-weight-400) !important;
+    /* ĐÃ SỬA: Kích thước bằng với blockquote (var(--font-size-clamp-14px-1-2vw-22px)) */
+    font-size: var(--font-size-clamp-14px-1-2vw-22px) !important;
+    /* ĐÃ SỬA: Line height bằng với blockquote */
+    line-height: var(--line-height-1-35) !important;
+    max-width: 650px;
+    color: var(--sagodent-white) !important
+}
+
+.sagodent-page .difference-image {
+    margin: 0;
+    overflow: hidden;
+    height: 100%
+}
+
+.sagodent-page .difference-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 1.1s
+}
+
+.sagodent-page .difference-row:nth-child(1) .difference-image img {
+    object-position: center 48%
+}
+
+.sagodent-page .difference-row:nth-child(2) .difference-image img {
+    object-position: center 44%
+}
+
+.sagodent-page .difference-row:nth-child(3) .difference-image img {
+    object-position: center
+}
+
+.sagodent-page .difference-row:hover img {
+    transform: scale(1.02)
+}
+
+.sagodent-page blockquote {
+    position: relative;
+    z-index: 4;
+    margin: 0;
+    border: var(--quote-theme-border) !important;
+    outline: var(--quote-theme-outline) !important;
+    box-shadow: var(--quote-theme-shadow) !important;
+    background: var(--navy);
+    color: var(--white);
+    padding: var(--space-120) 20vw;
+    text-align: center;
+    font: var(--font-weight-700) var(--font-size-clamp-34px-4-5vw-68px)/var(--line-height-1-15) var(--font-gotham)
+}
+
+.sagodent-page blockquote p {
+    font: var(--font-size-14px)/var(--line-height-1-5) var(--font-gotham);
+    max-width: 780px;
+    margin: var(--space-36) auto 0;
+    color: var(--white)
+}
+
+.sagodent-page .courses {
+    padding: var(--space-8vw) var(--page-gutter);
+    overflow: clip
+}
+
+.sagodent-page .courses header {
+    margin-bottom: var(--space-55)
+}
+
+.sagodent-page .courses h2 {
+    font-family: var(--font-google) !important;
+    font-size: var(--font-size-clamp-44px-5vw-80px);
+    font-style: normal !important;
+    font-weight: var(--font-weight-700) !important;
+    line-height: var(--line-height-1-02);
+    color: var(--course-heading-color) !important
+}
+
+.sagodent-page .courses h2 em {
+    font-family: var(--font-playfair) !important;
+    font-style: italic !important;
+    font-weight: var(--font-weight-600) !important;
+    color: var(--course-accent-color) !important
+}
+
+.sagodent-page .course-tabs {
+    height: 54px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-right: 0 !important;
+    outline: var(--course-frame-outline) !important;
+    box-shadow: 0 5px 30px var(--navy-08)
+}
+
+.sagodent-page .course-tabs button {
+    appearance: none;
+    margin: 0 !important;
+    border: 0;
+    border-radius: 0 !important;
+    background: var(--course-tab-background) !important;
+    color: var(--course-tab-color) !important;
+    font-family: var(--font-google) !important;
+    font-style: normal !important;
+    font-weight: var(--font-weight-700) !important;
+    line-height: 1.2;
+    text-transform: none;
+    box-shadow: none;
+    outline: none !important;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color .3s ease, background-color .3s ease, border-color .3s ease, box-shadow .3s ease
+}
+
+.sagodent-page .course-tabs button.active {
+    color: var(--course-tab-color) !important;
+    border-bottom-color: var(--course-tab-active-line) !important
+}
+
+.sagodent-page .course-tabs button:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--course-tab-active-line)
+}
+
+.sagodent-page .course-card {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    width: 100%;
+    max-width: 100%;
+    min-height: 500px;
+    overflow: hidden;
+    border: var(--course-frame-border) !important;
+    outline: var(--course-frame-outline) !important;
+    box-shadow: var(--course-frame-shadow) !important;
+    will-change: opacity;
+    animation: courseIn var(--course-motion-duration) var(--course-motion-ease) both
+}
+
+.sagodent-page .courses.course-is-loading .course-card {
+    opacity: .62;
+    transition: opacity 180ms ease-out
+}
+
+.sagodent-page .course-visual {
+    position: relative;
+    overflow: hidden;
+    background: var(--navy);
+    color: var(--white);
+    border: var(--course-frame-border) !important;
+    outline: var(--course-frame-outline) !important;
+    box-shadow: var(--course-frame-shadow) !important
+}
+
+.sagodent-page .course-visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .86
+}
+
+.sagodent-page .course-visual:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--navy-88), var(--navy-05))
+}
+
+.sagodent-page .course-visual>div {
+    position: absolute;
+    z-index: 2;
+    left: 6%;
+    bottom: 8%
+}
+
+.sagodent-page .course-visual h3 {
+    font-family: var(--font-google) !important;
+    font-style: normal !important;
+    font-weight: var(--font-weight-700) !important;
+    color: var(--course-visual-title-color) !important;
+    font-size: var(--font-size-clamp-38px-4-3vw-68px);
+    max-width: 700px;
+    line-height: var(--line-height-9);
+    letter-spacing: var(--letter-spacing-neg-05em);
+    margin: var(--space-18) 0
+}
+
+.sagodent-page .course-visual em {
+    font-family: var(--font-playfair) !important;
+    font-style: italic !important;
+    font-weight: var(--font-weight-500) !important;
+    color: var(--course-accent-color) !important;
+    font-size: var(--font-size-18px)
+}
+
+.sagodent-page .course-info {
+    padding: var(--page-gutter) var(--space-3-5vw);
+    background: var(--pale);
+    border: var(--course-frame-border) !important;
+    border-right: 0 !important;
+    outline: var(--course-frame-outline) !important;
+    box-shadow: var(--course-frame-shadow) !important
+}
+
+.sagodent-page .course-info h3 {
+    font-family: var(--font-google) !important;
+    font-size: var(--font-size-27px);
+    font-style: normal !important;
+    font-weight: var(--font-weight-700) !important;
+    color: var(--course-info-title-color) !important
+}
+
+.sagodent-page .course-info>p {
+    font-size: var(--font-size-14px);
+    line-height: var(--line-height-1-45)
+}
+
+.sagodent-page .course-info ol {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-24) 0
+}
+
+.sagodent-page .course-info li {
+    padding: var(--space-12) 0
+}
+
+.sagodent-page .course-info li span {
+    margin-right: var(--space-20);
+    color: var(--sky)
+}
+
+.sagodent-page .course-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: var(--course-nav-size)
+}
+
+.sagodent-page .course-bottom>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-8)
+}
+
+.sagodent-page .pill.blue {
+    background: var(--blue);
+    color: var(--white)
+}
+
+.sagodent-page .course-bottom button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--course-nav-size);
+    height: var(--course-nav-size);
+    min-width: var(--course-nav-size);
+    min-height: var(--course-nav-size);
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0;
+    border-radius: var(--radius-50pct);
+    background: var(--sagodent-white) !important;
+    color: var(--blue) !important;
+    font-family: Arial, sans-serif !important;
+    font-weight: var(--font-weight-400) !important;
+    line-height: 1 !important;
+    text-align: center;
+    font-size: var(--font-size-24px);
+    box-shadow: none;
+    cursor: pointer;
+    transition: color .3s ease, background-color .3s ease, transform .3s var(--course-motion-ease)
+}
+
+.sagodent-page .course-bottom button:hover {
+    background: var(--sky) !important;
+    transform: translateY(-2px)
+}
+
+@keyframes courseIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.sagodent-page .library {
+    padding: var(--page-gutter-mobile) var(--page-gutter);
+    background: var(--pale-light)
+}
+
+.sagodent-page .library-grid {
+    display: grid;
+    grid-template-columns: var(--library-grid-columns) !important;
+    grid-auto-flow: row;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: var(--gap-7px);
+    margin-top: var(--space-55)
+}
+
+.sagodent-page .library-grid>a {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: var(--library-card-min-height);
+    margin: 0 !important;
+    background: var(--library-card-background) !important;
+    color: var(--library-card-color) !important;
+    padding: var(--space-36);
+    position: relative;
+    display: grid !important;
+    grid-template-rows: minmax(0, 1fr) auto;
+    align-content: stretch;
+    transition: background-color .35s, color .35s, transform .35s, box-shadow .35s
+}
+
+.sagodent-page .library-grid a.featured {
+    background: var(--library-card-background) !important
+}
+
+.sagodent-page .library-grid a:hover {
+    background: var(--library-card-hover-background) !important;
+    color: var(--library-card-color) !important;
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px var(--navy-14)
+}
+
+
+/* ========================================================================== 
+   FINAL CONTACT TYPOGRAPHY LOCK — chống Flatsome ghi đè font và màu
+   ========================================================================== */
+
+.sagodent-page #contact.contact h2,
+.sagodent-page #contact.contact h2[data-reveal],
+.sagodent-page #contact.contact h2[data-reveal].revealed {
+    font-family: var(--font-google, "Google Sans", Arial, sans-serif) !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    color: var(--sagodent-white, #fff) !important;
+    -webkit-text-fill-color: var(--sagodent-white, #fff) !important;
+    opacity: 1;
+}
+
+.sagodent-page #contact.contact h2 em,
+.sagodent-page #contact.contact h2[data-reveal] em,
+.sagodent-page #contact.contact h2[data-reveal].revealed em {
+    font-family: var(--font-playfair, "Playfair Display", Georgia, serif) !important;
+    font-style: italic !important;
+    font-weight: 600 !important;
+    color: var(--sky, #72bae3) !important;
+    -webkit-text-fill-color: var(--sky, #72bae3) !important;
+}
+
+.sagodent-page #contact.contact .socials>a,
+.sagodent-page #contact.contact .contact-card {
+    color: var(--sagodent-white, #fff) !important;
+    -webkit-text-fill-color: var(--sagodent-white, #fff) !important;
+}
+
+
+/* iD-4 mobile/tablet: cả nhóm nằm giữa chiều cao, nội dung vẫn căn trái. */
+
+.sagodent-page {
+    --id4-rwd-copy-width: 86%;
+    --id4-rwd-copy-max-width: 620px;
+    --id4-rwd-title-size: clamp(34px, 8.8vw, 54px);
+    --id4-rwd-subtitle-size: clamp(16px, 4.2vw, 24px);
+    --id4-rwd-body-size: clamp(12px, 3.25vw, 16px);
+    --id4-rwd-button-size: clamp(12px, 3.1vw, 15px);
+    --id4-rwd-copy-gap: clamp(9px, 2.4vw, 16px);
+}
+
+@media (max-width: 900px) {
+
+    .sagodent-page .id4-copy,
+    .sagodent-page .id4-copy[data-reveal],
+    .sagodent-page .id4-copy[data-reveal].revealed {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start !important;
+        justify-content: center;
+        left: 50% !important;
+        right: auto !important;
+        top: 50% !important;
+        bottom: auto !important;
+        width: var(--id4-rwd-copy-width) !important;
+        max-width: var(--id4-rwd-copy-max-width) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0;
+        text-align: left !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .sagodent-page .id4-copy h2 {
+        width: 100%;
+        margin: 0 0 var(--id4-rwd-copy-gap) !important;
+        font-size: var(--id4-rwd-title-size) !important;
+        line-height: 1 !important;
+        text-align: left !important;
+        color: var(--sagodent-white, #fff) !important;
+        -webkit-text-fill-color: var(--sagodent-white, #fff) !important;
+    }
+
+    .sagodent-page .id4-copy h3 {
+        width: 100%;
+        margin: 0 0 calc(var(--id4-rwd-copy-gap) * 1.35) !important;
+        font-size: var(--id4-rwd-subtitle-size) !important;
+        line-height: 1.2 !important;
+        text-align: left !important;
+        color: var(--sagodent-white, #fff) !important;
+        -webkit-text-fill-color: var(--sagodent-white, #fff) !important;
+    }
+
+    .sagodent-page .id4-copy p {
+        width: 100%;
+        max-width: none !important;
+        margin: 0 0 var(--id4-rwd-copy-gap) !important;
+        font-size: var(--id4-rwd-body-size) !important;
+        line-height: 1.35 !important;
+        text-align: left !important;
+        color: var(--sagodent-white, #fff) !important;
+        -webkit-text-fill-color: var(--sagodent-white, #fff) !important;
+    }
+
+    .sagodent-page .id4-copy .pill {
+        align-self: flex-start !important;
+        margin: calc(var(--id4-rwd-copy-gap) * 1.1) 0 0 !important;
+        font-size: var(--id4-rwd-button-size) !important;
+    }
+}
+
+
+/* ==========================================================================
+   CONTACT — fixed to match the icon-box layout without changing HTML
+   ========================================================================== */
+
+.sagodent-page {
+    --contact-padding-block-start: clamp(72px, 6vw, 116px);
+    --contact-padding-inline: clamp(24px, 5vw, 96px);
+    --contact-padding-block-end: clamp(28px, 3vw, 52px);
+    --contact-title-size: clamp(46px, 4.35vw, 74px);
+    --contact-title-mobile-size: clamp(34px, 8.4vw, 48px);
+    --contact-box-height: clamp(132px, 10.4vw, 200px);
+    --contact-box-height-tablet: clamp(100px, 14vw, 144px);
+    --contact-box-height-mobile: 82px;
+    --contact-icon-size: clamp(42px, 3.5vw, 72px);
+    --contact-icon-size-tablet: clamp(34px, 5vw, 56px);
+    --contact-icon-size-mobile: clamp(24px, 6.6vw, 34px);
+    --contact-border-color: rgba(255, 255, 255, .28);
+    --contact-icon-color: #86c3e5;
+    --contact-hover-bg: rgba(255, 255, 255, .06);
+}
+
+.sagodent-page .contact {
+    width: 100%;
+    max-width: none;
+    padding: var(--contact-padding-block-start) var(--contact-padding-inline) var(--contact-padding-block-end) !important;
+    overflow: hidden;
+    background: var(--blue) !important;
+    color: var(--sagodent-white) !important;
+}
+
+.sagodent-page .contact h2,
+.sagodent-page .contact h2[data-reveal],
+.sagodent-page .contact h2[data-reveal].revealed {
+    width: 100%;
+    max-width: none;
+    margin: 0 !important;
+    font-family: var(--font-google) !important;
+    font-size: var(--contact-title-size) !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: -.055em;
+    color: var(--sagodent-white) !important;
+    -webkit-text-fill-color: var(--sagodent-white) !important;
+    opacity: 1 !important;
+}
+
+.sagodent-page .contact h2 em {
+    display: inline;
+    margin-left: .08em;
+    font-family: var(--font-playfair) !important;
+    font-style: italic !important;
+    font-weight: 600 !important;
+    color: var(--sky) !important;
+    -webkit-text-fill-color: var(--sky) !important;
+}
+
+.sagodent-page .contact .socials {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    width: 100%;
+    margin: clamp(46px, 4vw, 74px) 0 0 !important;
+    padding: 0 !important;
+    border: 1px solid var(--contact-border-color);
+    background: transparent !important;
+    gap: 0 !important;
+}
+
+.sagodent-page .contact .socials>a,
+.sagodent-page .contact .socials::after {
+    position: relative;
+    min-width: 0;
+    min-height: var(--contact-box-height);
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-right: 1px solid var(--contact-border-color) !important;
+    border-bottom: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+
+/* Location thứ 5: background SVG riêng, không dùng mask trên cả ô */
+
+.sagodent-page #contact.contact .socials::after {
+    content: '' !important;
+    display: block !important;
+    min-height: var(--contact-box-height) !important;
+    border-right: 0 !important;
+    -webkit-mask: none !important;
+    mask: none !important;
+    background-color: transparent !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 57S49 40.7 49 25.5a17 17 0 1 0-34 0C15 40.7 32 57 32 57Z' fill='none' stroke='%2386c3e5' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='25' r='6' fill='none' stroke='%2386c3e5' stroke-width='5'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: var(--contact-icon-size) var(--contact-icon-size) !important;
+    transition: transform .28s ease, background-color .28s ease, box-shadow .28s ease, background-size .28s ease, background-image .28s ease !important;
+    will-change: transform;
+}
+
+.sagodent-page .contact .socials>a {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: var(--contact-box-height);
+    color: var(--contact-icon-color) !important;
+    text-decoration: none !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    transition: background-color .3s ease, color .3s ease, transform .3s ease;
+}
+
+.sagodent-page .contact .socials>a:last-child {
+    border-right: 1px solid var(--contact-border-color) !important;
+}
+
+
+/* ĐÃ SỬA: Ẩn triệt để TẤT CẢ các icon mặc định của theme bên trong thẻ a để không bị chồng hình */
+
+.sagodent-page #contact.contact .socials>a>* {
+    display: none !important;
+}
+
+.sagodent-page .contact .socials>a::before {
+    content: "";
+    display: block;
+    width: var(--contact-icon-size);
+    height: var(--contact-icon-size);
+    background-color: currentColor;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    transition: transform .3s ease;
+}
+
+.sagodent-page .contact .socials>a:nth-child(1)::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 12.05A8 8 0 0 1 8.74 19.3L4 20l1-4.56A8 8 0 1 1 20 12.05Z'/%3E%3Cpath d='M8.8 9.4c.22-.5.38-.52.72-.53.18-.01.4-.01.62 0 .18 0 .46-.07.7.52.25.61.84 2.11.92 2.27.08.17.13.36.03.58-.1.22-.15.35-.3.53-.15.17-.32.39-.45.52-.15.15-.31.31-.13.61.17.3.78 1.28 1.67 2.07 1.15 1.03 2.12 1.35 2.42 1.5.3.15.48.13.65-.08.18-.22.74-.87.94-1.17.2-.3.39-.25.66-.15.27.1 1.72.81 2.02.96.3.15.5.22.57.35.08.13.08.75-.17 1.47-.25.72-1.44 1.38-1.97 1.45-.5.06-1.15.08-1.85-.17-.43-.14-.98-.32-1.69-.63-2.98-1.29-4.92-4.49-5.07-4.7-.15-.22-1.2-1.59-1.2-3.03 0-1.44.75-2.15 1.02-2.45.27-.3.58-.38.78-.39Z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 12.05A8 8 0 0 1 8.74 19.3L4 20l1-4.56A8 8 0 1 1 20 12.05Z'/%3E%3Cpath d='M8.8 9.4c.22-.5.38-.52.72-.53.18-.01.4-.01.62 0 .18 0 .46-.07.7.52.25.61.84 2.11.92 2.27.08.17.13.36.03.58-.1.22-.15.35-.3.53-.15.17-.32.39-.45.52-.15.15-.31.31-.13.61.17.3.78 1.28 1.67 2.07 1.15 1.03 2.12 1.35 2.42 1.5.3.15.48.13.65-.08.18-.22.74-.87.94-1.17.2-.3.39-.25.66-.15.27.1 1.72.81 2.02.96.3.15.5.22.57.35.08.13.08.75-.17 1.47-.25.72-1.44 1.38-1.97 1.45-.5.06-1.15.08-1.85-.17-.43-.14-.98-.32-1.69-.63-2.98-1.29-4.92-4.49-5.07-4.7-.15-.22-1.2-1.59-1.2-3.03 0-1.44.75-2.15 1.02-2.45.27-.3.58-.38.78-.39Z'/%3E%3C/svg%3E");
+}
+
+.sagodent-page .contact .socials>a:nth-child(2)::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 5.5A2.5 2.5 0 0 1 7.5 3H16a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H10l-4.5 4V17H7.5A2.5 2.5 0 0 1 5 14.5Z'/%3E%3Cpath d='M8.3 8h6.2L8.8 16h6.9'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 5.5A2.5 2.5 0 0 1 7.5 3H16a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H10l-4.5 4V17H7.5A2.5 2.5 0 0 1 5 14.5Z'/%3E%3Cpath d='M8.3 8h6.2L8.8 16h6.9'/%3E%3C/svg%3E");
+}
+
+.sagodent-page .contact .socials>a:nth-child(3)::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M14.5 21v-7h2.4l.4-3h-2.8V9.1c0-.88.25-1.48 1.52-1.48H17.5V5.02C17.23 4.98 16.31 4.9 15.24 4.9c-2.24 0-3.77 1.36-3.77 3.86V11H9v3h2.47v7h3.03Z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M14.5 21v-7h2.4l.4-3h-2.8V9.1c0-.88.25-1.48 1.52-1.48H17.5V5.02C17.23 4.98 16.31 4.9 15.24 4.9c-2.24 0-3.77 1.36-3.77 3.86V11H9v3h2.47v7h3.03Z'/%3E%3C/svg%3E");
+}
+
+.sagodent-page .contact .socials>a:nth-child(4)::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.2' y='3.2' width='17.6' height='17.6' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4.2'/%3E%3Ccircle cx='17.35' cy='6.65' r='1.15' fill='black' stroke='none'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.2' y='3.2' width='17.6' height='17.6' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4.2'/%3E%3Ccircle cx='17.35' cy='6.65' r='1.15' fill='black' stroke='none'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 900px) {
+    .sagodent-page .contact {
+        padding: clamp(56px, 10vw, 82px) var(--page-gutter-mobile) clamp(28px, 6vw, 48px) !important;
+    }
+
+    .sagodent-page .contact h2,
+    .sagodent-page .contact h2[data-reveal],
+    .sagodent-page .contact h2[data-reveal].revealed {
+        font-size: var(--contact-title-mobile-size) !important;
+        line-height: 1.06 !important;
+    }
+
+    .sagodent-page .contact h2 em {
+        margin-left: .08em;
+    }
+
+    .sagodent-page .contact .socials {
+        margin-top: clamp(34px, 8vw, 56px) !important;
+    }
+
+    .sagodent-page .contact .socials>a,
+    .sagodent-page .contact .socials::after {
+        min-height: var(--contact-box-height-tablet);
+    }
+
+    .sagodent-page .contact .socials>a::before,
+    .sagodent-page .contact .socials::after {
+        -webkit-mask-size: var(--contact-icon-size-tablet) var(--contact-icon-size-tablet);
+        mask-size: var(--contact-icon-size-tablet) var(--contact-icon-size-tablet);
+    }
+}
+
+@media (max-width: 480px) {
+    .sagodent-page .contact h2 em {
+        display: inline;
+        margin: 0 0 0 .08em;
+    }
+
+    .sagodent-page .contact .socials>a,
+    .sagodent-page .contact .socials::after {
+        min-height: var(--contact-box-height-mobile);
+    }
+
+    .sagodent-page .contact .socials>a::before,
+    .sagodent-page .contact .socials::after {
+        -webkit-mask-size: var(--contact-icon-size-mobile) var(--contact-icon-size-mobile);
+        mask-size: var(--contact-icon-size-mobile) var(--contact-icon-size-mobile);
+    }
+}
+
+.sagodent-page .library-grid>a:focus {
+    outline: none
+}
+
+.sagodent-page .library-grid>a:focus-visible {
+    outline: var(--library-card-focus-outline);
+    outline-offset: -2px
+}
+
+.sagodent-page .library-grid h3,
+.sagodent-page .library-grid .library-card-title {
+    color: var(--library-card-color) !important;
+    font-size: var(--font-size-clamp-25px-2-8vw-42px);
+    line-height: var(--line-height-1-12)
+}
+
+.sagodent-page .library-grid>span {
+    display: none !important
+}
+
+.sagodent-page .library-grid .library-card-title {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--library-card-color);
+    font-family: var(--font-google);
+    font-size: var(--font-size-clamp-25px-2-8vw-42px);
+    font-style: normal;
+    font-weight: var(--font-weight-700);
+    line-height: var(--line-height-1-12)
+}
+
+.sagodent-page .library-grid .library-card-more {
+    display: block !important;
+    align-self: end;
+    width: max-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--library-card-color);
+    font-family: var(--font-google);
+    font-size: var(--library-more-size);
+    font-style: normal;
+    font-weight: var(--font-weight-400);
+    line-height: 1.4;
+    white-space: nowrap
+}
+
+.sagodent-page .id4 {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    min-height: 0;
+    color: var(--white);
+    overflow: hidden;
+    background: var(--near-black)
+}
+
+.sagodent-page .id4>img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.sagodent-page .id4-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 18%, var(--black-28) 42%, var(--black-97) 100%)
+}
+
+.sagodent-page .id4-copy {
+    position: absolute;
+    left: 58%;
+    right: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(36.5%, 700px);
+    font-family: var(--font-google) !important;
+    color: var(--id4-body-color) !important
+}
+
+.sagodent-page .id4-copy h2 {
+    font-family: var(--font-google) !important;
+    font-size: var(--font-size-clamp-42px-4-2vw-70px);
+    font-style: normal !important;
+    font-weight: var(--font-weight-700) !important;
+    line-height: var(--id4-title-line-height) !important;
+    letter-spacing: var(--letter-spacing-neg-025em);
+    color: var(--id4-title-color) !important;
+    margin: 0 0 var(--space-5) !important
+}
+
+.sagodent-page .id4-copy h3 {
+    font-family: var(--font-google) !important;
+    font-size: var(--font-size-clamp-18px-1-7vw-27px);
+    font-style: normal !important;
+    font-weight: var(--font-weight-400) !important;
+    line-height: var(--id4-subtitle-line-height) !important;
+    letter-spacing: normal;
+    color: var(--id4-subtitle-color) !important;
+    margin: 0 0 var(--space-18) !important
+}
+
+.sagodent-page .id4-copy p {
+    font-family: var(--font-google) !important;
+    font-size: var(--font-size-clamp-11px-95vw-15px);
+    font-style: normal !important;
+    font-weight: var(--font-weight-400) !important;
+    line-height: var(--id4-body-line-height) !important;
+    color: var(--id4-body-color) !important
+}
+
+.sagodent-page .pill.outline {
+    border: 1px solid var(--id4-link-color);
+    margin-top: var(--space-14);
+    font-family: var(--font-google) !important;
+    font-style: normal !important;
+    font-weight: var(--font-weight-500) !important;
+    color: var(--id4-link-color) !important
+}
+
+.sagodent-page .contact {
+    padding: var(--space-8vw) var(--page-gutter) var(--space-6vw);
+    background: var(--blue);
+    color: var(--white)
+}
+
+.sagodent-page .contact h2 em {
+    color: var(--sky)
+}
+
+.sagodent-page .socials {
+    margin-top: var(--space-70)
+}
+
+.sagodent-page .socials a {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-25) var(--space-30);
+    border-bottom: 1px solid var(--white-53);
+    background: transparent;
+    font-size: var(--font-size-clamp-25px-3vw-48px);
+    transition: background-color .3s, padding .3s
+}
+
+.sagodent-page .socials a:hover {
+    background: var(--white-09);
+    padding-left: var(--space-45)
+}
+
+.sagodent-page [data-reveal] {
+    opacity: 0;
+    transform: translateY(45px);
+    transition: opacity .9s ease, transform .9s cubic-bezier(.22, 1, .36, 1)
+}
+
+.sagodent-page [data-reveal].revealed {
+    opacity: 1;
+    transform: none
+}
+
+.sagodent-page .id4-copy[data-reveal] {
+    transform: translateY(calc(-50% + 45px))
+}
+
+.sagodent-page .id4-copy[data-reveal].revealed {
+    transform: translateY(-50%)
+}
+
+
+/* Artboard-accurate desktop rhythm */
+
+@media(min-width:901px) {
+    .sagodent-page .hero {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 16/9
+    }
+
+    .sagodent-page .hero-copy h1 {
+        margin-top: var(--margin-1-35vw)
+    }
+
+    .sagodent-page .hero-copy>span {
+        margin: var(--space-1-3vw) var(--space-1-3vw) 0 0
+    }
+
+    .sagodent-page .pill {
+        gap: var(--gap-1-45vw);
+        padding: var(--space-0-58vw) var(--space-0-95vw) var(--space-0-58vw) 1.2vw
+    }
+
+    .sagodent-page .courses {
+        padding: var(--space-5-2vw) var(--page-gutter) var(--space-6vw)
+    }
+
+    .sagodent-page .courses header {
+        margin-bottom: var(--margin-2-6vw)
+    }
+
+    .sagodent-page .courses h2 {
+        font-size: var(--font-size-clamp-44px-4-2vw-80px)
+    }
+
+    .sagodent-page .course-tabs {
+        height: 3.2vw;
+        min-height: 46px
+    }
+
+    .sagodent-page .course-card {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 1920/610
+    }
+
+    .sagodent-page .course-visual h3 {
+        margin: var(--space-0-95vw) 0
+    }
+
+    .sagodent-page .course-visual em {
+        font-size: var(--font-size-clamp-12px-95vw-18px)
+    }
+
+    .sagodent-page .course-info {
+        padding: 2.7vw var(--space-3-5vw)
+    }
+
+    .sagodent-page .course-info h3 {
+        font-size: var(--font-size-clamp-18px-1-4vw-27px);
+        margin-top: 0
+    }
+
+    .sagodent-page .course-info>p {
+        font-size: var(--font-size-clamp-10px-74vw-14px)
+    }
+
+    .sagodent-page .course-info ol {
+        margin: var(--space-1-25vw) 0
+    }
+
+    .sagodent-page .course-info li {
+        padding: var(--padding-62vw-0);
+        font-size: var(--font-size-clamp-10px-78vw-15px)
+    }
+
+    .sagodent-page .library {
+        padding: var(--space-5-2vw) var(--page-gutter) var(--space-6vw)
+    }
+
+    .sagodent-page .library-grid {
+        margin-top: var(--space-3vw)
+    }
+
+    .sagodent-page .library-grid a {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 2.15/1;
+        padding: 2.2vw var(--space-2-8vw)
+    }
+
+    .sagodent-page .library-grid h3,
+    .sagodent-page .library-grid .library-card-title {
+        font-size: var(--font-size-clamp-25px-2-45vw-42px);
+        margin: 0
+    }
+
+    .sagodent-page .contact {
+        padding: 5.7vw var(--page-gutter) 4.8vw
+    }
+
+    .sagodent-page .socials {
+        margin-top: var(--margin-3-8vw)
+    }
+
+    .sagodent-page .socials a {
+        padding: var(--space-1-25vw) 1.6vw;
+        font-size: var(--font-size-clamp-25px-2-45vw-48px)
+    }
+
+    .sagodent-page .socials a:hover {
+        padding-left: var(--padding-2-35vw)
+    }
+}
+
+@media(max-width:900px) {
+
+    .sagodent-page .intro,
+    .sagodent-page .doctor {
+        height: auto;
+        aspect-ratio: auto
+    }
+}
+
+@media(max-width:900px) {
+    .sagodent-page .hero {
+        min-height: 650px
+    }
+
+    .sagodent-page .hero-image {
+        background-position: 58% center
+    }
+
+    .sagodent-page .hero-copy {
+        left: 6vw
+    }
+
+    .sagodent-page .intro,
+    .sagodent-page .doctor,
+    .sagodent-page .course-card {
+        grid-template-columns: 1fr
+    }
+
+    .sagodent-page .intro {
+        height: auto
+    }
+
+    .sagodent-page .intro-photo {
+        min-height: 55vh
+    }
+
+    .sagodent-page .intro-copy,
+    .sagodent-page .doctor-copy {
+        padding: var(--space-70) var(--page-gutter-mobile)
+    }
+
+    .sagodent-page .doctor-columns {
+        grid-template-columns: 1fr
+    }
+
+    .sagodent-page .doctor-portrait {
+        min-height: 650px
+    }
+
+    .sagodent-page .difference-row {
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+        min-height: 0
+    }
+
+    .sagodent-page .difference-text {
+        padding: var(--page-gutter)
+    }
+
+    .sagodent-page .difference-image {
+        height: 100%
+    }
+
+    .sagodent-page .course-tabs {
+        overflow: auto;
+        grid-template-columns: repeat(4, minmax(180px, 1fr))
+    }
+
+    .sagodent-page .course-card {
+        min-height: 0
+    }
+
+    .sagodent-page .course-visual {
+        min-height: 500px
+    }
+
+    .sagodent-page .course-info {
+        padding: var(--space-55) var(--page-gutter-mobile)
+    }
+
+    .sagodent-page .library-grid {
+        grid-template-columns: var(--library-grid-columns) !important
+    }
+
+    .sagodent-page .id4 {
+        min-height: 800px
+    }
+
+    .sagodent-page .id4-overlay {
+        background: linear-gradient(0deg, var(--black-95), var(--black-08))
+    }
+
+    .sagodent-page .id4-copy {
+        top: auto;
+        bottom: 7%;
+        right: 7%;
+        left: 7%;
+        transform: none;
+        width: auto
+    }
+}
+
+@media(max-width:600px) {
+    .sagodent-page .hero {
+        min-height: 580px
+    }
+
+    .sagodent-page .hero-copy h1 {
+        font-size: var(--font-size-50px)
+    }
+
+    .sagodent-page .hero-copy em {
+        font-size: var(--font-size-58px)
+    }
+
+    .sagodent-page .intro-copy h2,
+    .sagodent-page .courses h2,
+    .sagodent-page .library h2,
+    .sagodent-page .contact h2 {
+        font-size: var(--font-size-42px)
+    }
+
+    .sagodent-page .doctor-portrait {
+        min-height: 540px
+    }
+
+    .sagodent-page .difference-head {
+        grid-template-columns: 1fr;
+        aspect-ratio: auto
+    }
+
+    .sagodent-page .difference-head img {
+        height: 42vh
+    }
+
+    .sagodent-page .difference-head:after {
+        inset: 0;
+        background: linear-gradient(0deg, var(--blue), transparent 80%)
+    }
+
+    .sagodent-page .difference-head>div {
+        min-height: 300px
+    }
+
+    .sagodent-page .difference-row {
+        position: relative;
+        grid-template-columns: 1fr;
+        aspect-ratio: auto;
+        height: auto;
+        min-height: 0
+    }
+
+    .sagodent-page .difference-text {
+        min-height: 430px;
+        padding: var(--space-70) var(--page-gutter-mobile)
+    }
+
+    .sagodent-page .difference-image {
+        height: 62vh;
+        min-height: 420px
+    }
+
+    .sagodent-page .difference-text h3 {
+        font-size: var(--font-size-36px)
+    }
+
+    .sagodent-page blockquote {
+        padding: var(--space-90) var(--page-gutter-mobile)
+    }
+
+    .sagodent-page .course-visual {
+        min-height: 420px
+    }
+
+    .sagodent-page .library-grid a {
+        min-height: 200px
+    }
+
+    .sagodent-page .id4-copy p {
+        font-size: var(--font-size-13px)
+    }
+
+    .sagodent-page .socials a {
+        padding: var(--space-20) var(--space-5)
+    }
+}
+
+
+/* Match the Illustrator horizontal text axis in the right blue panel. */
+
+@media(min-width:601px) {
+    .sagodent-page .difference-head>div {
+        align-items: flex-start;
+        padding-left: var(--space-6-5vw)
+    }
+
+    .sagodent-page .difference-head h2 {
+        text-align: left
+    }
+}
+
+
+/* Match the Illustrator optical vertical center on desktop. */
+
+@media(min-width:901px) {
+    .sagodent-page .difference-head h2 {
+        position: relative;
+        top: -5vw
+    }
+}
+
+
+/* Quote section matched to the Illustrator reference. */
+
+.sagodent-page blockquote {
+    min-height: 46vw;
+    padding: var(--space-8vw) 18vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(var(--navy-overlay-82), var(--navy-overlay-82)), url("http://sagodent.com//wp-content/uploads/2026/08/bopt-masterclass.png") center/cover no-repeat;
+    font-family: var(--font-google);
+    font-weight: var(--font-weight-700);
+    /* FIX CHỐNG GIẬT (JANK) KHI CUỘN TỪ KHỐI STICKY XUỐNG QUOTE */
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    contain: content !important;
+}
+
+.sagodent-page blockquote .quote-title {
+    max-width: 1120px;
+    margin: var(--margin-0-auto);
+    font: var(--font-weight-700) var(--font-size-clamp-38px-4-2vw-76px)/var(--line-height-1-08) var(--font-google);
+    letter-spacing: var(--letter-spacing-neg-025em);
+    text-align: center;
+}
+
+.sagodent-page blockquote .quote-title em {
+    color: var(--sky);
+    font-family: var(--font-playfair);
+    font-style: italic;
+    font-weight: var(--font-weight-600);
+}
+
+.sagodent-page blockquote p {
+    max-width: 1050px;
+    margin: var(--space-3vw) auto 0;
+    font: var(--font-weight-400) var(--font-size-clamp-14px-1-2vw-22px)/var(--line-height-1-35) var(--font-google);
+}
+
+.sagodent-page blockquote .quote-word {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(34px) rotate(1.5deg);
+    transition: opacity .75s cubic-bezier(.2, .7, .2, 1), filter .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1);
+    transition-delay: calc(var(--word-index) * 46ms);
+}
+
+.sagodent-page blockquote.quote-animate-in .quote-word {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) rotate(0);
+}
+
+.sagodent-page blockquote p {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .85s .85s ease, transform .85s .85s cubic-bezier(.2, .7, .2, 1);
+}
+
+.sagodent-page blockquote.quote-animate-in p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    .sagodent-page blockquote .quote-word,
+    .sagodent-page blockquote p {
+        opacity: 1;
+        filter: none;
+        transform: none;
+        transition: none;
+    }
+}
+
+@media(min-width:901px) {
+
+    .sagodent-page .library h2,
+    .sagodent-page .contact h2 {
+        white-space: nowrap
+    }
+}
+
+@media(max-width:900px) {
+    .sagodent-page blockquote {
+        width: var(--quote-rwd-width);
+        max-width: var(--quote-rwd-max-width);
+        margin: 0;
+        border: var(--quote-theme-border) !important;
+        outline: var(--quote-theme-outline) !important;
+        box-shadow: var(--quote-theme-shadow) !important;
+        min-height: 620px;
+        padding: var(--quote-rwd-padding);
+        overflow: hidden
+    }
+
+    .sagodent-page blockquote .quote-title {
+        width: var(--quote-rwd-title-width);
+        max-width: var(--quote-rwd-title-max-width);
+        margin-inline: auto;
+        white-space: var(--quote-rwd-white-space) !important;
+        overflow-wrap: break-word;
+        font-size: var(--font-size-clamp-34px-8vw-56px)
+    }
+}
+
+
+/* GPU-friendly quote reveal: animate two groups instead of every word. */
+
+.sagodent-page blockquote .quote-word {
+    display: inline;
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+}
+
+.sagodent-page blockquote .quote-title {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: opacity .62s cubic-bezier(.22, 1, .36, 1), transform .72s cubic-bezier(.22, 1, .36, 1);
+    backface-visibility: hidden;
+}
+
+.sagodent-page blockquote.quote-animate-in .quote-title {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.sagodent-page blockquote p {
+    transform: translate3d(0, 18px, 0);
+    transition: opacity .56s .18s ease-out, transform .66s .18s cubic-bezier(.22, 1, .36, 1);
+    backface-visibility: hidden;
+}
+
+.sagodent-page blockquote.quote-animate-in p {
+    transform: translate3d(0, 0, 0)
+}
+
+
+/* Slightly richer quote motion, still limited to GPU-friendly properties. */
+
+.sagodent-page blockquote .quote-title {
+    transform: translate3d(0, 30px, 0) scale(.988);
+}
+
+.sagodent-page blockquote.quote-animate-in .quote-title {
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+.sagodent-page blockquote .quote-title em {
+    display: inline-block;
+    opacity: 0;
+    transform: translate3d(18px, 0, 0);
+    transition: opacity .52s .13s ease-out, transform .64s .13s cubic-bezier(.22, 1, .36, 1);
+    backface-visibility: hidden;
+}
+
+.sagodent-page blockquote.quote-animate-in .quote-title em {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.sagodent-page blockquote p {
+    transition-delay: .24s;
+}
+
+.sagodent-page .difference-row {
+    top: 76px;
+}
+
+@media(max-width:900px) {
+    .sagodent-page .difference-row {
+        top: 68px
+    }
+}
+
+.sagodent-page .contact {
+    padding: var(--page-gutter) var(--page-gutter) var(--space-1-5vw);
+}
+
+.sagodent-page .contact-grid {
+    margin-top: var(--space-3vw);
+}
+
+.sagodent-page .contact-card {
+    min-height: 160px;
+}
+
+@media(max-width:900px) {
+    .sagodent-page .contact {
+        padding: var(--space-60) var(--page-gutter-mobile) var(--space-24)
+    }
+
+    .sagodent-page .contact-grid {
+        margin-top: var(--space-36)
+    }
+}
+
+
+/* One continuous story: three differences, one Sagodent method. */
+
+.sagodent-page .difference-list {
+    background: var(--blue-mid);
+    isolation: isolate;
+    /* FIX CHỐNG GIẬT THẺ CUỐI: Đưa toàn bộ container vào GPU xử lý, giúp bước un-stick trượt mượt mà */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+
+.sagodent-page .difference-list::before {
+    content: "";
+    position: absolute;
+    z-index: 12;
+    left: 3.1vw;
+    top: 3vw;
+    bottom: 3vw;
+    width: 2px;
+    background: linear-gradient(180deg, var(--white) 0%, var(--sky) 50%, var(--white) 100%);
+    opacity: .65;
+    pointer-events: none;
+}
+
+
+/* FIX LỖI GIẬT/CHỚP HÌNH SCROLL Ở SỐ 3: Đã gỡ bỏ translateZ và backface-visibility */
+
+.sagodent-page .difference-row,
+.sagodent-page .difference-row:nth-child(1),
+.sagodent-page .difference-row:nth-child(2),
+.sagodent-page .difference-row:nth-child(3) {
+    color: var(--white);
+    border: 0;
+    box-shadow: 0 -18px 48px var(--navy-alt-14);
+}
+
+
+/* FIX LỖI GIẬT/CHỚP HÌNH SCROLL Ở SỐ 3: Đã gỡ bỏ will-change, translateZ và backface-visibility */
+
+
+/* .sagodent-page .difference-image img {} */
+
+.sagodent-page .difference-row:hover .difference-image img {
+    transform: scale(1.02);
+}
+
+.sagodent-page .difference-row:nth-child(1) {
+    background: var(--blue-mid)
+}
+
+.sagodent-page .difference-row:nth-child(2) {
+    background: var(--blue-deep)
+}
+
+.sagodent-page .difference-row:nth-child(3) {
+    background: var(--blue-bright)
+}
+
+.sagodent-page .difference-row::before {
+    content: "";
+    position: absolute;
+    z-index: 13;
+    left: calc(3.1vw - 6px);
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    border: 3px solid var(--white);
+    border-radius: var(--radius-50pct);
+    background: var(--sky);
+    transform: translateY(-50%);
+    box-shadow: 0 0 0 8px var(--sky-18);
+}
+
+.sagodent-page .difference-text {
+    padding-left: var(--space-6-5vw);
+}
+
+.sagodent-page .difference-text>span {
+    left: 4.8vw;
+    top: 3.5vw;
+    opacity: .32;
+}
+
+.sagodent-page .difference-text>span::after {
+    content: " / 03";
+    margin-left: var(--margin-15em);
+    font: var(--font-weight-700) var(--font-size-2em)/var(--line-height-1) var(--font-google);
+    letter-spacing: var(--letter-spacing-08em);
+    vertical-align: middle;
+}
+
+.sagodent-page .difference-image {
+    position: relative;
+}
+
+.sagodent-page .difference-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--blue-mid-32), transparent 24%);
+    pointer-events: none;
+}
+
+@media(max-width:600px) {
+    .sagodent-page .difference-list::before {
+        left: 5vw
+    }
+
+    .sagodent-page .difference-row::before {
+        left: calc(5vw - 6px)
+    }
+
+    .sagodent-page .difference-text {
+        padding-left: var(--padding-10vw)
+    }
+
+    .sagodent-page .difference-text>span {
+        left: 8vw
+    }
+}
+
+
+/* Let Dr. Diem's portrait rise slightly into the section above. */
+
+.sagodent-page .intro {
+    position: relative;
+    z-index: 1
+}
+
+.sagodent-page .doctor {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+}
+
+.sagodent-page .doctor-copy {
+    position: relative;
+    z-index: 2;
+    background: var(--pale);
+}
+
+.sagodent-page .doctor-portrait {
+    z-index: 3;
+    overflow: visible;
+}
+
+.sagodent-page .doctor-portrait img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(100% + clamp(48px, 5.2vw, 92px));
+    object-fit: cover;
+    object-position: center top;
+}
+
+@media(max-width:900px) {
+    .sagodent-page .doctor {
+        overflow: hidden
+    }
+
+    .sagodent-page .doctor-portrait {
+        overflow: hidden
+    }
+
+    .sagodent-page .doctor-portrait img {
+        position: relative;
+        height: 100%;
+    }
+}
+
+
+/* Difference banner: copy on the left, training room on the right. */
+
+@media(min-width:601px) {
+
+    .sagodent-page .difference-head,
+    .sagodent-page .difference-list,
+    .sagodent-page .difference-row,
+    .sagodent-page .difference-row:nth-child(1),
+    .sagodent-page .difference-row:nth-child(2),
+    .sagodent-page .difference-row:nth-child(3) {
+        background: var(--blue);
+    }
+
+    .sagodent-page .difference-head img {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .sagodent-page .difference-head>div {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 50%;
+        align-items: flex-start;
+        height: auto;
+        padding: 0 var(--page-gutter);
+        justify-content: center;
+    }
+
+    .sagodent-page .difference-head h2 {
+        position: static;
+        top: auto;
+        transform: none;
+    }
+
+    .sagodent-page .difference-head:after {
+        inset: 0 0 0 50%;
+        background: linear-gradient(90deg, var(--blue) 0%, var(--blue-88) 22%, var(--blue-18) 72%, var(--blue-04) 100%);
+    }
+}
+
+
+/* Contact hub: five consistent Sagodent cards. */
+
+.sagodent-page .contact {
+    padding-bottom: var(--page-gutter-mobile);
+}
+
+.sagodent-page .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin-top: var(--space-4vw);
+    border-top: 1px solid var(--white-34);
+    border-left: 1px solid var(--white-34);
+}
+
+.sagodent-page .contact-card {
+    position: relative;
+    min-height: 190px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-right: 1px solid var(--white-34);
+    border-bottom: 1px solid var(--white-34);
+    background: var(--white-035);
+    color: var(--white);
+    transition: background-color .35s, transform .35s;
+}
+
+.sagodent-page .contact-card:hover {
+    z-index: 2;
+    background: var(--sky-alt-22);
+    transform: translateY(-6px);
+}
+
+.sagodent-page .contact-card-icon {
+    position: relative;
+    z-index: 2;
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
+    color: var(--white-58);
+    transition: color .35s, transform .35s;
+}
+
+.sagodent-page .contact-card-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sagodent-page .contact-card:nth-child(3) .contact-card-icon svg {
+    fill: currentColor;
+    stroke: none;
+}
+
+.sagodent-page .contact-card:hover .contact-card-icon {
+    color: var(--white);
+    transform: scale(1.08);
+}
+
+@media(max-width:1100px) {
+    .sagodent-page .contact-grid {
+        grid-template-columns: repeat(5, minmax(220px, 1fr));
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+}
+
+@media(max-width:700px) {
+    .sagodent-page .contact-grid {
+        margin-top: var(--space-45)
+    }
+
+    .sagodent-page .contact-card {
+        min-height: 180px
+    }
+}
+
+@media(max-width:480px) {
+    .sagodent-page .contact-grid {
+        grid-template-columns: repeat(5, minmax(190px, 1fr))
+    }
+}
+
+.sagodent-page .contact {
+    padding: var(--page-gutter) var(--page-gutter) var(--space-1-5vw);
+}
+
+.sagodent-page .contact-grid {
+    margin-top: var(--space-3vw);
+}
+
+.sagodent-page .contact-card {
+    min-height: 160px;
+}
+
+@media(max-width:900px) {
+    .sagodent-page .contact {
+        padding: var(--space-60) var(--page-gutter-mobile) var(--space-24)
+    }
+
+    .sagodent-page .contact-grid {
+        margin-top: var(--space-36)
+    }
+}
+
+
+/* ========================================================================== 
+   RESPONSIVE REFINEMENT — MOBILE / TABLET
+   - Dot follows the real heading center.
+   - Course tabs become a balanced 2 × 2 grid.
+   - Contact cards preserve the desktop five-column composition.
+   - Header keeps the logo left and actions right.
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+
+    /* Tablet landscape: keep all five contact cells visible in one row. */
+    .sagodent-page .contact-grid {
+        width: 100%;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        overflow: visible;
+        scrollbar-width: auto;
+    }
+
+    .sagodent-page .contact-card {
+        min-width: 0;
+        min-height: clamp(104px, 13vw, 150px);
+    }
+
+    .sagodent-page .contact-card-icon {
+        width: clamp(42px, 6vw, 60px);
+        height: clamp(42px, 6vw, 60px);
+    }
+}
+
+@media (max-width: 900px) {
+
+    /* Keep the timeline dot optically aligned with each real title. */
+    .sagodent-page .difference-row::before {
+        top: var(--difference-dot-y, 50%);
+    }
+
+    /* Two columns and two rows, matching the supplied mobile/tablet reference. */
+    .sagodent-page .course-tabs {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: minmax(72px, auto);
+        overflow: visible;
+        border-top: 1px solid var(--navy-08);
+        border-left: 1px solid var(--navy-08);
+        box-shadow: 0 8px 24px var(--navy-08);
+    }
+
+    .sagodent-page .course-tabs button {
+        position: relative;
+        width: 100%;
+        min-width: 0;
+        min-height: 72px;
+        padding: 14px 10px;
+        border: 0;
+        border-right: 1px solid var(--navy-08);
+        border-bottom: 1px solid var(--navy-08);
+        font-size: clamp(12px, 1.8vw, 15px);
+        line-height: 1.25;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .sagodent-page .course-tabs button.active {
+        border-bottom-color: var(--sky);
+        box-shadow: inset 0 -3px 0 var(--sky);
+    }
+
+    .sagodent-page .course-tabs button:nth-child(2n) {
+        border-right: 0 !important;
+    }
+
+    /* Keep five compact contact cells instead of a wide horizontal carousel. */
+    .sagodent-page .contact-grid {
+        width: 100%;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        overflow: visible;
+        scrollbar-width: auto;
+    }
+
+    .sagodent-page .contact-card {
+        min-width: 0;
+        min-height: clamp(92px, 13vw, 132px);
+    }
+
+    .sagodent-page .contact-card-icon {
+        width: clamp(38px, 6vw, 54px);
+        height: clamp(38px, 6vw, 54px);
+    }
+}
+
+@media (max-width: 600px) {
+    .sagodent-page .course-tabs {
+        grid-auto-rows: minmax(64px, auto);
+    }
+
+    .sagodent-page .course-tabs button {
+        min-height: 64px;
+        padding: 12px 8px;
+        font-size: clamp(11px, 3.2vw, 14px);
+    }
+
+    .sagodent-page .contact {
+        padding-inline: 4vw;
+    }
+
+    .sagodent-page .contact-grid {
+        margin-top: 28px;
+    }
+
+    .sagodent-page .contact-card {
+        min-height: clamp(72px, 20vw, 96px);
+    }
+
+    .sagodent-page .contact-card-icon {
+        width: clamp(28px, 9vw, 40px);
+        height: clamp(28px, 9vw, 40px);
+    }
+}
+
+
+/* ========================================================================== 
+   WORDPRESS / FLATSOME — MOBILE & TABLET FULL-WIDTH FIX
+   - Break the hand-coded page out of the theme's narrow content container.
+   - Prevent horizontal overflow from large hero typography.
+   - Remove the desktop white fade from the mobile intro image.
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    body.sagodent-page>#wrapper,
+    body.sagodent-page>#main {
+        position: relative;
+        left: 50%;
+        width: 100vw;
+        max-width: 100vw;
+        margin: 0;
+        transform: translateX(-50%);
+        overflow-x: clip;
+    }
+
+    body.sagodent-page {
+        transform: none !important;
+    }
+
+    /* WordPress may insert an empty paragraph between two pasted sections. */
+    .sagodent-page>p:empty,
+    .sagodent-page>p:has(>br:only-child) {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .sagodent-page *,
+    .sagodent-page *::before,
+    .sagodent-page *::after {
+        min-width: 0;
+    }
+
+    .sagodent-page>section,
+    .sagodent-page .hero,
+    .sagodent-page .intro {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .sagodent-page .hero-copy {
+        right: 6vw;
+        width: auto;
+        max-width: 88vw;
+    }
+
+    .sagodent-page .hero-copy h1,
+    .sagodent-page .hero-copy em {
+        max-width: 100%;
+        white-space: nowrap;
+    }
+
+    .sagodent-page .intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+        padding: 0;
+        overflow: hidden;
+        background: var(--white);
+    }
+
+    .sagodent-page .hero+.intro,
+    .sagodent-page .hero~.intro {
+        margin-top: 0 !important;
+    }
+
+    .sagodent-page .intro-photo {
+        width: 100%;
+        height: clamp(420px, 75vw, 620px);
+        min-height: 0;
+        margin: 0;
+        background: url("http://sagodent.com/wp-content/uploads/2026/08/BF-AT-200-scaled.jpg") center 48%/cover no-repeat;
+    }
+
+    /* Do not translate the first block of the next section: it exposes a white gap. */
+    .sagodent-page .intro-photo[data-reveal],
+    .sagodent-page .intro-photo[data-reveal].revealed {
+        opacity: 1;
+        transform: none;
+        transition: opacity .9s ease;
+    }
+
+    .sagodent-page .intro-copy {
+        width: 100%;
+        margin: 0;
+        padding: clamp(48px, 8vw, 70px) var(--page-gutter-mobile);
+    }
+
+    .sagodent-page img,
+    .sagodent-page video {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .sagodent-page .hero-copy {
+        left: 5vw;
+        right: 5vw;
+        width: 90vw;
+        max-width: 90vw;
+    }
+
+    .sagodent-page .hero-copy h1 {
+        font-size: clamp(36px, 12vw, 50px);
+        line-height: .88;
+        letter-spacing: -.045em;
+    }
+
+    .sagodent-page .hero-copy em {
+        font-size: clamp(42px, 13.5vw, 58px);
+        line-height: .92;
+        letter-spacing: -.035em;
+    }
+
+    .sagodent-page .hero-copy>span {
+        margin-right: 12px;
+        font-size: clamp(11px, 3.2vw, 14px);
+    }
+
+    .sagodent-page .pill {
+        gap: 12px;
+        padding: 10px 18px;
+        font-size: 12px;
+    }
+
+    .sagodent-page .intro-photo {
+        height: clamp(360px, 112vw, 520px);
+        background-position: center center;
+    }
+
+    .sagodent-page .intro-copy {
+        padding: 48px 7vw;
+    }
+
+    .sagodent-page .intro-copy h2 {
+        font-size: clamp(34px, 10.5vw, 42px);
+        line-height: 1.03;
+    }
+}
+
+
+/* ========================================================================== 
+   DIFFERENCE SECTION — RESPONSIVE FROM ROOT VARIABLES
+   ========================================================================== */
+
+@media (max-width: 900px) {
+    .sagodent-page .difference-head {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: var(--difference-rwd-head-height);
+        min-height: var(--difference-rwd-head-height);
+        aspect-ratio: auto;
+        margin: 0;
+        background: var(--blue);
+        overflow: hidden;
+    }
+
+    .sagodent-page .difference-head img,
+    .sagodent-page .difference-head::after {
+        display: none;
+    }
+
+    .sagodent-page .difference-head>div {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        padding: 0 var(--difference-rwd-head-padding-inline);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .sagodent-page .difference-head h2 {
+        position: static;
+        width: var(--difference-rwd-head-title-width);
+        max-width: 100%;
+        margin: 0 auto;
+        transform: none;
+        text-align: var(--difference-rwd-head-text-align);
+        font-size: var(--difference-rwd-head-title-size);
+        line-height: var(--difference-rwd-head-line-height);
+        color: var(--sagodent-white) !important;
+    }
+
+    .sagodent-page .difference-head h2 em {
+        display: block;
+        width: 100%;
+        margin: var(--difference-rwd-script-margin);
+        padding: var(--difference-rwd-script-padding);
+        text-align: var(--difference-rwd-head-text-align);
+        text-indent: var(--difference-rwd-script-indent);
+        transform: var(--difference-rwd-script-transform);
+        font-size: var(--difference-rwd-head-script-size);
+        line-height: var(--difference-rwd-head-line-height);
+        color: var(--sky) !important;
+    }
+
+    .sagodent-page .difference-list::before {
+        left: var(--difference-rwd-line-left);
+        width: var(--difference-rwd-line-width);
+    }
+
+    .sagodent-page .difference-row,
+    .sagodent-page .difference-row:nth-child(1),
+    .sagodent-page .difference-row:nth-child(2),
+    .sagodent-page .difference-row:nth-child(3) {
+        position: relative;
+        top: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: auto;
+        background: var(--blue);
+        color: var(--sagodent-white);
+    }
+
+    .sagodent-page .difference-row::before {
+        left: calc(var(--difference-rwd-line-left) - var(--difference-rwd-dot-left-offset));
+        top: var(--difference-rwd-dot-top) !important;
+        width: var(--difference-rwd-dot-size);
+        height: var(--difference-rwd-dot-size);
+        border-width: var(--difference-rwd-dot-border);
+    }
+
+    .sagodent-page .difference-text {
+        display: block;
+        width: 100%;
+        min-height: var(--difference-rwd-row-min-height);
+        padding: var(--difference-rwd-text-padding);
+        color: var(--sagodent-white);
+    }
+
+    .sagodent-page .difference-text>span {
+        left: var(--difference-rwd-number-left);
+        top: var(--difference-rwd-number-top);
+        font-size: var(--difference-rwd-number-size);
+        color: var(--sky) !important;
+    }
+
+    .sagodent-page .difference-text h3 {
+        margin: var(--difference-rwd-title-margin);
+        font-size: var(--difference-rwd-title-size);
+        line-height: var(--difference-rwd-title-line-height);
+        color: var(--sagodent-white) !important;
+    }
+
+    .sagodent-page .difference-text p {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        font-size: var(--difference-rwd-body-size);
+        line-height: var(--difference-rwd-body-line-height);
+        color: var(--sagodent-white) !important;
+    }
+
+    .sagodent-page .difference-image {
+        width: 100%;
+        height: var(--difference-rwd-image-height);
+        min-height: 0;
+    }
+}
+
+
+/* Library becomes one column only on small phones, not on tablet/zoomed desktop. */
+
+@media (max-width: 600px) {
+    .sagodent-page .library-grid {
+        grid-template-columns: var(--library-grid-columns-mobile) !important;
+    }
+}
+
+
+/* Mobile and tablet layout matching the supplied single-column reference. */
+
+@media (max-width: 900px) {
+    .sagodent-page .library-grid {
+        grid-template-columns: var(--library-grid-columns-mobile) !important;
+        gap: var(--gap-7px)
+    }
+
+    .sagodent-page .library-grid>a {
+        min-height: var(--library-card-mobile-min-height) !important;
+        aspect-ratio: auto !important;
+        padding: var(--library-card-mobile-padding) !important;
+        background: var(--library-card-background) !important;
+        transform: none !important;
+        box-shadow: none !important
+    }
+
+    .sagodent-page .library-grid>a:hover {
+        background: var(--library-card-background) !important;
+        transform: none !important;
+        box-shadow: none !important
+    }
+
+    .sagodent-page .id4-copy,
+    .sagodent-page .id4-copy[data-reveal],
+    .sagodent-page .id4-copy[data-reveal].revealed {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        left: 50% !important;
+        right: auto !important;
+        top: 50% !important;
+        bottom: auto !important;
+        width: var(--id4-mobile-copy-width) !important;
+        max-width: var(--id4-mobile-copy-max-width);
+        margin: 0 !important;
+        text-align: var(--id4-mobile-text-align) !important;
+        transform: translate(-50%, -50%) !important
+    }
+
+    .sagodent-page .id4-copy h2,
+    .sagodent-page .id4-copy h3,
+    .sagodent-page .id4-copy p {
+        width: 100%;
+        text-align: var(--id4-mobile-text-align) !important
+    }
+
+    .sagodent-page .id4-copy .pill {
+        align-self: center;
+        margin-inline: auto !important
+    }
+}
+
+
+/* Khóa cuối file: giữ đúng font và màu tiêu đề liên hệ trong Flatsome. */
+
+.sagodent-page #contact.contact h2,
+.sagodent-page #contact.contact h2[data-reveal],
+.sagodent-page #contact.contact h2[data-reveal].revealed {
+    font-family: var(--font-google, "Google Sans", Arial, sans-serif) !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    color: var(--sagodent-white, #fff) !important;
+    -webkit-text-fill-color: var(--sagodent-white, #fff) !important;
+    opacity: 1 !important;
+}
+
+.sagodent-page #contact.contact h2 em,
+.sagodent-page #contact.contact h2[data-reveal] em,
+.sagodent-page #contact.contact h2[data-reveal].revealed em {
+    font-family: var(--font-playfair, "Playfair Display", Georgia, serif) !important;
+    font-style: italic !important;
+    font-weight: 600 !important;
+    color: var(--sky, #72bae3) !important;
+    -webkit-text-fill-color: var(--sky, #72bae3) !important;
+}
+
+.sagodent-page #contact.contact .socials>a,
+.sagodent-page #contact.contact .contact-card {
+    color: var(--sagodent-white, #fff) !important;
+    -webkit-text-fill-color: var(--sagodent-white, #fff) !important;
+}
+
+
+/* Khóa iD-4 cuối file: căn giữa theo chiều cao, chữ và nút căn trái. */
+
+@media (max-width: 900px) {
+
+    .sagodent-page .id4-copy,
+    .sagodent-page .id4-copy[data-reveal],
+    .sagodent-page .id4-copy[data-reveal].revealed {
+        align-items: flex-start !important;
+        justify-content: center !important;
+        left: 50% !important;
+        right: auto !important;
+        top: 50% !important;
+        bottom: auto !important;
+        width: var(--id4-rwd-copy-width) !important;
+        max-width: var(--id4-rwd-copy-max-width) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .sagodent-page .id4-copy h2,
+    .sagodent-page .id4-copy h3,
+    .sagodent-page .id4-copy p {
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .sagodent-page .id4-copy h2 {
+        margin: 0 0 var(--id4-rwd-copy-gap) !important;
+        font-size: var(--id4-rwd-title-size) !important;
+        line-height: 1 !important;
+    }
+
+    .sagodent-page .id4-copy h3 {
+        margin: 0 0 calc(var(--id4-rwd-copy-gap) * 1.35) !important;
+        font-size: var(--id4-rwd-subtitle-size) !important;
+        line-height: 1.2 !important;
+    }
+
+    .sagodent-page .id4-copy p {
+        max-width: none !important;
+        margin: 0 0 var(--id4-rwd-copy-gap) !important;
+        font-size: var(--id4-rwd-body-size) !important;
+        line-height: 1.35 !important;
+    }
+
+    .sagodent-page .id4-copy .pill {
+        align-self: flex-start !important;
+        margin: calc(var(--id4-rwd-copy-gap) * 1.1) 0 0 !important;
+        font-size: var(--id4-rwd-button-size) !important;
+    }
+}
+
+
+/* Điện thoại: tạo khoảng thở hai mép giống hình mẫu. */
+
+@media (max-width: 600px) {
+
+    .sagodent-page .id4-copy,
+    .sagodent-page .id4-copy[data-reveal],
+    .sagodent-page .id4-copy[data-reveal].revealed {
+        width: 82% !important;
+        max-width: 82% !important;
+    }
+}
+
+
+/* ==========================================================
+   FINAL CONTACT ICON LOCK
+   - Giữ nguyên HTML
+   - 5 ô luôn nằm ngang ở desktop / tablet / mobile
+   - 4 icon social dùng ::before
+   - icon Location thứ 5 dùng ::after
+   - Không nhảy ô khi hover
+========================================================== */
+
+.sagodent-page #contact.contact .socials {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 0 !important;
+    overflow: visible !important;
+}
+
+.sagodent-page #contact.contact .socials>a,
+.sagodent-page #contact.contact .socials::after {
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-bottom: 0 !important;
+    border-right: 1px solid var(--contact-border-color) !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    translate: none !important;
+}
+
+.sagodent-page #contact.contact .socials>a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--contact-icon-color) !important;
+    -webkit-text-fill-color: initial !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.sagodent-page #contact.contact .socials>a:last-child {
+    border-right: 1px solid var(--contact-border-color) !important;
+}
+
+
+/* ĐÃ SỬA: Ẩn triệt để TẤT CẢ các icon mặc định của theme bên trong thẻ a để không bị chồng hình */
+
+.sagodent-page #contact.contact .socials>a>* {
+    display: none !important;
+}
+
+.sagodent-page #contact.contact .socials>a::before {
+    content: '' !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: var(--contact-icon-size) !important;
+    height: var(--contact-icon-size) !important;
+    background-color: currentColor !important;
+    -webkit-mask-position: center !important;
+    -webkit-mask-repeat: no-repeat !important;
+    -webkit-mask-size: contain !important;
+    mask-position: center !important;
+    mask-repeat: no-repeat !important;
+    mask-size: contain !important;
+    transform: none !important;
+    transition: transform .3s ease !important;
+}
+
+
+/* Location thứ 5: background SVG riêng, không dùng mask trên cả ô */
+
+.sagodent-page #contact.contact .socials::after {
+    content: '' !important;
+    display: block !important;
+    min-height: var(--contact-box-height) !important;
+    border-right: 0 !important;
+    -webkit-mask: none !important;
+    mask: none !important;
+    background-color: transparent !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 57S49 40.7 49 25.5a17 17 0 1 0-34 0C15 40.7 32 57 32 57Z' fill='none' stroke='%2386c3e5' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='25' r='6' fill='none' stroke='%2386c3e5' stroke-width='5'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: var(--contact-icon-size) var(--contact-icon-size) !important;
+    transition: transform .28s ease, background-color .28s ease, box-shadow .28s ease, background-size .28s ease, background-image .28s ease !important;
+    will-change: transform;
+}
+
+@media (max-width: 900px) {
+    .sagodent-page #contact.contact .socials {
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    }
+
+    .sagodent-page #contact.contact .socials>a,
+    .sagodent-page #contact.contact .socials::after {
+        min-height: var(--contact-box-height-tablet) !important;
+    }
+
+    .sagodent-page #contact.contact .socials>a::before {
+        width: var(--contact-icon-size-tablet) !important;
+        height: var(--contact-icon-size-tablet) !important;
+    }
+
+    .sagodent-page #contact.contact .socials::after {
+        background-size: var(--contact-icon-size-tablet) var(--contact-icon-size-tablet) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .sagodent-page #contact.contact .socials {
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    }
+
+    .sagodent-page #contact.contact .socials>a,
+    .sagodent-page #contact.contact .socials::after {
+        min-height: var(--contact-box-height-mobile) !important;
+    }
+
+    .sagodent-page #contact.contact .socials>a::before {
+        width: var(--contact-icon-size-mobile) !important;
+        height: var(--contact-icon-size-mobile) !important;
+    }
+
+    .sagodent-page #contact.contact .socials::after {
+        background-size: var(--contact-icon-size-mobile) var(--contact-icon-size-mobile) !important;
+    }
+}
+
+
+/* ==========================================================
+   FINAL ICON FIX — WHATSAPP + ZALO + HOVER
+========================================================== */
+
+
+/* Không dùng mask cũ cho 2 icon đầu */
+
+.sagodent-page #contact.contact .socials>a:nth-child(1)::before,
+.sagodent-page #contact.contact .socials>a:nth-child(2)::before {
+    -webkit-mask: none !important;
+    mask: none !important;
+    background-color: transparent !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
+}
+
+
+/* WhatsApp */
+
+.sagodent-page #contact.contact .socials>a:nth-child(1)::before {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%3Cpath%20d%3D%22M32%208C18.7%208%208%2018.4%208%2031.2c0%204.3%201.2%208.4%203.5%2012L8%2056l13-3.4A25%2025%200%200%200%2032%2055c13.3%200%2024-10.4%2024-23.2S45.3%208%2032%208Z%22%20fill%3D%22none%22%20stroke%3D%22%2386c3e5%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M22%2019.5c-2.1%201.9-3.1%204.8-2.3%207.6%202.5%208.8%209.5%2015.8%2018.3%2018.3%202.8.8%205.7-.2%207.6-2.3l3.1-3.5-8.5-4-3.1%203.1c-4.4-2-8-5.5-10-10l3.1-3.1-4.1-8.4-4.1%202.3Z%22%20fill%3D%22none%22%20stroke%3D%22%2386c3e5%22%20stroke-width%3D%224.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") !important;
+}
+
+
+/* ĐÃ SỬA: Zalo hình tròn hoàn hảo + dấu ngoặc dưới */
+
+.sagodent-page #contact.contact .socials>a:nth-child(2)::before {
+    width: var(--contact-icon-size) !important;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Cpath%20d%3D%22M32%207a22%2022%200%200%200-22%2022c0%206.6%202.9%2012.5%207.6%2016.6l-2.6%207.8%208.8-4.6A21.9%2021.9%200%200%200%2032%2051a22%2022%200%201%200%200-44Z%22%20fill%3D%22none%22%20stroke%3D%22%2386c3e5%22%20stroke-width%3D%224.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3Ctext%20x%3D%2232%22%20y%3D%2234.5%22%20text-anchor%3D%22middle%22%20fill%3D%22%2386c3e5%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2214.5%22%20font-weight%3D%22700%22%20letter-spacing%3D%220%22%3EZalo%3C%2Ftext%3E%0A%3C%2Fsvg%3E") !important;
+}
+
+
+/* Hover/focus/active: icon chuyển trắng (chỉ áp dụng ở desktop) */
+
+@media (min-width: 901px) {
+
+    .sagodent-page #contact.contact .socials>a:hover,
+    .sagodent-page #contact.contact .socials>a:focus-visible,
+    .sagodent-page #contact.contact .socials>a:active {
+        margin: 0 !important;
+        padding: 0 !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: translateY(-10px) !important;
+        z-index: 5 !important;
+        color: var(--sagodent-white) !important;
+        background: rgba(255, 255, 255, .08) !important;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .10), 0 0 0 1px rgba(255, 255, 255, .18) !important;
+    }
+
+    .sagodent-page #contact.contact .socials>a:hover::before,
+    .sagodent-page #contact.contact .socials>a:focus-visible::before,
+    .sagodent-page #contact.contact .socials>a:active::before {
+        transform: scale(1.06) !important;
+    }
+
+    .sagodent-page #contact.contact .socials>a:nth-child(1):hover::before,
+    .sagodent-page #contact.contact .socials>a:nth-child(1):focus-visible::before,
+    .sagodent-page #contact.contact .socials>a:nth-child(1):active::before {
+        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%3Cpath%20d%3D%22M32%208C18.7%208%208%2018.4%208%2031.2c0%204.3%201.2%208.4%203.5%2012L8%2056l13-3.4A25%2025%200%200%200%2032%2055c13.3%200%2024-10.4%2024-23.2S45.3%208%2032%208Z%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M22%2019.5c-2.1%201.9-3.1%204.8-2.3%207.6%202.5%208.8%209.5%2015.8%2018.3%2018.3%202.8.8%205.7-.2%207.6-2.3l3.1-3.5-8.5-4-3.1%203.1c-4.4-2-8-5.5-10-10l3.1-3.1-4.1-8.4-4.1%202.3Z%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") !important;
+    }
+
+    /* ĐÃ SỬA: Zalo hover hình tròn hoàn hảo + dấu ngoặc dưới màu trắng */
+    .sagodent-page #contact.contact .socials>a:nth-child(2):hover::before,
+    .sagodent-page #contact.contact .socials>a:nth-child(2):focus-visible::before,
+    .sagodent-page #contact.contact .socials>a:nth-child(2):active::before {
+        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Cpath%20d%3D%22M32%207a22%2022%200%200%200-22%2022c0%206.6%202.9%2012.5%207.6%2016.6l-2.6%207.8%208.8-4.6A21.9%2021.9%200%200%200%2032%2051a22%2022%200%201%200%200-44Z%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3Ctext%20x%3D%2232%22%20y%3D%2234.5%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2214.5%22%20font-weight%3D%22700%22%20letter-spacing%3D%220%22%3EZalo%3C%2Ftext%3E%0A%3C%2Fsvg%3E") !important;
+    }
+
+    /* Mặc định, khi chuột di chuyển vào grid socials, ::after (icon 5) sẽ có hiệu ứng */
+    .sagodent-page #contact.contact .socials:hover::after {
+        transform: translateY(-10px) !important;
+        z-index: 5 !important;
+        background-color: rgba(255, 255, 255, .08) !important;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .10), 0 0 0 1px rgba(255, 255, 255, .18) !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 57S49 40.7 49 25.5a17 17 0 1 0-34 0C15 40.7 32 57 32 57Z' fill='none' stroke='%23ffffff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='25' r='6' fill='none' stroke='%23ffffff' stroke-width='5'/%3E%3C/svg%3E") !important;
+        background-size: calc(var(--contact-icon-size) * 1.06) calc(var(--contact-icon-size) * 1.06) !important;
+    }
+
+    /* ĐÃ SỬA LỖI MẤT HOVER TẠI ICON 5: 
+       Hủy hiệu ứng của ::after khi chuột trỏ cụ thể vào các thẻ a (từ 1 đến 4) */
+    .sagodent-page #contact.contact .socials:has(>a:hover):after,
+    .sagodent-page #contact.contact .socials:has(>a:focus-visible):after {
+        transform: none !important;
+        z-index: 1 !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 57S49 40.7 49 25.5a17 17 0 1 0-34 0C15 40.7 32 57 32 57Z' fill='none' stroke='%2386c3e5' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='25' r='6' fill='none' stroke='%2386c3e5' stroke-width='5'/%3E%3C/svg%3E") !important;
+        background-size: var(--contact-icon-size) var(--contact-icon-size) !important;
+    }
+}
+
+
+/* TẮT HIỆU ỨNG HOVER Ở MOBILE/TABLET (Giữ nguyên không trồi lên, không chớp background) */
+
+@media (max-width: 900px) {
+
+    .sagodent-page #contact.contact .socials>a:hover,
+    .sagodent-page #contact.contact .socials>a:focus-visible,
+    .sagodent-page #contact.contact .socials>a:active {
+        transform: none !important;
+        z-index: 1 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        color: var(--contact-icon-color) !important;
+    }
+
+    .sagodent-page #contact.contact .socials>a:hover::before,
+    .sagodent-page #contact.contact .socials>a:focus-visible::before,
+    .sagodent-page #contact.contact .socials>a:active::before {
+        transform: none !important;
+    }
+}
+
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .sagodent-page #contact.contact .socials>a:nth-child(1)::before {
+        width: var(--contact-icon-size-tablet) !important;
+        height: var(--contact-icon-size-tablet) !important;
+    }
+
+    .sagodent-page #contact.contact .socials>a:nth-child(2)::before {
+        width: var(--contact-icon-size-tablet) !important;
+        height: var(--contact-icon-size-tablet) !important;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 480px) {
+    .sagodent-page #contact.contact .socials>a:nth-child(1)::before {
+        width: var(--contact-icon-size-mobile) !important;
+        height: var(--contact-icon-size-mobile) !important;
+    }
+
+    .sagodent-page #contact.contact .socials>a:nth-child(2)::before {
+        width: var(--contact-icon-size-mobile) !important;
+        height: var(--contact-icon-size-mobile) !important;
+    }
+}
+
+
+/* ==========================================================
+   CONTACT HOVER RISE EFFECT (Áp dụng chỉ cho Desktop)
+========================================================== */
+
+.sagodent-page #contact.contact .socials {
+    overflow: visible !important;
+}
+
+.sagodent-page #contact.contact .socials>a {
+    z-index: 1 !important;
+    will-change: transform;
+    transition: transform .28s ease, background-color .28s ease, color .28s ease, box-shadow .28s ease !important;
+}
+
+
+/* ============================================================
+   FIX LỖI HIỂN THỊ THEO YÊU CẦU (KHÔNG SỬA LOGIC CŨ)
+   ============================================================ */
+
+
+/* 1. HERO CTA — gom mô tả + nút thành một hàng để canh giữa ổn định */
+
+.sagodent-page .hero-copy .hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-25);
+    margin-top: var(--space-25);
+}
+
+.sagodent-page .hero-copy .hero-actions>span {
+    display: block;
+    margin: 0 !important;
+    color: var(--white);
+    font-size: var(--font-size-15px);
+}
+
+.sagodent-page .hero-copy .hero-actions>.pill {
+    flex: 0 0 auto;
+    margin: 0 !important;
+}
+
+@media (min-width: 901px) {
+    .sagodent-page .hero-copy .hero-actions {
+        gap: var(--space-1-3vw);
+        margin-top: var(--space-1-3vw);
+    }
+}
+
+@media (max-width: 600px) {
+    .sagodent-page .hero-copy .hero-actions {
+        gap: 12px;
+    }
+
+    .sagodent-page .hero-copy .hero-actions>span {
+        font-size: clamp(11px, 3.2vw, 14px);
+    }
+}
+
+
+/* 2. Sửa lỗi rớt chữ iD-4 và ép dòng đoạn "Nha khoa Lê Hoàng..." */
+
+.sagodent-page .doctor-role {
+    /* Chống bẻ chữ ngay tại dấu gạch ngang (iD-4) */
+    word-break: keep-all !important;
+    -webkit-hyphens: none !important;
+    hyphens: none !important;
+}
+
+@media (max-width: 900px) {
+    .sagodent-page .doctor-role {
+        /* Giới hạn chiều rộng trên Mobile/Tablet để ép cụm từ phía sau rớt xuống dòng tự nhiên */
+        max-width: 250px !important;
+        display: block !important;
+        line-height: 1.5 !important;
+    }
+}
+
+
+/* ==========================================================
+   MOBILE ONLY — NGẮT DÒNG DOCTOR ROLE ĐÚNG VỊ TRÍ
+   Chỉ áp dụng giao diện điện thoại <= 600px.
+   Desktop / Tablet giữ nguyên.
+========================================================== */
+
+@media (max-width: 600px) {
+    .sagodent-page .doctor-role {
+        font-size: 0 !important;
+    }
+
+    .sagodent-page .doctor-role::before {
+        content: "Sagodent – iD-4 Guide Center ·\A Nha khoa Lê Hoàng · Nha khoa iD-4";
+        display: block;
+        white-space: pre-line;
+        font-size: var(--font-size-clamp-10px-8vw-13px);
+        line-height: 1.5;
+        color: var(--ink);
+    }
+}
+
+
+/* ============================================================
+   FIX: KHOẢNG TRẮNG KHI CLICK MENU ANCHOR TỚI #id4
+   Loại bỏ khoảng bù (offset) mặc định, ép section trượt sát đỉnh (0px)
+   ============================================================ */
+
+
+/* Hủy khoảng lề an toàn mặc định của toàn trang khi cuộn anchor */
+
+html,
+html.sagodent-page {
+    scroll-padding-top: 0 !important;
+}
+
+
+/* Ép riêng section iD-4 chạm mép trên cùng viewport (0px) khi click từ menu */
+
+.sagodent-page #id4,
+.sagodent-page .id4 {
+    scroll-margin-top: 0 !important;
+}
+
+
+/* ============================================================
+   FIX: CHỐNG GIẬT (JANK) KHI CUỘN TỪ KHỐI STICKY XUỐNG QUOTE
+   Ép GPU xử lý trước khối hình ảnh nặng để tránh quá tải Main Thread
+   ============================================================ */
+
+.sagodent-page blockquote {
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+    will-change: transform;
+    /* Chống chớp/nháy hình (flicker) trên iOS/Safari khi GPU kích hoạt */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* Đổi 'contain: paint' thành 'content' để tối ưu vùng bounding box tốt hơn */
+    contain: content !important;
+}

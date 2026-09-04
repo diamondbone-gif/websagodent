@@ -3,8 +3,9 @@
    ============================================================ */
 /* ============================================================
    SAGODENT MENU — MOBILE FIX + LIQUID GLASS
-   - Drawer luôn mở từ bên phải.
-   - Header và drawer nhận cùng màu/tone.
+   - Desktop > 900px: menu hiển thị ngang trực tiếp trên header.
+   - Mobile/Tablet <= 900px: drawer vẫn mở từ bên phải như bản gốc.
+   - Header và menu nhận cùng màu/tone.
    - Chữ, link, mũi tên trong drawer đổi theo tone.
    - VN/ENG được giữ bởi CSS ở mọi breakpoint.
    - Nhận diện được Section của Flatsome trên desktop/mobile/tablet.
@@ -12,6 +13,16 @@
    ============================================================ */
 (function() {
     "use strict";
+
+    /* ============================================================
+       LANGUAGE QUICK CONFIG
+       - Mặc định link ENG để trống. Khi cần đổi trang, dán link vào href trong HTML hoặc SAGODENT_LANGUAGE_URL.
+       - Nếu muốn dùng ảnh lá cờ từ Media Library, dán URL ảnh vào SAGODENT_FLAG_IMAGE_URL.
+       - Để SAGODENT_FLAG_IMAGE_URL = "" thì giữ nguyên SVG lá cờ hiện tại.
+       - Nếu HTML đã có href/src riêng, JS ưu tiên giữ giá trị trong HTML.
+       ============================================================ */
+    const SAGODENT_LANGUAGE_URL = "";
+    const SAGODENT_FLAG_IMAGE_URL = "https://sagodent.com/wp-content/uploads/2026/09/1788493537780_1387843300402958155_1387843300402958155_6813b47d7cb216dce427a6d065133787.jpg";
 
     function initSagodentMenu() {
         const menuRoot = Array.from(
@@ -43,6 +54,74 @@
 
         const button = header.querySelector(".--sgd-menu-button");
         if (!button) return;
+
+        /*
+         * ENG CLICKABLE LINK + OPTIONAL FLAG IMAGE URL
+         * - Không thay đổi bố cục/tone/blur/menu logic.
+         * - HTML cũ dùng <span class="--sgd-language"> vẫn chạy: JS tự đổi thành <a>.
+         * - Nếu sau này bạn tự đổi HTML thành <a href="..."> thì href đó được giữ nguyên.
+         * - Nếu đặt data-flag-src hoặc SAGODENT_FLAG_IMAGE_URL, SVG cờ hiện tại sẽ được
+         *   thay bằng <img> cùng class nên giao diện không đổi.
+         */
+        function prepareLanguageControl() {
+            const originalLanguage = header.querySelector(".--sgd-language");
+            if (!originalLanguage) return;
+
+            let languageLink = originalLanguage;
+
+            if (originalLanguage.tagName.toLowerCase() !== "a") {
+                languageLink = document.createElement("a");
+
+                Array.from(originalLanguage.attributes).forEach(function(attribute) {
+                    languageLink.setAttribute(attribute.name, attribute.value);
+                });
+
+                languageLink.classList.add("--sgd-language-link");
+
+                while (originalLanguage.firstChild) {
+                    languageLink.appendChild(originalLanguage.firstChild);
+                }
+
+                originalLanguage.replaceWith(languageLink);
+            } else {
+                languageLink.classList.add("--sgd-language-link");
+            }
+
+            const htmlLanguageUrl = (languageLink.getAttribute("href") || "").trim();
+            const dataLanguageUrl = (languageLink.getAttribute("data-language-url") || "").trim();
+            const finalLanguageUrl = htmlLanguageUrl || dataLanguageUrl || SAGODENT_LANGUAGE_URL;
+
+            if (finalLanguageUrl) {
+                languageLink.setAttribute("href", finalLanguageUrl);
+            }
+
+            languageLink.setAttribute("aria-label", languageLink.getAttribute("aria-label") || "English");
+
+            const currentFlag = languageLink.querySelector(".--sgd-flag-us");
+            const currentFlagSrc =
+                currentFlag && currentFlag.tagName.toLowerCase() === "img" ?
+                (currentFlag.getAttribute("src") || "").trim() :
+                "";
+            const dataFlagSrc = (languageLink.getAttribute("data-flag-src") || "").trim();
+            const finalFlagSrc = currentFlagSrc || dataFlagSrc || SAGODENT_FLAG_IMAGE_URL;
+
+            if (finalFlagSrc && (!currentFlag || currentFlag.tagName.toLowerCase() !== "img")) {
+                const flagImage = document.createElement("img");
+                flagImage.className = "--sgd-flag-us";
+                flagImage.src = finalFlagSrc;
+                flagImage.alt = "";
+                flagImage.setAttribute("aria-hidden", "true");
+                flagImage.decoding = "async";
+
+                if (currentFlag) {
+                    currentFlag.replaceWith(flagImage);
+                } else {
+                    languageLink.insertBefore(flagImage, languageLink.firstChild);
+                }
+            }
+        }
+
+        prepareLanguageControl();
 
         button.type = "button";
         button.setAttribute("aria-expanded", "false");
@@ -156,6 +235,108 @@
 
         function isMobileMenuMode() {
             return window.matchMedia("(max-width: 900px)").matches;
+        }
+
+        /*
+         * DESKTOP INLINE NAV / MOBILE DRAWER
+         * - Desktop > 900px: gom 5 tab + ENG vào một cụm duy nhất rồi căn giữa theo viewport.
+         * - Logo KHÔNG bị di chuyển: vẫn là phần tử con độc lập của header ở vị trí gốc.
+         * - Mobile/Tablet <= 900px: tháo cụm giữa, trả panel về body để giữ nguyên drawer cũ.
+         * - Không clone thêm menu, vì vậy tone, blur, smooth-scroll và progress vẫn dùng logic gốc.
+         */
+        const headerActions = header.querySelector(".--sgd-header-actions");
+        let desktopCenterGroup = null;
+
+        function ensureDesktopCenterGroup() {
+            if (
+                desktopCenterGroup &&
+                desktopCenterGroup.isConnected &&
+                desktopCenterGroup.parentElement === header
+            ) {
+                return desktopCenterGroup;
+            }
+
+            desktopCenterGroup = header.querySelector(
+                ":scope > .--sgd-desktop-center-group",
+            );
+
+            if (!desktopCenterGroup) {
+                desktopCenterGroup = document.createElement("div");
+                desktopCenterGroup.className = "--sgd-desktop-center-group";
+                desktopCenterGroup.setAttribute("aria-label", "Điều hướng chính và ngôn ngữ");
+                header.appendChild(desktopCenterGroup);
+            }
+
+            return desktopCenterGroup;
+        }
+
+        function releaseDesktopCenterGroup() {
+            const group =
+                desktopCenterGroup ||
+                header.querySelector(":scope > .--sgd-desktop-center-group");
+
+            if (!group) return;
+
+            /* Trả ENG về header trước khi xóa wrapper. Logo hoàn toàn không bị đụng tới. */
+            if (headerActions && headerActions.parentElement === group) {
+                header.appendChild(headerActions);
+            }
+
+            if (panel.parentElement === group) {
+                document.body.insertBefore(panel, header);
+            }
+
+            group.remove();
+            desktopCenterGroup = null;
+        }
+
+        function syncMenuLayout() {
+            const mobile = isMobileMenuMode();
+
+            if (mobile) {
+                header.classList.remove("--sgd-desktop-nav");
+                panel.classList.remove("--sgd-desktop-inline");
+
+                releaseDesktopCenterGroup();
+
+                if (panel.parentElement !== document.body) {
+                    document.body.insertBefore(panel, header);
+                }
+
+                button.removeAttribute("aria-hidden");
+                button.removeAttribute("tabindex");
+                panel.setAttribute("aria-hidden", String(!menuOpen));
+                return;
+            }
+
+            /* Nếu vừa resize từ mobile đang mở drawer sang desktop, đóng sạch trạng thái drawer. */
+            if (mobileScrollLocked) unlockMobilePageScroll();
+
+            menuOpen = false;
+            header.classList.remove("--sgd-menu-open");
+            panel.classList.remove("--sgd-open");
+            backdrop.classList.remove("--sgd-open");
+            document.documentElement.classList.remove("--sgd-sagodent-menu-open");
+
+            const group = ensureDesktopCenterGroup();
+
+            /* Cụm giữa = panel menu + ENG. Logo vẫn đứng riêng ở đầu header. */
+            if (panel.parentElement !== group) {
+                group.appendChild(panel);
+            }
+
+            if (headerActions && headerActions.parentElement !== group) {
+                group.appendChild(headerActions);
+            }
+
+            header.classList.add("--sgd-desktop-nav");
+            panel.classList.add("--sgd-desktop-inline");
+
+            button.setAttribute("aria-expanded", "false");
+            button.setAttribute("aria-hidden", "true");
+            button.setAttribute("tabindex", "-1");
+            panel.setAttribute("aria-hidden", "false");
+            backdrop.setAttribute("aria-hidden", "true");
         }
 
         function lockMobilePageScroll() {
@@ -280,13 +461,32 @@
         ].join(",");
 
         function setMenu(open) {
+            /*
+             * Desktop dùng menu ngang luôn hiển thị, nên setMenu chỉ có nhiệm vụ
+             * bảo đảm drawer/backdrop luôn đóng và không ẩn panel khỏi accessibility tree.
+             */
+            if (!isMobileMenuMode()) {
+                if (mobileScrollLocked) unlockMobilePageScroll();
+
+                menuOpen = false;
+                header.classList.remove("--sgd-menu-open");
+                panel.classList.remove("--sgd-open");
+                backdrop.classList.remove("--sgd-open");
+                document.documentElement.classList.remove("--sgd-sagodent-menu-open");
+
+                button.setAttribute("aria-expanded", "false");
+                panel.setAttribute("aria-hidden", "false");
+                backdrop.setAttribute("aria-hidden", "true");
+
+                applyTheme(findZoneUnderHeader() || currentZone);
+                requestUpdate();
+                return;
+            }
+
             const nextOpen = Boolean(open);
             const wasOpen = menuOpen;
 
-            /*
-             * Mobile/tablet: khóa vị trí trang TRƯỚC khi thêm class mở menu.
-             * Desktop: không khóa để giữ đúng logic sticky/Lenis hiện tại.
-             */
+            /* Mobile/tablet: giữ nguyên cơ chế khóa scroll cũ. */
             if (nextOpen && !wasOpen) {
                 lockMobilePageScroll();
             }
@@ -307,20 +507,8 @@
 
             if (!menuOpen && wasOpen) {
                 unlockMobilePageScroll();
-            } else if (menuOpen && !isMobileMenuMode() && window.sagodentLenis) {
-                /* Desktop vẫn giữ cuộn trang/Lenis như logic cũ. */
-                if (typeof window.sagodentLenis.resize === "function") {
-                    window.sagodentLenis.resize();
-                }
-                if (typeof window.sagodentLenis.start === "function") {
-                    window.sagodentLenis.start();
-                }
             }
 
-            /*
-             * FIX: luôn lấy section thật đang nằm dưới header khi mở/đóng drawer.
-             * Không dùng currentZone cũ vì desktop vẫn được phép cuộn khi menu đang mở.
-             */
             applyTheme(findZoneUnderHeader() || currentZone);
             requestUpdate();
         }
@@ -822,13 +1010,12 @@
             "resize",
             function() {
                 syncMobileViewportSize();
-                if (menuOpen) {
-                    if (isMobileMenuMode()) {
-                        lockMobilePageScroll();
-                    } else {
-                        unlockMobilePageScroll();
-                    }
+                syncMenuLayout();
+
+                if (menuOpen && isMobileMenuMode()) {
+                    lockMobilePageScroll();
                 }
+
                 requestUpdate();
             }, { passive: true },
         );
@@ -855,6 +1042,7 @@
         }
 
         setMenu(false);
+        syncMenuLayout();
         updateMenu();
 
         window.setTimeout(requestUpdate, 120);

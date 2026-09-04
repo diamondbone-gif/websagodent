@@ -200,7 +200,6 @@ html.--sgd-sagodent-menu-open body {
         overscroll-behavior: none !important;
         touch-action: none !important;
     }
-
     html.--sgd-sagodent-menu-open body {
         /*
          * QUAN TRỌNG: không position:fixed BODY.
@@ -223,7 +222,6 @@ html.--sgd-sagodent-menu-open body {
         perspective: none !important;
         contain: none !important;
     }
-
     /*
      * Chỉ khóa phần nội dung WordPress tại scrollY hiện tại.
      * Header / drawer / backdrop nằm ngoài #wrapper nên vẫn fixed theo viewport.
@@ -348,7 +346,6 @@ main#--sgd-top>.--sgd-topbar {
         will-change: transform !important;
         touch-action: manipulation !important;
     }
-
     body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted {
         overscroll-behavior: contain !important;
         -webkit-overflow-scrolling: touch !important;
@@ -686,13 +683,11 @@ main#--sgd-top>.--sgd-menu-panel.--sgd-open {
  */
 
 @media (min-width: 901px) {
-
     body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted,
     main#--sgd-top>.--sgd-menu-panel {
         overflow: visible !important;
         pointer-events: none !important;
     }
-
     body .--sgd-menu-panel a {
         pointer-events: auto !important;
     }
@@ -770,53 +765,45 @@ body .--sgd-menu-panel a>span:last-child {
    ============================================================ */
 
 @media (max-width: 900px) {
-    :root {
+     :root {
         --menu-header-height: 68px;
         --menu-page-gutter: clamp(18px, 5vw, 38px);
     }
-
     body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
     main#--sgd-top>.--sgd-topbar {
         height: var(--menu-header-height) !important;
         gap: 14px !important;
         padding: 5px var(--menu-page-gutter) !important;
     }
-
     body .--sgd-topbar .--sgd-logo-swap,
     body .--sgd-topbar .--sgd-sagodent-logo img {
         width: 90px !important;
         height: 54px !important;
     }
-
     body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
     main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
         display: flex !important;
         gap: 16px !important;
         font-size: 16px !important;
     }
-
     body .--sgd-topbar .--sgd-language {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
         font-size: 16px !important;
     }
-
     body .--sgd-topbar .--sgd-menu-button {
         display: flex !important;
         gap: 14px !important;
         font-size: 16px !important;
     }
-
     body .--sgd-topbar .--sgd-menu-button>span {
         width: 32px !important;
         height: 20px !important;
     }
-
     body .--sgd-topbar .--sgd-menu-button>span::before {
         box-shadow: 0 9.25px 0 currentColor !important;
     }
-
     /* Vẫn ở bên phải trên tablet. */
     body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted,
     main#--sgd-top>.--sgd-menu-panel {
@@ -836,12 +823,10 @@ body .--sgd-menu-panel a>span:last-child {
         box-shadow: -24px 0 60px rgba(0, 0, 0, 0.22) !important;
         transform: translate3d(105%, 0, 0) !important;
     }
-
     body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-open,
     main#--sgd-top>.--sgd-menu-panel.--sgd-open {
         transform: translate3d(0, 0, 0) !important;
     }
-
     body .--sgd-menu-panel a {
         grid-template-columns: 32px minmax(0, 1fr) auto !important;
         padding: 20px 0 !important;
@@ -855,28 +840,24 @@ body .--sgd-menu-panel a>span:last-child {
    ============================================================ */
 
 @media (max-width: 600px) {
-    :root {
+     :root {
         --menu-page-gutter: 16px;
     }
-
     body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
     main#--sgd-top>.--sgd-topbar {
         gap: 8px !important;
         padding-inline: 16px !important;
     }
-
     body .--sgd-topbar .--sgd-logo-swap,
     body .--sgd-topbar .--sgd-sagodent-logo img {
         width: 82px !important;
         height: 50px !important;
     }
-
     body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
     main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
         gap: 10px !important;
         font-size: 14px !important;
     }
-
     body .--sgd-topbar .--sgd-language {
         display: flex !important;
         visibility: visible !important;
@@ -884,23 +865,19 @@ body .--sgd-menu-panel a>span:last-child {
         font-size: 14px !important;
         letter-spacing: 0 !important;
     }
-
     body .--sgd-topbar .--sgd-menu-button {
         display: flex !important;
         gap: 9px !important;
         font-size: 14px !important;
         letter-spacing: 0.01em !important;
     }
-
     body .--sgd-topbar .--sgd-menu-button>span {
         width: 29px !important;
         height: 18px !important;
     }
-
     body .--sgd-topbar .--sgd-menu-button>span::before {
         box-shadow: 0 8.25px 0 currentColor !important;
     }
-
     body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted,
     main#--sgd-top>.--sgd-menu-panel {
         position: fixed !important;
@@ -918,7 +895,6 @@ body .--sgd-menu-panel a>span:last-child {
         border-left: 0 !important;
         transform: translate3d(105%, 0, 0) !important;
     }
-
     body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-open,
     main#--sgd-top>.--sgd-menu-panel.--sgd-open {
         transform: translate3d(0, 0, 0) !important;
@@ -926,28 +902,23 @@ body .--sgd-menu-panel a>span:last-child {
 }
 
 @media (max-width: 380px) {
-
     body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
     main#--sgd-top>.--sgd-topbar {
         padding-inline: 12px !important;
     }
-
     body .--sgd-topbar .--sgd-logo-swap,
     body .--sgd-topbar .--sgd-sagodent-logo img {
         width: 72px !important;
         height: 44px !important;
     }
-
     body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
     main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
         gap: 7px !important;
     }
-
     body .--sgd-topbar .--sgd-language {
         display: flex !important;
         font-size: 13px !important;
     }
-
     /* Màn hình rất hẹp: chỉ ẩn chữ MỤC CHÍNH, giữ VN/ENG. */
     body .--sgd-topbar .--sgd-menu-button {
         width: 29px !important;
@@ -956,7 +927,6 @@ body .--sgd-menu-panel a>span:last-child {
         gap: 0 !important;
         font-size: 0 !important;
     }
-
     body .--sgd-topbar .--sgd-menu-button>span {
         width: 29px !important;
     }
@@ -968,12 +938,10 @@ body .--sgd-menu-panel a>span:last-child {
    ============================================================ */
 
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-
     body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
     main#--sgd-top>.--sgd-topbar {
         background: var(--menu-section-bg) !important;
     }
-
     body>.--sgd-menu-panel.--sgd-sagodent-menu-mounted,
     main#--sgd-top>.--sgd-menu-panel {
         background: var(--menu-section-bg) !important;
@@ -981,7 +949,6 @@ body .--sgd-menu-panel a>span:last-child {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
     body .--sgd-topbar,
     body .--sgd-menu-panel,
     body .--sgd-menu-panel a,
@@ -1531,7 +1498,6 @@ body .--sgd-menu-panel a>span:last-child {
     from {
         transform: scale(1.1)
     }
-
     to {
         transform: scale(1.02)
     }
@@ -1619,24 +1585,88 @@ body .--sgd-menu-panel a>span:last-child {
 }
 
 .sagodent-page .doctor-lead {
+    width: 100%;
+    text-align: justify !important;
+    text-justify: inter-word;
+    max-width: none !important;
     font-size: var(--font-size-clamp-13px-1-1vw-18px) !important;
     font-weight: var(--font-weight-700);
     line-height: var(--line-height-1-4) !important;
     margin: var(--space-22) 0;
-    color: var(--ink) !important
+    color: var(--ink) !important;
 }
 
+
+/* Nội dung Doctor chạy full chiều rộng của khối bên trái, không chia 2 cột. */
+
 .sagodent-page .doctor-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2-8vw)
+    display: block;
+    width: 100%;
+    max-width: none;
 }
 
 .sagodent-page .doctor-copy p:not(.kicker) {
+    width: 100%;
+    max-width: none;
     line-height: var(--line-height-1-45);
     font-size: var(--font-size-clamp-10px-83vw-13px);
-    max-width: 760px;
-    color: var(--ink) !important
+    color: var(--ink) !important;
+}
+
+.sagodent-page .doctor-body {
+    width: 100%;
+    text-align: justify !important;
+    text-justify: inter-word;
+    max-width: none !important;
+    margin: 0 0 clamp(24px, 2vw, 36px) !important;
+    font-size: clamp(15px, 1.05vw, 19px) !important;
+    line-height: 1.62 !important;
+    color: var(--ink) !important;
+}
+
+
+/* Danh sách các vai trò/chuyên môn quan trọng: mỗi ý có một gạch ngắn phía trước. */
+
+.sagodent-page .doctor-highlights {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: none;
+    gap: clamp(13px, 1vw, 18px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sagodent-page .doctor-highlights li {
+    display: grid;
+    grid-template-columns: clamp(18px, 1.45vw, 26px) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(10px, .85vw, 14px);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--ink);
+    font-size: clamp(15px, 1.02vw, 18px);
+    line-height: 1.5;
+}
+
+.sagodent-page .doctor-highlights li::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-top: .72em;
+    border-radius: 999px;
+    background: var(--blue, #075d98);
+}
+
+.sagodent-page .doctor-highlights li span {
+    display: block;
+    text-align: justify !important;
+    text-justify: inter-word;
+    width: 100%;
+    min-width: 0;
 }
 
 .sagodent-page .doctor-portrait {
@@ -2070,7 +2100,6 @@ body .--sgd-menu-panel a>span:last-child {
     from {
         opacity: 0
     }
-
     to {
         opacity: 1
     }
@@ -2165,7 +2194,6 @@ body .--sgd-menu-panel a>span:last-child {
 }
 
 @media (max-width: 900px) {
-
     .sagodent-page .id4-copy,
     .sagodent-page .id4-copy[data-reveal],
     .sagodent-page .id4-copy[data-reveal].revealed {
@@ -2185,7 +2213,6 @@ body .--sgd-menu-panel a>span:last-child {
         text-align: left !important;
         transform: translate(-50%, -50%) !important;
     }
-
     .sagodent-page .id4-copy h2 {
         width: 100%;
         margin: 0 0 var(--id4-rwd-copy-gap) !important;
@@ -2195,7 +2222,6 @@ body .--sgd-menu-panel a>span:last-child {
         color: var(--sagodent-white, #fff) !important;
         -webkit-text-fill-color: var(--sagodent-white, #fff) !important;
     }
-
     .sagodent-page .id4-copy h3 {
         width: 100%;
         margin: 0 0 calc(var(--id4-rwd-copy-gap) * 1.35) !important;
@@ -2205,7 +2231,6 @@ body .--sgd-menu-panel a>span:last-child {
         color: var(--sagodent-white, #fff) !important;
         -webkit-text-fill-color: var(--sagodent-white, #fff) !important;
     }
-
     .sagodent-page .id4-copy p {
         width: 100%;
         max-width: none !important;
@@ -2216,7 +2241,6 @@ body .--sgd-menu-panel a>span:last-child {
         color: var(--sagodent-white, #fff) !important;
         -webkit-text-fill-color: var(--sagodent-white, #fff) !important;
     }
-
     .sagodent-page .id4-copy .pill {
         align-self: flex-start !important;
         margin: calc(var(--id4-rwd-copy-gap) * 1.1) 0 0 !important;
@@ -2390,27 +2414,22 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .contact {
         padding: clamp(56px, 10vw, 82px) var(--page-gutter-mobile) clamp(28px, 6vw, 48px) !important;
     }
-
     .sagodent-page .contact h2,
     .sagodent-page .contact h2[data-reveal],
     .sagodent-page .contact h2[data-reveal].revealed {
         font-size: var(--contact-title-mobile-size) !important;
         line-height: 1.06 !important;
     }
-
     .sagodent-page .contact h2 em {
         margin-left: .08em;
     }
-
     .sagodent-page .contact .socials {
         margin-top: clamp(34px, 8vw, 56px) !important;
     }
-
     .sagodent-page .contact .socials>a,
     .sagodent-page .contact .socials::after {
         min-height: var(--contact-box-height-tablet);
     }
-
     .sagodent-page .contact .socials>a::before,
     .sagodent-page .contact .socials::after {
         -webkit-mask-size: var(--contact-icon-size-tablet) var(--contact-icon-size-tablet);
@@ -2423,12 +2442,10 @@ body .--sgd-menu-panel a>span:last-child {
         display: inline;
         margin: 0 0 0 .08em;
     }
-
     .sagodent-page .contact .socials>a,
     .sagodent-page .contact .socials::after {
         min-height: var(--contact-box-height-mobile);
     }
-
     .sagodent-page .contact .socials>a::before,
     .sagodent-page .contact .socials::after {
         -webkit-mask-size: var(--contact-icon-size-mobile) var(--contact-icon-size-mobile);
@@ -2619,114 +2636,90 @@ body .--sgd-menu-panel a>span:last-child {
         min-height: 0;
         aspect-ratio: 16/9
     }
-
     .sagodent-page .hero-copy h1 {
         margin-top: var(--margin-1-35vw)
     }
-
     .sagodent-page .hero-copy>span {
         margin: var(--space-1-3vw) var(--space-1-3vw) 0 0
     }
-
     .sagodent-page .pill {
         gap: var(--gap-1-45vw);
         padding: var(--space-0-58vw) var(--space-0-95vw) var(--space-0-58vw) 1.2vw
     }
-
     .sagodent-page .courses {
         padding: var(--space-5-2vw) var(--page-gutter) var(--space-6vw)
     }
-
     .sagodent-page .courses header {
         margin-bottom: var(--margin-2-6vw)
     }
-
     .sagodent-page .courses h2 {
         font-size: var(--font-size-clamp-44px-4-2vw-80px)
     }
-
     .sagodent-page .course-tabs {
         height: 3.2vw;
         min-height: 46px
     }
-
     .sagodent-page .course-card {
         height: auto;
         min-height: 0;
         aspect-ratio: 1920/610
     }
-
     .sagodent-page .course-visual h3 {
         margin: var(--space-0-95vw) 0
     }
-
     .sagodent-page .course-visual em {
         font-size: var(--font-size-clamp-12px-95vw-18px)
     }
-
     .sagodent-page .course-info {
         padding: 2.7vw var(--space-3-5vw)
     }
-
     .sagodent-page .course-info h3 {
         font-size: var(--font-size-clamp-18px-1-4vw-27px);
         margin-top: 0
     }
-
     .sagodent-page .course-info>p {
         font-size: var(--font-size-clamp-10px-74vw-14px)
     }
-
     .sagodent-page .course-info ol {
         margin: var(--space-1-25vw) 0
     }
-
     .sagodent-page .course-info li {
         padding: var(--padding-62vw-0);
         font-size: var(--font-size-clamp-10px-78vw-15px)
     }
-
     .sagodent-page .library {
         padding: var(--space-5-2vw) var(--page-gutter) var(--space-6vw)
     }
-
     .sagodent-page .library-grid {
         margin-top: var(--space-3vw)
     }
-
     .sagodent-page .library-grid a {
         height: auto;
         min-height: 0;
         aspect-ratio: 2.15/1;
         padding: 2.2vw var(--space-2-8vw)
     }
-
     .sagodent-page .library-grid h3,
     .sagodent-page .library-grid .library-card-title {
         font-size: var(--font-size-clamp-25px-2-45vw-42px);
         margin: 0
     }
-
     .sagodent-page .contact {
         padding: 5.7vw var(--page-gutter) 4.8vw
     }
-
     .sagodent-page .socials {
         margin-top: var(--margin-3-8vw)
     }
-
     .sagodent-page .socials a {
         padding: var(--space-1-25vw) 1.6vw;
         font-size: var(--font-size-clamp-25px-2-45vw-48px)
     }
-
     .sagodent-page .socials a:hover {
         padding-left: var(--padding-2-35vw)
     }
 }
 
 @media(max-width:900px) {
-
     .sagodent-page .intro,
     .sagodent-page .doctor {
         height: auto;
@@ -2738,85 +2731,63 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .hero {
         min-height: 650px
     }
-
     .sagodent-page .hero-image {
         background-position: 58% center
     }
-
     .sagodent-page .hero-copy {
         left: 6vw
     }
-
     .sagodent-page .intro,
     .sagodent-page .doctor,
     .sagodent-page .course-card {
         grid-template-columns: 1fr
     }
-
     .sagodent-page .intro {
         height: auto
     }
-
     .sagodent-page .intro-photo {
         min-height: 55vh
     }
-
     .sagodent-page .intro-copy,
     .sagodent-page .doctor-copy {
         padding: var(--space-70) var(--page-gutter-mobile)
     }
-
-    .sagodent-page .doctor-columns {
-        grid-template-columns: 1fr
-    }
-
     .sagodent-page .doctor-portrait {
         min-height: 650px
     }
-
     .sagodent-page .difference-row {
         grid-template-columns: 1fr 1fr;
         height: auto;
         min-height: 0
     }
-
     .sagodent-page .difference-text {
         padding: var(--page-gutter)
     }
-
     .sagodent-page .difference-image {
         height: 100%
     }
-
     .sagodent-page .course-tabs {
         overflow: auto;
         grid-template-columns: repeat(4, minmax(180px, 1fr))
     }
-
     .sagodent-page .course-card {
         min-height: 0
     }
-
     .sagodent-page .course-visual {
         min-height: 500px
     }
-
     .sagodent-page .course-info {
         padding: var(--space-55) var(--page-gutter-mobile)
     }
-
     .sagodent-page .library-grid {
         grid-template-columns: var(--library-grid-columns) !important
     }
-
     .sagodent-page .id4 {
         min-height: 800px
     }
-
     .sagodent-page .id4-overlay {
         background: linear-gradient(0deg, var(--black-95), var(--black-08))
     }
-
     .sagodent-page .id4-copy {
         top: auto;
         bottom: 7%;
@@ -2831,44 +2802,35 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .hero {
         min-height: 580px
     }
-
     .sagodent-page .hero-copy h1 {
         font-size: var(--font-size-50px)
     }
-
     .sagodent-page .hero-copy em {
         font-size: var(--font-size-58px)
     }
-
     .sagodent-page .intro-copy h2,
     .sagodent-page .courses h2,
     .sagodent-page .library h2,
     .sagodent-page .contact h2 {
         font-size: var(--font-size-42px)
     }
-
     .sagodent-page .doctor-portrait {
         min-height: 540px
     }
-
     .sagodent-page .difference-head {
         grid-template-columns: 1fr;
         aspect-ratio: auto
     }
-
     .sagodent-page .difference-head img {
         height: 42vh
     }
-
     .sagodent-page .difference-head:after {
         inset: 0;
         background: linear-gradient(0deg, var(--blue), transparent 80%)
     }
-
     .sagodent-page .difference-head>div {
         min-height: 300px
     }
-
     .sagodent-page .difference-row {
         position: relative;
         grid-template-columns: 1fr;
@@ -2876,37 +2838,29 @@ body .--sgd-menu-panel a>span:last-child {
         height: auto;
         min-height: 0
     }
-
     .sagodent-page .difference-text {
         min-height: 430px;
         padding: var(--space-70) var(--page-gutter-mobile)
     }
-
     .sagodent-page .difference-image {
         height: 62vh;
         min-height: 420px
     }
-
     .sagodent-page .difference-text h3 {
         font-size: var(--font-size-36px)
     }
-
     .sagodent-page blockquote {
         padding: var(--space-90) var(--page-gutter-mobile)
     }
-
     .sagodent-page .course-visual {
         min-height: 420px
     }
-
     .sagodent-page .library-grid a {
         min-height: 200px
     }
-
     .sagodent-page .id4-copy p {
         font-size: var(--font-size-13px)
     }
-
     .sagodent-page .socials a {
         padding: var(--space-20) var(--space-5)
     }
@@ -2920,7 +2874,6 @@ body .--sgd-menu-panel a>span:last-child {
         align-items: flex-start;
         padding-left: var(--space-6-5vw)
     }
-
     .sagodent-page .difference-head h2 {
         text-align: left
     }
@@ -3005,7 +2958,6 @@ body .--sgd-menu-panel a>span:last-child {
 }
 
 @media(prefers-reduced-motion:reduce) {
-
     .sagodent-page blockquote .quote-word,
     .sagodent-page blockquote p {
         opacity: 1;
@@ -3016,7 +2968,6 @@ body .--sgd-menu-panel a>span:last-child {
 }
 
 @media(min-width:901px) {
-
     .sagodent-page .library h2,
     .sagodent-page .contact h2 {
         white-space: nowrap
@@ -3035,7 +2986,6 @@ body .--sgd-menu-panel a>span:last-child {
         padding: var(--quote-rwd-padding);
         overflow: hidden
     }
-
     .sagodent-page blockquote .quote-title {
         width: var(--quote-rwd-title-width);
         max-width: var(--quote-rwd-title-max-width);
@@ -3133,7 +3083,6 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .contact {
         padding: var(--space-60) var(--page-gutter-mobile) var(--space-24)
     }
-
     .sagodent-page .contact-grid {
         margin-top: var(--space-36)
     }
@@ -3247,15 +3196,12 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .difference-list::before {
         left: 5vw
     }
-
     .sagodent-page .difference-row::before {
         left: calc(5vw - 6px)
     }
-
     .sagodent-page .difference-text {
         padding-left: var(--padding-10vw)
     }
-
     .sagodent-page .difference-text>span {
         left: 8vw
     }
@@ -3300,11 +3246,9 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .doctor {
         overflow: hidden
     }
-
     .sagodent-page .doctor-portrait {
         overflow: hidden
     }
-
     .sagodent-page .doctor-portrait img {
         position: relative;
         height: 100%;
@@ -3315,7 +3259,6 @@ body .--sgd-menu-panel a>span:last-child {
 /* Difference banner: copy on the left, training room on the right. */
 
 @media(min-width:601px) {
-
     .sagodent-page .difference-head,
     .sagodent-page .difference-list,
     .sagodent-page .difference-row,
@@ -3324,12 +3267,10 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .difference-row:nth-child(3) {
         background: var(--blue);
     }
-
     .sagodent-page .difference-head img {
         grid-column: 2;
         grid-row: 1;
     }
-
     .sagodent-page .difference-head>div {
         position: absolute;
         inset: 0 auto 0 0;
@@ -3339,13 +3280,11 @@ body .--sgd-menu-panel a>span:last-child {
         padding: 0 var(--page-gutter);
         justify-content: center;
     }
-
     .sagodent-page .difference-head h2 {
         position: static;
         top: auto;
         transform: none;
     }
-
     .sagodent-page .difference-head:after {
         inset: 0 0 0 50%;
         background: linear-gradient(90deg, var(--blue) 0%, var(--blue-88) 22%, var(--blue-18) 72%, var(--blue-04) 100%);
@@ -3429,7 +3368,6 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .contact-grid {
         margin-top: var(--space-45)
     }
-
     .sagodent-page .contact-card {
         min-height: 180px
     }
@@ -3457,7 +3395,6 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .contact {
         padding: var(--space-60) var(--page-gutter-mobile) var(--space-24)
     }
-
     .sagodent-page .contact-grid {
         margin-top: var(--space-36)
     }
@@ -3473,7 +3410,6 @@ body .--sgd-menu-panel a>span:last-child {
    ========================================================================== */
 
 @media (max-width: 1100px) {
-
     /* Tablet landscape: keep all five contact cells visible in one row. */
     .sagodent-page .contact-grid {
         width: 100%;
@@ -3481,12 +3417,10 @@ body .--sgd-menu-panel a>span:last-child {
         overflow: visible;
         scrollbar-width: auto;
     }
-
     .sagodent-page .contact-card {
         min-width: 0;
         min-height: clamp(104px, 13vw, 150px);
     }
-
     .sagodent-page .contact-card-icon {
         width: clamp(42px, 6vw, 60px);
         height: clamp(42px, 6vw, 60px);
@@ -3494,12 +3428,10 @@ body .--sgd-menu-panel a>span:last-child {
 }
 
 @media (max-width: 900px) {
-
     /* Keep the timeline dot optically aligned with each real title. */
     .sagodent-page .difference-row::before {
         top: var(--difference-dot-y, 50%);
     }
-
     /* Two columns and two rows, matching the supplied mobile/tablet reference. */
     .sagodent-page .course-tabs {
         width: 100%;
@@ -3513,7 +3445,6 @@ body .--sgd-menu-panel a>span:last-child {
         border-left: 1px solid var(--navy-08);
         box-shadow: 0 8px 24px var(--navy-08);
     }
-
     .sagodent-page .course-tabs button {
         position: relative;
         width: 100%;
@@ -3528,16 +3459,13 @@ body .--sgd-menu-panel a>span:last-child {
         text-align: center;
         white-space: normal;
     }
-
     .sagodent-page .course-tabs button.active {
         border-bottom-color: var(--sky);
         box-shadow: inset 0 -3px 0 var(--sky);
     }
-
     .sagodent-page .course-tabs button:nth-child(2n) {
         border-right: 0 !important;
     }
-
     /* Keep five compact contact cells instead of a wide horizontal carousel. */
     .sagodent-page .contact-grid {
         width: 100%;
@@ -3545,12 +3473,10 @@ body .--sgd-menu-panel a>span:last-child {
         overflow: visible;
         scrollbar-width: auto;
     }
-
     .sagodent-page .contact-card {
         min-width: 0;
         min-height: clamp(92px, 13vw, 132px);
     }
-
     .sagodent-page .contact-card-icon {
         width: clamp(38px, 6vw, 54px);
         height: clamp(38px, 6vw, 54px);
@@ -3561,25 +3487,20 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .course-tabs {
         grid-auto-rows: minmax(64px, auto);
     }
-
     .sagodent-page .course-tabs button {
         min-height: 64px;
         padding: 12px 8px;
         font-size: clamp(11px, 3.2vw, 14px);
     }
-
     .sagodent-page .contact {
         padding-inline: 4vw;
     }
-
     .sagodent-page .contact-grid {
         margin-top: 28px;
     }
-
     .sagodent-page .contact-card {
         min-height: clamp(72px, 20vw, 96px);
     }
-
     .sagodent-page .contact-card-icon {
         width: clamp(28px, 9vw, 40px);
         height: clamp(28px, 9vw, 40px);
@@ -3595,7 +3516,6 @@ body .--sgd-menu-panel a>span:last-child {
    ========================================================================== */
 
 @media (max-width: 900px) {
-
     body.sagodent-page>#wrapper,
     body.sagodent-page>#main {
         position: relative;
@@ -3606,11 +3526,9 @@ body .--sgd-menu-panel a>span:last-child {
         transform: translateX(-50%);
         overflow-x: clip;
     }
-
     body.sagodent-page {
         transform: none !important;
     }
-
     /* WordPress may insert an empty paragraph between two pasted sections. */
     .sagodent-page>p:empty,
     .sagodent-page>p:has(>br:only-child) {
@@ -3620,13 +3538,11 @@ body .--sgd-menu-panel a>span:last-child {
         margin: 0 !important;
         padding: 0 !important;
     }
-
     .sagodent-page *,
     .sagodent-page *::before,
     .sagodent-page *::after {
         min-width: 0;
     }
-
     .sagodent-page>section,
     .sagodent-page .hero,
     .sagodent-page .intro {
@@ -3634,19 +3550,16 @@ body .--sgd-menu-panel a>span:last-child {
         max-width: 100%;
         margin: 0;
     }
-
     .sagodent-page .hero-copy {
         right: 6vw;
         width: auto;
         max-width: 88vw;
     }
-
     .sagodent-page .hero-copy h1,
     .sagodent-page .hero-copy em {
         max-width: 100%;
         white-space: nowrap;
     }
-
     .sagodent-page .intro {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -3655,12 +3568,10 @@ body .--sgd-menu-panel a>span:last-child {
         overflow: hidden;
         background: var(--white);
     }
-
     .sagodent-page .hero+.intro,
     .sagodent-page .hero~.intro {
         margin-top: 0 !important;
     }
-
     .sagodent-page .intro-photo {
         width: 100%;
         height: clamp(420px, 75vw, 620px);
@@ -3668,7 +3579,6 @@ body .--sgd-menu-panel a>span:last-child {
         margin: 0;
         background: url("http://sagodent.com/wp-content/uploads/2026/08/BF-AT-200-scaled.jpg") center 48%/cover no-repeat;
     }
-
     /* Do not translate the first block of the next section: it exposes a white gap. */
     .sagodent-page .intro-photo[data-reveal],
     .sagodent-page .intro-photo[data-reveal].revealed {
@@ -3676,13 +3586,11 @@ body .--sgd-menu-panel a>span:last-child {
         transform: none;
         transition: opacity .9s ease;
     }
-
     .sagodent-page .intro-copy {
         width: 100%;
         margin: 0;
         padding: clamp(48px, 8vw, 70px) var(--page-gutter-mobile);
     }
-
     .sagodent-page img,
     .sagodent-page video {
         max-width: 100%;
@@ -3696,39 +3604,32 @@ body .--sgd-menu-panel a>span:last-child {
         width: 90vw;
         max-width: 90vw;
     }
-
     .sagodent-page .hero-copy h1 {
         font-size: clamp(36px, 12vw, 50px);
         line-height: .88;
         letter-spacing: -.045em;
     }
-
     .sagodent-page .hero-copy em {
         font-size: clamp(42px, 13.5vw, 58px);
         line-height: .92;
         letter-spacing: -.035em;
     }
-
     .sagodent-page .hero-copy>span {
         margin-right: 12px;
         font-size: clamp(11px, 3.2vw, 14px);
     }
-
     .sagodent-page .pill {
         gap: 12px;
         padding: 10px 18px;
         font-size: 12px;
     }
-
     .sagodent-page .intro-photo {
         height: clamp(360px, 112vw, 520px);
         background-position: center center;
     }
-
     .sagodent-page .intro-copy {
         padding: 48px 7vw;
     }
-
     .sagodent-page .intro-copy h2 {
         font-size: clamp(34px, 10.5vw, 42px);
         line-height: 1.03;
@@ -3752,12 +3653,10 @@ body .--sgd-menu-panel a>span:last-child {
         background: var(--blue);
         overflow: hidden;
     }
-
     .sagodent-page .difference-head img,
     .sagodent-page .difference-head::after {
         display: none;
     }
-
     .sagodent-page .difference-head>div {
         position: absolute;
         inset: 0;
@@ -3770,7 +3669,6 @@ body .--sgd-menu-panel a>span:last-child {
         justify-content: center;
         text-align: center;
     }
-
     .sagodent-page .difference-head h2 {
         position: static;
         width: var(--difference-rwd-head-title-width);
@@ -3782,7 +3680,6 @@ body .--sgd-menu-panel a>span:last-child {
         line-height: var(--difference-rwd-head-line-height);
         color: var(--sagodent-white) !important;
     }
-
     .sagodent-page .difference-head h2 em {
         display: block;
         width: 100%;
@@ -3795,12 +3692,10 @@ body .--sgd-menu-panel a>span:last-child {
         line-height: var(--difference-rwd-head-line-height);
         color: var(--sky) !important;
     }
-
     .sagodent-page .difference-list::before {
         left: var(--difference-rwd-line-left);
         width: var(--difference-rwd-line-width);
     }
-
     .sagodent-page .difference-row,
     .sagodent-page .difference-row:nth-child(1),
     .sagodent-page .difference-row:nth-child(2),
@@ -3816,7 +3711,6 @@ body .--sgd-menu-panel a>span:last-child {
         background: var(--blue);
         color: var(--sagodent-white);
     }
-
     .sagodent-page .difference-row::before {
         left: calc(var(--difference-rwd-line-left) - var(--difference-rwd-dot-left-offset));
         top: var(--difference-rwd-dot-top) !important;
@@ -3824,7 +3718,6 @@ body .--sgd-menu-panel a>span:last-child {
         height: var(--difference-rwd-dot-size);
         border-width: var(--difference-rwd-dot-border);
     }
-
     .sagodent-page .difference-text {
         display: block;
         width: 100%;
@@ -3832,21 +3725,18 @@ body .--sgd-menu-panel a>span:last-child {
         padding: var(--difference-rwd-text-padding);
         color: var(--sagodent-white);
     }
-
     .sagodent-page .difference-text>span {
         left: var(--difference-rwd-number-left);
         top: var(--difference-rwd-number-top);
         font-size: var(--difference-rwd-number-size);
         color: var(--sky) !important;
     }
-
     .sagodent-page .difference-text h3 {
         margin: var(--difference-rwd-title-margin);
         font-size: var(--difference-rwd-title-size);
         line-height: var(--difference-rwd-title-line-height);
         color: var(--sagodent-white) !important;
     }
-
     .sagodent-page .difference-text p {
         width: 100%;
         max-width: none;
@@ -3855,7 +3745,6 @@ body .--sgd-menu-panel a>span:last-child {
         line-height: var(--difference-rwd-body-line-height);
         color: var(--sagodent-white) !important;
     }
-
     .sagodent-page .difference-image {
         width: 100%;
         height: var(--difference-rwd-image-height);
@@ -3880,7 +3769,6 @@ body .--sgd-menu-panel a>span:last-child {
         grid-template-columns: var(--library-grid-columns-mobile) !important;
         gap: var(--gap-7px)
     }
-
     .sagodent-page .library-grid>a {
         min-height: var(--library-card-mobile-min-height) !important;
         aspect-ratio: auto !important;
@@ -3889,13 +3777,11 @@ body .--sgd-menu-panel a>span:last-child {
         transform: none !important;
         box-shadow: none !important
     }
-
     .sagodent-page .library-grid>a:hover {
         background: var(--library-card-background) !important;
         transform: none !important;
         box-shadow: none !important
     }
-
     .sagodent-page .id4-copy,
     .sagodent-page .id4-copy[data-reveal],
     .sagodent-page .id4-copy[data-reveal].revealed {
@@ -3913,14 +3799,12 @@ body .--sgd-menu-panel a>span:last-child {
         text-align: var(--id4-mobile-text-align) !important;
         transform: translate(-50%, -50%) !important
     }
-
     .sagodent-page .id4-copy h2,
     .sagodent-page .id4-copy h3,
     .sagodent-page .id4-copy p {
         width: 100%;
         text-align: var(--id4-mobile-text-align) !important
     }
-
     .sagodent-page .id4-copy .pill {
         align-self: center;
         margin-inline: auto !important
@@ -3961,7 +3845,6 @@ body .--sgd-menu-panel a>span:last-child {
 /* Khóa iD-4 cuối file: căn giữa theo chiều cao, chữ và nút căn trái. */
 
 @media (max-width: 900px) {
-
     .sagodent-page .id4-copy,
     .sagodent-page .id4-copy[data-reveal],
     .sagodent-page .id4-copy[data-reveal].revealed {
@@ -3978,33 +3861,28 @@ body .--sgd-menu-panel a>span:last-child {
         text-align: left !important;
         transform: translate(-50%, -50%) !important;
     }
-
     .sagodent-page .id4-copy h2,
     .sagodent-page .id4-copy h3,
     .sagodent-page .id4-copy p {
         width: 100% !important;
         text-align: left !important;
     }
-
     .sagodent-page .id4-copy h2 {
         margin: 0 0 var(--id4-rwd-copy-gap) !important;
         font-size: var(--id4-rwd-title-size) !important;
         line-height: 1 !important;
     }
-
     .sagodent-page .id4-copy h3 {
         margin: 0 0 calc(var(--id4-rwd-copy-gap) * 1.35) !important;
         font-size: var(--id4-rwd-subtitle-size) !important;
         line-height: 1.2 !important;
     }
-
     .sagodent-page .id4-copy p {
         max-width: none !important;
         margin: 0 0 var(--id4-rwd-copy-gap) !important;
         font-size: var(--id4-rwd-body-size) !important;
         line-height: 1.35 !important;
     }
-
     .sagodent-page .id4-copy .pill {
         align-self: flex-start !important;
         margin: calc(var(--id4-rwd-copy-gap) * 1.1) 0 0 !important;
@@ -4016,7 +3894,6 @@ body .--sgd-menu-panel a>span:last-child {
 /* Điện thoại: tạo khoảng thở hai mép giống hình mẫu. */
 
 @media (max-width: 600px) {
-
     .sagodent-page .id4-copy,
     .sagodent-page .id4-copy[data-reveal],
     .sagodent-page .id4-copy[data-reveal].revealed {
@@ -4124,17 +4001,14 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page #contact.contact .socials {
         grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
     }
-
     .sagodent-page #contact.contact .socials>a,
     .sagodent-page #contact.contact .socials::after {
         min-height: var(--contact-box-height-tablet) !important;
     }
-
     .sagodent-page #contact.contact .socials>a::before {
         width: var(--contact-icon-size-tablet) !important;
         height: var(--contact-icon-size-tablet) !important;
     }
-
     .sagodent-page #contact.contact .socials::after {
         background-size: var(--contact-icon-size-tablet) var(--contact-icon-size-tablet) !important;
     }
@@ -4144,17 +4018,14 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page #contact.contact .socials {
         grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
     }
-
     .sagodent-page #contact.contact .socials>a,
     .sagodent-page #contact.contact .socials::after {
         min-height: var(--contact-box-height-mobile) !important;
     }
-
     .sagodent-page #contact.contact .socials>a::before {
         width: var(--contact-icon-size-mobile) !important;
         height: var(--contact-icon-size-mobile) !important;
     }
-
     .sagodent-page #contact.contact .socials::after {
         background-size: var(--contact-icon-size-mobile) var(--contact-icon-size-mobile) !important;
     }
@@ -4197,7 +4068,6 @@ body .--sgd-menu-panel a>span:last-child {
 /* Hover/focus/active: icon chuyển trắng (chỉ áp dụng ở desktop) */
 
 @media (min-width: 901px) {
-
     .sagodent-page #contact.contact .socials>a:hover,
     .sagodent-page #contact.contact .socials>a:focus-visible,
     .sagodent-page #contact.contact .socials>a:active {
@@ -4213,26 +4083,22 @@ body .--sgd-menu-panel a>span:last-child {
         background: rgba(255, 255, 255, .08) !important;
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .10), 0 0 0 1px rgba(255, 255, 255, .18) !important;
     }
-
     .sagodent-page #contact.contact .socials>a:hover::before,
     .sagodent-page #contact.contact .socials>a:focus-visible::before,
     .sagodent-page #contact.contact .socials>a:active::before {
         transform: scale(1.06) !important;
     }
-
     .sagodent-page #contact.contact .socials>a:nth-child(1):hover::before,
     .sagodent-page #contact.contact .socials>a:nth-child(1):focus-visible::before,
     .sagodent-page #contact.contact .socials>a:nth-child(1):active::before {
         background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%3Cpath%20d%3D%22M32%208C18.7%208%208%2018.4%208%2031.2c0%204.3%201.2%208.4%203.5%2012L8%2056l13-3.4A25%2025%200%200%200%2032%2055c13.3%200%2024-10.4%2024-23.2S45.3%208%2032%208Z%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M22%2019.5c-2.1%201.9-3.1%204.8-2.3%207.6%202.5%208.8%209.5%2015.8%2018.3%2018.3%202.8.8%205.7-.2%207.6-2.3l3.1-3.5-8.5-4-3.1%203.1c-4.4-2-8-5.5-10-10l3.1-3.1-4.1-8.4-4.1%202.3Z%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") !important;
     }
-
     /* ĐÃ SỬA: Zalo hover hình tròn hoàn hảo + dấu ngoặc dưới màu trắng */
     .sagodent-page #contact.contact .socials>a:nth-child(2):hover::before,
     .sagodent-page #contact.contact .socials>a:nth-child(2):focus-visible::before,
     .sagodent-page #contact.contact .socials>a:nth-child(2):active::before {
         background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Cpath%20d%3D%22M32%207a22%2022%200%200%200-22%2022c0%206.6%202.9%2012.5%207.6%2016.6l-2.6%207.8%208.8-4.6A21.9%2021.9%200%200%200%2032%2051a22%2022%200%201%200%200-44Z%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3Ctext%20x%3D%2232%22%20y%3D%2234.5%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2214.5%22%20font-weight%3D%22700%22%20letter-spacing%3D%220%22%3EZalo%3C%2Ftext%3E%0A%3C%2Fsvg%3E") !important;
     }
-
     /* Mặc định, khi chuột di chuyển vào grid socials, ::after (icon 5) sẽ có hiệu ứng */
     .sagodent-page #contact.contact .socials:hover::after {
         transform: translateY(-10px) !important;
@@ -4242,7 +4108,6 @@ body .--sgd-menu-panel a>span:last-child {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 57S49 40.7 49 25.5a17 17 0 1 0-34 0C15 40.7 32 57 32 57Z' fill='none' stroke='%23ffffff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='25' r='6' fill='none' stroke='%23ffffff' stroke-width='5'/%3E%3C/svg%3E") !important;
         background-size: calc(var(--contact-icon-size) * 1.06) calc(var(--contact-icon-size) * 1.06) !important;
     }
-
     /* ĐÃ SỬA LỖI MẤT HOVER TẠI ICON 5: 
        Hủy hiệu ứng của ::after khi chuột trỏ cụ thể vào các thẻ a (từ 1 đến 4) */
     .sagodent-page #contact.contact .socials:has(>a:hover):after,
@@ -4260,7 +4125,6 @@ body .--sgd-menu-panel a>span:last-child {
 /* TẮT HIỆU ỨNG HOVER Ở MOBILE/TABLET (Giữ nguyên không trồi lên, không chớp background) */
 
 @media (max-width: 900px) {
-
     .sagodent-page #contact.contact .socials>a:hover,
     .sagodent-page #contact.contact .socials>a:focus-visible,
     .sagodent-page #contact.contact .socials>a:active {
@@ -4270,7 +4134,6 @@ body .--sgd-menu-panel a>span:last-child {
         box-shadow: none !important;
         color: var(--contact-icon-color) !important;
     }
-
     .sagodent-page #contact.contact .socials>a:hover::before,
     .sagodent-page #contact.contact .socials>a:focus-visible::before,
     .sagodent-page #contact.contact .socials>a:active::before {
@@ -4286,7 +4149,6 @@ body .--sgd-menu-panel a>span:last-child {
         width: var(--contact-icon-size-tablet) !important;
         height: var(--contact-icon-size-tablet) !important;
     }
-
     .sagodent-page #contact.contact .socials>a:nth-child(2)::before {
         width: var(--contact-icon-size-tablet) !important;
         height: var(--contact-icon-size-tablet) !important;
@@ -4301,7 +4163,6 @@ body .--sgd-menu-panel a>span:last-child {
         width: var(--contact-icon-size-mobile) !important;
         height: var(--contact-icon-size-mobile) !important;
     }
-
     .sagodent-page #contact.contact .socials>a:nth-child(2)::before {
         width: var(--contact-icon-size-mobile) !important;
         height: var(--contact-icon-size-mobile) !important;
@@ -4325,46 +4186,102 @@ body .--sgd-menu-panel a>span:last-child {
 
 
 /* ============================================================
+   DOCTOR — RESPONSIVE CHO NỘI DUNG FULL WIDTH + GẠCH Ý
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .sagodent-page .doctor-body {
+        margin-bottom: 26px !important;
+        font-size: clamp(15px, 2vw, 18px) !important;
+        line-height: 1.6 !important;
+    }
+    .sagodent-page .doctor-highlights {
+        gap: 15px;
+    }
+    .sagodent-page .doctor-highlights li {
+        grid-template-columns: 22px minmax(0, 1fr);
+        gap: 12px;
+        font-size: clamp(15px, 2vw, 18px);
+        line-height: 1.52;
+    }
+}
+
+@media (max-width: 600px) {
+    .sagodent-page .doctor-body {
+        margin-bottom: 24px !important;
+        font-size: 15px !important;
+        line-height: 1.62 !important;
+    }
+    .sagodent-page .doctor-highlights {
+        gap: 14px;
+    }
+    .sagodent-page .doctor-highlights li {
+        grid-template-columns: 18px minmax(0, 1fr);
+        gap: 10px;
+        font-size: 15px;
+        line-height: 1.55;
+    }
+}
+
+
+/* ============================================================
    FIX LỖI HIỂN THỊ THEO YÊU CẦU (KHÔNG SỬA LOGIC CŨ)
    ============================================================ */
 
 
-/* 1. HERO CTA — gom mô tả + nút thành một hàng để canh giữa ổn định */
+/* 1. HERO CTA — bỏ mô tả, đưa nút sát mép trái hero-copy và tăng kích thước riêng */
 
 .sagodent-page .hero-copy .hero-actions {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: var(--space-25);
-    margin-top: var(--space-25);
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: fit-content;
+    gap: 0;
+    margin-top: clamp(18px, 1.35vw, 28px);
+    padding: 0;
 }
 
-.sagodent-page .hero-copy .hero-actions>span {
-    display: block;
-    margin: 0 !important;
-    color: var(--white);
-    font-size: var(--font-size-15px);
-}
+
+/* Chỉ tăng nút CTA trong HERO, không ảnh hưởng các nút .pill khác trên trang. */
 
 .sagodent-page .hero-copy .hero-actions>.pill {
     flex: 0 0 auto;
+    min-height: 52px;
     margin: 0 !important;
+    padding: 14px 30px !important;
+    font-size: clamp(15px, .95vw, 18px) !important;
+    font-weight: 500;
+    line-height: 1 !important;
 }
 
 @media (min-width: 901px) {
     .sagodent-page .hero-copy .hero-actions {
-        gap: var(--space-1-3vw);
-        margin-top: var(--space-1-3vw);
+        margin-top: clamp(20px, 1.3vw, 28px);
+    }
+    .sagodent-page .hero-copy .hero-actions>.pill {
+        min-height: clamp(54px, 3.4vw, 64px);
+        padding: clamp(14px, .8vw, 17px) clamp(28px, 1.8vw, 36px) !important;
+        font-size: clamp(16px, 1vw, 19px) !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .sagodent-page .hero-copy .hero-actions>.pill {
+        min-height: 50px;
+        padding: 13px 26px !important;
+        font-size: 15px !important;
     }
 }
 
 @media (max-width: 600px) {
     .sagodent-page .hero-copy .hero-actions {
-        gap: 12px;
+        margin-top: 18px;
     }
-
-    .sagodent-page .hero-copy .hero-actions>span {
-        font-size: clamp(11px, 3.2vw, 14px);
+    .sagodent-page .hero-copy .hero-actions>.pill {
+        min-height: 48px;
+        padding: 13px 24px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -4398,7 +4315,6 @@ body .--sgd-menu-panel a>span:last-child {
     .sagodent-page .doctor-role {
         font-size: 0 !important;
     }
-
     .sagodent-page .doctor-role::before {
         content: "Sagodent – iD-4 Guide Center ·\A Nha khoa Lê Hoàng · Nha khoa iD-4";
         display: block;
@@ -4446,4 +4362,713 @@ html.sagodent-page {
     backface-visibility: hidden;
     /* Đổi 'contain: paint' thành 'content' để tối ưu vùng bounding box tốt hơn */
     contain: content !important;
+}
+
+
+/* ============================================================
+   SAGODENT MENU — DESKTOP INLINE NAV OVERRIDE
+   Yêu cầu:
+   - > 900px: hiện 5 mục trực tiếp trên header.
+   - <= 900px: KHÔNG đụng tới drawer/mobile cũ.
+   - Giữ nguyên chiều cao header, liquid glass, đổi tone, logo swap, progress.
+   ============================================================ */
+
+@media (min-width: 901px) {
+    /* Header giữ nguyên chiều cao, padding, gap và liquid-glass của code gốc. */
+    /* Bỏ margin auto cũ để chừa đúng vùng giữa cho nav. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-sagodent-logo,
+    main#--sgd-top>.--sgd-topbar>.--sgd-sagodent-logo {
+        margin: 0 !important;
+    }
+    /* Panel được JS đưa vào trong header, giữa logo và header-actions. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-desktop-inline {
+        position: static !important;
+        z-index: auto !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        order: 1 !important;
+        flex: 1 1 auto !important;
+        align-self: stretch !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: 900px !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        display: flex !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        gap: clamp(2px, .25vw, 8px) !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        overscroll-behavior: auto !important;
+        touch-action: auto !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        color: var(--menu-foreground) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        transition: color .35s ease !important;
+    }
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline * {
+        box-sizing: border-box !important;
+    }
+    /* Header actions nằm cuối; desktop chỉ còn VN/ENG. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        order: 2 !important;
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+        gap: 0 !important;
+    }
+    /* Desktop không cần nút mở drawer. */
+    body .--sgd-topbar.--sgd-desktop-nav .--sgd-menu-button {
+        display: none !important;
+    }
+    /* Mỗi link trở thành một mục menu ngang. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:visited {
+        position: relative !important;
+        flex: 0 1 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        width: auto !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 clamp(9px, .85vw, 17px) !important;
+        border: 0 !important;
+        background: transparent !important;
+        color: var(--menu-foreground) !important;
+        font-family: "Google Sans", Arial, sans-serif !important;
+        font-size: clamp(12px, .82vw, 15.5px) !important;
+        font-weight: 500 !important;
+        line-height: 1 !important;
+        letter-spacing: .025em !important;
+        white-space: nowrap !important;
+        text-decoration: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        transition: color .35s ease, opacity .22s ease !important;
+    }
+    /* Số thứ tự và mũi tên chỉ giữ trong drawer mobile để desktop gọn hơn. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a>small,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a>span:last-child {
+        display: none !important;
+    }
+    /* Hover gọn: không làm link bị xê dịch như drawer. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding: 0 clamp(9px, .85vw, 17px) !important;
+        background: transparent !important;
+        opacity: .68 !important;
+        outline: 0 !important;
+    }
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        content: "" !important;
+        position: absolute !important;
+        right: clamp(9px, .85vw, 17px) !important;
+        bottom: 13px !important;
+        left: clamp(9px, .85vw, 17px) !important;
+        height: 1px !important;
+        background: currentColor !important;
+        opacity: 0 !important;
+        transform: scaleX(.3) !important;
+        transform-origin: center !important;
+        transition: opacity .22s ease, transform .25s ease !important;
+    }
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:hover::after,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible::after {
+        opacity: .65 !important;
+        transform: scaleX(1) !important;
+    }
+    /* Desktop inline nav dùng chính lớp kính của header; không tạo backdrop riêng. */
+    body>.--sgd-sagodent-menu-backdrop {
+        display: none !important;
+    }
+}
+
+
+/* Desktop hẹp: giảm khoảng cách nhưng vẫn giữ đủ 5 mục trên một hàng. */
+
+@media (min-width: 901px) and (max-width: 1180px) {
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:visited,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding-right: clamp(6px, .55vw, 10px) !important;
+        padding-left: clamp(6px, .55vw, 10px) !important;
+        font-size: clamp(11px, 1.05vw, 13px) !important;
+        letter-spacing: .01em !important;
+    }
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        right: clamp(6px, .55vw, 10px) !important;
+        left: clamp(6px, .55vw, 10px) !important;
+    }
+}
+
+
+/* ============================================================
+   SAGODENT MENU V2 — FONT LỚN + US FLAG / ENG + NAV GẦN LANGUAGE
+   - Không thay đổi vị trí logo.
+   - Không thay đổi chiều cao header.
+   - Desktop: font menu lớn hơn, menu dịch về phải để gần ENG.
+   - Mobile/tablet: giữ nguyên drawer và kích thước/logic cũ.
+   ============================================================ */
+
+
+/* Language mới: icon cờ Mỹ + ENG. Áp dụng mọi breakpoint. */
+
+body .--sgd-topbar .--sgd-language {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+body .--sgd-topbar .--sgd-language>i {
+    display: none !important;
+}
+
+body .--sgd-topbar .--sgd-flag-us {
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 28px !important;
+    height: 18px !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .24) !important;
+}
+
+body .--sgd-topbar .--sgd-language-label {
+    display: inline-block !important;
+    font: inherit !important;
+    line-height: 1 !important;
+    color: inherit !important;
+}
+
+@media (min-width: 901px) {
+    /* QUAN TRỌNG: logo không đụng tới, giữ nguyên vị trí do header gốc quyết định. */
+    /* Menu chiếm vùng giữa nhưng dồn về bên phải để mục LIÊN HỆ gần ENG hơn. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-desktop-inline {
+        max-width: none !important;
+        justify-content: flex-end !important;
+        gap: clamp(0px, .12vw, 3px) !important;
+        margin: 0 clamp(10px, 1vw, 18px) 0 auto !important;
+    }
+    /* Font menu desktop lớn hơn rõ rệt. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:visited {
+        padding-right: clamp(10px, .75vw, 15px) !important;
+        padding-left: clamp(10px, .75vw, 15px) !important;
+        font-size: clamp(17px, 1.02vw, 20px) !important;
+        font-weight: 500 !important;
+        letter-spacing: .012em !important;
+    }
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding-right: clamp(10px, .75vw, 15px) !important;
+        padding-left: clamp(10px, .75vw, 15px) !important;
+    }
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        right: clamp(10px, .75vw, 15px) !important;
+        left: clamp(10px, .75vw, 15px) !important;
+    }
+    /* ENG đồng bộ thị giác với tab menu và sát menu hơn. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        font-size: clamp(17px, 1.02vw, 20px) !important;
+    }
+    body .--sgd-topbar .--sgd-language {
+        gap: 8px !important;
+        padding: 0 !important;
+    }
+}
+
+
+/* Desktop hẹp: vẫn đủ 5 tab + ENG mà không đụng logo. */
+
+@media (min-width: 901px) and (max-width: 1180px) {
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-desktop-inline {
+        margin-right: 8px !important;
+    }
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:visited,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding-right: clamp(6px, .55vw, 9px) !important;
+        padding-left: clamp(6px, .55vw, 9px) !important;
+        font-size: clamp(15px, 1.42vw, 17px) !important;
+        letter-spacing: 0 !important;
+    }
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        right: clamp(6px, .55vw, 9px) !important;
+        left: clamp(6px, .55vw, 9px) !important;
+    }
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        font-size: clamp(15px, 1.42vw, 17px) !important;
+    }
+    body .--sgd-topbar .--sgd-flag-us {
+        width: 25px !important;
+        height: 16px !important;
+    }
+}
+
+
+/* ============================================================
+   SAGODENT MENU V3 — CENTER WHOLE NAV + LANGUAGE GROUP
+   - Canh giữa TOÀN BỘ: 5 tab + US FLAG + ENG.
+   - Logo giữ nguyên vị trí gốc.
+   - >= 1200px: căn giữa tuyệt đối theo viewport.
+   - 901–1199px: căn giữa trong vùng an toàn để không đè logo.
+   ============================================================ */
+
+@media (min-width: 901px) {
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-topbar {
+        position: fixed !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        order: 1 !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        gap: clamp(8px, .8vw, 16px) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: var(--menu-foreground) !important;
+        white-space: nowrap !important;
+        pointer-events: auto !important;
+        box-sizing: border-box !important;
+    }
+    /* Nav không tự dồn sang phải nữa; nó là phần đầu của cụm giữa. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline {
+        flex: 0 1 auto !important;
+        width: auto !important;
+        max-width: none !important;
+        justify-content: center !important;
+        margin: 0 !important;
+    }
+    /* Language nằm sát sau LIÊN HỆ và cùng được tính vào tâm của cả cụm. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-header-actions {
+        order: 2 !important;
+        flex: 0 0 auto !important;
+        align-self: center !important;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+    }
+}
+
+
+/* Desktop rộng: tâm của cụm trùng chính xác tâm viewport. */
+
+@media (min-width: 1200px) {
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: absolute !important;
+        z-index: 3 !important;
+        top: 0 !important;
+        left: 50% !important;
+        right: auto !important;
+        width: max-content !important;
+        max-width: calc(100% - var(--menu-page-gutter) - var(--menu-page-gutter) - 150px) !important;
+        transform: translateX(-50%) !important;
+    }
+}
+
+
+/* Desktop hẹp: tránh cụm giữa chạm/đè logo nhưng vẫn giữ cảm giác cân giữa. */
+
+@media (min-width: 901px) and (max-width: 1199px) {
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: static !important;
+        flex: 1 1 auto !important;
+        width: auto !important;
+        max-width: none !important;
+        transform: none !important;
+        margin-left: clamp(12px, 2vw, 28px) !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:visited {
+        padding-right: clamp(7px, .65vw, 11px) !important;
+        padding-left: clamp(7px, .65vw, 11px) !important;
+        font-size: clamp(15px, 1.45vw, 17px) !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group .--sgd-flag-us {
+        width: 25px !important;
+        height: 16px !important;
+    }
+}
+
+
+/* ============================================================
+   SAGODENT MENU V4 — TRUE CENTER + IMAGE FLAG
+   - Căn chính giữa toàn cụm: 5 tab + ảnh cờ Mỹ + ENG.
+   - Logo giữ nguyên vị trí gốc.
+   - Cờ Mỹ là <img>, thay URL trực tiếp trong thuộc tính src của HTML.
+   ============================================================ */
+
+body .--sgd-topbar img.--sgd-flag-us {
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 28px !important;
+    height: 18px !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 2px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .22) !important;
+}
+
+@media (min-width: 901px) {
+    /* Căn TÂM THẬT theo viewport, không căn theo khoảng trống còn lại sau logo. */
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: absolute !important;
+        z-index: 3 !important;
+        top: 0 !important;
+        left: 50% !important;
+        right: auto !important;
+        width: max-content !important;
+        max-width: calc(100vw - 32px) !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: translateX(-50%) !important;
+        display: flex !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        gap: clamp(8px, .8vw, 16px) !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline {
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        justify-content: center !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-header-actions {
+        flex: 0 0 auto !important;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        align-self: center !important;
+    }
+}
+
+
+/* Desktop hẹp: vẫn giữ tâm tuyệt đối, chỉ thu khoảng cách/font để tránh chạm logo. */
+
+@media (min-width: 901px) and (max-width: 1199px) {
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: absolute !important;
+        left: 50% !important;
+        width: max-content !important;
+        max-width: calc(100vw - 24px) !important;
+        margin: 0 !important;
+        transform: translateX(-50%) !important;
+        gap: 7px !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:visited,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding-right: clamp(6px, .55vw, 10px) !important;
+        padding-left: clamp(6px, .55vw, 10px) !important;
+        font-size: clamp(14px, 1.42vw, 17px) !important;
+        letter-spacing: 0 !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group img.--sgd-flag-us {
+        width: 25px !important;
+        height: 16px !important;
+    }
+}
+
+
+/* ============================================================
+   SAGODENT MENU V5 — FINAL TRUE CENTER FIX
+   Mục tiêu:
+   - Căn GIỮA TOÀN BỘ cụm 5 tab + cờ + ENG theo viewport.
+   - Logo vẫn giữ nguyên vị trí / kích thước hiện tại.
+   - Không thay đổi logic đổi tone, liquid-glass, blur, progress, smooth-scroll.
+   - <= 900px vẫn dùng drawer mobile/tablet cũ.
+   ============================================================ */
+
+@media (min-width: 901px) {
+    /* Header là mốc định vị; không đổi padding, chiều cao hay nền kính. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-topbar {
+        position: fixed !important;
+    }
+    /* Logo giữ nguyên tọa độ bên trái, không tham gia phép căn giữa cụm nav. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-sagodent-logo,
+    main#--sgd-top>.--sgd-topbar>.--sgd-sagodent-logo {
+        position: relative !important;
+        z-index: 5 !important;
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+    }
+    /* Wrapper do JS tạo: tâm của wrapper = tâm viewport. */
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: absolute !important;
+        z-index: 4 !important;
+        top: 0 !important;
+        left: 50% !important;
+        right: auto !important;
+        width: max-content !important;
+        max-width: calc(100vw - 24px) !important;
+        height: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: translateX(-50%) !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        gap: clamp(8px, .75vw, 14px) !important;
+        color: var(--menu-foreground) !important;
+        white-space: nowrap !important;
+        pointer-events: auto !important;
+        box-sizing: border-box !important;
+    }
+    /* Panel desktop nằm trong wrapper, bỏ hoàn toàn kiểu drawer fixed. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-desktop-inline {
+        position: static !important;
+        z-index: auto !important;
+        inset: auto !important;
+        flex: 0 0 auto !important;
+        align-self: stretch !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        overscroll-behavior: auto !important;
+        touch-action: auto !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        color: var(--menu-foreground) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        transition: color .35s ease !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline * {
+        box-sizing: border-box !important;
+    }
+    /* 5 tab menu ngang. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:visited {
+        position: relative !important;
+        flex: 0 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        width: auto !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 clamp(10px, .76vw, 15px) !important;
+        border: 0 !important;
+        background: transparent !important;
+        color: var(--menu-foreground) !important;
+        font-family: "Google Sans", Arial, sans-serif !important;
+        font-size: clamp(17px, 1.02vw, 20px) !important;
+        font-weight: 500 !important;
+        line-height: 1 !important;
+        letter-spacing: .012em !important;
+        white-space: nowrap !important;
+        text-decoration: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        transition: color .35s ease, opacity .22s ease !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a>small,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a>span:last-child {
+        display: none !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding: 0 clamp(10px, .76vw, 15px) !important;
+        background: transparent !important;
+        color: var(--menu-foreground) !important;
+        opacity: .68 !important;
+        outline: 0 !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        content: "" !important;
+        position: absolute !important;
+        right: clamp(10px, .76vw, 15px) !important;
+        bottom: 13px !important;
+        left: clamp(10px, .76vw, 15px) !important;
+        height: 1px !important;
+        background: currentColor !important;
+        opacity: 0 !important;
+        transform: scaleX(.3) !important;
+        transform-origin: center !important;
+        transition: opacity .22s ease, transform .25s ease !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover::after,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible::after {
+        opacity: .65 !important;
+        transform: scaleX(1) !important;
+    }
+    /* ENG nằm trong cùng wrapper nên được tính vào tâm thật của cả cụm. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-header-actions {
+        position: static !important;
+        order: 2 !important;
+        flex: 0 0 auto !important;
+        align-self: center !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        color: var(--menu-foreground) !important;
+        font-size: clamp(17px, 1.02vw, 20px) !important;
+        white-space: nowrap !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group .--sgd-language {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: var(--menu-foreground) !important;
+    }
+    /* Hỗ trợ cả SVG cờ hiện tại và IMG nếu sau này đổi HTML. */
+    body .--sgd-topbar>.--sgd-desktop-center-group .--sgd-flag-us {
+        display: block !important;
+        flex: 0 0 auto !important;
+        width: 28px !important;
+        height: 18px !important;
+        max-width: none !important;
+    }
+    /* Desktop không dùng nút drawer; mobile vẫn do code gốc điều khiển. */
+    body .--sgd-topbar.--sgd-desktop-nav .--sgd-menu-button {
+        display: none !important;
+    }
+    body>.--sgd-sagodent-menu-backdrop {
+        display: none !important;
+    }
+}
+
+
+/* 901–1100px: thu nhẹ menu để không chạm logo nhưng vẫn giữ tâm tuyệt đối. */
+
+@media (min-width: 901px) and (max-width: 1100px) {
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        gap: 6px !important;
+        max-width: calc(100vw - 16px) !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:visited,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding-right: clamp(5px, .55vw, 8px) !important;
+        padding-left: clamp(5px, .55vw, 8px) !important;
+        font-size: clamp(13px, 1.35vw, 15px) !important;
+        letter-spacing: 0 !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        right: clamp(5px, .55vw, 8px) !important;
+        left: clamp(5px, .55vw, 8px) !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-header-actions {
+        font-size: clamp(13px, 1.35vw, 15px) !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group .--sgd-flag-us {
+        width: 24px !important;
+        height: 15px !important;
+    }
+    body .--sgd-topbar>.--sgd-desktop-center-group .--sgd-language {
+        gap: 6px !important;
+    }
+}
+
+
+/* ============================================================
+   SAGODENT LANGUAGE LINK — CLICKABLE, GIỮ NGUYÊN GIAO DIỆN
+   - Cho phép .--sgd-language là <a> mà không đổi kích thước/vị trí/màu.
+   - Tone sáng/tối tiếp tục kế thừa từ header như cũ.
+   ============================================================ */
+
+body .--sgd-topbar a.--sgd-language,
+body .--sgd-topbar a.--sgd-language:link,
+body .--sgd-topbar a.--sgd-language:visited {
+    color: inherit !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+}
+
+body .--sgd-topbar a.--sgd-language:hover,
+body .--sgd-topbar a.--sgd-language:focus-visible {
+    color: inherit !important;
+    text-decoration: none !important;
+    opacity: .72 !important;
+}
+
+body .--sgd-topbar a.--sgd-language:focus-visible {
+    outline: 1px solid currentColor !important;
+    outline-offset: 5px !important;
+    border-radius: 2px !important;
 }

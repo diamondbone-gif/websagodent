@@ -3,43 +3,69 @@
 /**
  * Flatsome Child Theme functions.
  *
- * QUY TẮC NẠP FILE:
+ * ============================================================
+ * QUY TẮC NẠP FILE
+ * ============================================================
  *
- * Dùng chung toàn website:
+ * DÙNG CHUNG TOÀN WEBSITE:
+ *
+ * CSS:
  * - style.css
  * - assets/css/sagodent-root.css
  * - assets/css/sagodent-footer.css
  * - assets/css/lenis.css
  * - assets/css/sagodent-all.css
+ *
+ * JS:
  * - assets/js/lenis.min.js
  * - assets/js/sagodent-lenis.js
  * - assets/js/sagodent-all.js
  *
- * sagodent-all.css bao gồm:
- * - PHẦN 1: MENU SAGODENT
- * - PHẦN 2: SAGODENT
  *
- * sagodent-all.js bao gồm:
- * - PHẦN 1: MENU SAGODENT
- * - PHẦN 2: SAGODENT
+ * CHỈ DÙNG CHO TRANG VENEER:
  *
- * Phần nội dung Sagodent vẫn chỉ hoạt động tại trang có
- * .sagodent-page.
- *
- * Thứ tự:
  * CSS:
- * style.css
- * -> sagodent-root.css
- * -> sagodent-footer.css / lenis.css
- * -> sagodent-all.css
+ * - assets/css/sagodent-veneer.css
  *
  * JS:
+ * - assets/js/sagodent-veneer.js
+ *
+ *
+ * ============================================================
+ * THỨ TỰ NẠP CSS
+ * ============================================================
+ *
+ * style.css
+ * -> sagodent-root.css
+ * -> sagodent-footer.css
+ * -> lenis.css
+ * -> sagodent-all.css
+ * -> sagodent-veneer.css
+ *
+ *
+ * ============================================================
+ * THỨ TỰ NẠP JAVASCRIPT
+ * ============================================================
+ *
  * lenis.min.js
  * -> sagodent-lenis.js
  * -> sagodent-all.js
+ * -> sagodent-veneer.js
  *
- * sagodent-all.css và sagodent-all.js được nạp cuối
- * để hạn chế CSS/JS Flatsome ghi đè.
+ *
+ * ============================================================
+ * GHI CHÚ
+ * ============================================================
+ *
+ * sagodent-all.css / sagodent-all.js:
+ * - Dùng chung cho hệ thống Sagodent.
+ * - Menu tự kiểm tra main#--sgd-top.
+ * - Nội dung Sagodent có thể giới hạn bằng .sagodent-page.
+ *
+ * sagodent-veneer.css / sagodent-veneer.js:
+ * - Chỉ được nạp tại trang Veneer.
+ * - Được nạp SAU sagodent-all để có thể ghi đè style chung
+ *   khi cần thiết.
  *
  * @package Sagodent
  */
@@ -47,8 +73,17 @@
 defined('ABSPATH') || exit;
 
 
+/* ============================================================
+ * 1. HÀM TIỆN ÍCH
+ * ============================================================ */
+
+
 /**
- * Lấy version theo thời gian chỉnh sửa file để chống cache.
+ * Lấy version dựa theo thời gian chỉnh sửa file.
+ *
+ * Mục đích:
+ * - Tự động thay đổi version khi file CSS/JS được chỉnh sửa.
+ * - Hạn chế trình duyệt giữ cache phiên bản cũ.
  *
  * @param string $file_path Đường dẫn vật lý của file.
  * @return string
@@ -66,8 +101,11 @@ function sagodent_asset_version($file_path)
 /**
  * Kiểm tra trang hiện tại có phải trang chủ Sagodent hay không.
  *
- * is_front_page(): trang đang được đặt làm trang chủ WordPress.
- * is_page('sagodent'): dự phòng khi trang có slug là sagodent.
+ * is_front_page():
+ * - Trang được WordPress đặt làm trang chủ.
+ *
+ * is_page('sagodent'):
+ * - Dự phòng nếu trang có slug "sagodent".
  *
  * @return bool
  */
@@ -78,11 +116,38 @@ function sagodent_is_homepage()
 
 
 /**
+ * Kiểm tra trang hiện tại có phải trang Veneer hay không.
+ *
+ * QUAN TRỌNG:
+ * Nếu slug trang Veneer của bạn không phải:
+ *
+ * veneer
+ *
+ * thì thay chữ "veneer" bên dưới bằng slug thực tế.
+ *
+ * Ví dụ:
+ *
+ * is_page('the-veneer-workflow')
+ *
+ * @return bool
+ */
+function sagodent_is_veneer_page()
+{
+    return is_page('veneer');
+}
+
+
+/* ============================================================
+ * 2. HÀM NẠP CSS
+ * ============================================================ */
+
+
+/**
  * Nạp CSS cục bộ nếu file tồn tại.
  *
  * @param string   $handle        Tên định danh CSS.
- * @param string   $relative_path Đường dẫn tính từ flatsome-child.
- * @param string[] $dependencies  Danh sách CSS phải tải trước.
+ * @param string   $relative_path Đường dẫn từ flatsome-child.
+ * @param string[] $dependencies  CSS phải tải trước.
  * @return bool
  */
 function sagodent_enqueue_local_style(
@@ -108,13 +173,18 @@ function sagodent_enqueue_local_style(
 }
 
 
+/* ============================================================
+ * 3. HÀM NẠP JAVASCRIPT
+ * ============================================================ */
+
+
 /**
  * Nạp JavaScript cục bộ nếu file tồn tại.
  *
  * @param string   $handle        Tên định danh JavaScript.
- * @param string   $relative_path Đường dẫn tính từ flatsome-child.
- * @param string[] $dependencies  Danh sách script phải tải trước.
- * @param bool     $in_footer     Có đưa script xuống cuối body không.
+ * @param string   $relative_path Đường dẫn từ flatsome-child.
+ * @param string[] $dependencies  Script phải tải trước.
+ * @param bool     $in_footer     Có đưa xuống cuối body không.
  * @return bool
  */
 function sagodent_enqueue_local_script(
@@ -142,8 +212,13 @@ function sagodent_enqueue_local_script(
 }
 
 
+/* ============================================================
+ * 4. NẠP TOÀN BỘ CSS + JAVASCRIPT
+ * ============================================================ */
+
+
 /**
- * Nạp CSS và JavaScript của Flatsome Child.
+ * Nạp CSS và JavaScript của Flatsome Child Theme.
  */
 function sagodent_enqueue_assets()
 {
@@ -151,8 +226,10 @@ function sagodent_enqueue_assets()
 
 
     /* ========================================================
-     * 1. STYLE.CSS — DÙNG CHUNG TOÀN WEBSITE
+     * 4.1. STYLE.CSS
+     * DÙNG CHUNG TOÀN WEBSITE
      * ======================================================== */
+
     $child_style_path = $theme_path . '/style.css';
 
     wp_enqueue_style(
@@ -164,8 +241,10 @@ function sagodent_enqueue_assets()
 
 
     /* ========================================================
-     * 2. CSS NỀN TẢNG — DÙNG CHUNG TOÀN WEBSITE
+     * 4.2. SAGODENT-ROOT.CSS
+     * DÙNG CHUNG TOÀN WEBSITE
      * ======================================================== */
+
     $root_loaded = sagodent_enqueue_local_style(
         'sagodent-root',
         '/assets/css/sagodent-root.css',
@@ -177,14 +256,24 @@ function sagodent_enqueue_assets()
         : array('flatsome-child-style');
 
 
-    sagodent_enqueue_local_style(
+    /* ========================================================
+     * 4.3. SAGODENT-FOOTER.CSS
+     * DÙNG CHUNG TOÀN WEBSITE
+     * ======================================================== */
+
+    $footer_loaded = sagodent_enqueue_local_style(
         'sagodent-footer',
         '/assets/css/sagodent-footer.css',
         $root_dependency
     );
 
 
-    sagodent_enqueue_local_style(
+    /* ========================================================
+     * 4.4. LENIS.CSS
+     * DÙNG CHUNG TOÀN WEBSITE
+     * ======================================================== */
+
+    $lenis_style_loaded = sagodent_enqueue_local_style(
         'sagodent-lenis-style',
         '/assets/css/lenis.css',
         $root_dependency
@@ -192,14 +281,24 @@ function sagodent_enqueue_assets()
 
 
     /* ========================================================
-     * 3. LENIS — DÙNG CHUNG TOÀN WEBSITE
+     * 4.5. LENIS.MIN.JS
+     * THƯ VIỆN LENIS
+     * DÙNG CHUNG TOÀN WEBSITE
      * ======================================================== */
+
     $lenis_library_loaded = sagodent_enqueue_local_script(
         'sagodent-lenis-library',
         '/assets/js/lenis.min.js',
         array(),
         true
     );
+
+
+    /* ========================================================
+     * 4.6. SAGODENT-LENIS.JS
+     * FILE CẤU HÌNH LENIS
+     * DÙNG CHUNG TOÀN WEBSITE
+     * ======================================================== */
 
     $lenis_config_dependencies = $lenis_library_loaded
         ? array('sagodent-lenis-library')
@@ -214,19 +313,27 @@ function sagodent_enqueue_assets()
 
 
     /* ========================================================
-     * 4. SAGODENT-ALL.CSS — DÙNG CHUNG TOÀN WEBSITE
+     * 4.7. SAGODENT-ALL.CSS
+     * DÙNG CHUNG TOÀN WEBSITE
      * ========================================================
      *
      * File này thay thế:
      * - sagodent.css
      * - sagodent-menu.css
      *
-     * Phần Sagodent được giới hạn bởi .sagodent-page.
-     * Phần menu sử dụng namespace --sgd-*.
+     * Bao gồm:
+     * - PHẦN 1: MENU SAGODENT
+     * - PHẦN 2: SAGODENT
      *
-     * File được nạp sau root/footer/lenis để hạn chế
-     * CSS Flatsome và các file nền ghi đè.
+     * Được nạp sau:
+     * - style.css
+     * - sagodent-root.css
+     * - sagodent-footer.css
+     * - lenis.css
+     *
+     * để hạn chế bị các style trước đó ghi đè.
      * ======================================================== */
+
     $all_style_dependencies = array();
 
     if ($root_loaded) {
@@ -235,15 +342,15 @@ function sagodent_enqueue_assets()
         $all_style_dependencies[] = 'flatsome-child-style';
     }
 
-    if (wp_style_is('sagodent-footer', 'enqueued')) {
+    if ($footer_loaded) {
         $all_style_dependencies[] = 'sagodent-footer';
     }
 
-    if (wp_style_is('sagodent-lenis-style', 'enqueued')) {
+    if ($lenis_style_loaded) {
         $all_style_dependencies[] = 'sagodent-lenis-style';
     }
 
-    sagodent_enqueue_local_style(
+    $all_style_loaded = sagodent_enqueue_local_style(
         'sagodent-all-style',
         '/assets/css/sagodent-all.css',
         array_values(
@@ -253,18 +360,23 @@ function sagodent_enqueue_assets()
 
 
     /* ========================================================
-     * 5. SAGODENT-ALL.JS — DÙNG CHUNG TOÀN WEBSITE
+     * 4.8. SAGODENT-ALL.JS
+     * DÙNG CHUNG TOÀN WEBSITE
      * ========================================================
      *
      * File này thay thế:
      * - sagodent.js
      * - sagodent-menu.js
      *
-     * Menu tự kiểm tra main#--sgd-top trước khi chạy.
-     * Nội dung Sagodent tự kiểm tra .sagodent-page trước khi chạy.
+     * Menu:
+     * - Tự kiểm tra main#--sgd-top trước khi chạy.
      *
-     * File được đưa xuống footer và chạy sau Lenis.
+     * Nội dung Sagodent:
+     * - Có thể tự kiểm tra .sagodent-page trước khi chạy.
+     *
+     * Script được đưa xuống footer.
      * ======================================================== */
+
     $all_script_dependencies = array();
 
     if ($lenis_config_loaded) {
@@ -273,7 +385,7 @@ function sagodent_enqueue_assets()
         $all_script_dependencies[] = 'sagodent-lenis-library';
     }
 
-    sagodent_enqueue_local_script(
+    $all_script_loaded = sagodent_enqueue_local_script(
         'sagodent-all-script',
         '/assets/js/sagodent-all.js',
         array_values(
@@ -281,12 +393,96 @@ function sagodent_enqueue_assets()
         ),
         true
     );
+
+
+    /* ========================================================
+     * 4.9. SAGODENT-VENEER.CSS
+     * CHỈ NẠP TRÊN TRANG VENEER
+     * ========================================================
+     *
+     * File:
+     * /assets/css/sagodent-veneer.css
+     *
+     * Mục đích:
+     * - Chứa toàn bộ giao diện riêng của trang Veneer.
+     * - Không ảnh hưởng những trang khác.
+     *
+     * File được nạp SAU sagodent-all.css để CSS của Veneer
+     * có thể ghi đè style chung khi cần.
+     * ======================================================== */
+
+    if (sagodent_is_veneer_page()) {
+
+        $veneer_style_dependencies = array();
+
+        if ($all_style_loaded) {
+
+            $veneer_style_dependencies[] = 'sagodent-all-style';
+        } elseif ($root_loaded) {
+
+            $veneer_style_dependencies[] = 'sagodent-root';
+        } else {
+
+            $veneer_style_dependencies[] = 'flatsome-child-style';
+        }
+
+        sagodent_enqueue_local_style(
+            'sagodent-veneer-style',
+            '/assets/css/sagodent-veneer.css',
+            array_values(
+                array_unique($veneer_style_dependencies)
+            )
+        );
+    }
+
+
+    /* ========================================================
+     * 4.10. SAGODENT-VENEER.JS
+     * CHỈ NẠP TRÊN TRANG VENEER
+     * ========================================================
+     *
+     * File:
+     * /assets/js/sagodent-veneer.js
+     *
+     * Mục đích:
+     * - Chứa animation / interaction riêng cho trang Veneer.
+     * - Không chạy ở các trang khác.
+     *
+     * File được nạp SAU sagodent-all.js.
+     * ======================================================== */
+
+    if (sagodent_is_veneer_page()) {
+
+        $veneer_script_dependencies = array();
+
+        if ($all_script_loaded) {
+
+            $veneer_script_dependencies[] = 'sagodent-all-script';
+        } elseif ($lenis_config_loaded) {
+
+            $veneer_script_dependencies[] = 'sagodent-lenis';
+        } elseif ($lenis_library_loaded) {
+
+            $veneer_script_dependencies[] = 'sagodent-lenis-library';
+        }
+
+        sagodent_enqueue_local_script(
+            'sagodent-veneer-script',
+            '/assets/js/sagodent-veneer.js',
+            array_values(
+                array_unique($veneer_script_dependencies)
+            ),
+            true
+        );
+    }
 }
 
 
 /**
- * Priority 99 để tài nguyên Sagodent được nạp
- * sau phần lớn CSS/JS Flatsome.
+ * Priority 99:
+ *
+ * Cho tài nguyên Sagodent được đăng ký sau phần lớn
+ * tài nguyên mặc định của Flatsome.
  */
 add_action(
     'wp_enqueue_scripts',
@@ -295,20 +491,52 @@ add_action(
 );
 
 
+/* ============================================================
+ * 5. BODY CLASS
+ * ============================================================ */
+
+
 /**
- * Thêm class riêng vào body trang chủ Sagodent.
+ * Thêm class riêng vào <body>.
  *
- * Kết quả:
+ * Trang chủ:
+ *
  * <body class="... sagodent-page">
  *
- * @param string[] $classes Danh sách class body hiện tại.
+ * Trang Veneer:
+ *
+ * <body class="... sagodent-veneer-page">
+ *
+ * @param string[] $classes Danh sách class hiện tại.
  * @return string[]
  */
 function sagodent_body_class($classes)
 {
+    /**
+     * Class dành cho trang chủ Sagodent.
+     */
     if (sagodent_is_homepage()) {
         $classes[] = 'sagodent-page';
     }
+
+
+    /**
+     * Class dành riêng cho trang Veneer.
+     *
+     * Có thể dùng trong CSS:
+     *
+     * .sagodent-veneer-page .ten-class {
+     *     ...
+     * }
+     *
+     * Có thể dùng trong JavaScript:
+     *
+     * document.querySelector('.sagodent-veneer-page')
+     */
+    if (sagodent_is_veneer_page()) {
+        $classes[] = 'sagodent-veneer-page';
+    }
+
 
     return array_values(
         array_unique($classes)
