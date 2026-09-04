@@ -875,23 +875,19 @@
         padding-top: 112px;
         padding-bottom: 112px;
     }
-
     .sgd-veneer-program-section {
         padding-top: clamp(36px, 3vw, 48px);
         padding-bottom: clamp(42px, 3.5vw, 56px);
     }
-
     .sgd-veneer-program-section .sgd-veneer-content-container {
         /* padding-right: clamp(36px, 4.6vw, 80px);
         padding-left: clamp(36px, 4.6vw, 80px); */
         padding: clamp(36px, 4.6vw, 80px);
     }
-
     .sgd-veneer-program-title {
         margin-bottom: clamp(16px, 1.35vw, 22px);
         font-size: clamp(30px, 2.35vw, 38px);
     }
-
     .sgd-veneer-program-row {
         display: grid;
         grid-template-columns: 27% minmax(0, 48%) minmax(190px, 25%);
@@ -900,49 +896,40 @@
         padding-top: clamp(20px, 1.65vw, 27px);
         padding-bottom: clamp(20px, 1.65vw, 27px);
     }
-
     .sgd-veneer-program-part-col,
     .sgd-veneer-program-info-col,
     .sgd-veneer-program-action-col {
         width: auto;
         min-width: 0;
     }
-
     .sgd-veneer-program-info-col {
         gap: 7px;
         padding-right: clamp(18px, 2.5vw, 36px);
     }
-
     .sgd-veneer-program-action-col {
         justify-content: flex-end;
         margin-top: 0;
     }
-
     .sgd-veneer-program-part-title {
         font-size: clamp(35px, 2.8vw, 45px);
     }
-
     .sgd-veneer-program-kicker,
     .sgd-veneer-program-meta {
         font-size: clamp(18px, 1.4vw, 23px);
     }
-
     .sgd-veneer-program-count {
         padding-top: 5px;
         font-size: clamp(17px, 1.3vw, 21px);
     }
-
     .sgd-veneer-program-details {
         gap: 1px;
         max-width: 430px;
         font-size: clamp(17px, 1.3vw, 21px);
         line-height: 1.38;
     }
-
     .sgd-veneer-program-action-col {
         width: auto;
     }
-
     .sgd-veneer-program-download-btn {
         width: auto;
         min-width: clamp(190px, 19vw, 270px);
@@ -951,36 +938,28 @@
         border-radius: 10px;
         font-size: clamp(17px, 1.3vw, 21px);
     }
-
     .sgd-veneer-program-summary {
         margin-top: clamp(18px, 1.5vw, 24px);
     }
-
     .sgd-veneer-program-summary p {
         font-size: clamp(15px, 1.15vw, 18px);
     }
-
     .sgd-veneer-program-summary {
         font-size: clamp(15px, 1.15vw, 18px);
     }
-
     .sgd-veneer-doctor-name {
         font-size: 48px;
     }
-
     .sgd-veneer-doctor-bio {
         font-size: 18px;
     }
-
     .sgd-veneer-certificate-section {
         padding-top: 112px;
         padding-bottom: 112px;
     }
-
     .sgd-veneer-certificate-title {
         font-size: 36px;
     }
-
     .sgd-veneer-certificate-intro,
     .sgd-veneer-certificate-note,
     .sgd-veneer-certificate-experience-title {
@@ -996,44 +975,36 @@
         padding-left: var(--sgd-veneer-page-gutter);
         padding-right: var(--sgd-veneer-page-gutter);
     }
-
     .sgd-veneer-program-row {
         display: grid;
         grid-template-columns: 27% 48% 25%;
         align-items: center;
         gap: 0;
     }
-
     .sgd-veneer-program-part-col {
         width: auto;
         min-width: 0;
     }
-
     .sgd-veneer-program-info-col {
         width: auto;
         min-width: 0;
         padding-right: clamp(24px, 2.5vw, 48px);
     }
-
     .sgd-veneer-program-action-col {
         width: auto;
         min-width: 0;
         justify-content: flex-end;
         margin-top: 0;
     }
-
     .sgd-veneer-program-summary p {
         font-size: 18px;
     }
-
     .sgd-veneer-program-summary {
         font-size: 18px;
     }
-
     .sgd-veneer-doctor-name {
         font-size: 60px;
     }
-
     .sgd-veneer-doctor-bio {
         font-size: 20px;
     }
@@ -1060,35 +1031,29 @@
         min-height: 0;
         padding: 0;
     }
-
     .sgd-veneer-footer-cta {
         min-height: 220px;
         padding-top: 38px;
         padding-bottom: 38px;
     }
-
     .sgd-veneer-feature-bg {
         object-position: center center;
     }
-
     .sgd-veneer-doctor-layout {
         min-height: 420px;
         gap: 28px;
     }
-
     .sgd-veneer-doctor-media {
         width: 40%;
         margin-top: -64px;
         padding-top: 64px;
     }
-
     .sgd-veneer-doctor-copy {
         width: 60%;
         padding-top: 44px;
         padding-right: 0;
         padding-bottom: 44px;
     }
-
     .sgd-veneer-doctor-photo {
         left: 0;
         bottom: 0;
@@ -1097,50 +1062,40 @@
         max-width: 115%;
         margin: 0;
     }
-
     .sgd-veneer-footer-row {
         gap: 40px;
     }
-
     .sgd-veneer-footer-title-main {
         font-size: clamp(54px, 6.6vw, 64px);
         line-height: 0.92;
     }
-
     .sgd-veneer-footer-title-sub {
         margin-top: 3px;
         font-size: clamp(58px, 7.2vw, 70px);
         line-height: 0.88;
     }
-
     .sgd-veneer-register-btn {
         width: 246px;
         min-height: 76px;
         padding: 13px 22px;
     }
-
     .sgd-veneer-register-btn-title {
         font-size: 18px;
     }
-
     .sgd-veneer-register-btn-sub {
         font-size: 14px;
     }
-
     .sgd-veneer-feature-copy-block+.sgd-veneer-feature-copy-block {
         margin-top: 30px;
     }
-
     .sgd-veneer-feature-title {
         margin-bottom: 18px;
         font-size: clamp(28px, 4.2vw, 38px);
     }
-
     .sgd-veneer-feature-text {
         font-size: clamp(16px, 2.15vw, 20px);
         line-height: 1.4;
     }
-
     .sgd-veneer-program-download-btn {
         width: min(100%, 250px);
         min-width: 0;
@@ -1159,63 +1114,51 @@
         padding-left: clamp(18px, 5vw, 28px);
         padding-right: clamp(18px, 5vw, 28px);
     }
-
     .sgd-veneer-feature-section,
     .sgd-veneer-program-section,
     .sgd-veneer-certificate-section {
         padding-top: 56px;
         padding-bottom: 56px;
     }
-
     .sgd-veneer-program-title {
         margin-bottom: 22px;
         font-size: clamp(27px, 8vw, 36px);
     }
-
     .sgd-veneer-program-row {
         gap: 18px;
         padding-top: 28px;
         padding-bottom: 28px;
     }
-
     .sgd-veneer-program-part-title {
         font-size: clamp(30px, 9vw, 40px);
     }
-
     .sgd-veneer-program-info-col {
         gap: 12px;
     }
-
     .sgd-veneer-program-kicker,
     .sgd-veneer-program-meta {
         font-size: 16px;
     }
-
     .sgd-veneer-program-summary,
     .sgd-veneer-program-summary p {
         font-size: 12px;
         letter-spacing: 0.06em;
     }
-
     .sgd-veneer-feature-copy-block+.sgd-veneer-feature-copy-block {
         margin-top: 26px;
     }
-
     .sgd-veneer-feature-title {
         margin-bottom: 14px;
         font-size: clamp(24px, 7.6vw, 31px);
         line-height: 1.12;
     }
-
     .sgd-veneer-feature-text {
         font-size: 16px;
         line-height: 1.5;
     }
-
     .sgd-veneer-feature-text+.sgd-veneer-feature-text {
         margin-top: 20px;
     }
-
     .sgd-veneer-program-download-btn {
         width: 100%;
         min-width: 0;
@@ -1224,7 +1167,6 @@
         border-radius: 12px;
         font-size: 14px;
     }
-
     .sgd-veneer-hero-section {
         width: 100%;
         min-height: 680px;
@@ -1233,17 +1175,14 @@
         aspect-ratio: auto;
         padding: 0;
     }
-
     .sgd-veneer-hero-bg-image {
         object-fit: cover;
         object-position: 57% center;
         transform: none;
     }
-
     .sgd-veneer-hero-overlay {
         background: linear-gradient(90deg, rgba(2, 45, 72, 0.96) 0%, rgba(2, 45, 72, 0.76) 27%, rgba(2, 45, 72, 0.38) 51%, rgba(2, 45, 72, 0.08) 72%, rgba(2, 45, 72, 0) 100%);
     }
-
     .sgd-veneer-hero-copy {
         left: clamp(20px, 6.4vw, 28px);
         top: 52.5%;
@@ -1251,7 +1190,6 @@
         max-width: none;
         text-align: center;
     }
-
     .sgd-veneer-hero-eyebrow {
         margin-bottom: clamp(20px, 5.5vw, 28px);
         font-size: clamp(9px, 2.65vw, 12px);
@@ -1259,20 +1197,17 @@
         letter-spacing: 0.09em;
         text-align: center;
     }
-
     .sgd-veneer-hero-title-main {
         font-size: clamp(38px, 11.2vw, 52px);
         line-height: 0.96;
         letter-spacing: -0.045em;
     }
-
     .sgd-veneer-hero-title-sub {
         margin-top: clamp(2px, 0.8vw, 4px);
         font-size: clamp(43px, 12.8vw, 59px);
         line-height: 0.94;
         letter-spacing: -0.045em;
     }
-
     .sgd-veneer-hero-actions {
         flex-flow: row nowrap;
         width: max-content;
@@ -1283,7 +1218,6 @@
         margin-top: clamp(25px, 7vw, 34px);
         gap: clamp(12px, 4vw, 20px);
     }
-
     .sgd-veneer-hero-tagline {
         flex: 0 1 clamp(154px, 43vw, 184px);
         width: clamp(154px, 43vw, 184px);
@@ -1294,7 +1228,6 @@
         justify-content: center;
         text-align: center;
     }
-
     .sgd-veneer-hero-cta {
         flex: 0 0 auto;
         min-width: clamp(118px, 31vw, 146px);
@@ -1302,61 +1235,50 @@
         padding: 0 clamp(15px, 4vw, 20px);
         font-size: clamp(11px, 3vw, 14px);
     }
-
     .sgd-veneer-feature-bg {
         object-position: 58% center;
     }
-
     .sgd-veneer-doctor-layout {
         flex-direction: column;
         align-items: flex-start;
         gap: 18px;
         min-height: auto;
     }
-
     .sgd-veneer-doctor-copy,
     .sgd-veneer-doctor-media {
         width: 100%;
     }
-
     .sgd-veneer-doctor-copy {
         order: 1;
         padding-top: 32px;
         padding-right: 0;
         padding-bottom: 0;
     }
-
     .sgd-veneer-doctor-name {
         margin-bottom: 18px;
         font-size: clamp(32px, 9vw, 42px);
     }
-
     .sgd-veneer-doctor-bio {
         font-size: 15px;
         line-height: 1.55;
     }
-
     .sgd-veneer-certificate-title {
         font-size: clamp(27px, 8vw, 36px);
     }
-
     .sgd-veneer-certificate-intro,
     .sgd-veneer-certificate-note,
     .sgd-veneer-certificate-experience-title {
         font-size: 16px;
     }
-
     .sgd-veneer-certificate-experience-text {
         font-size: 15px;
     }
-
     .sgd-veneer-doctor-media {
         order: 2;
         height: clamp(330px, 92vw, 500px);
         margin-top: -20px;
         padding-top: 20px;
     }
-
     .sgd-veneer-doctor-photo {
         position: absolute;
         left: 0;
@@ -1366,36 +1288,30 @@
         max-width: 100%;
         margin: 0;
     }
-
     .sgd-veneer-footer-row {
         width: 100%;
         flex-direction: column;
         align-items: center;
         gap: 24px;
     }
-
     .sgd-veneer-footer-course-title {
         width: 100%;
         align-items: center;
         text-align: center;
     }
-
     .sgd-veneer-footer-title-main {
         font-size: clamp(46px, 11.5vw, 66px);
         line-height: 0.98;
     }
-
     .sgd-veneer-footer-title-sub {
         margin-top: 4px;
         font-size: clamp(52px, 12.5vw, 74px);
         line-height: 0.96;
     }
-
     .sgd-veneer-register-wrap,
     .sgd-veneer-register-btn {
         width: 100%;
     }
-
     .sgd-veneer-register-btn {
         min-height: 92px;
     }
@@ -1406,13 +1322,11 @@
         left: 18px;
         width: calc(100% - 36px);
     }
-
     .sgd-veneer-hero-tagline {
         flex-basis: 140px;
         width: 140px;
         font-size: 12px;
     }
-
     .sgd-veneer-hero-cta {
         min-width: 108px;
         padding-right: 12px;
@@ -1427,15 +1341,12 @@
         height: 100svh;
         max-height: 560px;
     }
-
     .sgd-veneer-hero-copy {
         top: 39%;
     }
-
     .sgd-veneer-hero-eyebrow {
         margin-bottom: 10px;
     }
-
     .sgd-veneer-hero-actions {
         margin-top: 14px;
     }

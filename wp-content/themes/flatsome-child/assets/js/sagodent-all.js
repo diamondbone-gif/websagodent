@@ -1121,6 +1121,33 @@
     let activeCourse = 0;
     let courseRenderRequest = 0;
 
+    /* ============================================================
+       COURSE AUTOPLAY
+       - Bắt đầu ở VENEER.
+       - Sau mỗi 3 giây tự chuyển sang khóa kế tiếp.
+       - Khi người dùng bấm tab / Prev / Next, timer được tính lại từ đầu.
+       ============================================================ */
+    const COURSE_AUTOPLAY_DELAY = 3000;
+    let courseAutoTimer = null;
+
+    function clearCourseAutoplay() {
+        if (courseAutoTimer !== null) {
+            window.clearTimeout(courseAutoTimer);
+            courseAutoTimer = null;
+        }
+    }
+
+    function scheduleCourseAutoplay() {
+        if (!coursesSection) return;
+
+        clearCourseAutoplay();
+
+        courseAutoTimer = window.setTimeout(function() {
+            renderCourse(activeCourse + 1);
+            scheduleCourseAutoplay();
+        }, COURSE_AUTOPLAY_DELAY);
+    }
+
     function escapeHtml(value) {
         if (!value) return "";
         return String(value)
@@ -1188,7 +1215,11 @@
         coursesSection
             .querySelectorAll(".course-tabs button")
             .forEach(function(button, buttonIndex) {
-                button.classList.toggle("active", buttonIndex === activeCourse);
+                const isActive = buttonIndex === activeCourse;
+
+                button.classList.toggle("active", isActive);
+                button.setAttribute("aria-selected", String(isActive));
+                button.setAttribute("tabindex", isActive ? "0" : "-1");
             });
 
         coursesSection.classList.add("course-is-loading");
@@ -1210,22 +1241,43 @@
     if (coursesSection) {
         coursesSection.addEventListener("click", function(event) {
             const tab = event.target.closest(".course-tabs button");
+
             if (tab) {
                 const tabs = Array.from(
                     coursesSection.querySelectorAll(".course-tabs button"),
                 );
+
                 renderCourse(tabs.indexOf(tab));
+                scheduleCourseAutoplay();
                 return;
             }
+
             if (event.target.closest("[data-course-prev]")) {
                 renderCourse(activeCourse - 1);
+                scheduleCourseAutoplay();
+                return;
             }
+
             if (event.target.closest("[data-course-next]")) {
                 renderCourse(activeCourse + 1);
+                scheduleCourseAutoplay();
             }
         });
 
+        /* Ban đầu luôn hiển thị VENEER. */
         renderCourse(0);
+
+        /* Sau 3 giây: VENEER -> BOPT -> IMPLANT BASIC -> ALL ON 4 -> VENEER... */
+        scheduleCourseAutoplay();
+
+        /* Không để timer chạy ngầm khi tab trình duyệt bị ẩn. */
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                clearCourseAutoplay();
+            } else {
+                scheduleCourseAutoplay();
+            }
+        });
     }
 
     const revealElements = page.querySelectorAll("[data-reveal]");
