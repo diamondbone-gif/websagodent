@@ -1080,7 +1080,7 @@
             intro: "Quy trình veneer tinh gọn từ lập kế hoạch, sửa soạn, lấy dấu kỹ thuật số đến gắn hoàn tất — tập trung vào tính tiên lượng và ứng dụng lâm sàng.",
             topics: ["Digital planning", "Mock-up", "Preparation control"],
             buttonText: "Xem chi tiết",
-            buttonLink: "http://localhost/websagodent/veneer/"
+            buttonLink: "https://sagodent.com/veneer/"
         },
         {
             tab: "BOPT",
@@ -1127,7 +1127,7 @@
        - Sau mỗi 3 giây tự chuyển sang khóa kế tiếp.
        - Khi người dùng bấm tab / Prev / Next, timer được tính lại từ đầu.
        ============================================================ */
-    const COURSE_AUTOPLAY_DELAY = 3000;
+    const COURSE_AUTOPLAY_DELAY = 5000;
     let courseAutoTimer = null;
 
     function clearCourseAutoplay() {
