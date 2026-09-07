@@ -20,6 +20,7 @@
  * - assets/js/lenis.min.js
  * - assets/js/sagodent-lenis.js
  * - assets/js/sagodent-all.js
+ * - assets/js/sagodent-footer.js
  *
  *
  * CHỈ DÙNG CHO TRANG VENEER:
@@ -50,6 +51,7 @@
  * lenis.min.js
  * -> sagodent-lenis.js
  * -> sagodent-all.js
+ * -> sagodent-footer.js
  * -> sagodent-veneer.js
  *
  *
@@ -61,6 +63,10 @@
  * - Dùng chung cho hệ thống Sagodent.
  * - Menu tự kiểm tra main#--sgd-top.
  * - Nội dung Sagodent có thể giới hạn bằng .sagodent-page.
+ *
+ * sagodent-footer.css / sagodent-footer.js:
+ * - Dùng chung toàn website cho giao diện và tương tác Footer.
+ * - JavaScript Footer được nạp sau sagodent-all.js.
  *
  * sagodent-veneer.css / sagodent-veneer.js:
  * - Chỉ được nạp tại trang Veneer.
@@ -396,7 +402,43 @@ function sagodent_enqueue_assets()
 
 
     /* ========================================================
-     * 4.9. SAGODENT-VENEER.CSS
+     * 4.9. SAGODENT-FOOTER.JS
+     * DÙNG CHUNG TOÀN WEBSITE
+     * ========================================================
+     *
+     * File:
+     * /assets/js/sagodent-footer.js
+     *
+     * Mục đích:
+     * - Chứa interaction / animation riêng cho Footer.
+     * - Được nạp trên toàn bộ website.
+     * - Được nạp SAU sagodent-all.js.
+     *
+     * Script được đưa xuống footer.
+     * ======================================================== */
+
+    $footer_script_dependencies = array();
+
+    if ($all_script_loaded) {
+        $footer_script_dependencies[] = 'sagodent-all-script';
+    } elseif ($lenis_config_loaded) {
+        $footer_script_dependencies[] = 'sagodent-lenis';
+    } elseif ($lenis_library_loaded) {
+        $footer_script_dependencies[] = 'sagodent-lenis-library';
+    }
+
+    $footer_script_loaded = sagodent_enqueue_local_script(
+        'sagodent-footer-script',
+        '/assets/js/sagodent-footer.js',
+        array_values(
+            array_unique($footer_script_dependencies)
+        ),
+        true
+    );
+
+
+    /* ========================================================
+     * 4.10. SAGODENT-VENEER.CSS
      * CHỈ NẠP TRÊN TRANG VENEER
      * ========================================================
      *
@@ -437,7 +479,7 @@ function sagodent_enqueue_assets()
 
 
     /* ========================================================
-     * 4.10. SAGODENT-VENEER.JS
+     * 4.11. SAGODENT-VENEER.JS
      * CHỈ NẠP TRÊN TRANG VENEER
      * ========================================================
      *
@@ -448,14 +490,17 @@ function sagodent_enqueue_assets()
      * - Chứa animation / interaction riêng cho trang Veneer.
      * - Không chạy ở các trang khác.
      *
-     * File được nạp SAU sagodent-all.js.
+     * File được nạp SAU sagodent-footer.js.
      * ======================================================== */
 
     if (sagodent_is_veneer_page()) {
 
         $veneer_script_dependencies = array();
 
-        if ($all_script_loaded) {
+        if ($footer_script_loaded) {
+
+            $veneer_script_dependencies[] = 'sagodent-footer-script';
+        } elseif ($all_script_loaded) {
 
             $veneer_script_dependencies[] = 'sagodent-all-script';
         } elseif ($lenis_config_loaded) {

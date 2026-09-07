@@ -4454,7 +4454,8 @@ body .--sgd-menu-panel a>span:last-child {
 
 @media (min-width: 901px) {
     .sagodent-page .hero-copy .hero-actions {
-        margin-top: clamp(20px, 1.3vw, 28px);
+        /* Căn CTA vào giữa khoảng trống từ WORKFLOW xuống đáy HERO */
+        margin-top: clamp(38px, 2.2vw, 46px) !important;
     }
 
     .sagodent-page .hero-copy .hero-actions>.pill {
@@ -5117,7 +5118,7 @@ body .--sgd-topbar img.--sgd-flag-us {
         flex-wrap: nowrap !important;
         align-items: stretch !important;
         justify-content: center !important;
-        gap: 0 !important;
+        gap: 25px !important;
         margin: 0 !important;
         padding: 0 !important;
         overflow: visible !important;
@@ -6011,4 +6012,81 @@ body .--sgd-topbar a.--sgd-language:focus-visible {
 .sagodent-page .doctor-highlights li,
 .sagodent-page .doctor-highlights li * {
     font-weight: 400 !important;
+}
+
+
+/* ========================================================================== 
+   SAGODENT — FINAL TEXT ALIGN JUSTIFY
+   Chỉ canh đều nội dung đoạn văn tại 3 khu vực: Doctor, Difference 01/02/03, iD-4.
+   Không thay đổi font, size, line-height, margin, padding, màu sắc hoặc responsive.
+   ========================================================================== */
+
+.sagodent-page .doctor-copy p:not(.kicker),
+.sagodent-page .difference .difference-text p,
+.sagodent-page .difference blockquote p,
+.sagodent-page .id4-copy p,
+.sagodent-page .id4-copy[data-reveal] p,
+.sagodent-page .id4-copy.revealed p {
+    text-align: justify !important;
+}
+
+
+/* ============================================================
+   FINAL MENU HOVER FIX
+   - Hover KHÔNG đổi / làm tối màu chữ.
+   - Chỉ hiển thị gạch dưới.
+   - Gạch dưới dày hơn.
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+    /* Giữ nguyên 100% màu + độ sáng của chữ khi hover/focus */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        background: transparent !important;
+        color: var(--menu-foreground) !important;
+        opacity: 1 !important;
+        filter: none !important;
+        outline: 0 !important;
+    }
+
+    /* Thanh underline dày hơn */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        height: 3px !important;
+        border-radius: 999px !important;
+        background: currentColor !important;
+        opacity: 0 !important;
+        transform: scaleX(.3) !important;
+        transform-origin: center !important;
+        transition: opacity .22s ease, transform .25s ease !important;
+    }
+
+    /* Hover chỉ bật underline, không tác động màu chữ */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover::after,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible::after {
+        opacity: 1 !important;
+        transform: scaleX(1) !important;
+    }
+}
+
+
+/* ========================================================================== 
+   SAGODENT — FINAL MOBILE/TABLET TEXT ALIGN JUSTIFY OVERRIDE
+   2026-09-04
+   - Giữ nguyên các đoạn văn đang text-align: justify trên desktop.
+   - Ép đúng các đoạn đó tiếp tục text-align: justify trên tablet/mobile <= 900px.
+   - Không tác động tiêu đề, menu, button hoặc các thành phần khác.
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    .sagodent-page .doctor-copy p:not(.kicker),
+    .sagodent-page .difference .difference-text p,
+    .sagodent-page .difference blockquote p,
+    .sagodent-page .id4-copy p,
+    .sagodent-page .id4-copy[data-reveal] p,
+    .sagodent-page .id4-copy.revealed p,
+    .sagodent-page .id4-copy[data-reveal].revealed p {
+        text-align: justify !important;
+    }
 }
