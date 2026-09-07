@@ -2883,7 +2883,12 @@ body .--sgd-menu-panel a>span:last-child {
 
 @media(max-width:600px) {
     .sagodent-page .hero {
-        min-height: 580px
+        height: 60svh;
+        min-height: 0
+    }
+
+    .sagodent-page .hero-copy {
+        top: 46%
     }
 
     .sagodent-page .hero-copy h1 {
@@ -4454,14 +4459,25 @@ body .--sgd-menu-panel a>span:last-child {
 
 @media (min-width: 901px) {
     .sagodent-page .hero-copy .hero-actions {
-        /* Căn CTA vào giữa khoảng trống từ WORKFLOW xuống đáy HERO */
+        /* Desktop/PC: chỉ tinh chỉnh vị trí dọc của CTA.
+           Giảm độ dịch so với bản trước để nút nằm giữa khoảng trống
+           từ WORKFLOW đến đáy HERO cân hơn. */
         margin-top: clamp(38px, 2.2vw, 46px) !important;
+        transform: translateY(clamp(14px, 1vw, 20px));
     }
 
     .sagodent-page .hero-copy .hero-actions>.pill {
         min-height: clamp(54px, 3.4vw, 64px);
         padding: clamp(14px, .8vw, 17px) clamp(28px, 1.8vw, 36px) !important;
         font-size: clamp(16px, 1vw, 19px) !important;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .sagodent-page .hero-copy .hero-actions {
+        /* Tablet: chỉ dịch CTA theo chiều dọc, không thay đổi chữ/ảnh/bố cục khác. */
+        margin-top: clamp(24px, 3.5vw, 32px) !important;
+        transform: translateY(clamp(12px, 2vw, 18px));
     }
 }
 
@@ -4475,7 +4491,7 @@ body .--sgd-menu-panel a>span:last-child {
 
 @media (max-width: 600px) {
     .sagodent-page .hero-copy .hero-actions {
-        margin-top: 18px;
+        margin-top: 40px;
     }
 
     .sagodent-page .hero-copy .hero-actions>.pill {
@@ -6088,5 +6104,386 @@ body .--sgd-topbar a.--sgd-language:focus-visible {
     .sagodent-page .id4-copy.revealed p,
     .sagodent-page .id4-copy[data-reveal].revealed p {
         text-align: justify !important;
+    }
+}
+
+
+/* ========================================================================== 
+   SAGODENT — MOBILE PHONE HEADER LANGUAGE DROPDOWN
+   2026-09-07
+   YÊU CẦU:
+   - CHỈ điện thoại <= 600px.
+   - Desktop / PC / Tablet > 600px giữ nguyên giao diện cũ.
+   - Mobile ẩn ENG và MỤC CHÍNH.
+   - Cờ ENG nằm sát hamburger, có mũi tên xổ xuống.
+   - Dropdown hiện cờ Việt Nam; cờ Việt Nam nằm trong thẻ <a>.
+   ========================================================================== */
+
+
+/* Phần tử mới tuyệt đối không xuất hiện trên tablet/desktop. */
+
+body .--sgd-topbar .--sgd-language-toggle,
+body .--sgd-topbar .--sgd-language-dropdown {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+
+    /* Cụm bên phải: cờ ENG -> arrow -> hamburger. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 7px !important;
+        margin-left: auto !important;
+        overflow: visible !important;
+    }
+
+    /* Mobile: bỏ chữ ENG, chỉ giữ cờ. */
+    body .--sgd-topbar .--sgd-language,
+    body .--sgd-topbar a.--sgd-language,
+    body .--sgd-topbar a.--sgd-language:link,
+    body .--sgd-topbar a.--sgd-language:visited {
+        display: inline-flex !important;
+        flex: 0 0 auto !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 30px !important;
+        min-width: 30px !important;
+        height: 20px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        overflow: visible !important;
+        line-height: 0 !important;
+        text-decoration: none !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-label {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        font-size: 0 !important;
+        line-height: 0 !important;
+    }
+
+    /* Cờ ENG: hơi lớn hơn bản cũ để giống hình mẫu. */
+    body .--sgd-topbar img.--sgd-flag-us,
+    body .--sgd-topbar .--sgd-flag-us {
+        display: block !important;
+        flex: 0 0 auto !important;
+        width: 30px !important;
+        height: 20px !important;
+        max-width: 30px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 2px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, .20) !important;
+    }
+
+    /* Nút xổ xuống nhỏ, nằm giữa cờ và hamburger. */
+    body .--sgd-topbar .--sgd-language-toggle {
+        position: relative !important;
+        display: inline-flex !important;
+        flex: 0 0 14px !important;
+        width: 14px !important;
+        min-width: 14px !important;
+        height: 24px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        outline: 0 !important;
+        background: transparent !important;
+        color: currentColor !important;
+        box-shadow: none !important;
+        cursor: pointer !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        touch-action: manipulation !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-toggle>span {
+        display: block !important;
+        width: 7px !important;
+        height: 7px !important;
+        margin-top: -3px !important;
+        border-right: 1.5px solid currentColor !important;
+        border-bottom: 1.5px solid currentColor !important;
+        transform: rotate(45deg) !important;
+        transform-origin: center !important;
+        transition: transform .22s ease, margin-top .22s ease !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-toggle.--sgd-open>span {
+        margin-top: 3px !important;
+        transform: rotate(225deg) !important;
+    }
+
+    /* Mobile: bỏ chữ MỤC CHÍNH, chỉ còn icon 3 sọc. */
+    body .--sgd-topbar .--sgd-menu-button {
+        display: flex !important;
+        flex: 0 0 29px !important;
+        width: 29px !important;
+        min-width: 29px !important;
+        max-width: 29px !important;
+        height: 24px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        overflow: visible !important;
+        font-size: 0 !important;
+        line-height: 0 !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button>span {
+        width: 29px !important;
+        height: 18px !important;
+    }
+
+    /* Dropdown chỉ chiếm đúng một ô cờ, không làm nở header. */
+    body .--sgd-topbar .--sgd-language-dropdown {
+        position: absolute !important;
+        z-index: 1000010 !important;
+        top: calc(100% + 12px) !important;
+        right: 36px !important;
+        width: 48px !important;
+        min-width: 48px !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 8px !important;
+        display: block !important;
+        border: 1px solid var(--menu-border) !important;
+        border-radius: 8px !important;
+        background: var(--menu-panel-glass-bg) !important;
+        -webkit-backdrop-filter: blur(18px) saturate(125%) !important;
+        backdrop-filter: blur(18px) saturate(125%) !important;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, .20) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: translateY(-6px) scale(.96) !important;
+        transform-origin: top center !important;
+        transition: opacity .2s ease, visibility .2s ease, transform .22s ease !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-dropdown.--sgd-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) scale(1) !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-option,
+    body .--sgd-topbar .--sgd-language-option:link,
+    body .--sgd-topbar .--sgd-language-option:visited {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 30px !important;
+        height: 20px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        background: transparent !important;
+        text-decoration: none !important;
+        line-height: 0 !important;
+    }
+
+    body .--sgd-topbar img.--sgd-flag-vn,
+    body .--sgd-topbar .--sgd-flag-vn {
+        display: block !important;
+        width: 30px !important;
+        height: 20px !important;
+        max-width: 30px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 2px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, .20) !important;
+    }
+}
+
+@media (max-width: 380px) {
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        gap: 6px !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-dropdown {
+        right: 35px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 600px) {
+
+    body .--sgd-topbar .--sgd-language-toggle>span,
+    body .--sgd-topbar .--sgd-language-dropdown {
+        transition-duration: .01ms !important;
+    }
+}
+
+
+/* ========================================================================== 
+   SAGODENT — MOBILE HEADER FINAL ALIGNMENT
+   - Chỉ điện thoại <= 600px.
+   - Cờ ENG / mũi tên / hamburger cùng một trục ngang.
+   - Dropdown VN căn chính giữa ngay dưới cờ ENG.
+   - Desktop / PC / Tablet giữ nguyên.
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 7px !important;
+        height: 24px !important;
+        min-height: 24px !important;
+        line-height: 0 !important;
+    }
+
+    /* Khung cờ ENG cao bằng toggle và hamburger để tâm Y trùng nhau. */
+    body .--sgd-topbar .--sgd-language,
+    body .--sgd-topbar a.--sgd-language,
+    body .--sgd-topbar a.--sgd-language:link,
+    body .--sgd-topbar a.--sgd-language:visited {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 30px !important;
+        min-width: 30px !important;
+        height: 24px !important;
+        min-height: 24px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 0 !important;
+        transform: none !important;
+    }
+
+    body .--sgd-topbar img.--sgd-flag-us,
+    body .--sgd-topbar .--sgd-flag-us {
+        display: block !important;
+        width: 30px !important;
+        height: 20px !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    /* Mũi tên nằm đúng tâm dọc, bỏ margin âm làm icon bị cao hơn. */
+    body .--sgd-topbar .--sgd-language-toggle {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 14px !important;
+        min-width: 14px !important;
+        height: 24px !important;
+        min-height: 24px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 0 !important;
+        transform: none !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-toggle>span {
+        position: relative !important;
+        top: -1px !important;
+        margin: 0 !important;
+        transform: rotate(45deg) !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-toggle.--sgd-open>span {
+        top: 1px !important;
+        margin: 0 !important;
+        transform: rotate(225deg) !important;
+    }
+
+    /* Hamburger khóa đúng 24px và căn tâm như cờ ENG. */
+    body .--sgd-topbar .--sgd-menu-button {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 29px !important;
+        min-width: 29px !important;
+        max-width: 29px !important;
+        height: 24px !important;
+        min-height: 24px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 0 !important;
+        transform: none !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button>span {
+        display: block !important;
+        flex: 0 0 auto !important;
+        width: 29px !important;
+        height: 18px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Dropdown nằm chính giữa dưới cờ ENG, không phụ thuộc vị trí hamburger. */
+    body .--sgd-topbar .--sgd-language-dropdown {
+        left: -9px !important;
+        right: auto !important;
+        top: calc(100% + 10px) !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-option,
+    body .--sgd-topbar .--sgd-language-option:link,
+    body .--sgd-topbar .--sgd-language-option:visited {
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    body .--sgd-topbar img.--sgd-flag-vn,
+    body .--sgd-topbar .--sgd-flag-vn {
+        display: block !important;
+        width: 30px !important;
+        height: 20px !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+}
+
+@media (max-width: 380px) {
+    body .--sgd-topbar .--sgd-language-dropdown {
+        left: -9px !important;
+        right: auto !important;
+    }
+}
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — HERO BACKGROUND IMAGE
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Không thay đổi HTML / nội dung / chức năng.
+   - Tablet, Desktop, PC giữ nguyên giao diện hiện tại.
+   ============================================================ */
+
+@media (max-width: 600px) {
+    .sagodent-page .hero-image {
+        background-image: url("http://sagodent.com//wp-content/uploads/2026/08/veneer-workflow.jpg");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 }

@@ -24,6 +24,12 @@
     const SAGODENT_LANGUAGE_URL = "";
     const SAGODENT_FLAG_IMAGE_URL = "https://sagodent.com/wp-content/uploads/2026/09/1788493537780_1387843300402958155_1387843300402958155_6813b47d7cb216dce427a6d065133787.jpg";
 
+    /* MOBILE ONLY <= 600px: dropdown ngôn ngữ.
+       Desktop / tablet không dùng các biến này nên giao diện cũ được giữ nguyên. */
+    const SAGODENT_PHONE_MAX_WIDTH = 600;
+    const SAGODENT_VIETNAMESE_URL = "#";
+    const SAGODENT_VIETNAMESE_FLAG_IMAGE_URL = "https://sagodent.com/wp-content/uploads/2026/09/1788493543944_1387843300402958155_1387843300402958155_af10ec38ece6559846e52ee055d77457.jpg";
+
     function initSagodentMenu() {
         const menuRoot = Array.from(
             document.querySelectorAll("main#--sgd-top"),
@@ -122,6 +128,115 @@
         }
 
         prepareLanguageControl();
+
+        /* ============================================================
+           MOBILE PHONE ONLY — LANGUAGE DROPDOWN
+           - <= 600px: chỉ hiện cờ ENG + mũi tên xổ xuống.
+           - Dropdown chứa cờ Việt Nam là thẻ <a> thật.
+           - > 600px: toggle/dropdown bị CSS ẩn hoàn toàn, không đổi desktop/tablet.
+           - JS tự tạo phần tử nếu HTML cũ chưa có, vì vậy có thể dùng cả HTML cũ hoặc HTML mới.
+           ============================================================ */
+        function prepareMobileLanguageDropdown() {
+            const actions = header.querySelector(".--sgd-header-actions");
+            if (!actions) return { toggle: null, dropdown: null };
+
+            let toggle = actions.querySelector(".--sgd-language-toggle");
+            let dropdown = actions.querySelector(".--sgd-language-dropdown");
+
+            if (!toggle) {
+                toggle = document.createElement("button");
+                toggle.type = "button";
+                toggle.className = "--sgd-language-toggle";
+                toggle.setAttribute("aria-label", "Chọn ngôn ngữ");
+                toggle.setAttribute("aria-expanded", "false");
+                toggle.setAttribute("aria-controls", "--sgd-language-dropdown");
+
+                const arrow = document.createElement("span");
+                arrow.setAttribute("aria-hidden", "true");
+                toggle.appendChild(arrow);
+
+                actions.insertBefore(toggle, button);
+            }
+
+            if (!dropdown) {
+                dropdown = document.createElement("div");
+                dropdown.className = "--sgd-language-dropdown";
+                dropdown.id = "--sgd-language-dropdown";
+                dropdown.setAttribute("aria-hidden", "true");
+
+                const vietnameseLink = document.createElement("a");
+                vietnameseLink.className = "--sgd-language-option --sgd-language-option-vn";
+                vietnameseLink.href = SAGODENT_VIETNAMESE_URL;
+                vietnameseLink.setAttribute("aria-label", "Tiếng Việt");
+
+                const vietnameseFlag = document.createElement("img");
+                vietnameseFlag.className = "--sgd-flag-vn";
+                vietnameseFlag.src = SAGODENT_VIETNAMESE_FLAG_IMAGE_URL;
+                vietnameseFlag.alt = "Tiếng Việt";
+                vietnameseFlag.decoding = "async";
+
+                vietnameseLink.appendChild(vietnameseFlag);
+                dropdown.appendChild(vietnameseLink);
+                actions.insertBefore(dropdown, button);
+            } else {
+                dropdown.id = dropdown.id || "--sgd-language-dropdown";
+                dropdown.setAttribute("aria-hidden", "true");
+
+                const vietnameseLink = dropdown.querySelector("a.--sgd-language-option-vn");
+                if (vietnameseLink && !(vietnameseLink.getAttribute("href") || "").trim()) {
+                    vietnameseLink.setAttribute("href", SAGODENT_VIETNAMESE_URL);
+                }
+            }
+
+            toggle.setAttribute("aria-controls", dropdown.id);
+            toggle.setAttribute("aria-expanded", "false");
+
+            return { toggle: toggle, dropdown: dropdown };
+        }
+
+        const mobileLanguage = prepareMobileLanguageDropdown();
+        const languageToggle = mobileLanguage.toggle;
+        const languageDropdown = mobileLanguage.dropdown;
+        let languageMenuOpen = false;
+
+        function isPhoneLanguageMode() {
+            return window.matchMedia("(max-width: " + SAGODENT_PHONE_MAX_WIDTH + "px)").matches;
+        }
+
+        function setLanguageMenu(open) {
+            const nextOpen = Boolean(open) && isPhoneLanguageMode();
+            languageMenuOpen = nextOpen;
+
+            if (languageToggle) {
+                languageToggle.classList.toggle("--sgd-open", nextOpen);
+                languageToggle.setAttribute("aria-expanded", String(nextOpen));
+            }
+
+            if (languageDropdown) {
+                languageDropdown.classList.toggle("--sgd-open", nextOpen);
+                languageDropdown.setAttribute("aria-hidden", String(!nextOpen));
+            }
+        }
+
+        if (languageToggle && languageDropdown) {
+            languageToggle.addEventListener("click", function(event) {
+                if (!isPhoneLanguageMode()) return;
+                event.preventDefault();
+                event.stopPropagation();
+                setLanguageMenu(!languageMenuOpen);
+            });
+
+            languageDropdown.addEventListener("click", function(event) {
+                event.stopPropagation();
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!languageMenuOpen) return;
+                if (languageToggle.contains(event.target)) return;
+                if (languageDropdown.contains(event.target)) return;
+                setLanguageMenu(false);
+            });
+        }
 
         button.type = "button";
         button.setAttribute("aria-expanded", "false");
@@ -516,6 +631,7 @@
         button.addEventListener("click", function(event) {
             event.preventDefault();
             event.stopPropagation();
+            setLanguageMenu(false);
             setMenu(!menuOpen);
         });
 
@@ -571,7 +687,9 @@
         });
 
         document.addEventListener("keydown", function(event) {
-            if (event.key === "Escape" && menuOpen) setMenu(false);
+            if (event.key !== "Escape") return;
+            if (languageMenuOpen) setLanguageMenu(false);
+            if (menuOpen) setMenu(false);
         });
 
         function rootVariable(name, fallback) {
@@ -1011,6 +1129,7 @@
             function() {
                 syncMobileViewportSize();
                 syncMenuLayout();
+                setLanguageMenu(false);
 
                 if (menuOpen && isMobileMenuMode()) {
                     lockMobilePageScroll();
@@ -1019,7 +1138,10 @@
                 requestUpdate();
             }, { passive: true },
         );
-        window.addEventListener("orientationchange", requestUpdate, {
+        window.addEventListener("orientationchange", function() {
+            setLanguageMenu(false);
+            requestUpdate();
+        }, {
             passive: true,
         });
         window.addEventListener("load", requestUpdate, { once: true });
