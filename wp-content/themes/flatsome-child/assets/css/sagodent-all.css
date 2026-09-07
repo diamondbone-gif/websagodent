@@ -6511,3 +6511,246 @@ body .--sgd-topbar .--sgd-language-dropdown {
         top: var(--menu-header-height, 68px) !important;
     }
 }
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — LIBRARY BUTTON FINAL RESPONSIVE FIX
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   - Nút nhỏ hơn bản trước khoảng 6px theo chiều cao.
+   - Hạn chế phụ thuộc vào vw để máy thật và Device Mode gần nhau hơn.
+   - Khoảng cách tiêu đề -> nút dùng row-gap, không căn theo nth-child,
+     nên khi tiêu đề đổi số dòng ở các màn hình khác nhau vẫn ổn định.
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    /*
+     * Trên điện thoại thật, Safari/Chrome có thể tự điều chỉnh cỡ chữ.
+     * Khóa riêng khu vực Library để kích thước nút/text ổn định hơn.
+     */
+    .sagodent-page .library-grid,
+    .sagodent-page .library-grid * {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    /*
+     * Không dùng hàng 1fr để đẩy nút xuống đáy card nữa.
+     * Tiêu đề và nút đi theo flow tự nhiên với một khoảng cách cố định tương đối.
+     * Nhờ vậy title 2/3/4 dòng vẫn giữ khoảng cách nút đồng đều trên nhiều mobile.
+     */
+    .sagodent-page .library-grid>a {
+        grid-template-rows: auto auto !important;
+        align-content: start !important;
+        row-gap: clamp(15px, 4vw, 20px) !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more {
+        position: relative !important;
+        top: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        align-self: start !important;
+        /*
+         * Bản trước: tối đa 155 x 48px.
+         * Bản này: tối đa 149 x 42px -> giảm 6px chiều cao,
+         * đồng thời chiều rộng co nhẹ để nút cân đối hơn.
+         */
+        width: clamp(124px, 36vw, 149px) !important;
+        min-width: clamp(124px, 36vw, 149px) !important;
+        max-width: clamp(124px, 36vw, 149px) !important;
+        height: clamp(34px, 10.5vw, 42px) !important;
+        min-height: clamp(34px, 10.5vw, 42px) !important;
+        max-height: clamp(34px, 10.5vw, 42px) !important;
+        margin: 0 !important;
+        padding: clamp(4px, 1.15vw, 5px) clamp(4px, 1.15vw, 5px) clamp(4px, 1.15vw, 5px) clamp(12px, 3.5vw, 15px) !important;
+        border: 0 !important;
+        border-radius: 999px !important;
+        background: var(--blue, #075d98) !important;
+        color: var(--sagodent-white, #ffffff) !important;
+        box-shadow: none !important;
+        font-family: var(--font-google, "Google Sans", Arial, sans-serif) !important;
+        font-size: 0 !important;
+        font-style: normal !important;
+        font-weight: 500 !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more::before {
+        content: "Xem chi tiết";
+        display: inline-block;
+        flex: 0 0 auto;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: var(--sagodent-white, #ffffff) !important;
+        font-family: var(--font-google, "Google Sans", Arial, sans-serif) !important;
+        font-size: clamp(11px, 3.1vw, 13px) !important;
+        font-style: normal !important;
+        font-weight: 500 !important;
+        line-height: 1 !important;
+        letter-spacing: 0 !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more::after {
+        content: "↗";
+        display: grid;
+        place-items: center;
+        flex: 0 0 clamp(24px, 7.7vw, 30px) !important;
+        width: clamp(24px, 7.7vw, 30px) !important;
+        height: clamp(24px, 7.7vw, 30px) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        background: var(--sky, #72bae3) !important;
+        color: var(--sagodent-white, #ffffff) !important;
+        font-family: Arial, sans-serif !important;
+        font-size: clamp(11px, 3.35vw, 14px) !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+    }
+}
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — FINAL ALIGNMENT + HERO POSITION STABILITY
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   - Căn giữa chữ "Xem chi tiết" trong phần thân nút, không tính vòng tròn icon.
+   - Cụm HERO (kicker + tiêu đề + CTA) neo theo đáy HERO thay vì top %, giúp
+     ổn định hơn giữa các màn hình điện thoại có chiều cao khác nhau.
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    /* --------------------------------------------------------
+       1) LIBRARY BUTTON — CĂN GIỮA TEXT THEO CHIỀU NGANG
+       -------------------------------------------------------- */
+    .sagodent-page .library-grid .library-card-more {
+        gap: 0 !important;
+        /* Hai đầu nút dùng padding cân nhau; phần chữ tự chiếm vùng còn lại. */
+        padding: clamp(4px, 1.15vw, 5px) !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more::before {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more::after {
+        flex: 0 0 clamp(24px, 7.7vw, 30px) !important;
+        margin-left: 0 !important;
+    }
+
+    /* --------------------------------------------------------
+       2) HERO — ỔN ĐỊNH VỊ TRÍ CỤM CHỮ + NÚT TRÊN NHIỀU MOBILE
+       -------------------------------------------------------- */
+    .sagodent-page .hero-copy,
+    .sagodent-page .hero-copy[data-reveal],
+    .sagodent-page .hero-copy[data-reveal].revealed {
+        /* Bỏ cách canh bằng top % + translate vì dễ lệch theo chiều cao máy. */
+        top: auto !important;
+        bottom: clamp(44px, 12vw, 60px) !important;
+        left: clamp(18px, 5vw, 28px) !important;
+        right: clamp(18px, 5vw, 28px) !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    /* Tiêu đề co giãn theo chiều rộng màn hình nhưng có giới hạn rõ ràng. */
+    .sagodent-page .hero-copy h1 {
+        max-width: 100% !important;
+        font-size: clamp(34px, 11.6vw, 50px) !important;
+        line-height: .88 !important;
+        letter-spacing: -.045em !important;
+        white-space: nowrap !important;
+    }
+
+    .sagodent-page .hero-copy em {
+        max-width: 100% !important;
+        font-size: clamp(40px, 13vw, 56px) !important;
+        line-height: .92 !important;
+        letter-spacing: -.035em !important;
+        white-space: nowrap !important;
+    }
+
+    .sagodent-page .hero-copy>p,
+    .sagodent-page .hero-copy>span {
+        font-size: clamp(11px, 3vw, 14px) !important;
+    }
+
+    /* Khoảng cách CTA cũng responsive để cả cụm luôn cân đối. */
+    .sagodent-page .hero-copy .hero-actions {
+        margin-top: clamp(24px, 6.5vw, 32px) !important;
+        transform: none !important;
+    }
+
+    .sagodent-page .hero-copy .hero-actions>.pill {
+        min-height: clamp(44px, 11.5vw, 48px) !important;
+        padding: clamp(11px, 3vw, 13px) clamp(20px, 5.8vw, 24px) !important;
+        font-size: clamp(12px, 3.35vw, 14px) !important;
+    }
+}
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — HERO CTA VERTICAL FINE-TUNE
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Chỉ hạ riêng nút "Tham gia ngay" xuống nhẹ để khoảng trống phía trên
+     và phía dưới cân hơn theo ảnh tham chiếu.
+   - Không dịch chuyển kicker / tiêu đề HERO.
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   ============================================================ */
+
+@media (max-width: 600px) {
+    .sagodent-page .hero-copy .hero-actions {
+        transform: translateY(clamp(8px, 2.4vw, 11px)) !important;
+    }
+}
+
+
+/* ==========================================================================
+   MOBILE PHONE ONLY — DIFFERENCE SECTION COMPACT VERTICAL SPACING
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Thu gọn khoảng cách dọc của các khối 01 / 02 / 03 một cách đồng đều.
+   - Giữ nguyên font-size, màu sắc, ảnh, HTML, JS và hiệu ứng sticky hiện tại.
+   - Tablet / Desktop / PC > 600px không bị ảnh hưởng.
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    /*
+     * Giá trị gốc trên responsive:
+     * - min-height: 500px
+     * - padding-top: 200px
+     * - number top: 92px
+     * - dot top: 230px
+     *
+     * Mobile được rút gọn theo cùng một nhịp để hình phía dưới xuất hiện sớm hơn,
+     * nhưng vẫn giữ bố cục và khoảng thở cân đối như thiết kế hiện tại.
+     */
+    .sagodent-page {
+        --difference-rwd-row-min-height: 420px;
+        --difference-rwd-text-padding: 155px 7vw 36px 14vw;
+        --difference-rwd-number-top: 64px;
+        --difference-rwd-dot-top: 187px;
+    }
+
+    /* Giảm nhẹ khoảng cách giữa tiêu đề và nội dung, không đổi cỡ chữ. */
+    .sagodent-page .difference .difference-text h3,
+    .sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed {
+        margin: 14px 0 18px !important;
+    }
+}
