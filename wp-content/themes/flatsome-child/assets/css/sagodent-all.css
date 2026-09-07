@@ -6494,3 +6494,20 @@ body .--sgd-topbar .--sgd-language-dropdown {
         background-repeat: no-repeat;
     }
 }
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — DIFFERENCE STICKY SCROLL RESTORE
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Khôi phục hiệu ứng sticky/stacking của .difference-row như desktop.
+   - Desktop / PC / Tablet > 600px giữ nguyên 100% giao diện hiện tại.
+   - Không thay đổi HTML, JS, màu sắc, kích thước hoặc bố cục mobile hiện có.
+   ============================================================ */
+
+@media (max-width: 600px) {
+    .sagodent-page .difference-row {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: var(--menu-header-height, 68px) !important;
+    }
+}
