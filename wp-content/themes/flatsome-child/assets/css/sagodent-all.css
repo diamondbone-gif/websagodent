@@ -3784,8 +3784,15 @@ body .--sgd-menu-panel a>span:last-child {
         background-position: center center;
     }
 
+    /* MOBILE PHONE ONLY: đưa phần text lên trước hình ảnh.
+       Desktop / PC / Tablet giữ nguyên thứ tự hiện tại. */
     .sagodent-page .intro-copy {
+        order: 1 !important;
         padding: 48px 7vw;
+    }
+
+    .sagodent-page .intro-photo {
+        order: 2 !important;
     }
 
     .sagodent-page .intro-copy h2 {
