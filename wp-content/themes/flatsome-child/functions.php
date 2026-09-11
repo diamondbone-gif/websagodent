@@ -596,25 +596,70 @@ add_filter(
 
 
 // 
-add_filter('the_content', 'protect_ux_html_from_wpautop', 9);
-function protect_ux_html_from_wpautop($content)
+// add_filter('the_content', 'protect_ux_html_from_wpautop', 9);
+// function protect_ux_html_from_wpautop($content)
+// {
+//     // Nếu nội dung không có element HTML của Flatsome thì bỏ qua để tối ưu hiệu suất
+//     if (strpos($content, 'ux_html') === false) {
+//         return $content;
+//     }
+
+//     // Regex quét toàn bộ thẻ [ux_html], bất kể có chứa attributes (label, id, class...) hay không
+//     $content = preg_replace_callback('/(\[ux_html[^\]]*\])(.*?)(\[\/ux_html\])/is', function ($matches) {
+//         $opening_tag = $matches[1]; // [ux_html label="..."]
+//         $html_content = $matches[2]; // Nội dung HTML của bạn
+//         $closing_tag = $matches[3]; // [/ux_html]
+
+//         // Loại bỏ triệt để các dấu xuống dòng (\r, \n) bằng khoảng trắng
+//         $clean_html = preg_replace('/[\r\n]+/', ' ', $html_content);
+
+//         return $opening_tag . $clean_html . $closing_tag;
+//     }, $content);
+
+//     return $content;
+// }
+
+
+// remove_filter('the_content', 'wpautop');
+
+
+// functions.php của child theme
+
+function my_ux_no_autop_tags()
 {
-    // Nếu nội dung không có element HTML của Flatsome thì bỏ qua để tối ưu hiệu suất
-    if (strpos($content, 'ux_html') === false) {
-        return $content;
+    return array('text_box'); // đổi thành tag thật của bạn
+}
+
+// Bước 1: chạy TRƯỚC wpautop (priority 9 < 10)
+add_filter('the_content', 'my_shield_ux_html_before_wpautop', 9);
+function my_shield_ux_html_before_wpautop($content)
+{
+    foreach (my_ux_no_autop_tags() as $tag) {
+        $pattern = '/\[' . preg_quote($tag, '/') . '([^\]]*)\](.*?)\[\/' . preg_quote($tag, '/') . '\]/s';
+        $content = preg_replace_callback($pattern, function ($m) use ($tag) {
+            $attrs   = $m[1];
+            $inner   = $m[2];
+            $encoded = base64_encode($inner); // không còn xuống dòng -> wpautop "vô hại"
+            return '[' . $tag . $attrs . ']' . $encoded . '[/' . $tag . ']';
+        }, $content);
     }
+    return $content;
+}
 
-    // Regex quét toàn bộ thẻ [ux_html], bất kể có chứa attributes (label, id, class...) hay không
-    $content = preg_replace_callback('/(\[ux_html[^\]]*\])(.*?)(\[\/ux_html\])/is', function ($matches) {
-        $opening_tag = $matches[1]; // [ux_html label="..."]
-        $html_content = $matches[2]; // Nội dung HTML của bạn
-        $closing_tag = $matches[3]; // [/ux_html]
-
-        // Loại bỏ triệt để các dấu xuống dòng (\r, \n) bằng khoảng trắng
-        $clean_html = preg_replace('/[\r\n]+/', ' ', $html_content);
-
-        return $opening_tag . $clean_html . $closing_tag;
-    }, $content);
-
+// Bước 2: chạy SAU wpautop, TRƯỚC do_shortcode (do_shortcode priority 11)
+// Add ở priority 10: các filter core cùng priority 10 (gồm wpautop) đã được add
+// từ lúc WP core khởi động, filter add trong functions.php sẽ nối vào SAU cùng
+// trong "hàng đợi" priority 10 -> nghĩa là chạy SAU wpautop, nhưng vẫn trước do_shortcode(11).
+add_filter('the_content', 'my_unshield_ux_html_after_wpautop', 10);
+function my_unshield_ux_html_after_wpautop($content)
+{
+    foreach (my_ux_no_autop_tags() as $tag) {
+        $pattern = '/\[' . preg_quote($tag, '/') . '([^\]]*)\](.*?)\[\/' . preg_quote($tag, '/') . '\]/s';
+        $content = preg_replace_callback($pattern, function ($m) use ($tag) {
+            $attrs   = $m[1];
+            $decoded = base64_decode($m[2]);
+            return '[' . $tag . $attrs . ']' . $decoded . '[/' . $tag . ']';
+        }, $content);
+    }
     return $content;
 }

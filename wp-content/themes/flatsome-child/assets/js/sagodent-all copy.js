@@ -3,8 +3,9 @@
    ============================================================ */
 /* ============================================================
    SAGODENT MENU — MOBILE FIX + LIQUID GLASS
-   - Drawer luôn mở từ bên phải.
-   - Header và drawer nhận cùng màu/tone.
+   - Desktop > 900px: menu hiển thị ngang trực tiếp trên header.
+   - Mobile/Tablet <= 900px: drawer vẫn mở từ bên phải như bản gốc.
+   - Header và menu nhận cùng màu/tone.
    - Chữ, link, mũi tên trong drawer đổi theo tone.
    - VN/ENG được giữ bởi CSS ở mọi breakpoint.
    - Nhận diện được Section của Flatsome trên desktop/mobile/tablet.
@@ -12,6 +13,22 @@
    ============================================================ */
 (function() {
     "use strict";
+
+    /* ============================================================
+       LANGUAGE QUICK CONFIG
+       - Mặc định link ENG để trống. Khi cần đổi trang, dán link vào href trong HTML hoặc SAGODENT_LANGUAGE_URL.
+       - Nếu muốn dùng ảnh lá cờ từ Media Library, dán URL ảnh vào SAGODENT_FLAG_IMAGE_URL.
+       - Để SAGODENT_FLAG_IMAGE_URL = "" thì giữ nguyên SVG lá cờ hiện tại.
+       - Nếu HTML đã có href/src riêng, JS ưu tiên giữ giá trị trong HTML.
+       ============================================================ */
+    const SAGODENT_LANGUAGE_URL = "";
+    const SAGODENT_FLAG_IMAGE_URL = "https://sagodent.com/wp-content/uploads/2026/09/1788493537780_1387843300402958155_1387843300402958155_6813b47d7cb216dce427a6d065133787.jpg";
+
+    /* MOBILE ONLY <= 600px: dropdown ngôn ngữ.
+       Desktop / tablet không dùng các biến này nên giao diện cũ được giữ nguyên. */
+    const SAGODENT_PHONE_MAX_WIDTH = 600;
+    const SAGODENT_VIETNAMESE_URL = "#";
+    const SAGODENT_VIETNAMESE_FLAG_IMAGE_URL = "https://sagodent.com/wp-content/uploads/2026/09/1788493543944_1387843300402958155_1387843300402958155_af10ec38ece6559846e52ee055d77457.jpg";
 
     function initSagodentMenu() {
         const menuRoot = Array.from(
@@ -43,6 +60,183 @@
 
         const button = header.querySelector(".--sgd-menu-button");
         if (!button) return;
+
+        /*
+         * ENG CLICKABLE LINK + OPTIONAL FLAG IMAGE URL
+         * - Không thay đổi bố cục/tone/blur/menu logic.
+         * - HTML cũ dùng <span class="--sgd-language"> vẫn chạy: JS tự đổi thành <a>.
+         * - Nếu sau này bạn tự đổi HTML thành <a href="..."> thì href đó được giữ nguyên.
+         * - Nếu đặt data-flag-src hoặc SAGODENT_FLAG_IMAGE_URL, SVG cờ hiện tại sẽ được
+         *   thay bằng <img> cùng class nên giao diện không đổi.
+         */
+        function prepareLanguageControl() {
+            const originalLanguage = header.querySelector(".--sgd-language");
+            if (!originalLanguage) return;
+
+            let languageLink = originalLanguage;
+
+            if (originalLanguage.tagName.toLowerCase() !== "a") {
+                languageLink = document.createElement("a");
+
+                Array.from(originalLanguage.attributes).forEach(function(attribute) {
+                    languageLink.setAttribute(attribute.name, attribute.value);
+                });
+
+                languageLink.classList.add("--sgd-language-link");
+
+                while (originalLanguage.firstChild) {
+                    languageLink.appendChild(originalLanguage.firstChild);
+                }
+
+                originalLanguage.replaceWith(languageLink);
+            } else {
+                languageLink.classList.add("--sgd-language-link");
+            }
+
+            const htmlLanguageUrl = (languageLink.getAttribute("href") || "").trim();
+            const dataLanguageUrl = (languageLink.getAttribute("data-language-url") || "").trim();
+            const finalLanguageUrl = htmlLanguageUrl || dataLanguageUrl || SAGODENT_LANGUAGE_URL;
+
+            if (finalLanguageUrl) {
+                languageLink.setAttribute("href", finalLanguageUrl);
+            }
+
+            languageLink.setAttribute("aria-label", languageLink.getAttribute("aria-label") || "English");
+
+            const currentFlag = languageLink.querySelector(".--sgd-flag-us");
+            const currentFlagSrc =
+                currentFlag && currentFlag.tagName.toLowerCase() === "img" ?
+                (currentFlag.getAttribute("src") || "").trim() :
+                "";
+            const dataFlagSrc = (languageLink.getAttribute("data-flag-src") || "").trim();
+            const finalFlagSrc = currentFlagSrc || dataFlagSrc || SAGODENT_FLAG_IMAGE_URL;
+
+            if (finalFlagSrc && (!currentFlag || currentFlag.tagName.toLowerCase() !== "img")) {
+                const flagImage = document.createElement("img");
+                flagImage.className = "--sgd-flag-us";
+                flagImage.src = finalFlagSrc;
+                flagImage.alt = "";
+                flagImage.setAttribute("aria-hidden", "true");
+                flagImage.decoding = "async";
+
+                if (currentFlag) {
+                    currentFlag.replaceWith(flagImage);
+                } else {
+                    languageLink.insertBefore(flagImage, languageLink.firstChild);
+                }
+            }
+        }
+
+        prepareLanguageControl();
+
+        /* ============================================================
+           MOBILE PHONE ONLY — LANGUAGE DROPDOWN
+           - <= 600px: chỉ hiện cờ ENG + mũi tên xổ xuống.
+           - Dropdown chứa cờ Việt Nam là thẻ <a> thật.
+           - > 600px: toggle/dropdown bị CSS ẩn hoàn toàn, không đổi desktop/tablet.
+           - JS tự tạo phần tử nếu HTML cũ chưa có, vì vậy có thể dùng cả HTML cũ hoặc HTML mới.
+           ============================================================ */
+        function prepareMobileLanguageDropdown() {
+            const actions = header.querySelector(".--sgd-header-actions");
+            if (!actions) return { toggle: null, dropdown: null };
+
+            let toggle = actions.querySelector(".--sgd-language-toggle");
+            let dropdown = actions.querySelector(".--sgd-language-dropdown");
+
+            if (!toggle) {
+                toggle = document.createElement("button");
+                toggle.type = "button";
+                toggle.className = "--sgd-language-toggle";
+                toggle.setAttribute("aria-label", "Chọn ngôn ngữ");
+                toggle.setAttribute("aria-expanded", "false");
+                toggle.setAttribute("aria-controls", "--sgd-language-dropdown");
+
+                const arrow = document.createElement("span");
+                arrow.setAttribute("aria-hidden", "true");
+                toggle.appendChild(arrow);
+
+                actions.insertBefore(toggle, button);
+            }
+
+            if (!dropdown) {
+                dropdown = document.createElement("div");
+                dropdown.className = "--sgd-language-dropdown";
+                dropdown.id = "--sgd-language-dropdown";
+                dropdown.setAttribute("aria-hidden", "true");
+
+                const vietnameseLink = document.createElement("a");
+                vietnameseLink.className = "--sgd-language-option --sgd-language-option-vn";
+                vietnameseLink.href = SAGODENT_VIETNAMESE_URL;
+                vietnameseLink.setAttribute("aria-label", "Tiếng Việt");
+
+                const vietnameseFlag = document.createElement("img");
+                vietnameseFlag.className = "--sgd-flag-vn";
+                vietnameseFlag.src = SAGODENT_VIETNAMESE_FLAG_IMAGE_URL;
+                vietnameseFlag.alt = "Tiếng Việt";
+                vietnameseFlag.decoding = "async";
+
+                vietnameseLink.appendChild(vietnameseFlag);
+                dropdown.appendChild(vietnameseLink);
+                actions.insertBefore(dropdown, button);
+            } else {
+                dropdown.id = dropdown.id || "--sgd-language-dropdown";
+                dropdown.setAttribute("aria-hidden", "true");
+
+                const vietnameseLink = dropdown.querySelector("a.--sgd-language-option-vn");
+                if (vietnameseLink && !(vietnameseLink.getAttribute("href") || "").trim()) {
+                    vietnameseLink.setAttribute("href", SAGODENT_VIETNAMESE_URL);
+                }
+            }
+
+            toggle.setAttribute("aria-controls", dropdown.id);
+            toggle.setAttribute("aria-expanded", "false");
+
+            return { toggle: toggle, dropdown: dropdown };
+        }
+
+        const mobileLanguage = prepareMobileLanguageDropdown();
+        const languageToggle = mobileLanguage.toggle;
+        const languageDropdown = mobileLanguage.dropdown;
+        let languageMenuOpen = false;
+
+        function isPhoneLanguageMode() {
+            return window.matchMedia("(max-width: " + SAGODENT_PHONE_MAX_WIDTH + "px)").matches;
+        }
+
+        function setLanguageMenu(open) {
+            const nextOpen = Boolean(open) && isPhoneLanguageMode();
+            languageMenuOpen = nextOpen;
+
+            if (languageToggle) {
+                languageToggle.classList.toggle("--sgd-open", nextOpen);
+                languageToggle.setAttribute("aria-expanded", String(nextOpen));
+            }
+
+            if (languageDropdown) {
+                languageDropdown.classList.toggle("--sgd-open", nextOpen);
+                languageDropdown.setAttribute("aria-hidden", String(!nextOpen));
+            }
+        }
+
+        if (languageToggle && languageDropdown) {
+            languageToggle.addEventListener("click", function(event) {
+                if (!isPhoneLanguageMode()) return;
+                event.preventDefault();
+                event.stopPropagation();
+                setLanguageMenu(!languageMenuOpen);
+            });
+
+            languageDropdown.addEventListener("click", function(event) {
+                event.stopPropagation();
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!languageMenuOpen) return;
+                if (languageToggle.contains(event.target)) return;
+                if (languageDropdown.contains(event.target)) return;
+                setLanguageMenu(false);
+            });
+        }
 
         button.type = "button";
         button.setAttribute("aria-expanded", "false");
@@ -156,6 +350,108 @@
 
         function isMobileMenuMode() {
             return window.matchMedia("(max-width: 900px)").matches;
+        }
+
+        /*
+         * DESKTOP INLINE NAV / MOBILE DRAWER
+         * - Desktop > 900px: gom 5 tab + ENG vào một cụm duy nhất rồi căn giữa theo viewport.
+         * - Logo KHÔNG bị di chuyển: vẫn là phần tử con độc lập của header ở vị trí gốc.
+         * - Mobile/Tablet <= 900px: tháo cụm giữa, trả panel về body để giữ nguyên drawer cũ.
+         * - Không clone thêm menu, vì vậy tone, blur, smooth-scroll và progress vẫn dùng logic gốc.
+         */
+        const headerActions = header.querySelector(".--sgd-header-actions");
+        let desktopCenterGroup = null;
+
+        function ensureDesktopCenterGroup() {
+            if (
+                desktopCenterGroup &&
+                desktopCenterGroup.isConnected &&
+                desktopCenterGroup.parentElement === header
+            ) {
+                return desktopCenterGroup;
+            }
+
+            desktopCenterGroup = header.querySelector(
+                ":scope > .--sgd-desktop-center-group",
+            );
+
+            if (!desktopCenterGroup) {
+                desktopCenterGroup = document.createElement("div");
+                desktopCenterGroup.className = "--sgd-desktop-center-group";
+                desktopCenterGroup.setAttribute("aria-label", "Điều hướng chính và ngôn ngữ");
+                header.appendChild(desktopCenterGroup);
+            }
+
+            return desktopCenterGroup;
+        }
+
+        function releaseDesktopCenterGroup() {
+            const group =
+                desktopCenterGroup ||
+                header.querySelector(":scope > .--sgd-desktop-center-group");
+
+            if (!group) return;
+
+            /* Trả ENG về header trước khi xóa wrapper. Logo hoàn toàn không bị đụng tới. */
+            if (headerActions && headerActions.parentElement === group) {
+                header.appendChild(headerActions);
+            }
+
+            if (panel.parentElement === group) {
+                document.body.insertBefore(panel, header);
+            }
+
+            group.remove();
+            desktopCenterGroup = null;
+        }
+
+        function syncMenuLayout() {
+            const mobile = isMobileMenuMode();
+
+            if (mobile) {
+                header.classList.remove("--sgd-desktop-nav");
+                panel.classList.remove("--sgd-desktop-inline");
+
+                releaseDesktopCenterGroup();
+
+                if (panel.parentElement !== document.body) {
+                    document.body.insertBefore(panel, header);
+                }
+
+                button.removeAttribute("aria-hidden");
+                button.removeAttribute("tabindex");
+                panel.setAttribute("aria-hidden", String(!menuOpen));
+                return;
+            }
+
+            /* Nếu vừa resize từ mobile đang mở drawer sang desktop, đóng sạch trạng thái drawer. */
+            if (mobileScrollLocked) unlockMobilePageScroll();
+
+            menuOpen = false;
+            header.classList.remove("--sgd-menu-open");
+            panel.classList.remove("--sgd-open");
+            backdrop.classList.remove("--sgd-open");
+            document.documentElement.classList.remove("--sgd-sagodent-menu-open");
+
+            const group = ensureDesktopCenterGroup();
+
+            /* Cụm giữa = panel menu + ENG. Logo vẫn đứng riêng ở đầu header. */
+            if (panel.parentElement !== group) {
+                group.appendChild(panel);
+            }
+
+            if (headerActions && headerActions.parentElement !== group) {
+                group.appendChild(headerActions);
+            }
+
+            header.classList.add("--sgd-desktop-nav");
+            panel.classList.add("--sgd-desktop-inline");
+
+            button.setAttribute("aria-expanded", "false");
+            button.setAttribute("aria-hidden", "true");
+            button.setAttribute("tabindex", "-1");
+            panel.setAttribute("aria-hidden", "false");
+            backdrop.setAttribute("aria-hidden", "true");
         }
 
         function lockMobilePageScroll() {
@@ -280,13 +576,32 @@
         ].join(",");
 
         function setMenu(open) {
+            /*
+             * Desktop dùng menu ngang luôn hiển thị, nên setMenu chỉ có nhiệm vụ
+             * bảo đảm drawer/backdrop luôn đóng và không ẩn panel khỏi accessibility tree.
+             */
+            if (!isMobileMenuMode()) {
+                if (mobileScrollLocked) unlockMobilePageScroll();
+
+                menuOpen = false;
+                header.classList.remove("--sgd-menu-open");
+                panel.classList.remove("--sgd-open");
+                backdrop.classList.remove("--sgd-open");
+                document.documentElement.classList.remove("--sgd-sagodent-menu-open");
+
+                button.setAttribute("aria-expanded", "false");
+                panel.setAttribute("aria-hidden", "false");
+                backdrop.setAttribute("aria-hidden", "true");
+
+                applyTheme(findZoneUnderHeader() || currentZone);
+                requestUpdate();
+                return;
+            }
+
             const nextOpen = Boolean(open);
             const wasOpen = menuOpen;
 
-            /*
-             * Mobile/tablet: khóa vị trí trang TRƯỚC khi thêm class mở menu.
-             * Desktop: không khóa để giữ đúng logic sticky/Lenis hiện tại.
-             */
+            /* Mobile/tablet: giữ nguyên cơ chế khóa scroll cũ. */
             if (nextOpen && !wasOpen) {
                 lockMobilePageScroll();
             }
@@ -307,20 +622,8 @@
 
             if (!menuOpen && wasOpen) {
                 unlockMobilePageScroll();
-            } else if (menuOpen && !isMobileMenuMode() && window.sagodentLenis) {
-                /* Desktop vẫn giữ cuộn trang/Lenis như logic cũ. */
-                if (typeof window.sagodentLenis.resize === "function") {
-                    window.sagodentLenis.resize();
-                }
-                if (typeof window.sagodentLenis.start === "function") {
-                    window.sagodentLenis.start();
-                }
             }
 
-            /*
-             * FIX: luôn lấy section thật đang nằm dưới header khi mở/đóng drawer.
-             * Không dùng currentZone cũ vì desktop vẫn được phép cuộn khi menu đang mở.
-             */
             applyTheme(findZoneUnderHeader() || currentZone);
             requestUpdate();
         }
@@ -328,6 +631,7 @@
         button.addEventListener("click", function(event) {
             event.preventDefault();
             event.stopPropagation();
+            setLanguageMenu(false);
             setMenu(!menuOpen);
         });
 
@@ -383,7 +687,9 @@
         });
 
         document.addEventListener("keydown", function(event) {
-            if (event.key === "Escape" && menuOpen) setMenu(false);
+            if (event.key !== "Escape") return;
+            if (languageMenuOpen) setLanguageMenu(false);
+            if (menuOpen) setMenu(false);
         });
 
         function rootVariable(name, fallback) {
@@ -822,17 +1128,20 @@
             "resize",
             function() {
                 syncMobileViewportSize();
-                if (menuOpen) {
-                    if (isMobileMenuMode()) {
-                        lockMobilePageScroll();
-                    } else {
-                        unlockMobilePageScroll();
-                    }
+                syncMenuLayout();
+                setLanguageMenu(false);
+
+                if (menuOpen && isMobileMenuMode()) {
+                    lockMobilePageScroll();
                 }
+
                 requestUpdate();
             }, { passive: true },
         );
-        window.addEventListener("orientationchange", requestUpdate, {
+        window.addEventListener("orientationchange", function() {
+            setLanguageMenu(false);
+            requestUpdate();
+        }, {
             passive: true,
         });
         window.addEventListener("load", requestUpdate, { once: true });
@@ -855,6 +1164,7 @@
         }
 
         setMenu(false);
+        syncMenuLayout();
         updateMenu();
 
         window.setTimeout(requestUpdate, 120);
@@ -892,7 +1202,7 @@
             intro: "Quy trình veneer tinh gọn từ lập kế hoạch, sửa soạn, lấy dấu kỹ thuật số đến gắn hoàn tất — tập trung vào tính tiên lượng và ứng dụng lâm sàng.",
             topics: ["Digital planning", "Mock-up", "Preparation control"],
             buttonText: "Xem chi tiết",
-            buttonLink: "http://localhost/websagodent/veneer/"
+            buttonLink: "https://sagodent.com/veneer/"
         },
         {
             tab: "BOPT",
@@ -932,6 +1242,33 @@
     const coursesSection = page.querySelector(".courses");
     let activeCourse = 0;
     let courseRenderRequest = 0;
+
+    /* ============================================================
+       COURSE AUTOPLAY
+       - Bắt đầu ở VENEER.
+       - Sau mỗi 3 giây tự chuyển sang khóa kế tiếp.
+       - Khi người dùng bấm tab / Prev / Next, timer được tính lại từ đầu.
+       ============================================================ */
+    const COURSE_AUTOPLAY_DELAY = 5000;
+    let courseAutoTimer = null;
+
+    function clearCourseAutoplay() {
+        if (courseAutoTimer !== null) {
+            window.clearTimeout(courseAutoTimer);
+            courseAutoTimer = null;
+        }
+    }
+
+    function scheduleCourseAutoplay() {
+        if (!coursesSection) return;
+
+        clearCourseAutoplay();
+
+        courseAutoTimer = window.setTimeout(function() {
+            renderCourse(activeCourse + 1);
+            scheduleCourseAutoplay();
+        }, COURSE_AUTOPLAY_DELAY);
+    }
 
     function escapeHtml(value) {
         if (!value) return "";
@@ -1000,7 +1337,11 @@
         coursesSection
             .querySelectorAll(".course-tabs button")
             .forEach(function(button, buttonIndex) {
-                button.classList.toggle("active", buttonIndex === activeCourse);
+                const isActive = buttonIndex === activeCourse;
+
+                button.classList.toggle("active", isActive);
+                button.setAttribute("aria-selected", String(isActive));
+                button.setAttribute("tabindex", isActive ? "0" : "-1");
             });
 
         coursesSection.classList.add("course-is-loading");
@@ -1022,22 +1363,43 @@
     if (coursesSection) {
         coursesSection.addEventListener("click", function(event) {
             const tab = event.target.closest(".course-tabs button");
+
             if (tab) {
                 const tabs = Array.from(
                     coursesSection.querySelectorAll(".course-tabs button"),
                 );
+
                 renderCourse(tabs.indexOf(tab));
+                scheduleCourseAutoplay();
                 return;
             }
+
             if (event.target.closest("[data-course-prev]")) {
                 renderCourse(activeCourse - 1);
+                scheduleCourseAutoplay();
+                return;
             }
+
             if (event.target.closest("[data-course-next]")) {
                 renderCourse(activeCourse + 1);
+                scheduleCourseAutoplay();
             }
         });
 
+        /* Ban đầu luôn hiển thị VENEER. */
         renderCourse(0);
+
+        /* Sau 3 giây: VENEER -> BOPT -> IMPLANT BASIC -> ALL ON 4 -> VENEER... */
+        scheduleCourseAutoplay();
+
+        /* Không để timer chạy ngầm khi tab trình duyệt bị ẩn. */
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                clearCourseAutoplay();
+            } else {
+                scheduleCourseAutoplay();
+            }
+        });
     }
 
     const revealElements = page.querySelectorAll("[data-reveal]");

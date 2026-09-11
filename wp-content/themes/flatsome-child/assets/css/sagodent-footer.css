@@ -759,3 +759,24 @@ body {
         line-height: 1.35;
     }
 }
+
+
+/* =========================================================
+   MOBILE TEXT WRAP FIX - ONLY MOBILE
+   - Desktop / PC / Tablet: unchanged
+   - Mobile <= 600px: force requested line breaks only
+   ========================================================= */
+
+.sagodent-mobile-break {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .sagodent-mobile-break {
+        display: block;
+    }
+
+    .sagodent-mobile-nowrap {
+        white-space: nowrap;
+    }
+}

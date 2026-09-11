@@ -759,11 +759,6 @@ body .--sgd-menu-panel small {
     font-weight: 500 !important;
 }
 
-body .--sgd-menu-panel a>span:last-child {
-    color: var(--menu-foreground) !important;
-    font-size: 18px !important;
-}
-
 
 /* ============================================================
    7. TABLET
@@ -1619,24 +1614,82 @@ body .--sgd-menu-panel a>span:last-child {
 }
 
 .sagodent-page .doctor-lead {
+    width: 100%;
+    max-width: none !important;
     font-size: var(--font-size-clamp-13px-1-1vw-18px) !important;
     font-weight: var(--font-weight-700);
     line-height: var(--line-height-1-4) !important;
     margin: var(--space-22) 0;
-    color: var(--ink) !important
+    color: var(--ink) !important;
 }
 
+
+/* Nội dung Doctor chạy full chiều rộng của khối bên trái, không chia 2 cột. */
+
 .sagodent-page .doctor-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2-8vw)
+    display: block;
+    width: 100%;
+    max-width: none;
 }
 
 .sagodent-page .doctor-copy p:not(.kicker) {
+    width: 100%;
+    max-width: none;
     line-height: var(--line-height-1-45);
     font-size: var(--font-size-clamp-10px-83vw-13px);
-    max-width: 760px;
-    color: var(--ink) !important
+    color: var(--ink) !important;
+}
+
+.sagodent-page .doctor-body {
+    width: 100%;
+    max-width: none !important;
+    margin: 0 0 clamp(24px, 2vw, 36px) !important;
+    font-size: clamp(15px, 1.05vw, 19px) !important;
+    line-height: 1.62 !important;
+    color: var(--ink) !important;
+}
+
+
+/* Danh sách các vai trò/chuyên môn quan trọng: mỗi ý có một gạch ngắn phía trước. */
+
+.sagodent-page .doctor-highlights {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: none;
+    gap: clamp(13px, 1vw, 18px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sagodent-page .doctor-highlights li {
+    display: grid;
+    grid-template-columns: 10px minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(10px, .85vw, 14px);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--ink);
+    font-size: clamp(15px, 1.02vw, 18px);
+    line-height: 1.5;
+}
+
+.sagodent-page .doctor-highlights li::before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin-top: .55em;
+    border-radius: 50%;
+    background: var(--blue, #075d98);
+}
+
+.sagodent-page .doctor-highlights li span {
+    display: block;
+    width: 100%;
+    min-width: 0;
 }
 
 .sagodent-page .doctor-portrait {
@@ -2766,10 +2819,6 @@ body .--sgd-menu-panel a>span:last-child {
         padding: var(--space-70) var(--page-gutter-mobile)
     }
 
-    .sagodent-page .doctor-columns {
-        grid-template-columns: 1fr
-    }
-
     .sagodent-page .doctor-portrait {
         min-height: 650px
     }
@@ -2829,7 +2878,12 @@ body .--sgd-menu-panel a>span:last-child {
 
 @media(max-width:600px) {
     .sagodent-page .hero {
-        min-height: 580px
+        height: 60svh;
+        min-height: 0
+    }
+
+    .sagodent-page .hero-copy {
+        top: 46%
     }
 
     .sagodent-page .hero-copy h1 {
@@ -3725,12 +3779,19 @@ body .--sgd-menu-panel a>span:last-child {
         background-position: center center;
     }
 
+    /* MOBILE PHONE ONLY: đưa phần text lên trước hình ảnh.
+       Desktop / PC / Tablet giữ nguyên thứ tự hiện tại. */
     .sagodent-page .intro-copy {
+        order: 1 !important;
         padding: 48px 7vw;
     }
 
+    .sagodent-page .intro-photo {
+        order: 2 !important;
+    }
+
     .sagodent-page .intro-copy h2 {
-        font-size: clamp(34px, 10.5vw, 42px);
+        font-size: clamp(34px, 11.5vw, 44px);
         line-height: 1.03;
     }
 }
@@ -4325,46 +4386,128 @@ body .--sgd-menu-panel a>span:last-child {
 
 
 /* ============================================================
+   DOCTOR — RESPONSIVE CHO NỘI DUNG FULL WIDTH + CHẤM TRÒN
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .sagodent-page .doctor-body {
+        margin-bottom: 26px !important;
+        font-size: clamp(15px, 2vw, 18px) !important;
+        line-height: 1.6 !important;
+    }
+
+    .sagodent-page .doctor-highlights {
+        gap: 15px;
+    }
+
+    .sagodent-page .doctor-highlights li {
+        grid-template-columns: 10px minmax(0, 1fr);
+        gap: 12px;
+        font-size: clamp(15px, 2vw, 18px);
+        line-height: 1.52;
+    }
+}
+
+@media (max-width: 600px) {
+    .sagodent-page .doctor-body {
+        margin-bottom: 24px !important;
+        font-size: 15px !important;
+        line-height: 1.62 !important;
+    }
+
+    .sagodent-page .doctor-highlights {
+        gap: 14px;
+    }
+
+    .sagodent-page .doctor-highlights li {
+        grid-template-columns: 9px minmax(0, 1fr);
+        gap: 10px;
+        font-size: 15px;
+        line-height: 1.55;
+    }
+}
+
+
+/* ============================================================
    FIX LỖI HIỂN THỊ THEO YÊU CẦU (KHÔNG SỬA LOGIC CŨ)
    ============================================================ */
 
 
-/* 1. HERO CTA — gom mô tả + nút thành một hàng để canh giữa ổn định */
+/* 1. HERO CTA — bỏ mô tả, đưa nút sát mép trái hero-copy và tăng kích thước riêng */
 
 .sagodent-page .hero-copy .hero-actions {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: var(--space-25);
-    margin-top: var(--space-25);
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: fit-content;
+    gap: 0;
+    margin-top: clamp(18px, 1.35vw, 28px);
+    padding: 0;
 }
 
-.sagodent-page .hero-copy .hero-actions>span {
-    display: block;
-    margin: 0 !important;
-    color: var(--white);
-    font-size: var(--font-size-15px);
-}
+
+/* Chỉ tăng nút CTA trong HERO, không ảnh hưởng các nút .pill khác trên trang. */
 
 .sagodent-page .hero-copy .hero-actions>.pill {
     flex: 0 0 auto;
+    min-height: 52px;
     margin: 0 !important;
+    padding: 14px 30px !important;
+    font-size: clamp(15px, .95vw, 18px) !important;
+    font-weight: 500;
+    line-height: 1 !important;
 }
 
 @media (min-width: 901px) {
     .sagodent-page .hero-copy .hero-actions {
-        gap: var(--space-1-3vw);
-        margin-top: var(--space-1-3vw);
+        /*
+         * DESKTOP / PC ONLY
+         * Căn CTA vào giữa khoảng trống dọc bên dưới WORKFLOW trên Desktop/PC.
+         * Khoảng cách dùng đơn vị theo chiều cao viewport (svh),
+         * giúp nhịp dọc ổn định hơn giữa màn hình 16:9 và 16:10.
+         *
+         * Không dùng JS.
+         * Không thay đổi vị trí tiêu đề WORKFLOW.
+         * Không tác động Tablet / Mobile.
+         */
+        margin-top: clamp(36px, 4.2vh, 44px) !important;
+        margin-top: clamp(36px, 4.2svh, 44px) !important;
+        transform: none !important;
+    }
+
+    .sagodent-page .hero-copy .hero-actions>.pill {
+        min-height: clamp(54px, 3.4vw, 64px);
+        padding: clamp(14px, .8vw, 17px) clamp(28px, 1.8vw, 36px) !important;
+        font-size: clamp(16px, 1vw, 19px) !important;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .sagodent-page .hero-copy .hero-actions {
+        /* Tablet: chỉ dịch CTA theo chiều dọc, không thay đổi chữ/ảnh/bố cục khác. */
+        margin-top: clamp(24px, 3.5vw, 32px) !important;
+        transform: translateY(clamp(12px, 2vw, 18px));
+    }
+}
+
+@media (max-width: 900px) {
+    .sagodent-page .hero-copy .hero-actions>.pill {
+        min-height: 50px;
+        padding: 13px 26px !important;
+        font-size: 15px !important;
     }
 }
 
 @media (max-width: 600px) {
     .sagodent-page .hero-copy .hero-actions {
-        gap: 12px;
+        margin-top: 40px;
     }
 
-    .sagodent-page .hero-copy .hero-actions>span {
-        font-size: clamp(11px, 3.2vw, 14px);
+    .sagodent-page .hero-copy .hero-actions>.pill {
+        min-height: 48px;
+        padding: 13px 24px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -4446,4 +4589,2386 @@ html.sagodent-page {
     backface-visibility: hidden;
     /* Đổi 'contain: paint' thành 'content' để tối ưu vùng bounding box tốt hơn */
     contain: content !important;
+}
+
+
+/* ============================================================
+   SAGODENT MENU — DESKTOP INLINE NAV OVERRIDE
+   Yêu cầu:
+   - > 900px: hiện 5 mục trực tiếp trên header.
+   - <= 900px: KHÔNG đụng tới drawer/mobile cũ.
+   - Giữ nguyên chiều cao header, liquid glass, đổi tone, logo swap, progress.
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+    /* Header giữ nguyên chiều cao, padding, gap và liquid-glass của code gốc. */
+    /* Bỏ margin auto cũ để chừa đúng vùng giữa cho nav. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-sagodent-logo,
+    main#--sgd-top>.--sgd-topbar>.--sgd-sagodent-logo {
+        margin: 0 !important;
+    }
+
+    /* Panel được JS đưa vào trong header, giữa logo và header-actions. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-desktop-inline {
+        position: static !important;
+        z-index: auto !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        order: 1 !important;
+        flex: 1 1 auto !important;
+        align-self: stretch !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: 900px !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        display: flex !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        gap: clamp(2px, .25vw, 8px) !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        overscroll-behavior: auto !important;
+        touch-action: auto !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        color: var(--menu-foreground) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        transition: color .35s ease !important;
+    }
+
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline * {
+        box-sizing: border-box !important;
+    }
+
+    /* Header actions nằm cuối; desktop chỉ còn VN/ENG. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        order: 2 !important;
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+        gap: 0 !important;
+    }
+
+    /* Desktop không cần nút mở drawer. */
+    body .--sgd-topbar.--sgd-desktop-nav .--sgd-menu-button {
+        display: none !important;
+    }
+
+    /* Mỗi link trở thành một mục menu ngang. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:visited {
+        position: relative !important;
+        flex: 0 1 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        width: auto !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 clamp(9px, .85vw, 17px) !important;
+        border: 0 !important;
+        background: transparent !important;
+        color: var(--menu-foreground) !important;
+        font-family: "Google Sans", Arial, sans-serif !important;
+        font-size: clamp(12px, .82vw, 15.5px) !important;
+        font-weight: 500 !important;
+        line-height: 1 !important;
+        letter-spacing: .025em !important;
+        white-space: nowrap !important;
+        text-decoration: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        transition: color .35s ease, opacity .22s ease !important;
+    }
+
+    /* Số thứ tự và mũi tên chỉ giữ trong drawer mobile để desktop gọn hơn. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a>small {
+        display: none !important;
+    }
+
+    /* Hover gọn: không làm link bị xê dịch như drawer. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding: 0 clamp(9px, .85vw, 17px) !important;
+        background: transparent !important;
+        opacity: .68 !important;
+        outline: 0 !important;
+    }
+
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        content: "" !important;
+        position: absolute !important;
+        right: clamp(9px, .85vw, 17px) !important;
+        bottom: 13px !important;
+        left: clamp(9px, .85vw, 17px) !important;
+        height: 1px !important;
+        background: currentColor !important;
+        opacity: 0 !important;
+        transform: scaleX(.3) !important;
+        transform-origin: center !important;
+        transition: opacity .22s ease, transform .25s ease !important;
+    }
+
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:hover::after,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible::after {
+        opacity: .65 !important;
+        transform: scaleX(1) !important;
+    }
+
+    /* Desktop inline nav dùng chính lớp kính của header; không tạo backdrop riêng. */
+    body>.--sgd-sagodent-menu-backdrop {
+        display: none !important;
+    }
+}
+
+
+/* Desktop hẹp: giảm khoảng cách nhưng vẫn giữ đủ 5 mục trên một hàng. */
+
+@media (min-width: 901px) and (max-width: 1180px) {
+
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:visited,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding-right: clamp(6px, .55vw, 10px) !important;
+        padding-left: clamp(6px, .55vw, 10px) !important;
+        font-size: clamp(11px, 1.05vw, 13px) !important;
+        letter-spacing: .01em !important;
+    }
+
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        right: clamp(6px, .55vw, 10px) !important;
+        left: clamp(6px, .55vw, 10px) !important;
+    }
+}
+
+
+/* ============================================================
+   SAGODENT MENU V2 — FONT LỚN + US FLAG / ENG + NAV GẦN LANGUAGE
+   - Không thay đổi vị trí logo.
+   - Không thay đổi chiều cao header.
+   - Desktop: font menu lớn hơn, menu dịch về phải để gần ENG.
+   - Mobile/tablet: giữ nguyên drawer và kích thước/logic cũ.
+   ============================================================ */
+
+
+/* Language mới: icon cờ Mỹ + ENG. Áp dụng mọi breakpoint. */
+
+body .--sgd-topbar .--sgd-language {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+body .--sgd-topbar .--sgd-language>i {
+    display: none !important;
+}
+
+body .--sgd-topbar .--sgd-flag-us {
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 28px !important;
+    height: 18px !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .24) !important;
+}
+
+body .--sgd-topbar .--sgd-language-label {
+    display: inline-block !important;
+    font: inherit !important;
+    line-height: 1 !important;
+    color: inherit !important;
+}
+
+@media (min-width: 901px) {
+
+    /* QUAN TRỌNG: logo không đụng tới, giữ nguyên vị trí do header gốc quyết định. */
+    /* Menu chiếm vùng giữa nhưng dồn về bên phải để mục LIÊN HỆ gần ENG hơn. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-desktop-inline {
+        max-width: none !important;
+        justify-content: flex-end !important;
+        gap: clamp(0px, .12vw, 3px) !important;
+        margin: 0 clamp(10px, 1vw, 18px) 0 auto !important;
+    }
+
+    /* Font menu desktop lớn hơn rõ rệt. */
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:visited {
+        padding-right: clamp(10px, .75vw, 15px) !important;
+        padding-left: clamp(10px, .75vw, 15px) !important;
+        font-size: clamp(17px, 1.02vw, 20px) !important;
+        font-weight: 500 !important;
+        letter-spacing: .012em !important;
+    }
+
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding-right: clamp(10px, .75vw, 15px) !important;
+        padding-left: clamp(10px, .75vw, 15px) !important;
+    }
+
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        right: clamp(10px, .75vw, 15px) !important;
+        left: clamp(10px, .75vw, 15px) !important;
+    }
+
+    /* ENG đồng bộ thị giác với tab menu và sát menu hơn. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        font-size: clamp(17px, 1.02vw, 20px) !important;
+    }
+
+    body .--sgd-topbar .--sgd-language {
+        gap: 8px !important;
+        padding: 0 !important;
+    }
+}
+
+
+/* Desktop hẹp: vẫn đủ 5 tab + ENG mà không đụng logo. */
+
+@media (min-width: 901px) and (max-width: 1180px) {
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-desktop-inline {
+        margin-right: 8px !important;
+    }
+
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:visited,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding-right: clamp(6px, .55vw, 9px) !important;
+        padding-left: clamp(6px, .55vw, 9px) !important;
+        font-size: clamp(15px, 1.42vw, 17px) !important;
+        letter-spacing: 0 !important;
+    }
+
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        right: clamp(6px, .55vw, 9px) !important;
+        left: clamp(6px, .55vw, 9px) !important;
+    }
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        font-size: clamp(15px, 1.42vw, 17px) !important;
+    }
+
+    body .--sgd-topbar .--sgd-flag-us {
+        width: 25px !important;
+        height: 16px !important;
+    }
+}
+
+
+/* ============================================================
+   SAGODENT MENU V3 — CENTER WHOLE NAV + LANGUAGE GROUP
+   - Canh giữa TOÀN BỘ: 5 tab + US FLAG + ENG.
+   - Logo giữ nguyên vị trí gốc.
+   - >= 1200px: căn giữa tuyệt đối theo viewport.
+   - 901–1199px: căn giữa trong vùng an toàn để không đè logo.
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-topbar {
+        position: fixed !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        order: 1 !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        gap: clamp(8px, .8vw, 16px) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: var(--menu-foreground) !important;
+        white-space: nowrap !important;
+        pointer-events: auto !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Nav không tự dồn sang phải nữa; nó là phần đầu của cụm giữa. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline {
+        flex: 0 1 auto !important;
+        width: auto !important;
+        max-width: none !important;
+        justify-content: center !important;
+        margin: 0 !important;
+    }
+
+    /* Language nằm sát sau LIÊN HỆ và cùng được tính vào tâm của cả cụm. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-header-actions {
+        order: 2 !important;
+        flex: 0 0 auto !important;
+        align-self: center !important;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+    }
+}
+
+
+/* Desktop rộng: tâm của cụm trùng chính xác tâm viewport. */
+
+@media (min-width: 1200px) {
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: absolute !important;
+        z-index: 3 !important;
+        top: 0 !important;
+        left: 50% !important;
+        right: auto !important;
+        width: max-content !important;
+        max-width: calc(100% - var(--menu-page-gutter) - var(--menu-page-gutter) - 150px) !important;
+        transform: translateX(-50%) !important;
+    }
+}
+
+
+/* Desktop hẹp: tránh cụm giữa chạm/đè logo nhưng vẫn giữ cảm giác cân giữa. */
+
+@media (min-width: 901px) and (max-width: 1199px) {
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: static !important;
+        flex: 1 1 auto !important;
+        width: auto !important;
+        max-width: none !important;
+        transform: none !important;
+        margin-left: clamp(12px, 2vw, 28px) !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:visited {
+        padding-right: clamp(7px, .65vw, 11px) !important;
+        padding-left: clamp(7px, .65vw, 11px) !important;
+        font-size: clamp(15px, 1.45vw, 17px) !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group .--sgd-flag-us {
+        width: 25px !important;
+        height: 16px !important;
+    }
+}
+
+
+/* ============================================================
+   SAGODENT MENU V4 — TRUE CENTER + IMAGE FLAG
+   - Căn chính giữa toàn cụm: 5 tab + ảnh cờ Mỹ + ENG.
+   - Logo giữ nguyên vị trí gốc.
+   - Cờ Mỹ là <img>, thay URL trực tiếp trong thuộc tính src của HTML.
+   ============================================================ */
+
+body .--sgd-topbar img.--sgd-flag-us {
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 28px !important;
+    height: 18px !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 2px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .22) !important;
+}
+
+@media (min-width: 901px) {
+
+    /* Căn TÂM THẬT theo viewport, không căn theo khoảng trống còn lại sau logo. */
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: absolute !important;
+        z-index: 3 !important;
+        top: 0 !important;
+        left: 50% !important;
+        right: auto !important;
+        width: max-content !important;
+        max-width: calc(100vw - 32px) !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: translateX(-50%) !important;
+        display: flex !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        gap: clamp(8px, .8vw, 16px) !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline {
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        justify-content: center !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-header-actions {
+        flex: 0 0 auto !important;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        align-self: center !important;
+    }
+}
+
+
+/* Desktop hẹp: vẫn giữ tâm tuyệt đối, chỉ thu khoảng cách/font để tránh chạm logo. */
+
+@media (min-width: 901px) and (max-width: 1199px) {
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: absolute !important;
+        left: 50% !important;
+        width: max-content !important;
+        max-width: calc(100vw - 24px) !important;
+        margin: 0 !important;
+        transform: translateX(-50%) !important;
+        gap: 7px !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:visited,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding-right: clamp(6px, .55vw, 10px) !important;
+        padding-left: clamp(6px, .55vw, 10px) !important;
+        font-size: clamp(14px, 1.42vw, 17px) !important;
+        letter-spacing: 0 !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group img.--sgd-flag-us {
+        width: 25px !important;
+        height: 16px !important;
+    }
+}
+
+
+/* ============================================================
+   SAGODENT MENU V5 — FINAL TRUE CENTER FIX
+   Mục tiêu:
+   - Căn GIỮA TOÀN BỘ cụm 5 tab + cờ + ENG theo viewport.
+   - Logo vẫn giữ nguyên vị trí / kích thước hiện tại.
+   - Không thay đổi logic đổi tone, liquid-glass, blur, progress, smooth-scroll.
+   - <= 900px vẫn dùng drawer mobile/tablet cũ.
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+    /* Header là mốc định vị; không đổi padding, chiều cao hay nền kính. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
+    main#--sgd-top>.--sgd-topbar {
+        position: fixed !important;
+    }
+
+    /* Logo giữ nguyên tọa độ bên trái, không tham gia phép căn giữa cụm nav. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-sagodent-logo,
+    main#--sgd-top>.--sgd-topbar>.--sgd-sagodent-logo {
+        position: relative !important;
+        z-index: 5 !important;
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+    }
+
+    /* Wrapper do JS tạo: tâm của wrapper = tâm viewport. */
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: absolute !important;
+        z-index: 4 !important;
+        top: 0 !important;
+        left: 50% !important;
+        right: auto !important;
+        width: max-content !important;
+        max-width: calc(100vw - 24px) !important;
+        height: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: translateX(-50%) !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        gap: clamp(8px, .75vw, 14px) !important;
+        color: var(--menu-foreground) !important;
+        white-space: nowrap !important;
+        pointer-events: auto !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Panel desktop nằm trong wrapper, bỏ hoàn toàn kiểu drawer fixed. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-sagodent-menu-mounted.--sgd-desktop-inline {
+        position: static !important;
+        z-index: auto !important;
+        inset: auto !important;
+        flex: 0 0 auto !important;
+        align-self: stretch !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        gap: 25px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        overscroll-behavior: auto !important;
+        touch-action: auto !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        color: var(--menu-foreground) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        transition: color .35s ease !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline * {
+        box-sizing: border-box !important;
+    }
+
+    /* 5 tab menu ngang. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:visited {
+        position: relative !important;
+        flex: 0 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        width: auto !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 clamp(10px, .76vw, 15px) !important;
+        border: 0 !important;
+        background: transparent !important;
+        color: var(--menu-foreground) !important;
+        font-family: "Google Sans", Arial, sans-serif !important;
+        font-size: clamp(17px, 1.02vw, 20px) !important;
+        font-weight: 500 !important;
+        line-height: 1 !important;
+        letter-spacing: .012em !important;
+        white-space: nowrap !important;
+        text-decoration: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        transition: color .35s ease, opacity .22s ease !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a>small {
+        display: none !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding: 0 clamp(10px, .76vw, 15px) !important;
+        background: transparent !important;
+        color: var(--menu-foreground) !important;
+        opacity: .68 !important;
+        outline: 0 !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        content: "" !important;
+        position: absolute !important;
+        right: clamp(10px, .76vw, 15px) !important;
+        bottom: 13px !important;
+        left: clamp(10px, .76vw, 15px) !important;
+        height: 1px !important;
+        background: currentColor !important;
+        opacity: 0 !important;
+        transform: scaleX(.3) !important;
+        transform-origin: center !important;
+        transition: opacity .22s ease, transform .25s ease !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover::after,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible::after {
+        opacity: .65 !important;
+        transform: scaleX(1) !important;
+    }
+
+    /* ENG nằm trong cùng wrapper nên được tính vào tâm thật của cả cụm. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-header-actions {
+        position: static !important;
+        order: 2 !important;
+        flex: 0 0 auto !important;
+        align-self: center !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        color: var(--menu-foreground) !important;
+        font-size: clamp(17px, 1.02vw, 20px) !important;
+        white-space: nowrap !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group .--sgd-language {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: var(--menu-foreground) !important;
+    }
+
+    /* Hỗ trợ cả SVG cờ hiện tại và IMG nếu sau này đổi HTML. */
+    body .--sgd-topbar>.--sgd-desktop-center-group .--sgd-flag-us {
+        display: block !important;
+        flex: 0 0 auto !important;
+        width: 28px !important;
+        height: 18px !important;
+        max-width: none !important;
+    }
+
+    /* Desktop không dùng nút drawer; mobile vẫn do code gốc điều khiển. */
+    body .--sgd-topbar.--sgd-desktop-nav .--sgd-menu-button {
+        display: none !important;
+    }
+
+    body>.--sgd-sagodent-menu-backdrop {
+        display: none !important;
+    }
+}
+
+
+/* 901–1100px: thu nhẹ menu để không chạm logo nhưng vẫn giữ tâm tuyệt đối. */
+
+@media (min-width: 901px) and (max-width: 1100px) {
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        gap: 6px !important;
+        max-width: calc(100vw - 16px) !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:visited,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        padding-right: clamp(5px, .55vw, 8px) !important;
+        padding-left: clamp(5px, .55vw, 8px) !important;
+        font-size: clamp(13px, 1.35vw, 15px) !important;
+        letter-spacing: 0 !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        right: clamp(5px, .55vw, 8px) !important;
+        left: clamp(5px, .55vw, 8px) !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-header-actions {
+        font-size: clamp(13px, 1.35vw, 15px) !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group .--sgd-flag-us {
+        width: 24px !important;
+        height: 15px !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group .--sgd-language {
+        gap: 6px !important;
+    }
+}
+
+
+/* ============================================================
+   SAGODENT LANGUAGE LINK — CLICKABLE, GIỮ NGUYÊN GIAO DIỆN
+   - Cho phép .--sgd-language là <a> mà không đổi kích thước/vị trí/màu.
+   - Tone sáng/tối tiếp tục kế thừa từ header như cũ.
+   ============================================================ */
+
+body .--sgd-topbar a.--sgd-language,
+body .--sgd-topbar a.--sgd-language:link,
+body .--sgd-topbar a.--sgd-language:visited {
+    color: inherit !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+}
+
+body .--sgd-topbar a.--sgd-language:hover,
+body .--sgd-topbar a.--sgd-language:focus-visible {
+    color: inherit !important;
+    text-decoration: none !important;
+    opacity: .72 !important;
+}
+
+body .--sgd-topbar a.--sgd-language:focus-visible {
+    outline: 1px solid currentColor !important;
+    outline-offset: 5px !important;
+    border-radius: 2px !important;
+}
+
+
+/* ============================================================
+   SAGODENT COURSE TABS — ACTIVE BLUE / WHITE TEXT
+   - Tab đang active: nền xanh, chữ trắng.
+   - Ghi đè cả rule responsive 2x2 ở mobile/tablet.
+   - Phần còn lại của CSS gốc được giữ nguyên.
+   ============================================================ */
+
+.sagodent-page {
+    --course-tab-active-background: var(--blue, #075d98);
+    --course-tab-active-color: #ffffff;
+}
+
+.sagodent-page .course-tabs button.active,
+.sagodent-page .course-tabs button.active:hover,
+.sagodent-page .course-tabs button.active:active {
+    background: var(--course-tab-active-background) !important;
+    color: var(--course-tab-active-color) !important;
+    border-bottom-color: var(--course-tab-active-background) !important;
+    box-shadow: none !important;
+}
+
+.sagodent-page .course-tabs button.active:focus-visible {
+    background: var(--course-tab-active-background) !important;
+    color: var(--course-tab-active-color) !important;
+    border-bottom-color: var(--course-tab-active-background) !important;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .82) !important;
+}
+
+
+/* ========================================================================== 
+   FINAL OVERRIDE — DIFFERENCE SECTION
+   Mục tiêu:
+   1) Tiêu đề 01 / 02 / 03 LUÔN cùng font-size ở cùng một breakpoint.
+   2) Tiêu đề và đoạn văn giữ căn tự nhiên; không ép căn đều hai lề.
+   3) Riêng tiêu đề 01 giữ đúng 2 dòng chủ đích bằng HTML .difference-title-line.
+   4) Nếu màn hình rất nhỏ cần giảm chữ, CẢ 3 tiêu đề cùng giảm — không giảm riêng 01.
+   5) Không thay đổi sticky, màu nền, ảnh, menu hoặc JS hiện có.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   ĐOẠN VĂN — CĂN ĐỀU
+   -------------------------------------------------------------------------- */
+
+.sagodent-page .difference .difference-text p,
+.sagodent-page .difference blockquote p {
+    text-align-last: left !important;
+    -webkit-hyphens: none;
+    hyphens: none;
+    overflow-wrap: break-word;
+}
+
+
+/* --------------------------------------------------------------------------
+   TIÊU ĐỀ 01 / 02 / 03 — CÙNG KÍCH THƯỚC + CĂN TRÁI
+   -------------------------------------------------------------------------- */
+
+.sagodent-page .difference .difference-text h3,
+.sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: var(--space-20) 0 var(--space-24) !important;
+    /* CẢ 3 TIÊU ĐỀ DÙNG CHUNG MỘT SIZE */
+    font-family: var(--font-google) !important;
+    font-weight: var(--font-weight-700) !important;
+    font-size: var(--font-size-clamp-32px-3-5vw-58px) !important;
+    line-height: var(--line-height-1-08) !important;
+    letter-spacing: var(--letter-spacing-neg-035em) !important;
+    color: var(--sagodent-white) !important;
+    text-align-last: left !important;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+
+/*
+ * TIÊU ĐỀ 01: giữ đúng 2 dòng đã chủ động tách trong HTML:
+ *   Đào tạo bắt đầu từ những
+ *   “lỗi cơ bản”
+ * Font-size KHÔNG được nhỏ hơn 02/03.
+ */
+
+.sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed {
+    text-wrap: nowrap;
+    overflow: visible;
+}
+
+.sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed .difference-title-line {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+}
+
+
+/* Căn đều riêng dòng đầu của tiêu đề 01 để hai mép cân hơn.
+   Dòng “lỗi cơ bản” giữ tự nhiên, không kéo giãn khoảng trắng quá mức. */
+
+.sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed .difference-title-line:first-child {
+    text-align-last: left !important;
+}
+
+.sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed .difference-title-line:last-child {
+    text-align: left !important;
+    text-align-last: left !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   TABLET + MOBILE <= 900px
+   CẢ 3 TIÊU ĐỀ VẪN DÙNG CÙNG 1 SIZE
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .sagodent-page .difference .difference-text h3,
+    .sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed {
+        font-size: var(--difference-rwd-title-size) !important;
+        line-height: var(--difference-rwd-title-line-height) !important;
+        letter-spacing: -0.035em !important;
+        text-align-last: left !important;
+    }
+
+    .sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed .difference-title-line:first-child {
+        text-align-last: left !important;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   MOBILE <= 600px
+   Nếu cần co chữ để giữ tiêu đề 01 đúng 2 dòng thì CẢ 3 cùng co.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .sagodent-page .difference .difference-text h3,
+    .sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed {
+        font-size: clamp(20px, 6.3vw, 38px) !important;
+        line-height: 1.08 !important;
+        letter-spacing: -0.04em !important;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   ĐIỆN THOẠI RẤT HẸP <= 360px
+   QUAN TRỌNG: 01 / 02 / 03 cùng giảm, tuyệt đối không giảm riêng 01.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 360px) {
+
+    .sagodent-page .difference .difference-text h3,
+    .sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed {
+        font-size: clamp(19px, 6.05vw, 22px) !important;
+        line-height: 1.08 !important;
+        letter-spacing: -0.045em !important;
+    }
+}
+
+
+/* ============================================================
+   ID4 — CĂN ĐỀU TOÀN BỘ ĐOẠN VĂN
+   Giữ tiêu đề h2/h3 căn trái, chỉ căn đều phần nội dung p.
+   ============================================================ */
+
+.sagodent-page .id4-copy p,
+.sagodent-page .id4-copy[data-reveal] p,
+.sagodent-page .id4-copy.revealed p {
+    text-align-last: left !important;
+    -webkit-hyphens: none !important;
+    hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+}
+
+
+/* ========================================================================== 
+   SAGODENT FINAL FIX — MENU CÂN 2 MÉP + DOT BULLET + QUOTE CENTER
+   2026-09-04
+   - Desktop >= 901px: 5 tab menu nằm giữa viewport.
+   - Cờ + ENG bám mép phải với đúng --menu-page-gutter, đối xứng với logo bên trái.
+   - Mobile/tablet <= 900px: giữ nguyên drawer/logic responsive hiện có.
+   - Doctor highlights dùng chấm tròn xanh thay cho gạch ngang.
+   - Đoạn "Tại Sagodent..." trong quote căn giữa.
+   ========================================================================== */
+
+@media (min-width: 901px) {
+
+    /* Wrapper desktop do JS hiện tại tạo: trải toàn chiều ngang header để có thể
+       đặt NAV ở tâm viewport và LANGUAGE ở đúng mép phải độc lập với nhau. */
+    /*
+     * FIX GỐC:
+     * Wrapper này do JS tạo ra. Không cho wrapper tạo containing-block riêng,
+     * để NAV và ENG lấy trực tiếp .--sgd-topbar làm mốc căn giữa chiều dọc.
+     */
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: static !important;
+        z-index: auto !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+        display: contents !important;
+        pointer-events: auto !important;
+    }
+
+    /* NAV: luôn lấy tâm viewport và đồng thời căn giữa theo chiều cao header. */
+    body .--sgd-topbar .--sgd-menu-panel.--sgd-desktop-inline {
+        position: absolute !important;
+        z-index: 4 !important;
+        top: 50% !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: 50% !important;
+        width: max-content !important;
+        max-width: calc(100vw - (var(--menu-page-gutter) * 2) - 220px) !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: translate(-50%, -50%) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        pointer-events: auto !important;
+    }
+
+    /* Link menu không kéo cao 100% nữa; toàn bộ chữ nằm đúng tâm dọc của header. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:visited,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:visited {
+        height: auto !important;
+        min-height: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        line-height: 1 !important;
+    }
+
+    /* Gạch hover bám dưới chữ thay vì dựa vào chiều cao 100% cũ. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a::after,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        bottom: -10px !important;
+    }
+
+    /* CỜ + ENG: mép phải = đúng gutter đang dùng cho mép trái của logo. */
+    body .--sgd-topbar .--sgd-header-actions {
+        position: absolute !important;
+        z-index: 6 !important;
+        top: 50% !important;
+        right: var(--menu-page-gutter) !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: translateY(-50%) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 0 !important;
+        pointer-events: auto !important;
+    }
+
+    body .--sgd-topbar .--sgd-language {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 8px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-label {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+    }
+
+    body .--sgd-topbar img.--sgd-flag-us {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button {
+        display: none !important;
+    }
+}
+
+
+/* Desktop hẹp: thu nhẹ riêng NAV để không đè logo hoặc cụm ENG. */
+
+@media (min-width: 901px) and (max-width: 1180px) {
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:visited,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:link,
+    body .--sgd-topbar>.--sgd-menu-panel.--sgd-desktop-inline a:visited {
+        padding-right: clamp(5px, .55vw, 9px) !important;
+        padding-left: clamp(5px, .55vw, 9px) !important;
+        font-size: clamp(13px, 1.35vw, 16px) !important;
+        letter-spacing: 0 !important;
+    }
+}
+
+
+/* Doctor: chấm tròn xanh, giữ thẳng hàng ở mọi breakpoint. */
+
+.sagodent-page .doctor-highlights li {
+    grid-template-columns: 10px minmax(0, 1fr) !important;
+}
+
+.sagodent-page .doctor-highlights li::before {
+    width: 8px !important;
+    height: 8px !important;
+    margin-top: .55em !important;
+    border-radius: 50% !important;
+    background: var(--blue, #075d98) !important;
+}
+
+@media (max-width: 600px) {
+    .sagodent-page .doctor-highlights li {
+        grid-template-columns: 9px minmax(0, 1fr) !important;
+    }
+
+    .sagodent-page .doctor-highlights li::before {
+        width: 7px !important;
+        height: 7px !important;
+    }
+}
+
+
+/* Quote: riêng đoạn "Tại Sagodent..." căn giữa, kể cả rule cũ có text-align-last. */
+
+.sagodent-page .difference blockquote p,
+.sagodent-page blockquote p {
+    text-align: center !important;
+    text-align-last: center !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+
+/* ==========================================================================
+   SAGODENT V5 — DESKTOP HEADER CENTER + HOVER FIX + CLEAN WARNINGS
+   - NAV và FLAG + ENG cùng một grid-row cao đúng 100% header.
+   - NAV nằm chính giữa viewport.
+   - FLAG + ENG bám mép phải và đồng trục Y với menu.
+   - Underline hover nằm sát chữ, không tụt xuống đáy header.
+   - Bỏ vertical-align không có tác dụng trên IMG display:block.
+   - Chỉ áp dụng desktop >= 901px.
+   ========================================================================== */
+
+@media (min-width: 901px) {
+
+    /* TOPBAR là containing block duy nhất. */
+    body .--sgd-topbar {
+        position: fixed !important;
+    }
+
+    /*
+     * Wrapper do JS tạo:
+     * grid 3 cột = 1fr | NAV | 1fr.
+     * Cả NAV và LANGUAGE cùng nằm trong một hàng cao 100% header.
+     */
+    body .--sgd-topbar>.--sgd-desktop-center-group {
+        position: absolute !important;
+        z-index: 4 !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 var(--menu-page-gutter) !important;
+        transform: none !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr) !important;
+        grid-template-rows: 100% !important;
+        align-items: center !important;
+        pointer-events: none !important;
+        box-sizing: border-box !important;
+    }
+
+    /* NAV: chính giữa viewport và chính giữa chiều cao header. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline {
+        position: static !important;
+        z-index: 4 !important;
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        justify-self: center !important;
+        align-self: center !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: max-content !important;
+        max-width: calc(100vw - (var(--menu-page-gutter) * 2) - 220px) !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: visible !important;
+        transform: none !important;
+        pointer-events: auto !important;
+    }
+
+    /*
+     * MENU ITEM:
+     * QUAN TRỌNG: height:1em khóa box theo đúng chiều cao dòng chữ.
+     * Nhờ vậy pseudo-element underline không còn lấy chiều cao 76px của header.
+     */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:visited {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: auto !important;
+        height: 1em !important;
+        min-height: 1em !important;
+        max-height: 1em !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        line-height: 1 !important;
+        overflow: visible !important;
+        transform: none !important;
+    }
+
+    /*
+     * UNDERLINE HOVER:
+     * Đặt theo TOP của chính box chữ thay vì BOTTOM của header.
+     * Khoảng cách 6px dưới chữ.
+     */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a::after {
+        content: "" !important;
+        position: absolute !important;
+        top: calc(100% + 6px) !important;
+        bottom: auto !important;
+        left: clamp(10px, .76vw, 15px) !important;
+        right: clamp(10px, .76vw, 15px) !important;
+        width: auto !important;
+        height: 1px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: currentColor !important;
+        opacity: 0 !important;
+        transform: scaleX(.3) !important;
+        transform-origin: center !important;
+        transition: opacity .22s ease, transform .25s ease !important;
+        pointer-events: none !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:hover::after,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:focus-visible::after {
+        opacity: .65 !important;
+        transform: scaleX(1) !important;
+    }
+
+    /* Hover chỉ đổi opacity chữ, không làm thay đổi kích thước/link box. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:focus-visible {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        background: transparent !important;
+        opacity: .68 !important;
+        outline: 0 !important;
+    }
+
+    /*
+     * FLAG + ENG:
+     * cùng grid-row với NAV => cùng tâm Y.
+     */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-header-actions {
+        position: static !important;
+        z-index: 6 !important;
+        grid-column: 3 !important;
+        grid-row: 1 !important;
+        justify-self: end !important;
+        align-self: center !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 0 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+    }
+
+    /* Link language dùng flex để icon + ENG tự căn tâm, không cần vertical-align. */
+    body .--sgd-topbar .--sgd-language,
+    body .--sgd-topbar a.--sgd-language,
+    body .--sgd-topbar a.--sgd-language:link,
+    body .--sgd-topbar a.--sgd-language:visited {
+        position: static !important;
+        display: inline-flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: auto !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 8px !important;
+        line-height: 1 !important;
+        transform: none !important;
+        white-space: nowrap !important;
+    }
+
+    /*
+     * CỜ:
+     * display:block loại bỏ khoảng trắng baseline của IMG.
+     * KHÔNG dùng vertical-align vì vertical-align bị bỏ qua với display:block.
+     */
+    body .--sgd-topbar img.--sgd-flag-us,
+    body .--sgd-topbar .--sgd-flag-us {
+        display: block !important;
+        flex: 0 0 auto !important;
+        width: 28px !important;
+        height: 18px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 2px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        transform: none !important;
+    }
+
+    /* ENG cũng dùng flex center; không cần vertical-align. */
+    body .--sgd-topbar .--sgd-language-label {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        font: inherit !important;
+        line-height: 1 !important;
+        transform: none !important;
+    }
+
+    /* Desktop không dùng nút drawer. */
+    body .--sgd-topbar .--sgd-menu-button {
+        display: none !important;
+    }
+}
+
+
+/* Desktop hẹp: thu font/padding nhưng giữ underline sát chữ. */
+
+@media (min-width: 901px) and (max-width: 1180px) {
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:visited {
+        padding-right: clamp(5px, .55vw, 9px) !important;
+        padding-left: clamp(5px, .55vw, 9px) !important;
+        font-size: clamp(13px, 1.35vw, 16px) !important;
+        letter-spacing: 0 !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a::after {
+        top: calc(100% + 5px) !important;
+        left: clamp(5px, .55vw, 9px) !important;
+        right: clamp(5px, .55vw, 9px) !important;
+    }
+
+    body .--sgd-topbar img.--sgd-flag-us,
+    body .--sgd-topbar .--sgd-flag-us {
+        width: 25px !important;
+        height: 16px !important;
+    }
+
+    body .--sgd-topbar .--sgd-language {
+        gap: 6px !important;
+    }
+}
+
+
+/* ========================================================================== 
+   SAGODENT — FINAL DESKTOP TAB HOVER UNDERLINE FIX
+   2026-09-04
+   - Chỉ áp dụng desktop >= 901px.
+   - Khóa link theo đúng chiều cao chữ để underline không bám đáy header.
+   - Đưa underline lên sát tab menu: cách chữ 3px.
+   - Bao phủ cả DOM có/không có .--sgd-desktop-center-group.
+   ========================================================================== */
+
+@media (min-width: 901px) {
+
+    body .--sgd-topbar .--sgd-menu-panel.--sgd-desktop-inline>a,
+    body .--sgd-topbar .--sgd-menu-panel.--sgd-desktop-inline>a:link,
+    body .--sgd-topbar .--sgd-menu-panel.--sgd-desktop-inline>a:visited {
+        position: relative !important;
+        align-self: center !important;
+        height: 1em !important;
+        min-height: 1em !important;
+        max-height: 1em !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        line-height: 1 !important;
+        overflow: visible !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-panel.--sgd-desktop-inline>a::after {
+        top: calc(100% + 3px) !important;
+        bottom: auto !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        pointer-events: none !important;
+    }
+}
+
+
+/* ========================================================================== 
+   SAGODENT — DOCTOR CONTENT REGULAR WEIGHT FIX
+   2026-09-04
+   - Chỉ bỏ bold ở phần nội dung mô tả + danh sách của Doctor.
+   - Giữ nguyên tiêu đề Dr. Diem Le, doctor-role và doctor-lead.
+   - Áp dụng đồng nhất desktop / tablet / mobile.
+   ========================================================================== */
+
+.sagodent-page .doctor-body,
+.sagodent-page .doctor-body *,
+.sagodent-page .doctor-highlights,
+.sagodent-page .doctor-highlights li,
+.sagodent-page .doctor-highlights li * {
+    font-weight: 400 !important;
+}
+
+
+/* ========================================================================== 
+   SAGODENT — FINAL TEXT ALIGN JUSTIFY
+   Chỉ canh đều nội dung đoạn văn tại 3 khu vực: Doctor, Difference 01/02/03, iD-4.
+   Không thay đổi font, size, line-height, margin, padding, màu sắc hoặc responsive.
+   ========================================================================== */
+
+.sagodent-page .doctor-copy p:not(.kicker),
+.sagodent-page .difference .difference-text p,
+.sagodent-page .difference blockquote p,
+.sagodent-page .id4-copy p,
+.sagodent-page .id4-copy[data-reveal] p,
+.sagodent-page .id4-copy.revealed p {
+    text-align: justify !important;
+}
+
+
+/* ============================================================
+   FINAL MENU HOVER FIX
+   - Hover KHÔNG đổi / làm tối màu chữ.
+   - Chỉ hiển thị gạch dưới.
+   - Gạch dưới dày hơn.
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+    /* Giữ nguyên 100% màu + độ sáng của chữ khi hover/focus */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible {
+        background: transparent !important;
+        color: var(--menu-foreground) !important;
+        opacity: 1 !important;
+        filter: none !important;
+        outline: 0 !important;
+    }
+
+    /* Thanh underline dày hơn */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a::after {
+        height: 3px !important;
+        border-radius: 999px !important;
+        background: currentColor !important;
+        opacity: 0 !important;
+        transform: scaleX(.3) !important;
+        transform-origin: center !important;
+        transition: opacity .22s ease, transform .25s ease !important;
+    }
+
+    /* Hover chỉ bật underline, không tác động màu chữ */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:hover::after,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline a:focus-visible::after {
+        opacity: 1 !important;
+        transform: scaleX(1) !important;
+    }
+}
+
+
+/* ========================================================================== 
+   SAGODENT — FINAL MOBILE/TABLET TEXT ALIGN JUSTIFY OVERRIDE
+   2026-09-04
+   - Giữ nguyên các đoạn văn đang text-align: justify trên desktop.
+   - Ép đúng các đoạn đó tiếp tục text-align: justify trên tablet/mobile <= 900px.
+   - Không tác động tiêu đề, menu, button hoặc các thành phần khác.
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    .sagodent-page .doctor-copy p:not(.kicker),
+    .sagodent-page .difference .difference-text p,
+    .sagodent-page .difference blockquote p,
+    .sagodent-page .id4-copy p,
+    .sagodent-page .id4-copy[data-reveal] p,
+    .sagodent-page .id4-copy.revealed p,
+    .sagodent-page .id4-copy[data-reveal].revealed p {
+        text-align: justify !important;
+    }
+}
+
+
+/* ========================================================================== 
+   SAGODENT — MOBILE PHONE HEADER LANGUAGE DROPDOWN
+   2026-09-07
+   YÊU CẦU:
+   - CHỈ điện thoại <= 600px.
+   - Desktop / PC / Tablet > 600px giữ nguyên giao diện cũ.
+   - Mobile ẩn ENG và MỤC CHÍNH.
+   - Cờ ENG nằm sát hamburger, có mũi tên xổ xuống.
+   - Dropdown hiện cờ Việt Nam; cờ Việt Nam nằm trong thẻ <a>.
+   ========================================================================== */
+
+
+/* Phần tử mới tuyệt đối không xuất hiện trên tablet/desktop. */
+
+body .--sgd-topbar .--sgd-language-toggle,
+body .--sgd-topbar .--sgd-language-dropdown {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+
+    /* Cụm bên phải: cờ ENG -> arrow -> hamburger. */
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 7px !important;
+        margin-left: auto !important;
+        overflow: visible !important;
+    }
+
+    /* Mobile: bỏ chữ ENG, chỉ giữ cờ. */
+    body .--sgd-topbar .--sgd-language,
+    body .--sgd-topbar a.--sgd-language,
+    body .--sgd-topbar a.--sgd-language:link,
+    body .--sgd-topbar a.--sgd-language:visited {
+        display: inline-flex !important;
+        flex: 0 0 auto !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 30px !important;
+        min-width: 30px !important;
+        height: 20px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        overflow: visible !important;
+        line-height: 0 !important;
+        text-decoration: none !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-label {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        font-size: 0 !important;
+        line-height: 0 !important;
+    }
+
+    /* Cờ ENG: hơi lớn hơn bản cũ để giống hình mẫu. */
+    body .--sgd-topbar img.--sgd-flag-us,
+    body .--sgd-topbar .--sgd-flag-us {
+        display: block !important;
+        flex: 0 0 auto !important;
+        width: 30px !important;
+        height: 20px !important;
+        max-width: 30px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 2px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, .20) !important;
+    }
+
+    /* Nút xổ xuống nhỏ, nằm giữa cờ và hamburger. */
+    body .--sgd-topbar .--sgd-language-toggle {
+        position: relative !important;
+        display: inline-flex !important;
+        flex: 0 0 14px !important;
+        width: 14px !important;
+        min-width: 14px !important;
+        height: 24px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        outline: 0 !important;
+        background: transparent !important;
+        color: currentColor !important;
+        box-shadow: none !important;
+        cursor: pointer !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        touch-action: manipulation !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-toggle>span {
+        display: block !important;
+        width: 7px !important;
+        height: 7px !important;
+        margin-top: -3px !important;
+        border-right: 1.5px solid currentColor !important;
+        border-bottom: 1.5px solid currentColor !important;
+        transform: rotate(45deg) !important;
+        transform-origin: center !important;
+        transition: transform .22s ease, margin-top .22s ease !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-toggle.--sgd-open>span {
+        margin-top: 3px !important;
+        transform: rotate(225deg) !important;
+    }
+
+    /* Mobile: bỏ chữ MỤC CHÍNH, chỉ còn icon 3 sọc. */
+    body .--sgd-topbar .--sgd-menu-button {
+        display: flex !important;
+        flex: 0 0 29px !important;
+        width: 29px !important;
+        min-width: 29px !important;
+        max-width: 29px !important;
+        height: 24px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        overflow: visible !important;
+        font-size: 0 !important;
+        line-height: 0 !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button>span {
+        width: 29px !important;
+        height: 18px !important;
+    }
+
+    /* Dropdown chỉ chiếm đúng một ô cờ, không làm nở header. */
+    body .--sgd-topbar .--sgd-language-dropdown {
+        position: absolute !important;
+        z-index: 1000010 !important;
+        top: calc(100% + 12px) !important;
+        right: 36px !important;
+        width: 48px !important;
+        min-width: 48px !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 8px !important;
+        display: block !important;
+        border: 1px solid var(--menu-border) !important;
+        border-radius: 8px !important;
+        background: var(--menu-panel-glass-bg) !important;
+        -webkit-backdrop-filter: blur(18px) saturate(125%) !important;
+        backdrop-filter: blur(18px) saturate(125%) !important;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, .20) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: translateY(-6px) scale(.96) !important;
+        transform-origin: top center !important;
+        transition: opacity .2s ease, visibility .2s ease, transform .22s ease !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-dropdown.--sgd-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) scale(1) !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-option,
+    body .--sgd-topbar .--sgd-language-option:link,
+    body .--sgd-topbar .--sgd-language-option:visited {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 30px !important;
+        height: 20px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        background: transparent !important;
+        text-decoration: none !important;
+        line-height: 0 !important;
+    }
+
+    body .--sgd-topbar img.--sgd-flag-vn,
+    body .--sgd-topbar .--sgd-flag-vn {
+        display: block !important;
+        width: 30px !important;
+        height: 20px !important;
+        max-width: 30px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 2px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, .20) !important;
+    }
+}
+
+@media (max-width: 380px) {
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        gap: 6px !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-dropdown {
+        right: 35px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 600px) {
+
+    body .--sgd-topbar .--sgd-language-toggle>span,
+    body .--sgd-topbar .--sgd-language-dropdown {
+        transition-duration: .01ms !important;
+    }
+}
+
+
+/* ========================================================================== 
+   SAGODENT — MOBILE HEADER FINAL ALIGNMENT
+   - Chỉ điện thoại <= 600px.
+   - Cờ ENG / mũi tên / hamburger cùng một trục ngang.
+   - Dropdown VN căn chính giữa ngay dưới cờ ENG.
+   - Desktop / PC / Tablet giữ nguyên.
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    body>.--sgd-topbar.--sgd-sagodent-menu-mounted>.--sgd-header-actions,
+    main#--sgd-top>.--sgd-topbar>.--sgd-header-actions {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 7px !important;
+        height: 24px !important;
+        min-height: 24px !important;
+        line-height: 0 !important;
+    }
+
+    /* Khung cờ ENG cao bằng toggle và hamburger để tâm Y trùng nhau. */
+    body .--sgd-topbar .--sgd-language,
+    body .--sgd-topbar a.--sgd-language,
+    body .--sgd-topbar a.--sgd-language:link,
+    body .--sgd-topbar a.--sgd-language:visited {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 30px !important;
+        min-width: 30px !important;
+        height: 24px !important;
+        min-height: 24px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 0 !important;
+        transform: none !important;
+    }
+
+    body .--sgd-topbar img.--sgd-flag-us,
+    body .--sgd-topbar .--sgd-flag-us {
+        display: block !important;
+        width: 30px !important;
+        height: 20px !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    /* Mũi tên nằm đúng tâm dọc, bỏ margin âm làm icon bị cao hơn. */
+    body .--sgd-topbar .--sgd-language-toggle {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 14px !important;
+        min-width: 14px !important;
+        height: 24px !important;
+        min-height: 24px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 0 !important;
+        transform: none !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-toggle>span {
+        position: relative !important;
+        top: -1px !important;
+        margin: 0 !important;
+        transform: rotate(45deg) !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-toggle.--sgd-open>span {
+        top: 1px !important;
+        margin: 0 !important;
+        transform: rotate(225deg) !important;
+    }
+
+    /* Hamburger khóa đúng 24px và căn tâm như cờ ENG. */
+    body .--sgd-topbar .--sgd-menu-button {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 29px !important;
+        min-width: 29px !important;
+        max-width: 29px !important;
+        height: 24px !important;
+        min-height: 24px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 0 !important;
+        transform: none !important;
+    }
+
+    body .--sgd-topbar .--sgd-menu-button>span {
+        display: block !important;
+        flex: 0 0 auto !important;
+        width: 29px !important;
+        height: 18px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Dropdown nằm chính giữa dưới cờ ENG, không phụ thuộc vị trí hamburger. */
+    body .--sgd-topbar .--sgd-language-dropdown {
+        left: -9px !important;
+        right: auto !important;
+        top: calc(100% + 10px) !important;
+    }
+
+    body .--sgd-topbar .--sgd-language-option,
+    body .--sgd-topbar .--sgd-language-option:link,
+    body .--sgd-topbar .--sgd-language-option:visited {
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    body .--sgd-topbar img.--sgd-flag-vn,
+    body .--sgd-topbar .--sgd-flag-vn {
+        display: block !important;
+        width: 30px !important;
+        height: 20px !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+}
+
+@media (max-width: 380px) {
+    body .--sgd-topbar .--sgd-language-dropdown {
+        left: -9px !important;
+        right: auto !important;
+    }
+}
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — HERO BACKGROUND IMAGE
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Không thay đổi HTML / nội dung / chức năng.
+   - Tablet, Desktop, PC giữ nguyên giao diện hiện tại.
+   ============================================================ */
+
+@media (max-width: 600px) {
+    .sagodent-page .hero-image {
+        background-image: url("http://sagodent.com//wp-content/uploads/2026/08/veneer-workflow.jpg");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — DIFFERENCE STICKY SCROLL RESTORE
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Khôi phục hiệu ứng sticky/stacking của .difference-row như desktop.
+   - Desktop / PC / Tablet > 600px giữ nguyên 100% giao diện hiện tại.
+   - Không thay đổi HTML, JS, màu sắc, kích thước hoặc bố cục mobile hiện có.
+   ============================================================ */
+
+@media (max-width: 600px) {
+    .sagodent-page .difference-row {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: var(--menu-header-height, 68px) !important;
+    }
+}
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — LIBRARY BUTTON FINAL RESPONSIVE FIX
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   - Nút nhỏ hơn bản trước khoảng 6px theo chiều cao.
+   - Hạn chế phụ thuộc vào vw để máy thật và Device Mode gần nhau hơn.
+   - Khoảng cách tiêu đề -> nút dùng row-gap, không căn theo nth-child,
+     nên khi tiêu đề đổi số dòng ở các màn hình khác nhau vẫn ổn định.
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    /*
+     * Trên điện thoại thật, Safari/Chrome có thể tự điều chỉnh cỡ chữ.
+     * Khóa riêng khu vực Library để kích thước nút/text ổn định hơn.
+     */
+    .sagodent-page .library-grid,
+    .sagodent-page .library-grid * {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    /*
+     * Không dùng hàng 1fr để đẩy nút xuống đáy card nữa.
+     * Tiêu đề và nút đi theo flow tự nhiên với một khoảng cách cố định tương đối.
+     * Nhờ vậy title 2/3/4 dòng vẫn giữ khoảng cách nút đồng đều trên nhiều mobile.
+     */
+    .sagodent-page .library-grid>a {
+        grid-template-rows: auto auto !important;
+        align-content: start !important;
+        row-gap: clamp(15px, 4vw, 20px) !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more {
+        position: relative !important;
+        top: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        align-self: start !important;
+        /*
+         * Bản trước: tối đa 155 x 48px.
+         * Bản này: tối đa 149 x 42px -> giảm 6px chiều cao,
+         * đồng thời chiều rộng co nhẹ để nút cân đối hơn.
+         */
+        width: clamp(124px, 36vw, 149px) !important;
+        min-width: clamp(124px, 36vw, 149px) !important;
+        max-width: clamp(124px, 36vw, 149px) !important;
+        height: clamp(34px, 10.5vw, 42px) !important;
+        min-height: clamp(34px, 10.5vw, 42px) !important;
+        max-height: clamp(34px, 10.5vw, 42px) !important;
+        margin: 0 !important;
+        padding: clamp(4px, 1.15vw, 5px) clamp(4px, 1.15vw, 5px) clamp(4px, 1.15vw, 5px) clamp(12px, 3.5vw, 15px) !important;
+        border: 0 !important;
+        border-radius: 999px !important;
+        background: var(--blue, #075d98) !important;
+        color: var(--sagodent-white, #ffffff) !important;
+        box-shadow: none !important;
+        font-family: var(--font-google, "Google Sans", Arial, sans-serif) !important;
+        font-size: 0 !important;
+        font-style: normal !important;
+        font-weight: 500 !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more::before {
+        content: "Xem chi tiết";
+        display: inline-block;
+        flex: 0 0 auto;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: var(--sagodent-white, #ffffff) !important;
+        font-family: var(--font-google, "Google Sans", Arial, sans-serif) !important;
+        font-size: clamp(11px, 3.1vw, 13px) !important;
+        font-style: normal !important;
+        font-weight: 500 !important;
+        line-height: 1 !important;
+        letter-spacing: 0 !important;
+    }
+
+    /* .sagodent-page .library-grid .library-card-more::after {
+        content: "↗";
+        display: grid;
+        place-items: center;
+        flex: 0 0 clamp(24px, 7.7vw, 30px) !important;
+        width: clamp(24px, 7.7vw, 30px) !important;
+        height: clamp(24px, 7.7vw, 30px) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        background: var(--sky, #72bae3) !important;
+        color: var(--sagodent-white, #ffffff) !important;
+        font-family: Arial, sans-serif !important;
+        font-size: clamp(11px, 3.35vw, 14px) !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+    } */
+}
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — FINAL ALIGNMENT + HERO POSITION STABILITY
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   - Bỏ vòng tròn/mũi tên và căn giữa chữ "Xem chi tiết" theo toàn bộ chiều rộng nút.
+   - Cụm HERO (kicker + tiêu đề + CTA) neo theo đáy HERO thay vì top %, giúp
+     ổn định hơn giữa các màn hình điện thoại có chiều cao khác nhau.
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    /* --------------------------------------------------------
+       1) LIBRARY BUTTON — CĂN GIỮA TEXT THEO CHIỀU NGANG
+       -------------------------------------------------------- */
+    .sagodent-page .library-grid .library-card-more {
+        gap: 0 !important;
+        justify-content: center !important;
+        /* Mobile: bỏ icon mũi tên và căn chữ đúng giữa toàn bộ nút. */
+        padding: clamp(4px, 1.15vw, 5px) !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more::before {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more::after {
+        content: none !important;
+        display: none !important;
+    }
+
+    /* --------------------------------------------------------
+       2) HERO — ỔN ĐỊNH VỊ TRÍ CỤM CHỮ + NÚT TRÊN NHIỀU MOBILE
+       -------------------------------------------------------- */
+    .sagodent-page .hero-copy,
+    .sagodent-page .hero-copy[data-reveal],
+    .sagodent-page .hero-copy[data-reveal].revealed {
+        /* Bỏ cách canh bằng top % + translate vì dễ lệch theo chiều cao máy. */
+        top: auto !important;
+        bottom: clamp(44px, 12vw, 60px) !important;
+        left: clamp(18px, 5vw, 28px) !important;
+        right: clamp(18px, 5vw, 28px) !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    /* Tiêu đề co giãn theo chiều rộng màn hình nhưng có giới hạn rõ ràng. */
+    .sagodent-page .hero-copy h1 {
+        max-width: 100% !important;
+        font-size: clamp(34px, 11.6vw, 50px) !important;
+        line-height: .88 !important;
+        letter-spacing: -.045em !important;
+        white-space: nowrap !important;
+    }
+
+    .sagodent-page .hero-copy em {
+        max-width: 100% !important;
+        font-size: clamp(40px, 13vw, 56px) !important;
+        line-height: .92 !important;
+        letter-spacing: -.035em !important;
+        white-space: nowrap !important;
+    }
+
+    .sagodent-page .hero-copy>p,
+    .sagodent-page .hero-copy>span {
+        font-size: clamp(11px, 3vw, 14px) !important;
+    }
+
+    /* Khoảng cách CTA cũng responsive để cả cụm luôn cân đối. */
+    .sagodent-page .hero-copy .hero-actions {
+        margin-top: clamp(24px, 6.5vw, 32px) !important;
+        transform: none !important;
+    }
+
+    .sagodent-page .hero-copy .hero-actions>.pill {
+        min-height: clamp(44px, 11.5vw, 48px) !important;
+        padding: clamp(11px, 3vw, 13px) clamp(20px, 5.8vw, 24px) !important;
+        font-size: clamp(12px, 3.35vw, 14px) !important;
+    }
+}
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — HERO CTA VERTICAL FINE-TUNE
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Chỉ hạ riêng nút "Tham gia ngay" xuống nhẹ để khoảng trống phía trên
+     và phía dưới cân hơn theo ảnh tham chiếu.
+   - Không dịch chuyển kicker / tiêu đề HERO.
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   ============================================================ */
+
+@media (max-width: 600px) {
+    .sagodent-page .hero-copy .hero-actions {
+        transform: translateY(clamp(8px, 2.4vw, 11px)) !important;
+    }
+}
+
+
+/* ==========================================================================
+   MOBILE PHONE ONLY — DIFFERENCE SECTION COMPACT VERTICAL SPACING
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Thu gọn khoảng cách dọc của các khối 01 / 02 / 03 một cách đồng đều.
+   - Giữ nguyên font-size, màu sắc, ảnh, HTML, JS và hiệu ứng sticky hiện tại.
+   - Tablet / Desktop / PC > 600px không bị ảnh hưởng.
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    /*
+     * Giá trị gốc trên responsive:
+     * - min-height: 500px
+     * - padding-top: 200px
+     * - number top: 92px
+     * - dot top: 230px
+     *
+     * Mobile được rút gọn theo cùng một nhịp để hình phía dưới xuất hiện sớm hơn,
+     * nhưng vẫn giữ bố cục và khoảng thở cân đối như thiết kế hiện tại.
+     */
+    .sagodent-page {
+        /*
+         * 3 khoảng trống trên mobile dùng cùng một nhịp:
+         * 1) mép trên -> số 01/02/03
+         * 2) số 01/02/03 -> tiêu đề
+         * 3) nội dung -> hình ảnh
+         */
+        --difference-mobile-equal-gap: clamp(38px, 10.5vw, 44px);
+        --difference-mobile-number-line-height: clamp(56px, 12vw, 72px);
+        /* Bỏ min-height dư để khoảng trống cuối không bị kéo lớn hơn padding-bottom. */
+        --difference-rwd-row-min-height: 0px;
+        /*
+         * padding-top được tính để khoảng số -> tiêu đề bằng đúng --difference-mobile-equal-gap.
+         * -14px bù lại margin-top 14px của h3 đang có sẵn bên dưới.
+         */
+        --difference-rwd-text-padding: calc(var(--difference-mobile-equal-gap) + var(--difference-mobile-number-line-height) + var(--difference-mobile-equal-gap) - 14px) 7vw var(--difference-mobile-equal-gap) 14vw;
+        --difference-rwd-number-top: var(--difference-mobile-equal-gap);
+        /* Căn dot theo tâm dòng đầu của tiêu đề sau khi thu gọn khoảng cách. */
+        --difference-rwd-dot-top: calc(var(--difference-mobile-equal-gap) + var(--difference-mobile-number-line-height) + var(--difference-mobile-equal-gap) + clamp(11px, 3.4vw, 20px));
+    }
+
+    /* Giảm nhẹ khoảng cách giữa tiêu đề và nội dung, không đổi cỡ chữ. */
+    .sagodent-page .difference .difference-text h3,
+    .sagodent-page .difference .difference-row:first-child .difference-text h3.difference-title-fixed {
+        margin: 14px 0 18px !important;
+    }
+}
+
+
+/* ============================================================
+   MOBILE PHONE ONLY — LIBRARY CTA: REMOVE ARROW FINAL OVERRIDE
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Bỏ hoàn toàn vòng tròn + mũi tên.
+   - Căn chữ "Xem chi tiết" chính giữa toàn bộ nút.
+   - Tablet / Desktop / PC giữ nguyên.
+   ============================================================ */
+
+@media (max-width: 600px) {
+    .sagodent-page .library-grid .library-card-more {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        padding-left: clamp(4px, 1.15vw, 5px) !important;
+        padding-right: clamp(4px, 1.15vw, 5px) !important;
+        text-align: center !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more::before {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    .sagodent-page .library-grid .library-card-more::after {
+        content: none !important;
+        display: none !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        max-width: 0 !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        flex: 0 0 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: none !important;
+        border: 0 !important;
+    }
+}
+
+
+/* ==========================================================================
+   FINAL DESKTOP / PC ONLY — HERO CTA VERTICAL CENTER SAFEGUARD
+   - Chỉ Desktop / PC >= 901px.
+   - Nút CTA dùng khoảng cách theo chiều cao viewport để ổn định trên 16:9 / 16:10.
+   - Không dùng JS.
+   - Tablet / Mobile giữ nguyên.
+   ========================================================================== */
+
+@media (min-width: 901px) {
+    .sagodent-page .hero-copy .hero-actions {
+        margin-top: clamp(36px, 4.2vh, 44px) !important;
+        margin-top: clamp(36px, 4.2svh, 44px) !important;
+        transform: none !important;
+    }
+}
+
+
+/* ==========================================================================
+   FINAL DESKTOP / PC ONLY — HERO CTA TRUE VERTICAL CENTER TUNE
+   Mục tiêu:
+   - Chỉ Desktop / PC >= 901px.
+   - Đưa nút "Tham gia ngay" xuống nhẹ để khoảng trống:
+       WORKFLOW -> CTA
+       CTA -> đáy vùng HERO đang nhìn thấy
+     cân nhau hơn theo chiều cao.
+   - Dùng svh thay vì vw để tỷ lệ 16:9 và 16:10 ổn định hơn.
+   - Không dùng JS.
+   - Không tác động Tablet / Mobile.
+   ========================================================================== */
+
+@media (min-width: 901px) {
+    .sagodent-page .hero-copy .hero-actions {
+        margin-top: clamp(36px, 4.2vh, 44px) !important;
+        margin-top: clamp(36px, 4.2svh, 44px) !important;
+        transform: none !important;
+    }
+}
+
+
+/* ==========================================================================
+   MOBILE PHONE ONLY — ID4 + COURSE CTA: HIDE INNER ARROW & CENTER TEXT
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Ẩn mũi tên nhỏ bên trong 2 nút:
+       1) "Đến website iD4"
+       2) "Coming soon"
+   - Căn chữ chính giữa nút sau khi ẩn mũi tên.
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    .sagodent-page .id4-copy .pill.outline,
+    .sagodent-page .course-bottom .pill.blue {
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        padding-left: var(--space-18) !important;
+        padding-right: var(--space-18) !important;
+        text-align: center !important;
+    }
+
+    .sagodent-page .id4-copy .pill.outline>b,
+    .sagodent-page .course-bottom .pill.blue>b {
+        display: none !important;
+    }
+}
+
+
+/* ========================================================================== 
+   MOBILE PHONE ONLY — COURSE CTA: SLIGHTLY LARGER
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Chỉ tăng kích thước nút "Coming soon".
+   - Không thay đổi ID4 CTA, nút điều hướng, Tablet / Desktop / PC.
+   ========================================================================== */
+
+@media (max-width: 600px) {
+    .sagodent-page .course-bottom .pill.blue {
+        font-size: 16px !important;
+        padding: 14px 24px !important;
+    }
+}
+
+
+/* ============================================================
+   MOBILE ONLY — LIBRARY TITLE SMALLER
+   - Chỉ giảm tiêu đề card Library trên điện thoại <= 600px.
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .sagodent-page .library-grid h3,
+    .sagodent-page .library-grid .library-card-title {
+        font-size: 21px !important;
+        line-height: 1.12 !important;
+    }
+}
+
+
+/* ========================================================================== 
+   MOBILE PHONE ONLY — LIBRARY HEADING: KEEP "CHIA SẺ" TOGETHER ON NEW LINE
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Chỉ tác động riêng cụm <em>chia sẻ</em> trong tiêu đề Library.
+   - Bắt buộc "chia sẻ" xuống cùng một dòng, không tách "chia" / "sẻ".
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   ========================================================================== */
+
+@media (max-width: 600px) {
+    .sagodent-page .library h2 em {
+        display: block !important;
+        width: max-content !important;
+        max-width: 100% !important;
+        white-space: nowrap !important;
+    }
+}
+
+
+/* ========================================================================== 
+   MOBILE PHONE ONLY — INTRO HEADING: KEEP "ỨNG DỤNG NGAY" TOGETHER ON NEW LINE
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Chỉ tác động riêng cụm <em>ứng dụng ngay</em> trong tiêu đề Intro.
+   - Bắt buộc "ứng dụng ngay" xuống cùng một dòng, không tách "ứng" / "dụng ngay".
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   ========================================================================== */
+
+@media (max-width: 600px) {
+    .sagodent-page .intro-copy h2 em {
+        display: block !important;
+        width: max-content !important;
+        max-width: 100% !important;
+        white-space: nowrap !important;
+    }
+}
+
+
+/* ========================================================================== 
+   MOBILE PHONE ONLY — FIRST LIBRARY CARD: KEEP SECOND LINE TOGETHER
+   - Chỉ áp dụng cho điện thoại <= 600px.
+   - Chỉ tác động card Library đầu tiên (.featured).
+   - Giữ nguyên dấu <br> hiện tại: dòng 1 vẫn là "Digital implant workflow:".
+   - Dòng 2 "từ dữ liệu đến kết quả lâm sàng" không bị tách riêng chữ "sàng".
+   - Tablet / Desktop / PC giữ nguyên hoàn toàn.
+   ========================================================================== */
+
+@media (max-width: 600px) {
+    .sagodent-page .library-grid>a.featured .library-card-title {
+        white-space: nowrap !important;
+        font-size: 20px !important;
+        line-height: 1.12 !important;
+    }
 }
