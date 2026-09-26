@@ -368,12 +368,12 @@ function flatsome_presentage_bubble( $product, $text ) {
 			return flatsome_percentage_format( $bubble_content );
 		}
 
-		$available_variations = $product->get_available_variations();
+		// 'objects': the array mode renders the product-image template per variation since WC 11.1,
+		// which fires the sale flash and recurses back here (woocommerce/woocommerce#68399).
+		$available_variations = $product->get_available_variations( 'objects' );
 		$maximumper           = 0;
 
-		for ( $i = 0; $i < count( $available_variations ); ++ $i ) {
-			$variation_id     = $available_variations[ $i ]['variation_id'];
-			$variable_product = new WC_Product_Variation( $variation_id );
+		foreach ( $available_variations as $variable_product ) {
 			if ( ! $variable_product->is_on_sale() ) {
 				continue;
 			}

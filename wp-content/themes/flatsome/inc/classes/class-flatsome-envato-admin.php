@@ -80,7 +80,7 @@ final class Flatsome_Envato_Admin {
 	 */
 	public function render_version_info_iframe( $screen ) {
 		if ( $screen->base === 'admin_page_flatsome-version-info' ) {
-			$version = isset( $_GET['version'] ) ? wp_unslash( $_GET['version'] ) : '';
+			$version = isset( $_GET['version'] ) ? sanitize_text_field( wp_unslash( $_GET['version'] ) ) : '';
 			include get_template_directory() . '/template-parts/admin/envato/version-info-iframe.php';
 			die;
 		}

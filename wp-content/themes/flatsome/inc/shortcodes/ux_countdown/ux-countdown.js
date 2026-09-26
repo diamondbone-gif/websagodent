@@ -3,17 +3,23 @@ Flatsome.behavior('ux-countdown', {
 	jQuery('[data-countdown]', context).each(function () {
 	 var $this = jQuery(this), finalDate = jQuery(this).data('countdown');
 
-	 var t_hour = jQuery(this).data('text-hour'),
-     t_min = jQuery(this).data('text-min'),
-     t_week = jQuery(this).data('text-week'),
-     t_day = jQuery(this).data('text-day'),
-     t_sec = jQuery(this).data('text-sec'),
-     t_min_p = jQuery(this).data('text-min-p'),
-     t_hour_p = jQuery(this).data('text-hour-p'),
-     t_week_p = jQuery(this).data('text-week-p'),
-     t_day_p = jQuery(this).data('text-day-p'),
-     t_sec_p = jQuery(this).data('text-sec-p'),
-     t_plural = jQuery(this).data('text-plural');
+	 // Labels come from attributes and are rendered with .html(), so escape them as text.
+	 var text = function (key) {
+	   var value = $this.data(key);
+	   return value == null ? '' : jQuery('<div>').text(String(value)).html();
+	 };
+
+	 var t_hour = text('text-hour'),
+     t_min = text('text-min'),
+     t_week = text('text-week'),
+     t_day = text('text-day'),
+     t_sec = text('text-sec'),
+     t_min_p = text('text-min-p'),
+     t_hour_p = text('text-hour-p'),
+     t_week_p = text('text-week-p'),
+     t_day_p = text('text-day-p'),
+     t_sec_p = text('text-sec-p'),
+     t_plural = text('text-plural');
 
      var hours_plural = t_hour+t_plural;
      var days_plural = t_day+t_plural;

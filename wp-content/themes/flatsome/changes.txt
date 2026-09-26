@@ -1,3 +1,15 @@
+--- 3.20.11 ---
+ENHANCEMENT: Prevented a memory exhaustion fatal error with the sale bubble percentage on variable products, caused by a change in WooCommerce 11.1 core.
+FIXED: Stored XSS via `data-*` and `title` attributes in countdown, scroll-to, lightbox, and tooltip behaviors.
+
+Note: This release contains an enhanced security measure. We recommend updating your sites promptly for optimal protection.
+
+--- 3.20.10 ---
+NEW: WooCommerce 11.1 compatibility.
+
+IMPROVED: UX Block title AJAX endpoint security.
+IMPROVED: Security enhancement for the version info iframe to prevent Reflected XSS via URL parameters.
+
 --- 3.20.9 ---
 NEW: WooCommerce 11 compatibility.
 

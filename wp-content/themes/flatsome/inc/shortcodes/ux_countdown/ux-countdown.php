@@ -4,7 +4,7 @@
 function flatsome_countdown_shortcode_scripts() {
     wp_register_style( 'flatsome-countdown-style', get_template_directory_uri() . '/inc/shortcodes/ux_countdown/ux-countdown.css', 'flatsome-style');
     wp_register_script( 'flatsome-countdown-script', get_template_directory_uri() . '/inc/shortcodes/ux_countdown/countdown-script-min.js', 'flatsome-countdown-script');
-    wp_register_script( 'flatsome-countdown-theme-js', get_template_directory_uri() . '/inc/shortcodes/ux_countdown/ux-countdown.js', 'flatsome-js', '3.2.6', true);
+    wp_register_script( 'flatsome-countdown-theme-js', get_template_directory_uri() . '/inc/shortcodes/ux_countdown/ux-countdown.js', 'flatsome-js', flatsome()->version(), true);
 }
 add_action( 'wp_enqueue_scripts', 'flatsome_countdown_shortcode_scripts' );
 
