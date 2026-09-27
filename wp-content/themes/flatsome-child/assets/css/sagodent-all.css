@@ -2,6 +2,13 @@
 
 
 /* ============================================================
+   SAGODENT CASCADE LAYER — ROOT TOKENS
+   Chỉ áp dụng cho :root; toàn bộ selector, tiền tố và logic CSS khác giữ nguyên.
+   ============================================================ */
+
+@layer sgd-root;
+
+/* ============================================================
    FONT FACE: TRUY XUẤT TRỰC TIẾP TỪ HOSTING (ĐƯỜNG DẪN TUYỆT ĐỐI)
    ============================================================ */
 
@@ -131,26 +138,28 @@
    Selector menu dùng namespace riêng để không phụ thuộc thứ tự của phần nội dung.
    ============================================================ */
 
-:root {
-    --scroll: 0;
-    --menu-section-bg: #021b2c;
-    --menu-foreground: #ffffff;
-    --menu-border: rgba(255, 255, 255, 0.20);
-    --menu-hover: rgba(255, 255, 255, 0.08);
-    --menu-sky: #72bae3;
-    --menu-blue: #075d98;
-    --menu-header-height: 76px;
-    --menu-page-gutter: clamp(22px, 5.8vw, 112px);
-    --menu-admin-offset: 0px;
-    --sgd-lock-top: 0px;
-    --sgd-mobile-viewport-width: 100vw;
-    --sgd-mobile-viewport-height: 100dvh;
-    /* Liquid Glass: JS đổi màu nền kính theo section hiện tại. */
-    --menu-glass-bg: rgba(3, 31, 49, 0.48);
-    --menu-panel-glass-bg: rgba(3, 31, 49, 0.62);
-    --menu-glass-highlight: rgba(255, 255, 255, 0.14);
-    --menu-glass-blur: 18px;
-    --menu-glass-saturation: 125%;
+@layer sgd-root {
+    :root {
+        --scroll: 0;
+        --menu-section-bg: #021b2c;
+        --menu-foreground: #ffffff;
+        --menu-border: rgba(255, 255, 255, 0.20);
+        --menu-hover: rgba(255, 255, 255, 0.08);
+        --menu-sky: #72bae3;
+        --menu-blue: #075d98;
+        --menu-header-height: 76px;
+        --menu-page-gutter: clamp(22px, 5.8vw, 112px);
+        --menu-admin-offset: 0px;
+        --sgd-lock-top: 0px;
+        --sgd-mobile-viewport-width: 100vw;
+        --sgd-mobile-viewport-height: 100dvh;
+        /* Liquid Glass: JS đổi màu nền kính theo section hiện tại. */
+        --menu-glass-bg: rgba(3, 31, 49, 0.48);
+        --menu-panel-glass-bg: rgba(3, 31, 49, 0.62);
+        --menu-glass-highlight: rgba(255, 255, 255, 0.14);
+        --menu-glass-blur: 18px;
+        --menu-glass-saturation: 125%;
+    }
 }
 
 body.admin-bar {
@@ -765,9 +774,11 @@ body .--sgd-menu-panel small {
    ============================================================ */
 
 @media (max-width: 900px) {
-    :root {
-        --menu-header-height: 68px;
-        --menu-page-gutter: clamp(18px, 5vw, 38px);
+    @layer sgd-root {
+        :root {
+            --menu-header-height: 68px;
+            --menu-page-gutter: clamp(18px, 5vw, 38px);
+        }
     }
 
     body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
@@ -850,8 +861,10 @@ body .--sgd-menu-panel small {
    ============================================================ */
 
 @media (max-width: 600px) {
-    :root {
-        --menu-page-gutter: 16px;
+    @layer sgd-root {
+        :root {
+            --menu-page-gutter: 16px;
+        }
     }
 
     body>.--sgd-topbar.--sgd-sagodent-menu-mounted,
@@ -7544,5 +7557,609 @@ body .--sgd-menu-panel .--sgd-menu-item-has-submenu.--sgd-submenu-open .--sgd-su
         font-size: clamp(17px, 5.2vw, 21px) !important;
         font-weight: 500 !important;
         line-height: 1.2 !important;
+    }
+}
+
+@layer reset,
+base,
+layout,
+components,
+responsive;
+
+:root {
+    --sagodent-blue: #075d98;
+    --sagodent-navy: #062d48;
+    --sagodent-sky: #72bae3;
+    --sagodent-pale: #eaf6fd;
+    --sagodent-white: #ffffff;
+    --sagodent-text: #062d48;
+    --sagodent-border: rgba(6, 45, 72, 0.22);
+    --sagodent-status-open: #32c982;
+    --sagodent-status-open-light: #7be7b6;
+    --sagodent-status-soon: #e8ad26;
+    --sagodent-status-soon-light: #ffd969;
+    --sagodent-status-open-soft: #e7f7f1;
+    --sagodent-status-soon-soft: #fff6db;
+    --sagodent-font: "Google Sans", Arial, sans-serif;
+    --sagodent-container-width: 1320px;
+    --sagodent-title-height: 64px;
+    --sagodent-title-size: clamp(20px, 1.45vw, 28px);
+    --sagodent-head-size: clamp(16px, 1.15vw, 21px);
+    --sagodent-body-size: clamp(15px, 1.08vw, 20px);
+    --sagodent-row-height: 92px;
+    --sagodent-cell-x: clamp(18px, 1.6vw, 30px);
+    --sagodent-cell-y: 18px;
+    --sagodent-shadow: 0 8px 24px rgba(6, 45, 72, 0.08);
+    --sagodent-transition: 0.28s ease;
+}
+
+@layer reset {
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        min-width: 320px;
+    }
+
+    table {
+        border-spacing: 0;
+    }
+
+    a {
+        color: inherit;
+    }
+}
+
+@layer base {
+    body {
+        font-family: var(--sagodent-font);
+        background: #ffffff;
+        color: var(--sagodent-text);
+    }
+}
+
+@layer layout {
+    .id4-course-page {
+        width: 100%;
+        padding: 32px 16px;
+    }
+
+    .id4-course-schedule {
+        width: min(100%, var(--sagodent-container-width));
+        margin: 0 auto;
+        margin-bottom: var(--space-6vw);
+        box-shadow: var(--sagodent-shadow);
+        overflow: hidden;
+    }
+
+    .id4-course-schedule__heading {
+        min-height: var(--sagodent-title-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 24px;
+        background: var(--sagodent-blue);
+    }
+
+    .id4-course-schedule__heading h1 {
+        margin: 0;
+        font-size: var(--sagodent-title-size);
+        font-weight: 700;
+        line-height: 1.15;
+        text-align: center;
+        text-transform: uppercase;
+        color: var(--sagodent-white);
+    }
+
+    .id4-course-schedule__table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        background: var(--sagodent-white);
+    }
+}
+
+@layer components {
+    .id4-course-schedule__table {
+        width: 100%;
+        margin: 0;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: var(--sagodent-white);
+        font-family: var(--sagodent-font);
+    }
+
+    .id4-course-schedule__table th:nth-child(1),
+    .id4-course-schedule__table td:nth-child(1) {
+        width: 19%;
+    }
+
+    .id4-course-schedule__table th:nth-child(2),
+    .id4-course-schedule__table td:nth-child(2) {
+        width: 36%;
+    }
+
+    .id4-course-schedule__table th:nth-child(3),
+    .id4-course-schedule__table td:nth-child(3) {
+        width: 20%;
+    }
+
+    .id4-course-schedule__table th:nth-child(4),
+    .id4-course-schedule__table td:nth-child(4) {
+        width: 25%;
+    }
+
+    .id4-course-schedule__table thead th {
+        padding: 16px var(--sagodent-cell-x);
+        border-right: 1px solid var(--sagodent-border);
+        border-bottom: 1px solid var(--sagodent-border);
+        background: var(--sagodent-pale);
+        font-size: var(--sagodent-head-size);
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+        color: var(--sagodent-navy);
+    }
+
+    .id4-course-schedule__table thead th:last-child {
+        border-right: 0;
+    }
+
+    .id4-course-schedule__table tbody tr {
+        min-height: var(--sagodent-row-height);
+        background: var(--sagodent-white);
+        transition: background-color var(--sagodent-transition);
+    }
+
+    .id4-course-schedule__table tbody tr:hover {
+        background: rgba(234, 246, 253, 0.55);
+    }
+
+    .id4-course-schedule__table td {
+        min-height: var(--sagodent-row-height);
+        padding: var(--sagodent-cell-y) var(--sagodent-cell-x);
+        border-right: 1px solid var(--sagodent-border);
+        border-bottom: 1px solid var(--sagodent-border);
+        vertical-align: middle;
+        font-size: var(--sagodent-body-size);
+        font-weight: 400;
+        line-height: 1.35;
+        color: var(--sagodent-text);
+    }
+
+    .id4-course-schedule__table td:last-child {
+        border-right: 0;
+        text-align: center;
+    }
+
+    .id4-course-schedule__table td:nth-child(1) {
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .id4-course-schedule__course {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+    }
+
+    .id4-course-schedule__course strong {
+        display: block;
+        margin: 0;
+        font-size: 1em;
+        font-weight: 700;
+        line-height: 1.15;
+        color: var(--sagodent-navy);
+    }
+
+    .id4-course-schedule__course span {
+        display: block;
+        font-size: 0.96em;
+        font-weight: 400;
+        line-height: 1.3;
+        color: var(--sagodent-text);
+    }
+
+    .id4-course-schedule__status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        white-space: nowrap;
+    }
+
+    .id4-course-schedule__status-dot {
+        flex: 0 0 auto;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+
+    .id4-course-schedule__status-dot--open {
+        background: radial-gradient(circle at 35% 30%, var(--sagodent-status-open-light), var(--sagodent-status-open));
+        box-shadow: 0 2px 5px rgba(22, 145, 94, 0.2);
+    }
+
+    .id4-course-schedule__status-dot--soon {
+        background: radial-gradient(circle at 35% 30%, var(--sagodent-status-soon-light), var(--sagodent-status-soon));
+        box-shadow: 0 2px 5px rgba(174, 117, 4, 0.18);
+    }
+
+    .id4-course-schedule__table td:has(.id4-course-schedule__status-dot--open) {
+        background: var(--sagodent-status-open-soft);
+    }
+
+    .id4-course-schedule__table td:has(.id4-course-schedule__status-dot--soon) {
+        background: var(--sagodent-status-soon-soft);
+    }
+
+    .id4-course-schedule__status-dot {
+        display: none;
+    }
+
+    .id4-course-schedule__link,
+    .id4-course-schedule__link:link,
+    .id4-course-schedule__link:visited {
+        display: inline-block;
+        font-size: 1em;
+        font-weight: 500;
+        line-height: 1.2;
+        text-decoration: none;
+        color: var(--sagodent-blue);
+        transition: color var(--sagodent-transition), transform var(--sagodent-transition);
+    }
+
+    .id4-course-schedule__link:hover,
+    .id4-course-schedule__link:focus-visible {
+        color: var(--sagodent-sky);
+        transform: translateY(-2px);
+    }
+}
+
+@layer responsive {
+    @media (max-width: 900px) {
+        :root {
+            --sagodent-title-height: 58px;
+            --sagodent-title-size: clamp(19px, 3.4vw, 24px);
+            --sagodent-head-size: clamp(14px, 2vw, 17px);
+            --sagodent-body-size: clamp(14px, 1.9vw, 17px);
+            --sagodent-cell-x: clamp(12px, 2vw, 20px);
+        }
+
+        .id4-course-page {
+            padding: 20px 12px;
+        }
+
+        .id4-course-schedule__table th:nth-child(1),
+        .id4-course-schedule__table td:nth-child(1) {
+            width: 20%;
+        }
+
+        .id4-course-schedule__table th:nth-child(2),
+        .id4-course-schedule__table td:nth-child(2) {
+            width: 36%;
+        }
+
+        .id4-course-schedule__table th:nth-child(3),
+        .id4-course-schedule__table td:nth-child(3) {
+            width: 22%;
+        }
+
+        .id4-course-schedule__table th:nth-child(4),
+        .id4-course-schedule__table td:nth-child(4) {
+            width: 22%;
+        }
+
+        .id4-course-schedule__status {
+            gap: 0;
+        }
+
+        .id4-course-schedule__status-dot {
+            width: 15px;
+            height: 15px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        :root {
+            --sagodent-title-height: 56px;
+            --sagodent-title-size: clamp(17px, 5.2vw, 21px);
+            --sagodent-body-size: 15px;
+        }
+
+        .id4-course-page {
+            padding: 0;
+        }
+
+        .id4-course-schedule {
+            width: 100%;
+            margin-bottom: var(--space-8vw) !important;
+            box-shadow: none;
+        }
+
+        .id4-course-schedule__heading {
+            height: var(--sagodent-title-height) !important;
+            min-height: var(--sagodent-title-height) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 0 18px !important;
+            box-sizing: border-box !important;
+        }
+
+        .id4-course-schedule__heading h1 {
+            width: 100% !important;
+            height: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: 1.15 !important;
+            text-align: center !important;
+            color: var(--sagodent-white) !important;
+        }
+
+        .id4-course-schedule__table thead {
+            display: none;
+        }
+
+        .id4-course-schedule__table,
+        .id4-course-schedule__table tbody,
+        .id4-course-schedule__table tr,
+        .id4-course-schedule__table td {
+            display: block;
+            width: 100% !important;
+        }
+
+        .id4-course-schedule__table tbody {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            padding: 10px;
+            background: var(--sagodent-pale);
+        }
+
+        .id4-course-schedule__table tbody tr {
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: 0;
+            border: 0;
+            background: var(--sagodent-white);
+            box-shadow: 0 3px 14px rgba(6, 45, 72, 0.08);
+        }
+
+        .id4-course-schedule__table td {
+            position: relative;
+            display: grid;
+            grid-template-columns: 105px minmax(0, 1fr) !important;
+            align-items: center;
+            gap: 14px !important;
+            min-height: 52px;
+            padding: 6px 14px !important;
+            border: 0;
+            border-bottom: 1px solid var(--sagodent-border);
+            text-align: left !important;
+            white-space: normal !important;
+        }
+
+        .id4-course-schedule__table td:nth-child(1),
+        .id4-course-schedule__table td:nth-child(2),
+        .id4-course-schedule__table td:nth-child(3),
+        .id4-course-schedule__table td:nth-child(4) {
+            text-align: left !important;
+        }
+
+        .id4-course-schedule__table td:last-child {
+            border-bottom: 0;
+            text-align: left !important;
+        }
+
+        .id4-course-schedule__table td::before {
+            content: attr(data-label);
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            align-self: center;
+            justify-self: start;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: left;
+            color: var(--sagodent-blue);
+            text-transform: uppercase;
+        }
+
+        .id4-course-schedule__course {
+            align-self: center;
+            justify-content: center;
+        }
+
+        .id4-course-schedule__status {
+            align-self: center;
+            justify-content: flex-start;
+        }
+
+        .id4-course-schedule__link {
+            align-self: center;
+            justify-self: start;
+        }
+    }
+
+    @media (max-width: 380px) {
+        .id4-course-schedule__table td {
+            grid-template-columns: 96px minmax(0, 1fr) !important;
+            gap: 10px !important;
+            min-height: 52px;
+            padding: 6px 12px !important;
+        }
+
+        .id4-course-schedule__table td::before {
+            font-size: 12px;
+        }
+
+        .id4-course-schedule__status-dot {
+            width: 13px;
+            height: 13px;
+        }
+    }
+}
+
+
+/* ============================================================
+   FIX KHÓA HỌC QUÝ 4
+   - Khôi phục đúng giao diện như file HTML gốc
+   - Chống CSS của Flatsome/WordPress ghi đè
+   - Căn toàn bộ bảng chính giữa viewport
+   - Không thay đổi DOM / JS / logic hiện có
+   ============================================================ */
+
+@media (min-width: 601px) {
+    @layer layout {
+        .id4-course-page {
+            width: 100vw !important;
+            max-width: none !important;
+            margin-left: calc(50% - 50vw) !important;
+            margin-right: calc(50% - 50vw) !important;
+            padding: 32px 16px !important;
+        }
+
+        .id4-course-schedule {
+            width: min(100%, var(--sagodent-container-width)) !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .id4-course-schedule__heading {
+            min-height: var(--sagodent-title-height) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 12px 24px !important;
+            background: var(--sagodent-blue) !important;
+        }
+
+        .id4-course-schedule__heading h1 {
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            font-family: var(--sagodent-font) !important;
+            font-size: var(--sagodent-title-size) !important;
+            font-weight: 700 !important;
+            line-height: 1.15 !important;
+            text-align: center !important;
+            text-transform: uppercase !important;
+            color: var(--sagodent-white) !important;
+        }
+    }
+
+    @layer components {
+        .id4-course-schedule__table {
+            width: 100% !important;
+            margin: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            background: var(--sagodent-white) !important;
+            font-family: var(--sagodent-font) !important;
+        }
+
+        .id4-course-schedule__table thead th {
+            padding: 16px var(--sagodent-cell-x) !important;
+            border-right: 1px solid var(--sagodent-border) !important;
+            border-bottom: 1px solid var(--sagodent-border) !important;
+            background: var(--sagodent-pale) !important;
+            font-family: var(--sagodent-font) !important;
+            font-size: var(--sagodent-head-size) !important;
+            font-weight: 700 !important;
+            line-height: 1.2 !important;
+            text-align: center !important;
+            vertical-align: middle !important;
+            color: var(--sagodent-navy) !important;
+        }
+
+        .id4-course-schedule__table td {
+            min-height: var(--sagodent-row-height) !important;
+            padding: var(--sagodent-cell-y) var(--sagodent-cell-x) !important;
+            border-right: 1px solid var(--sagodent-border) !important;
+            border-bottom: 1px solid var(--sagodent-border) !important;
+            vertical-align: middle !important;
+            font-family: var(--sagodent-font) !important;
+            font-size: var(--sagodent-body-size) !important;
+            font-weight: 400 !important;
+            line-height: 1.35 !important;
+            color: var(--sagodent-text) !important;
+        }
+
+        .id4-course-schedule__table td:nth-child(1) {
+            text-align: center !important;
+            white-space: nowrap !important;
+        }
+
+        .id4-course-schedule__table td:nth-child(2) {
+            text-align: left !important;
+        }
+
+        .id4-course-schedule__table td:nth-child(3),
+        .id4-course-schedule__table td:nth-child(4) {
+            text-align: center !important;
+        }
+
+        .id4-course-schedule__course {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 3px !important;
+        }
+
+        .id4-course-schedule__course strong {
+            display: block !important;
+            margin: 0 !important;
+            font-family: var(--sagodent-font) !important;
+            font-size: 1em !important;
+            font-weight: 700 !important;
+            line-height: 1.15 !important;
+            color: var(--sagodent-navy) !important;
+        }
+
+        .id4-course-schedule__course span {
+            display: block !important;
+            font-family: var(--sagodent-font) !important;
+            font-size: 0.96em !important;
+            font-weight: 400 !important;
+            line-height: 1.3 !important;
+            color: var(--sagodent-text) !important;
+        }
+
+        .id4-course-schedule__status {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 0 !important;
+            white-space: nowrap !important;
+        }
+
+        .id4-course-schedule__link,
+        .id4-course-schedule__link:link,
+        .id4-course-schedule__link:visited {
+            display: inline-block !important;
+            font-family: var(--sagodent-font) !important;
+            font-size: 1em !important;
+            font-weight: 500 !important;
+            line-height: 1.2 !important;
+            text-align: center !important;
+            text-decoration: none !important;
+            color: var(--sagodent-blue) !important;
+        }
     }
 }
