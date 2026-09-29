@@ -7581,7 +7581,7 @@ responsive;
     --sagodent-status-open-soft: #e7f7f1;
     --sagodent-status-soon-soft: #fff6db;
     --sagodent-font: "Google Sans", Arial, sans-serif;
-    --sagodent-container-width: 1320px;
+    --sagodent-container-width: 90vw;
     --sagodent-title-height: 64px;
     --sagodent-title-size: clamp(20px, 1.45vw, 28px);
     --sagodent-head-size: clamp(16px, 1.15vw, 21px);
@@ -7637,6 +7637,7 @@ responsive;
     .id4-course-schedule {
         width: min(100%, var(--sagodent-container-width));
         margin: 0 auto;
+        margin-bottom: var(--space-6vw);
         box-shadow: var(--sagodent-shadow);
         overflow: hidden;
     }
@@ -7882,6 +7883,7 @@ responsive;
 
         .id4-course-schedule {
             width: 100%;
+            margin-bottom: var(--space-8vw) !important;
             box-shadow: none;
         }
 
@@ -8034,7 +8036,7 @@ responsive;
         }
 
         .id4-course-schedule {
-            width: min(100%, var(--sagodent-container-width)) !important;
+            max-width: min(100%, var(--sagodent-container-width)) !important;
             margin-left: auto !important;
             margin-right: auto !important;
         }

@@ -1941,7 +1941,7 @@ body .--sgd-menu-panel small {
 .sagodent-page .course-tabs {
     height: 54px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     border-right: 0 !important;
     outline: var(--course-frame-outline) !important;
     box-shadow: 0 5px 30px var(--navy-08)
@@ -8161,5 +8161,19 @@ responsive;
             text-decoration: none !important;
             color: var(--sagodent-blue) !important;
         }
+    }
+}
+
+
+/* ============================================================
+   SAGODENT COURSE TABS — MOBILE 7 TABS
+   - Mobile <= 600px: giữ bố cục 2 cột hiện có.
+   - IMPLANT PROSTHODONTICS chiếm trọn 1 hàng.
+   - Không thay đổi card, autoplay, Prev/Next hoặc logic khóa học.
+   ============================================================ */
+
+@media (max-width: 600px) {
+    .sagodent-page .course-tabs button.course-tab--wide-mobile {
+        grid-column: 1 / -1 !important;
     }
 }

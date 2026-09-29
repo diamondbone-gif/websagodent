@@ -293,6 +293,108 @@
         let mobileScrollLocked = false;
         let mobileTouchY = 0;
 
+
+        /* ============================================================
+           SUBMENU — KHÓA HỌC + HOẠT ĐỘNG
+           - Giữ nguyên link chính để scroll đến section hiện tại.
+           - Nút mũi tên điều khiển submenu độc lập.
+           - Chỉ cho mở 1 submenu tại một thời điểm.
+           ============================================================ */
+        const submenuItems = Array.from(
+            panel.querySelectorAll(".--sgd-menu-item-has-submenu"),
+        );
+
+        function closeAllSubmenus(exceptItem) {
+            submenuItems.forEach(function(item) {
+                if (exceptItem && item === exceptItem) return;
+
+                item.classList.remove("--sgd-submenu-open");
+
+                const toggle = item.querySelector(":scope > .--sgd-menu-item-row .--sgd-submenu-toggle");
+                const submenu = item.querySelector(":scope > .--sgd-submenu");
+
+                if (toggle) toggle.setAttribute("aria-expanded", "false");
+                if (submenu) submenu.setAttribute("aria-hidden", "true");
+            });
+        }
+
+        function setSubmenu(item, open) {
+            if (!item) return;
+
+            const toggle = item.querySelector(":scope > .--sgd-menu-item-row .--sgd-submenu-toggle");
+            const submenu = item.querySelector(":scope > .--sgd-submenu");
+            if (!toggle || !submenu) return;
+
+            const nextOpen = Boolean(open);
+            if (nextOpen) closeAllSubmenus(item);
+
+            item.classList.toggle("--sgd-submenu-open", nextOpen);
+            toggle.setAttribute("aria-expanded", String(nextOpen));
+            submenu.setAttribute("aria-hidden", String(!nextOpen));
+        }
+
+        submenuItems.forEach(function(item) {
+            const toggle = item.querySelector(":scope > .--sgd-menu-item-row .--sgd-submenu-toggle");
+            const mainLink = item.querySelector(":scope > .--sgd-menu-item-row .--sgd-menu-main-link");
+            const submenu = item.querySelector(":scope > .--sgd-submenu");
+            let hoverCloseTimer = 0;
+            if (!toggle) return;
+
+            function cancelHoverClose() {
+                if (!hoverCloseTimer) return;
+                window.clearTimeout(hoverCloseTimer);
+                hoverCloseTimer = 0;
+            }
+
+            toggle.addEventListener("click", function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                setLanguageMenu(false);
+                setSubmenu(item, !item.classList.contains("--sgd-submenu-open"));
+            });
+
+            /* Desktop/PC: hover hoặc bấm vào chính tab đều mở submenu.
+               Mobile/Tablet giữ nguyên: link chính vẫn hoạt động như trước, nút mũi tên xổ submenu. */
+            item.addEventListener("mouseenter", function() {
+                if (isMobileMenuMode()) return;
+                cancelHoverClose();
+                setLanguageMenu(false);
+                setSubmenu(item, true);
+            });
+
+            item.addEventListener("mouseleave", function() {
+                if (isMobileMenuMode()) return;
+                cancelHoverClose();
+                hoverCloseTimer = window.setTimeout(function() {
+                    setSubmenu(item, false);
+                    hoverCloseTimer = 0;
+                }, 180);
+            });
+
+            if (submenu) {
+                submenu.addEventListener("mouseenter", function() {
+                    if (isMobileMenuMode()) return;
+                    cancelHoverClose();
+                });
+            }
+
+            if (mainLink) {
+                mainLink.addEventListener("click", function(event) {
+                    if (isMobileMenuMode()) return;
+                    event.preventDefault();
+                    event.stopPropagation();
+                    cancelHoverClose();
+                    setLanguageMenu(false);
+                    setSubmenu(item, true);
+                });
+            }
+        });
+
+        document.addEventListener("click", function(event) {
+            if (event.target.closest(".--sgd-menu-item-has-submenu")) return;
+            closeAllSubmenus();
+        });
+
         /*
          * Đồng bộ vị trí menu với mép trên viewport.
          * WordPress có thể giữ class admin-bar hoặc wrapper có offset dù thanh admin đã ẩn.
@@ -584,6 +686,7 @@
                 if (mobileScrollLocked) unlockMobilePageScroll();
 
                 menuOpen = false;
+                closeAllSubmenus();
                 header.classList.remove("--sgd-menu-open");
                 panel.classList.remove("--sgd-open");
                 backdrop.classList.remove("--sgd-open");
@@ -600,6 +703,8 @@
 
             const nextOpen = Boolean(open);
             const wasOpen = menuOpen;
+
+            if (!nextOpen) closeAllSubmenus();
 
             /* Mobile/tablet: giữ nguyên cơ chế khóa scroll cũ. */
             if (nextOpen && !wasOpen) {
@@ -681,6 +786,12 @@
             const link = event.target.closest("a[href^='#']");
             if (!link) return;
 
+            /* Submenu đang dùng href="#" làm placeholder cho tới khi có URL thật. */
+            if (link.classList.contains("--sgd-submenu-link") && link.getAttribute("href") === "#") {
+                event.preventDefault();
+                return;
+            }
+
             if (scrollToContent(link)) {
                 event.preventDefault();
             }
@@ -688,6 +799,7 @@
 
         document.addEventListener("keydown", function(event) {
             if (event.key !== "Escape") return;
+            closeAllSubmenus();
             if (languageMenuOpen) setLanguageMenu(false);
             if (menuOpen) setMenu(false);
         });
@@ -1013,11 +1125,18 @@
                 panelGlass = "rgba(5, 8, 10, 0.76)";
             }
 
+            const submenuBackground = rgbaFromColor(
+                background,
+                0.96,
+                dark ? "rgba(3, 31, 49, 0.96)" : "rgba(255, 255, 255, 0.96)",
+            );
+
             const properties = {
                 "--menu-section-bg": background,
 
                 "--menu-glass-bg": headerGlass,
                 "--menu-panel-glass-bg": panelGlass,
+                "--menu-submenu-bg": submenuBackground,
                 "--menu-glass-highlight": dark ?
                     "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.62)",
                 "--menu-foreground": dark ? "#ffffff" : "#075d98",
@@ -1130,6 +1249,7 @@
                 syncMobileViewportSize();
                 syncMenuLayout();
                 setLanguageMenu(false);
+                closeAllSubmenus();
 
                 if (menuOpen && isMobileMenuMode()) {
                     lockMobilePageScroll();
@@ -1140,6 +1260,7 @@
         );
         window.addEventListener("orientationchange", function() {
             setLanguageMenu(false);
+            closeAllSubmenus();
             requestUpdate();
         }, {
             passive: true,
