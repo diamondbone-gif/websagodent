@@ -4,26 +4,6 @@
 
    ============================================================ */
 
-/* ============================================================
-
-   SAGODENT MENU — MOBILE FIX + LIQUID GLASS
-
-   - Desktop > 900px: menu hiển thị ngang trực tiếp trên header.
-
-   - Mobile/Tablet <= 900px: drawer vẫn mở từ bên phải như bản gốc.
-
-   - Header và menu nhận cùng màu/tone.
-
-   - Chữ, link, mũi tên trong drawer đổi theo tone.
-
-   - VN/ENG được giữ bởi CSS ở mọi breakpoint.
-
-   - Nhận diện được Section của Flatsome trên desktop/mobile/tablet.
-
-   - Giữ thanh tiến trình cuộn.
-
-   ============================================================ */
-
 (function() {
 
     "use strict";
@@ -708,13 +688,149 @@
 
 
 
-            /* Desktop/PC: hover hoặc bấm vào chính tab đều mở submenu.
+            /* Desktop/PC: chỉ mở submenu khi pointer thật sự nằm trên phần CHỮ hiển thị.
 
-               Mobile/Tablet giữ nguyên: link chính vẫn hoạt động như trước, nút mũi tên xổ submenu. */
+               Không dùng mouseenter của toàn bộ <a> vì box của link vẫn có thể rộng hơn glyph chữ.
 
-            item.addEventListener("mouseenter", function() {
+               Mobile/Tablet giữ nguyên: link chính vẫn hoạt động như trước, nút mũi tên xổ submenu bằng click. */
+
+            let desktopTextHoverActive = false;
+
+
+
+            function isPointerOverMainLinkText(event) {
+
+                if (!mainLink || isMobileMenuMode()) return false;
+
+
+
+                const walker = document.createTreeWalker(
+
+                    mainLink,
+
+                    NodeFilter.SHOW_TEXT,
+
+                    {
+
+                        acceptNode: function(node) {
+
+                            const value = node.nodeValue || "";
+
+                            if (!value.trim()) return NodeFilter.FILTER_REJECT;
+
+
+
+                            const parent = node.parentElement;
+
+                            if (parent && parent.closest("small")) {
+
+                                return NodeFilter.FILTER_REJECT;
+
+                            }
+
+
+
+                            return NodeFilter.FILTER_ACCEPT;
+
+                        },
+
+                    },
+
+                );
+
+
+
+                let textNode = walker.nextNode();
+
+
+
+                while (textNode) {
+
+                    const value = textNode.nodeValue || "";
+
+                    const start = value.search(/\S/);
+
+                    const trailing = value.match(/\s*$/);
+
+                    const end = value.length - (trailing ? trailing[0].length : 0);
+
+
+
+                    if (start >= 0 && end > start) {
+
+                        const range = document.createRange();
+
+                        range.setStart(textNode, start);
+
+                        range.setEnd(textNode, end);
+
+
+
+                        const rects = range.getClientRects();
+
+
+
+                        for (let index = 0; index < rects.length; index += 1) {
+
+                            const rect = rects[index];
+
+
+
+                            if (
+
+                                event.clientX >= rect.left &&
+
+                                event.clientX <= rect.right &&
+
+                                event.clientY >= rect.top &&
+
+                                event.clientY <= rect.bottom
+
+                            ) {
+
+                                return true;
+
+                            }
+
+                        }
+
+                    }
+
+
+
+                    textNode = walker.nextNode();
+
+                }
+
+
+
+                return false;
+
+            }
+
+
+
+            function setDesktopTextHover(active) {
 
                 if (isMobileMenuMode()) return;
+
+
+
+                const nextActive = Boolean(active);
+
+                if (desktopTextHoverActive === nextActive) return;
+
+
+
+                desktopTextHoverActive = nextActive;
+
+                item.classList.toggle("--sgd-text-hover", nextActive);
+
+
+
+                if (!nextActive) return;
+
+
 
                 cancelHoverClose();
 
@@ -722,13 +838,35 @@
 
                 setSubmenu(item, true);
 
-            });
+            }
+
+
+
+            if (mainLink) {
+
+                mainLink.addEventListener("pointermove", function(event) {
+
+                    setDesktopTextHover(isPointerOverMainLinkText(event));
+
+                });
+
+
+
+                mainLink.addEventListener("pointerleave", function() {
+
+                    setDesktopTextHover(false);
+
+                });
+
+            }
 
 
 
             item.addEventListener("mouseleave", function() {
 
                 if (isMobileMenuMode()) return;
+
+                setDesktopTextHover(false);
 
                 cancelHoverClose();
 
@@ -2688,7 +2826,7 @@
 
             buttonText: "Coming soon",
 
-            buttonLink: "#contact"
+            buttonLink: "https://sagodent.com/implant-basic/"
 
         },
 

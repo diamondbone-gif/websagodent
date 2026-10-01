@@ -1,0 +1,1593 @@
+.--implant-basic-page {
+    --sgd-veneer-blue: #062d48;
+    --sgd-veneer-light-blue: #6ebce5;
+    --sgd-veneer-content-width: 1730px;
+    --sgd-veneer-page-width: 1920px;
+    --sgd-veneer-page-gutter: 95px;
+    --sgd-veneer-white: #ffffff;
+    --sgd-veneer-text: #333333;
+    --sgd-veneer-gray-300: #d1d5db;
+    --sgd-veneer-gray-500: #6b7280;
+    --sgd-veneer-gray-700: #374151;
+    --sgd-veneer-gray-800: #1f2937;
+}
+
+.--implant-basic-page {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Gotham', Arial, sans-serif;
+    color: var(--sgd-veneer-text);
+    background: var(--sgd-veneer-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.--implant-basic-page,
+.--implant-basic-page *,
+.--implant-basic-page *::before,
+.--implant-basic-page *::after {
+    box-sizing: border-box;
+}
+
+.--implant-basic-page img {
+    max-width: 100%;
+}
+
+.--implant-basic-page a {
+    text-decoration: none;
+}
+
+.--implant-basic-page button,
+.--implant-basic-page a {
+    font-family: inherit;
+}
+
+.--implant-basic-content-container {
+    width: 100%;
+    max-width: var(--sgd-veneer-page-width);
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.--implant-basic-inner-content {
+    width: 100%;
+    max-width: var(--sgd-veneer-content-width);
+    margin: 0 auto;
+}
+
+
+/* HERO */
+
+.--implant-basic-hero-section {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 913 / 495;
+    padding: 0;
+    overflow: hidden;
+    isolation: isolate;
+    background: #021b2c;
+}
+
+.--implant-basic-hero-bg-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: #021b2c;
+}
+
+.--implant-basic-hero-bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1.04);
+    transform-origin: center center;
+}
+
+.--implant-basic-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(2, 45, 72, 0.90) 0%, rgba(2, 45, 72, 0.68) 24%, rgba(2, 45, 72, 0.32) 45%, rgba(2, 45, 72, 0.08) 60%, rgba(2, 45, 72, 0) 72%);
+}
+
+.--implant-basic-hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    max-width: none;
+    height: 100%;
+    padding: 0;
+}
+
+.--implant-basic-hero-content>.--implant-basic-inner-content {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+}
+
+.--implant-basic-hero-copy {
+    position: absolute;
+    left: 4.4%;
+    top: 55.5%;
+    width: auto;
+    max-width: 57%;
+    margin: 0;
+}
+
+.--implant-basic-hero-eyebrow {
+    margin: 0 0 clamp(7px, 0.8vw, 15px);
+    color: #ffffff;
+    font-size: clamp(8px, 0.82vw, 16px);
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.--implant-basic-hero-title-main,
+.--implant-basic-hero-title-sub {
+    margin: 0;
+    font-family: 'Gotham', Arial, sans-serif;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+}
+
+.--implant-basic-hero-title-main {
+    color: #ffffff;
+    font-size: clamp(48px, 7.65vw, 147px);
+    font-weight: 800;
+}
+
+.--implant-basic-hero-title-sub {
+    margin-top: clamp(2px, 0.3vw, 6px);
+    color: var(--sgd-veneer-light-blue);
+    font-family: 'Gotham', Arial, sans-serif;
+    font-size: clamp(52px, 8.1vw, 156px);
+    font-weight: 600;
+    font-style: italic;
+}
+
+.--implant-basic-hero-actions {
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: clamp(10px, 1.2vw, 23px);
+    width: max-content;
+    max-width: 100%;
+    margin-top: clamp(14px, 1.45vw, 28px);
+}
+
+.--implant-basic-page .--implant-basic-hero-actions {
+    align-items: center !important;
+}
+
+
+/* FIX: Căn chỉnh text và nút CTA thẳng hàng ngang do wpautop sinh thẻ <p> */
+
+.--implant-basic-hero-actions>p {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.--implant-basic-hero-tagline {
+    /* FIX: Đổi size mặc định Desktop thành 15px, bỏ giới hạn width cố định */
+    margin: 0;
+    color: #ffffff;
+    font-size: 15px;
+    line-height: 1.25;
+    opacity: 1;
+}
+
+.--implant-basic-page .--implant-basic-hero-tagline,
+.--implant-basic-page .--implant-basic-hero-cta {
+    align-self: center !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    transform: none !important;
+}
+
+.--implant-basic-page .--implant-basic-hero-tagline {
+    display: flex;
+    align-items: center;
+}
+
+.--implant-basic-hero-cta {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-width: clamp(72px, 7.7vw, 148px);
+    height: clamp(22px, 2.2vw, 42px);
+    padding: 0 clamp(11px, 1.25vw, 24px);
+    border-radius: 9999px;
+    background: var(--sgd-veneer-light-blue);
+    color: var(--sgd-veneer-blue);
+    font-size: clamp(7px, 0.68vw, 13px);
+    line-height: 1;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.--implant-basic-hero-cta:hover,
+.--implant-basic-hero-cta:focus-visible {
+    background: #ffffff;
+}
+
+
+/* FEATURE */
+
+.--implant-basic-feature-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: linear-gradient(90deg, #164967 0%, #0b3652 52%, #031f31 100%);
+    color: #ffffff;
+}
+
+.--implant-basic-feature-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 46%;
+    filter: saturate(0.82) contrast(0.96);
+    opacity: 0.68;
+    pointer-events: none;
+}
+
+.--implant-basic-feature-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: linear-gradient(90deg, rgba(25, 76, 105, 0.70) 0%, rgba(14, 60, 87, 0.73) 38%, rgba(7, 44, 67, 0.80) 68%, rgba(2, 30, 48, 0.92) 100%);
+}
+
+.--implant-basic-feature-fade {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(105, 179, 218, 0.10) 0%, rgba(105, 179, 218, 0.03) 22%, rgba(2, 30, 48, 0.08) 100%);
+}
+
+.--implant-basic-feature-copy {
+    width: 100%;
+    max-width: var(--sgd-veneer-content-width);
+}
+
+.--implant-basic-feature-copy-block {
+    width: 100%;
+}
+
+.--implant-basic-feature-copy-block+.--implant-basic-feature-copy-block {
+    margin-top: 34px;
+}
+
+.--implant-basic-feature-title {
+    margin: 0 0 22px;
+    color: #ffffff;
+    font-size: clamp(30px, 2.45vw, 48px);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+.--implant-basic-feature-text {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(17px, 1.2vw, 23px);
+    line-height: 1.34;
+    font-weight: 400;
+    opacity: 0.94;
+}
+
+.--implant-basic-feature-text+.--implant-basic-feature-text {
+    margin-top: 28px;
+}
+
+
+/* PROGRAM */
+
+.--implant-basic-program-section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    background: #ffffff;
+}
+
+
+/* Đã bổ sung border-bottom và padding để tạo đường kẻ ngang dưới tiêu đề */
+
+.--implant-basic-program-title {
+    margin: 0 0 20px;
+    padding-bottom: 0;
+    border-bottom: 0;
+    color: var(--sgd-veneer-blue);
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+}
+
+.--implant-basic-program-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Đã chỉnh lại màu xanh đậm hơn một chút (0.3 thay vì 0.2) */
+
+.--implant-basic-program-divider {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    border-top: 2px solid rgba(6, 45, 72, 0.34);
+    opacity: 1;
+}
+
+.--implant-basic-program-row {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.--implant-basic-program-part-col,
+.--implant-basic-program-info-col,
+.--implant-basic-program-action-col {
+    width: 100%;
+}
+
+.--implant-basic-program-part-title {
+    margin: 0;
+    color: var(--sgd-veneer-blue);
+    font-size: 36px;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.--implant-basic-program-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.--implant-basic-program-kicker,
+.--implant-basic-program-count {
+    margin: 0;
+    color: var(--sgd-veneer-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.--implant-basic-program-kicker {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.--implant-basic-program-count {
+    padding-top: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.--implant-basic-program-meta {
+    color: var(--sgd-veneer-blue);
+    font-size: 18px;
+    line-height: 1.375;
+    font-weight: 700;
+}
+
+.--implant-basic-program-meta p,
+.--implant-basic-program-details p {
+    margin: 0;
+}
+
+.--implant-basic-program-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: var(--sgd-veneer-gray-700);
+    font-size: 14px;
+    line-height: 1.625;
+    max-width: 340px;
+}
+
+.--implant-basic-program-details.--implant-basic-program-details-spaced {
+    padding-top: 4px;
+}
+
+#--implant-basic-program-part-1 .--implant-basic-program-details {
+    max-width: 100%;
+}
+
+#--implant-basic-program-part-1 .--implant-basic-program-details+.--implant-basic-program-details {
+    margin-top: 12px;
+}
+
+.--implant-basic-program-details-label {
+    margin-bottom: 4px !important;
+    color: var(--sgd-veneer-gray-500);
+    font-size: calc(1em + 3px);
+    line-height: 1.35;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.--implant-basic-program-action-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 8px;
+}
+
+.--implant-basic-program-download-btn {
+    width: 100%;
+    min-width: 292px;
+    min-height: 58px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border: 2px solid rgba(6, 45, 72, 0.72);
+    border-radius: 14px;
+    background: #ffffff;
+    color: var(--sgd-veneer-blue);
+    font-size: 16px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: none;
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.--implant-basic-program-download-btn:focus-visible {
+    background: #ffffff;
+    color: var(--sgd-veneer-blue);
+    border-color: rgba(6, 45, 72, 0.82);
+    outline: 3px solid rgba(110, 188, 229, 0.32);
+    outline-offset: 3px;
+}
+
+.--implant-basic-program-summary {
+    margin-top: 32px;
+    color: var(--sgd-veneer-gray-800);
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.--implant-basic-program-summary p {
+    margin: 0;
+    color: var(--sgd-veneer-gray-800);
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+
+/* DOCTOR */
+
+.--implant-basic-doctor-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    background: linear-gradient(45deg, #555555 0%, #494949 31%, #343434 60%, #232323 100%);
+    color: #ffffff;
+}
+
+.--implant-basic-doctor-layout {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: clamp(28px, 4vw, 72px);
+    min-height: 440px;
+    overflow: visible;
+}
+
+.--implant-basic-doctor-media {
+    position: relative;
+    z-index: 3;
+    width: 41%;
+    align-self: stretch;
+    margin-top: -84px;
+    padding-top: 84px;
+    overflow: hidden;
+}
+
+.--implant-basic-doctor-photo {
+    position: absolute;
+    left: 8px;
+    bottom: 0;
+    z-index: 3;
+    width: auto;
+    height: 100%;
+    max-width: 112%;
+    display: block;
+    margin: 0;
+    object-fit: contain;
+    object-position: left bottom;
+}
+
+.--implant-basic-doctor-copy {
+    position: relative;
+    z-index: 4;
+    width: 59%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 56px;
+    padding-right: 56px;
+    padding-bottom: 56px;
+}
+
+.--implant-basic-doctor-name {
+    margin: 0 0 32px;
+    color: #ffffff;
+    font-size: 36px;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.--implant-basic-doctor-bio {
+    color: var(--sgd-veneer-gray-300);
+    font-size: 16px;
+    line-height: 1.625;
+    font-weight: 300;
+}
+
+.--implant-basic-doctor-bio p {
+    margin: 0;
+}
+
+.--implant-basic-doctor-bio p+p {
+    margin-top: 24px;
+}
+
+
+/* CERTIFICATE */
+
+.--implant-basic-certificate-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: #ffffff;
+    color: var(--sgd-veneer-blue);
+    text-align: center;
+}
+
+.--implant-basic-certificate-copy {
+    max-width: 896px;
+    margin: 0 auto;
+}
+
+.--implant-basic-certificate-copy>* {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.--implant-basic-certificate-copy>*+* {
+    margin-top: 32px;
+}
+
+.--implant-basic-certificate-title {
+    color: var(--sgd-veneer-blue);
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+}
+
+.--implant-basic-certificate-intro,
+.--implant-basic-certificate-note {
+    color: var(--sgd-veneer-gray-700);
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.--implant-basic-certificate-experience {
+    padding-top: 16px;
+    padding-bottom: 8px;
+}
+
+.--implant-basic-certificate-experience-title {
+    margin: 0 0 16px;
+    color: var(--sgd-veneer-blue);
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.--implant-basic-certificate-experience-text {
+    max-width: 768px;
+    margin: 0 auto;
+    color: var(--sgd-veneer-gray-700);
+    font-size: 16px;
+    line-height: 1.625;
+}
+
+.--implant-basic-certificate-note {
+    padding-top: 16px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+
+/* FOOTER CTA */
+
+.--implant-basic-footer-cta {
+    min-height: clamp(220px, 16.67vw, 320px);
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding-top: clamp(38px, 3.1vw, 60px);
+    padding-bottom: clamp(38px, 3.1vw, 60px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(45deg, #5c5c5c 0%, #4a4a4a 24%, #333333 58%, #1b1b1b 100%);
+}
+
+.--implant-basic-footer-row {
+    width: max-content;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(110px, 8vw, 155px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.--implant-basic-footer-course-title {
+    min-width: max-content;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.--implant-basic-footer-title-main,
+.--implant-basic-footer-title-sub {
+    margin: 0;
+    font-family: 'Gotham', Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.--implant-basic-footer-title-main {
+    color: #ffffff;
+    font-size: clamp(46px, 3.8vw, 62px);
+    line-height: 0.92;
+    font-weight: 800;
+    letter-spacing: -3px;
+}
+
+.--implant-basic-footer-title-sub {
+    margin-top: 3px;
+    color: #66b7e5;
+    font-family: 'Gotham', Arial, sans-serif;
+    font-size: clamp(58px, 6vw, 98px);
+    line-height: 1.2;
+    /* line-height: 0.88; */
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: -3px;
+    transform: scaleX(0.99);
+    transform-origin: center center;
+}
+
+.--implant-basic-register-wrap {
+    position: relative;
+    isolation: isolate;
+    flex: 0 0 auto;
+}
+
+.--implant-basic-register-wrap::after {
+    content: '';
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    bottom: -32px;
+    z-index: -1;
+    height: 68px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.44) 0%, rgba(255, 255, 255, 0.24) 34%, rgba(255, 255, 255, 0.09) 56%, rgba(255, 255, 255, 0) 78%);
+    filter: blur(15px);
+    pointer-events: none;
+}
+
+.--implant-basic-register-btn {
+    width: clamp(246px, 18.75vw, 360px);
+    min-height: clamp(76px, 5.94vw, 114px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(13px, 0.94vw, 18px) clamp(22px, 1.56vw, 30px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: clamp(16px, 1.25vw, 24px);
+    background: linear-gradient(105deg, #232323 0%, #2f2f2f 44%, #5b5b5b 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 0 26px rgba(255, 255, 255, 0.16), 0 18px 38px rgba(0, 0, 0, 0.42);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.--implant-basic-register-btn-title {
+    color: #ffffff;
+    font-size: clamp(18px, 1.25vw, 24px);
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.35px;
+    transition: color 0.3s ease;
+}
+
+.--implant-basic-register-btn-sub {
+    margin-top: clamp(5px, 0.42vw, 8px);
+    color: #d9dde2;
+    font-size: clamp(14px, 0.89vw, 17px);
+    line-height: 1.15;
+    font-weight: 400;
+}
+
+.--implant-basic-register-btn:hover {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 0 34px rgba(255, 255, 255, 0.14), 0 16px 34px rgba(0, 0, 0, 0.38);
+    transform: translateY(-2px);
+}
+
+.--implant-basic-register-btn:hover .--implant-basic-register-btn-title {
+    color: #66b7e5;
+}
+
+
+/* TABLET: >= 768px */
+
+@media (min-width: 768px) {
+    .--implant-basic-hero-copy {
+        top: auto;
+        bottom: clamp(14px, 1.45vw, 28px);
+    }
+
+    .--implant-basic-hero-title-main,
+    .--implant-basic-hero-title-sub {
+        line-height: 1.05;
+    }
+
+    .--implant-basic-hero-title-main {
+        font-size: clamp(55px, 8.3vw, 154px);
+    }
+
+    .--implant-basic-hero-title-sub {
+        font-size: clamp(59px, 8.75vw, 163px);
+    }
+
+    .--implant-basic-feature-section {
+        padding-top: 112px;
+        padding-bottom: 112px;
+    }
+
+    .--implant-basic-program-section {
+        padding-top: clamp(36px, 3vw, 48px);
+        padding-bottom: clamp(42px, 3.5vw, 56px);
+    }
+
+    .--implant-basic-program-section .--implant-basic-content-container {
+        /* padding-right: clamp(36px, 4.6vw, 80px);
+        padding-left: clamp(36px, 4.6vw, 80px); */
+        padding: clamp(36px, 4.6vw, 80px);
+    }
+
+    .--implant-basic-program-title {
+        margin-bottom: clamp(16px, 1.35vw, 22px);
+        font-size: clamp(30px, 2.35vw, 38px);
+    }
+
+    .--implant-basic-program-row {
+        display: grid;
+        grid-template-columns: 27% minmax(0, 48%) minmax(190px, 25%);
+        align-items: center;
+        gap: 0;
+        padding-top: clamp(20px, 1.65vw, 27px);
+        padding-bottom: clamp(20px, 1.65vw, 27px);
+    }
+
+    .--implant-basic-program-part-col,
+    .--implant-basic-program-info-col,
+    .--implant-basic-program-action-col {
+        width: auto;
+        min-width: 0;
+    }
+
+    .--implant-basic-program-info-col {
+        gap: 7px;
+        padding-right: clamp(18px, 2.5vw, 36px);
+    }
+
+    .--implant-basic-program-action-col {
+        justify-content: flex-end;
+        margin-top: 0;
+    }
+
+    .--implant-basic-program-part-title {
+        font-size: clamp(35px, 2.8vw, 45px);
+    }
+
+    .--implant-basic-program-kicker,
+    .--implant-basic-program-meta {
+        font-size: clamp(18px, 1.4vw, 23px);
+    }
+
+    .--implant-basic-program-count {
+        padding-top: 5px;
+        font-size: clamp(17px, 1.3vw, 21px);
+    }
+
+    .--implant-basic-program-details {
+        gap: 1px;
+        max-width: 430px;
+        font-size: clamp(17px, 1.3vw, 21px);
+        line-height: 1.38;
+    }
+
+    .--implant-basic-program-action-col {
+        width: auto;
+    }
+
+    .--implant-basic-program-download-btn {
+        width: auto;
+        min-width: clamp(190px, 19vw, 270px);
+        min-height: 48px;
+        padding: 11px 22px;
+        border-radius: 10px;
+        font-size: clamp(17px, 1.3vw, 21px);
+    }
+
+    .--implant-basic-program-summary {
+        margin-top: clamp(18px, 1.5vw, 24px);
+    }
+
+    .--implant-basic-program-summary p {
+        font-size: clamp(15px, 1.15vw, 18px);
+    }
+
+    .--implant-basic-program-summary {
+        font-size: clamp(15px, 1.15vw, 18px);
+    }
+
+    .--implant-basic-doctor-name {
+        font-size: 48px;
+    }
+
+    .--implant-basic-doctor-bio {
+        font-size: 18px;
+    }
+
+    .--implant-basic-certificate-section {
+        padding-top: 112px;
+        padding-bottom: 112px;
+    }
+
+    .--implant-basic-certificate-title {
+        font-size: 36px;
+    }
+
+    .--implant-basic-certificate-intro,
+    .--implant-basic-certificate-note,
+    .--implant-basic-certificate-experience-title {
+        font-size: 20px;
+    }
+}
+
+
+/* DESKTOP: >= 1024px */
+
+@media (min-width: 1024px) {
+    .--implant-basic-content-container {
+        padding-left: var(--sgd-veneer-page-gutter);
+        padding-right: var(--sgd-veneer-page-gutter);
+    }
+
+    .--implant-basic-hero-copy {
+        top: auto;
+        bottom: clamp(26px, 1.8vw, 34px);
+        max-width: 70%;
+    }
+
+    .--implant-basic-hero-eyebrow {
+        margin-bottom: clamp(18px, 1.35vw, 26px);
+    }
+
+    .--implant-basic-hero-title-main {
+        font-size: clamp(79px, 5.95vw, 115px);
+    }
+
+    .--implant-basic-hero-title-sub {
+        margin-top: clamp(9px, 0.65vw, 13px);
+        font-size: clamp(85px, 6.45vw, 124px);
+    }
+
+    .--implant-basic-hero-actions {
+        margin-top: clamp(26px, 1.8vw, 34px);
+    }
+
+    .--implant-basic-program-row {
+        display: grid;
+        grid-template-columns: 27% 48% 25%;
+        align-items: center;
+        gap: 0;
+    }
+
+    .--implant-basic-program-part-col {
+        width: auto;
+        min-width: 0;
+    }
+
+    .--implant-basic-program-info-col {
+        width: auto;
+        min-width: 0;
+        padding-right: clamp(24px, 2.5vw, 48px);
+    }
+
+    .--implant-basic-program-action-col {
+        width: auto;
+        min-width: 0;
+        justify-content: flex-end;
+        margin-top: 0;
+    }
+
+    .--implant-basic-program-summary p {
+        font-size: 18px;
+    }
+
+    .--implant-basic-program-summary {
+        font-size: 18px;
+    }
+
+    .--implant-basic-doctor-name {
+        font-size: 60px;
+    }
+
+    .--implant-basic-doctor-bio {
+        font-size: 20px;
+    }
+}
+
+
+/* Hover chỉ dành cho desktop có thiết bị trỏ chính xác. */
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+    .--implant-basic-program-download-btn:hover {
+        background: var(--sgd-veneer-blue);
+        color: #ffffff;
+        border-color: var(--sgd-veneer-blue);
+        box-shadow: 0 10px 24px rgba(6, 45, 72, 0.2);
+        transform: translateY(-3px);
+    }
+}
+
+
+/* <= 1023px: giữ đúng responsive của file gốc */
+
+@media (max-width: 1023px) {
+    .--implant-basic-hero-section {
+        min-height: 0;
+        padding: 0;
+    }
+
+    .--implant-basic-footer-cta {
+        min-height: 220px;
+        padding-top: 38px;
+        padding-bottom: 38px;
+    }
+
+    .--implant-basic-feature-bg {
+        object-position: center center;
+    }
+
+    .--implant-basic-doctor-layout {
+        min-height: 420px;
+        gap: 28px;
+    }
+
+    .--implant-basic-doctor-media {
+        width: 40%;
+        margin-top: -64px;
+        padding-top: 64px;
+    }
+
+    .--implant-basic-doctor-copy {
+        width: 60%;
+        padding-top: 44px;
+        padding-right: 0;
+        padding-bottom: 44px;
+    }
+
+    .--implant-basic-doctor-photo {
+        left: 0;
+        bottom: 0;
+        width: auto;
+        height: 100%;
+        max-width: 115%;
+        margin: 0;
+    }
+
+    .--implant-basic-footer-row {
+        gap: 40px;
+    }
+
+    .--implant-basic-footer-title-main {
+        font-size: clamp(38px, 4.4vw, 44px);
+        line-height: 0.92;
+    }
+
+    .--implant-basic-footer-title-sub {
+        margin-top: 3px;
+        font-size: clamp(58px, 7.2vw, 70px);
+        line-height: 1.2;
+    }
+
+    .--implant-basic-register-btn {
+        width: 246px;
+        min-height: 76px;
+        padding: 13px 22px;
+    }
+
+    .--implant-basic-register-btn-title {
+        font-size: 18px;
+    }
+
+    .--implant-basic-register-btn-sub {
+        font-size: 14px;
+    }
+
+    .--implant-basic-feature-copy-block+.--implant-basic-feature-copy-block {
+        margin-top: 30px;
+    }
+
+    .--implant-basic-feature-title {
+        margin-bottom: 18px;
+        font-size: clamp(28px, 4.2vw, 38px);
+    }
+
+    .--implant-basic-feature-text {
+        font-size: clamp(16px, 2.15vw, 20px);
+        line-height: 1.4;
+    }
+
+    .--implant-basic-program-download-btn {
+        width: min(100%, 250px);
+        min-width: 0;
+        min-height: 54px;
+        padding: 13px 26px;
+        font-size: 15px;
+    }
+}
+
+
+/* MOBILE: <= 767px */
+
+@media (max-width: 767px) {
+    .--implant-basic-content-container {
+        width: 100%;
+        padding-left: clamp(18px, 5vw, 28px);
+        padding-right: clamp(18px, 5vw, 28px);
+    }
+
+    .--implant-basic-feature-section,
+    .--implant-basic-program-section,
+    .--implant-basic-certificate-section {
+        padding-top: 56px;
+        padding-bottom: 56px;
+    }
+
+    .--implant-basic-program-title {
+        margin-bottom: 22px;
+        font-size: clamp(27px, 8vw, 36px);
+    }
+
+    .--implant-basic-program-row {
+        gap: 18px;
+        padding-top: 28px;
+        padding-bottom: 28px;
+    }
+
+    .--implant-basic-program-part-title {
+        font-size: clamp(30px, 9vw, 40px);
+    }
+
+    .--implant-basic-program-info-col {
+        gap: 12px;
+    }
+
+    .--implant-basic-program-kicker,
+    .--implant-basic-program-meta {
+        font-size: 16px;
+    }
+
+    .--implant-basic-program-summary,
+    .--implant-basic-program-summary p {
+        font-size: 12px;
+        letter-spacing: 0.06em;
+    }
+
+    .--implant-basic-feature-copy-block+.--implant-basic-feature-copy-block {
+        margin-top: 26px;
+    }
+
+    .--implant-basic-feature-title {
+        margin-bottom: 14px;
+        font-size: clamp(24px, 7.6vw, 31px);
+        line-height: 1.22;
+    }
+
+    .--implant-basic-feature-text {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .--implant-basic-feature-text+.--implant-basic-feature-text {
+        margin-top: 20px;
+    }
+
+    .--implant-basic-program-download-btn {
+        width: 100%;
+        min-width: 0;
+        min-height: 52px;
+        padding: 13px 20px;
+        border-radius: 12px;
+        font-size: 14px;
+    }
+
+    .--implant-basic-hero-section {
+        width: 100%;
+        min-height: 500px;
+        height: 64svh;
+        max-height: 580px;
+        aspect-ratio: auto;
+        padding: 0;
+    }
+
+    .--implant-basic-hero-bg-image {
+        object-fit: cover;
+        object-position: 57% center;
+        transform: none;
+    }
+
+    .--implant-basic-hero-overlay {
+        background: linear-gradient(90deg, rgba(2, 45, 72, 0.96) 0%, rgba(2, 45, 72, 0.76) 27%, rgba(2, 45, 72, 0.38) 51%, rgba(2, 45, 72, 0.08) 72%, rgba(2, 45, 72, 0) 100%);
+    }
+
+    .--implant-basic-hero-copy {
+        left: clamp(20px, 6vw, 26px);
+        top: 61%;
+        width: calc(100% - clamp(40px, 12vw, 52px));
+        max-width: none;
+        text-align: left;
+    }
+
+    .--implant-basic-hero-eyebrow {
+        margin-bottom: clamp(14px, 3.8vw, 18px);
+        font-size: clamp(15px, 4.2vw, 17px);
+        line-height: 1.3;
+        letter-spacing: 0.09em;
+        text-align: left;
+    }
+
+    .--implant-basic-hero-title-main {
+        max-width: 100%;
+        font-size: clamp(24px, 7.5vw, 29px);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+        white-space: nowrap;
+    }
+
+    .--implant-basic-hero-title-sub {
+        max-width: 100%;
+        margin-top: clamp(4px, 1.2vw, 6px);
+        font-size: clamp(39px, 11.2vw, 45px);
+        line-height: 0.94;
+        letter-spacing: -0.045em;
+        white-space: nowrap;
+    }
+
+    .--implant-basic-hero-actions {
+        flex-flow: row nowrap;
+        width: 100%;
+        max-width: 100%;
+        justify-content: flex-start !important;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: clamp(36px, 9vw, 42px);
+        gap: clamp(12px, 4vw, 20px);
+    }
+
+    .--implant-basic-hero-actions>p {
+        width: auto;
+        justify-content: flex-start;
+    }
+
+    .--implant-basic-hero-tagline {
+        /* FIX: Tagline font-size Mobile thành 14px */
+        font-size: 14px;
+        /* Loại bỏ flex-basis và width cố định cũ để text hiển thị trọn vẹn */
+        flex: 0 1 auto;
+        width: auto;
+        color: #ffffff;
+        line-height: 1.3;
+        font-weight: 700;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .--implant-basic-hero-cta {
+        flex: 0 0 auto;
+        min-width: clamp(124px, 34vw, 136px);
+        height: clamp(38px, 10.5vw, 42px);
+        padding: 0 clamp(14px, 4vw, 18px);
+        font-size: clamp(10px, 2.9vw, 11px);
+    }
+
+    .--implant-basic-feature-bg {
+        object-position: 58% center;
+    }
+
+    .--implant-basic-doctor-layout {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        min-height: auto;
+    }
+
+    .--implant-basic-doctor-copy,
+    .--implant-basic-doctor-media {
+        width: 100%;
+    }
+
+    .--implant-basic-doctor-copy {
+        order: 1;
+        padding-top: 32px;
+        padding-right: 0;
+        padding-bottom: 0;
+    }
+
+    .--implant-basic-doctor-name {
+        margin-bottom: 18px;
+        font-size: clamp(32px, 9vw, 42px);
+    }
+
+    .--implant-basic-doctor-bio {
+        font-size: 15px;
+        line-height: 1.55;
+    }
+
+    .--implant-basic-certificate-title {
+        font-size: clamp(27px, 8vw, 36px);
+    }
+
+    .--implant-basic-certificate-intro,
+    .--implant-basic-certificate-note,
+    .--implant-basic-certificate-experience-title {
+        font-size: 16px;
+    }
+
+    .--implant-basic-certificate-experience-text {
+        font-size: 15px;
+    }
+
+    .--implant-basic-doctor-media {
+        order: 2;
+        height: clamp(330px, 92vw, 500px);
+        margin-top: -20px;
+        padding-top: 20px;
+    }
+
+    .--implant-basic-doctor-photo {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .--implant-basic-footer-row {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .--implant-basic-footer-course-title {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .--implant-basic-footer-title-main {
+        max-width: 100%;
+        font-size: clamp(30px, 8vw, 46px);
+        line-height: 1.02;
+        letter-spacing: -1px;
+        white-space: normal;
+    }
+
+    .--implant-basic-footer-title-sub {
+        margin-top: 4px;
+        font-size: clamp(52px, 12.5vw, 74px);
+        line-height: 1.1;
+    }
+
+    .--implant-basic-register-wrap,
+    .--implant-basic-register-btn {
+        width: 100%;
+    }
+
+    .--implant-basic-register-btn {
+        min-height: 92px;
+    }
+}
+
+@media (max-width: 359px) {
+    .--implant-basic-hero-copy {
+        left: 18px;
+        width: calc(100% - 36px);
+    }
+
+    .--implant-basic-hero-tagline {
+        /* FIX: Ở màn hình cực nhỏ <360px, bỏ fix size cũ để ưu tiên text tự động tràn */
+        flex-basis: auto;
+        width: auto;
+        /* Giữ nguyên 14px từ breakpoint 767px phía trên rơi xuống, không cần set font-size lại */
+    }
+
+    .--implant-basic-hero-cta {
+        min-width: 108px;
+        padding-right: 12px;
+        padding-left: 12px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+    .--implant-basic-hero-section {
+        min-height: 430px;
+        height: 100svh;
+        max-height: 560px;
+    }
+
+    .--implant-basic-hero-copy {
+        top: 54%;
+    }
+
+    .--implant-basic-hero-eyebrow {
+        margin-bottom: 10px;
+    }
+
+    .--implant-basic-hero-actions {
+        margin-top: 14px;
+    }
+}
+
+
+/* ============================================================
+   VENEER PAGE -> SHARED SAGODENT MENU
+   - KHÔNG tạo menu mới.
+   - KHÔNG sửa CSS/JS Trang chủ.
+   - Chỉ override khi veneer.js thêm class .--implant-basic-active vào body.
+   ============================================================ */
+
+
+/* Veneer sử dụng custom menu nên ẩn header mặc định Flatsome CHỈ trên Page Veneer. */
+
+body.--implant-basic-active #header {
+    display: none !important;
+}
+
+body.--implant-basic-active .header-wrapper,
+body.--implant-basic-active #footer,
+body.--implant-basic-active .footer-wrapper,
+body.--implant-basic-active .absolute-footer {
+    display: none !important;
+}
+
+body.--implant-basic-active #wrapper,
+body.--implant-basic-active #main,
+body.--implant-basic-active #content,
+body.--implant-basic-active .page-wrapper,
+body.--implant-basic-active .--implant-basic-page {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+body.--implant-basic-active .--implant-basic-page>p:empty,
+body.--implant-basic-active .--implant-basic-page>br,
+body.--implant-basic-active #content>p:empty,
+body.--implant-basic-active .entry-content>p:empty,
+body.--implant-basic-active .--implant-basic-footer-cta+p:empty,
+body.--implant-basic-active .--implant-basic-page~p:empty,
+body.--implant-basic-active .--implant-basic-page~br {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body.--implant-basic-active .--implant-basic-footer-cta {
+    margin-bottom: 0 !important;
+}
+
+body.--implant-basic-active .sagodent-footer {
+    margin-top: 0 !important;
+}
+
+
+/* Palette riêng của Veneer.
+   Các biến này chỉ áp lên menu khi đang ở Page Veneer. */
+
+body.--implant-basic-active .--sgd-topbar.--sgd-sagodent-menu-mounted,
+body.--implant-basic-active .--sgd-menu-panel.--sgd-sagodent-menu-mounted {
+    --menu-blue: #062d48 !important;
+    --menu-sky: #6ebce5 !important;
+}
+
+
+/* Thanh progress dùng đúng accent Veneer. */
+
+html.--implant-basic-active,
+body.--implant-basic-active {
+    --menu-sky: #6ebce5 !important;
+    --menu-blue: #062d48 !important;
+}
+
+
+/* ---------- SECTION SÁNG ---------- */
+
+body.--implant-basic-active.--implant-basic-menu-light .--sgd-topbar.--sgd-sagodent-menu-mounted {
+    --menu-foreground: #062d48 !important;
+    --menu-blue: #062d48 !important;
+    --menu-sky: #6ebce5 !important;
+    --menu-glass-bg: rgba(255, 255, 255, 0.78) !important;
+    --menu-border: rgba(6, 45, 72, 0.18) !important;
+    --menu-hover: rgba(6, 45, 72, 0.07) !important;
+}
+
+body.--implant-basic-active.--implant-basic-menu-light .--sgd-menu-panel.--sgd-sagodent-menu-mounted {
+    --menu-foreground: #062d48 !important;
+    --menu-blue: #062d48 !important;
+    --menu-sky: #6ebce5 !important;
+    --menu-panel-glass-bg: rgba(255, 255, 255, 0.80) !important;
+    --menu-border: rgba(6, 45, 72, 0.18) !important;
+    --menu-hover: rgba(6, 45, 72, 0.07) !important;
+}
+
+
+/* ---------- SECTION TỐI ---------- */
+
+body.--implant-basic-active.--implant-basic-menu-dark .--sgd-topbar.--sgd-sagodent-menu-mounted,
+body.--implant-basic-active.--implant-basic-menu-dark .--sgd-menu-panel.--sgd-sagodent-menu-mounted {
+    --menu-foreground: #ffffff !important;
+    --menu-blue: #062d48 !important;
+    --menu-sky: #6ebce5 !important;
+    --menu-border: rgba(255, 255, 255, 0.18) !important;
+    --menu-hover: rgba(255, 255, 255, 0.08) !important;
+}
+
+
+/* HERO + FEATURE: xanh chính Veneer #062d48 */
+
+body.--implant-basic-active[data-veneer-menu-bg="#062d48"] .--sgd-topbar.--sgd-sagodent-menu-mounted {
+    --menu-glass-bg: rgba(6, 45, 72, 0.58) !important;
+}
+
+body.--implant-basic-active[data-veneer-menu-bg="#062d48"] .--sgd-menu-panel.--sgd-sagodent-menu-mounted {
+    --menu-panel-glass-bg: rgba(6, 45, 72, 0.76) !important;
+}
+
+
+/* DOCTOR */
+
+body.--implant-basic-active[data-veneer-menu-bg="#343434"] .--sgd-topbar.--sgd-sagodent-menu-mounted {
+    --menu-glass-bg: rgba(52, 52, 52, 0.64) !important;
+}
+
+body.--implant-basic-active[data-veneer-menu-bg="#343434"] .--sgd-menu-panel.--sgd-sagodent-menu-mounted {
+    --menu-panel-glass-bg: rgba(52, 52, 52, 0.80) !important;
+}
+
+
+/* FOOTER */
+
+body.--implant-basic-active[data-veneer-menu-bg="#232323"] .--sgd-topbar.--sgd-sagodent-menu-mounted {
+    --menu-glass-bg: rgba(35, 35, 35, 0.66) !important;
+}
+
+body.--implant-basic-active[data-veneer-menu-bg="#232323"] .--sgd-menu-panel.--sgd-sagodent-menu-mounted {
+    --menu-panel-glass-bg: rgba(35, 35, 35, 0.82) !important;
+}
+
+
+/* Đảm bảo text/icon trạng thái light dùng xanh Veneer,
+   kể cả khi JS menu Trang chủ vừa cập nhật inline variable. */
+
+body.--implant-basic-active.--implant-basic-menu-light .--sgd-topbar.--sgd-menu-tone-light,
+body.--implant-basic-active.--implant-basic-menu-light .--sgd-topbar.--sgd-menu-tone-light .--sgd-header-actions,
+body.--implant-basic-active.--implant-basic-menu-light .--sgd-topbar.--sgd-menu-tone-light .--sgd-language,
+body.--implant-basic-active.--implant-basic-menu-light .--sgd-topbar.--sgd-menu-tone-light .--sgd-menu-button,
+body.--implant-basic-active.--implant-basic-menu-light .--sgd-menu-panel.--sgd-menu-tone-light,
+body.--implant-basic-active.--implant-basic-menu-light .--sgd-menu-panel.--sgd-menu-tone-light a {
+    color: #062d48 !important;
+}
+
+
+/* Dark luôn trắng */
+
+body.--implant-basic-active.--implant-basic-menu-dark .--sgd-topbar.--sgd-menu-tone-dark,
+body.--implant-basic-active.--implant-basic-menu-dark .--sgd-topbar.--sgd-menu-tone-dark .--sgd-header-actions,
+body.--implant-basic-active.--implant-basic-menu-dark .--sgd-topbar.--sgd-menu-tone-dark .--sgd-language,
+body.--implant-basic-active.--implant-basic-menu-dark .--sgd-topbar.--sgd-menu-tone-dark .--sgd-menu-button,
+body.--implant-basic-active.--implant-basic-menu-dark .--sgd-menu-panel.--sgd-menu-tone-dark,
+body.--implant-basic-active.--implant-basic-menu-dark .--sgd-menu-panel.--sgd-menu-tone-dark a {
+    color: #ffffff !important;
+}
+
+
+/* ============================================================
+   IMPLANT BASIC — MENU MOBILE / TABLET / DESKTOP FIX
+   - Ẩn submenu của menu dùng chung trên riêng page Implant Basic.
+   - Giữ 6 mục menu chính theo từng section của trang.
+   ============================================================ */
+
+body.--implant-basic-active .--sgd-menu-panel .--sgd-submenu-toggle,
+body.--implant-basic-active .--sgd-menu-panel .--sgd-submenu {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    body.--implant-basic-active .--sgd-menu-panel .--sgd-menu-item-row {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    body.--implant-basic-active .--sgd-menu-panel .--sgd-menu-item-row>.--sgd-menu-main-link {
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+    }
+}

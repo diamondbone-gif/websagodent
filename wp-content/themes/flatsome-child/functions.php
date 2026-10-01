@@ -3,456 +3,314 @@
 /**
  * Flatsome Child Theme functions.
  *
- * ============================================================
- * QUY TẮC NẠP FILE
- * ============================================================
- *
- * DÙNG CHUNG TOÀN WEBSITE:
- *
- * CSS:
- * - style.css
- * - assets/css/sagodent-root.css
- * - assets/css/sagodent-footer.css
- * - assets/css/lenis.css
- * - assets/css/sagodent-all.css
- *
- * JS:
- * - assets/js/lenis.min.js
- * - assets/js/sagodent-lenis.js
- * - assets/js/sagodent-all.js
- * - assets/js/sagodent-footer.js
- *
- *
- * CHỈ DÙNG CHO TRANG VENEER:
- *
- * CSS:
- * - assets/css/sagodent-veneer.css
- *
- * JS:
- * - assets/js/sagodent-veneer.js
- *
- *
- * ============================================================
- * THỨ TỰ NẠP CSS
- * ============================================================
- *
- * style.css
- * -> sagodent-root.css
- * -> sagodent-footer.css
- * -> lenis.css
- * -> sagodent-all.css
- * -> sagodent-veneer.css
- *
- *
- * ============================================================
- * THỨ TỰ NẠP JAVASCRIPT
- * ============================================================
- *
- * lenis.min.js
- * -> sagodent-lenis.js
- * -> sagodent-all.js
- * -> sagodent-footer.js
- * -> sagodent-veneer.js
- *
- *
- * ============================================================
- * GHI CHÚ
- * ============================================================
- *
- * sagodent-all.css / sagodent-all.js:
- * - Dùng chung cho hệ thống Sagodent.
- * - Menu tự kiểm tra main#--sgd-top.
- * - Nội dung Sagodent có thể giới hạn bằng .sagodent-page.
- *
- * sagodent-footer.css / sagodent-footer.js:
- * - Dùng chung toàn website cho giao diện và tương tác Footer.
- * - JavaScript Footer được nạp sau sagodent-all.js.
- *
- * sagodent-veneer.css / sagodent-veneer.js:
- * - Chỉ được nạp tại trang Veneer.
- * - Được nạp SAU sagodent-all để có thể ghi đè style chung
- *   khi cần thiết.
- *
- * @package Sagodent
+ * CSS chung: style.css → sagodent-root.css → sagodent-footer.css → lenis.css → sagodent-all.css.
+ * JS chung: lenis.min.js → sagodent-lenis.js → sagodent-all.js → sagodent-footer.js.
+ * Veneer và Implant Basic chỉ nạp file riêng trên đúng trang tương ứng.
  */
 
 defined('ABSPATH') || exit;
 
+/* 1. HÀM TIỆN ÍCH */
 
-/* ============================================================
- * 1. HÀM TIỆN ÍCH
- * ============================================================ */
-
-
-/**
- * Lấy version dựa theo thời gian chỉnh sửa file.
- *
- * Mục đích:
- * - Tự động thay đổi version khi file CSS/JS được chỉnh sửa.
- * - Hạn chế trình duyệt giữ cache phiên bản cũ.
- *
- * @param string $file_path Đường dẫn vật lý của file.
- * @return string
- */
+// Tự đổi version theo thời gian sửa file để hạn chế cache cũ.
 function sagodent_asset_version($file_path)
+
 {
+
     if (file_exists($file_path)) {
+
         return (string) filemtime($file_path);
     }
 
     return (string) wp_get_theme()->get('Version');
 }
 
-
-/**
- * Kiểm tra trang hiện tại có phải trang chủ Sagodent hay không.
- *
- * is_front_page():
- * - Trang được WordPress đặt làm trang chủ.
- *
- * is_page('sagodent'):
- * - Dự phòng nếu trang có slug "sagodent".
- *
- * @return bool
- */
 function sagodent_is_homepage()
+
 {
+
     return is_front_page() || is_page('sagodent');
 }
 
-
-/**
- * Kiểm tra trang hiện tại có phải trang Veneer hay không.
- *
- * QUAN TRỌNG:
- * Nếu slug trang Veneer của bạn không phải:
- *
- * veneer
- *
- * thì thay chữ "veneer" bên dưới bằng slug thực tế.
- *
- * Ví dụ:
- *
- * is_page('the-veneer-workflow')
- *
- * @return bool
- */
+// Nếu slug trang Veneer thay đổi, sửa giá trị trong is_page().
 function sagodent_is_veneer_page()
+
 {
+
     return is_page('veneer');
 }
 
+// Nếu slug trang Implant Basic thay đổi, sửa giá trị trong is_page().
+function sagodent_is_implant_basic_page()
 
-/* ============================================================
- * 2. HÀM NẠP CSS
- * ============================================================ */
+{
 
+    return is_page('implant-basic');
+}
 
-/**
- * Nạp CSS cục bộ nếu file tồn tại.
- *
- * @param string   $handle        Tên định danh CSS.
- * @param string   $relative_path Đường dẫn từ flatsome-child.
- * @param string[] $dependencies  CSS phải tải trước.
- * @return bool
- */
+/* 2. HÀM NẠP CSS */
+
 function sagodent_enqueue_local_style(
+
     $handle,
+
     $relative_path,
+
     $dependencies = array()
+
 ) {
+
     $file_path = get_stylesheet_directory() . $relative_path;
+
     $file_uri  = get_stylesheet_directory_uri() . $relative_path;
 
     if (! file_exists($file_path)) {
+
         return false;
     }
 
     wp_enqueue_style(
+
         $handle,
+
         $file_uri,
+
         $dependencies,
+
         sagodent_asset_version($file_path)
+
     );
 
     return true;
 }
 
+/* 3. HÀM NẠP JAVASCRIPT */
 
-/* ============================================================
- * 3. HÀM NẠP JAVASCRIPT
- * ============================================================ */
-
-
-/**
- * Nạp JavaScript cục bộ nếu file tồn tại.
- *
- * @param string   $handle        Tên định danh JavaScript.
- * @param string   $relative_path Đường dẫn từ flatsome-child.
- * @param string[] $dependencies  Script phải tải trước.
- * @param bool     $in_footer     Có đưa xuống cuối body không.
- * @return bool
- */
 function sagodent_enqueue_local_script(
+
     $handle,
+
     $relative_path,
+
     $dependencies = array(),
+
     $in_footer = true
+
 ) {
+
     $file_path = get_stylesheet_directory() . $relative_path;
+
     $file_uri  = get_stylesheet_directory_uri() . $relative_path;
 
     if (! file_exists($file_path)) {
+
         return false;
     }
 
     wp_enqueue_script(
+
         $handle,
+
         $file_uri,
+
         $dependencies,
+
         sagodent_asset_version($file_path),
+
         $in_footer
+
     );
 
     return true;
 }
 
+/* 4. NẠP CSS + JAVASCRIPT */
 
-/* ============================================================
- * 4. NẠP TOÀN BỘ CSS + JAVASCRIPT
- * ============================================================ */
-
-
-/**
- * Nạp CSS và JavaScript của Flatsome Child Theme.
- */
 function sagodent_enqueue_assets()
+
 {
+
     $theme_path = get_stylesheet_directory();
 
-
-    /* ========================================================
-     * 4.1. STYLE.CSS
-     * DÙNG CHUNG TOÀN WEBSITE
-     * ======================================================== */
-
+    /* 4.1. style.css — toàn website */
     $child_style_path = $theme_path . '/style.css';
 
     wp_enqueue_style(
+
         'flatsome-child-style',
+
         get_stylesheet_uri(),
+
         array(),
+
         sagodent_asset_version($child_style_path)
+
     );
 
-
-    /* ========================================================
-     * 4.2. SAGODENT-ROOT.CSS
-     * DÙNG CHUNG TOÀN WEBSITE
-     * ======================================================== */
-
+    /* 4.2. sagodent-root.css — toàn website */
     $root_loaded = sagodent_enqueue_local_style(
+
         'sagodent-root',
+
         '/assets/css/sagodent-root.css',
+
         array('flatsome-child-style')
+
     );
 
     $root_dependency = $root_loaded
+
         ? array('sagodent-root')
+
         : array('flatsome-child-style');
 
-
-    /* ========================================================
-     * 4.3. SAGODENT-FOOTER.CSS
-     * DÙNG CHUNG TOÀN WEBSITE
-     * ======================================================== */
-
+    /* 4.3. sagodent-footer.css — toàn website */
     $footer_loaded = sagodent_enqueue_local_style(
+
         'sagodent-footer',
+
         '/assets/css/sagodent-footer.css',
+
         $root_dependency
+
     );
 
-
-    /* ========================================================
-     * 4.4. LENIS.CSS
-     * DÙNG CHUNG TOÀN WEBSITE
-     * ======================================================== */
-
+    /* 4.4. lenis.css — toàn website */
     $lenis_style_loaded = sagodent_enqueue_local_style(
+
         'sagodent-lenis-style',
+
         '/assets/css/lenis.css',
+
         $root_dependency
+
     );
 
-
-    /* ========================================================
-     * 4.5. LENIS.MIN.JS
-     * THƯ VIỆN LENIS
-     * DÙNG CHUNG TOÀN WEBSITE
-     * ======================================================== */
-
+    /* 4.5. lenis.min.js — thư viện Lenis */
     $lenis_library_loaded = sagodent_enqueue_local_script(
+
         'sagodent-lenis-library',
+
         '/assets/js/lenis.min.js',
+
         array(),
+
         true
+
     );
 
-
-    /* ========================================================
-     * 4.6. SAGODENT-LENIS.JS
-     * FILE CẤU HÌNH LENIS
-     * DÙNG CHUNG TOÀN WEBSITE
-     * ======================================================== */
-
+    /* 4.6. sagodent-lenis.js — cấu hình Lenis */
     $lenis_config_dependencies = $lenis_library_loaded
+
         ? array('sagodent-lenis-library')
+
         : array();
 
     $lenis_config_loaded = sagodent_enqueue_local_script(
+
         'sagodent-lenis',
+
         '/assets/js/sagodent-lenis.js',
+
         $lenis_config_dependencies,
+
         true
+
     );
 
-
-    /* ========================================================
-     * 4.7. SAGODENT-ALL.CSS
-     * DÙNG CHUNG TOÀN WEBSITE
-     * ========================================================
-     *
-     * File này thay thế:
-     * - sagodent.css
-     * - sagodent-menu.css
-     *
-     * Bao gồm:
-     * - PHẦN 1: MENU SAGODENT
-     * - PHẦN 2: SAGODENT
-     *
-     * Được nạp sau:
-     * - style.css
-     * - sagodent-root.css
-     * - sagodent-footer.css
-     * - lenis.css
-     *
-     * để hạn chế bị các style trước đó ghi đè.
-     * ======================================================== */
-
+    /* 4.7. sagodent-all.css — toàn website */
     $all_style_dependencies = array();
 
     if ($root_loaded) {
+
         $all_style_dependencies[] = 'sagodent-root';
     } else {
+
         $all_style_dependencies[] = 'flatsome-child-style';
     }
 
     if ($footer_loaded) {
+
         $all_style_dependencies[] = 'sagodent-footer';
     }
 
     if ($lenis_style_loaded) {
+
         $all_style_dependencies[] = 'sagodent-lenis-style';
     }
 
     $all_style_loaded = sagodent_enqueue_local_style(
+
         'sagodent-all-style',
+
         '/assets/css/sagodent-all.css',
+
         array_values(
+
             array_unique($all_style_dependencies)
+
         )
+
     );
 
-
-    /* ========================================================
-     * 4.8. SAGODENT-ALL.JS
-     * DÙNG CHUNG TOÀN WEBSITE
-     * ========================================================
-     *
-     * File này thay thế:
-     * - sagodent.js
-     * - sagodent-menu.js
-     *
-     * Menu:
-     * - Tự kiểm tra main#--sgd-top trước khi chạy.
-     *
-     * Nội dung Sagodent:
-     * - Có thể tự kiểm tra .sagodent-page trước khi chạy.
-     *
-     * Script được đưa xuống footer.
-     * ======================================================== */
-
+    /* 4.8. sagodent-all.js — toàn website */
     $all_script_dependencies = array();
 
     if ($lenis_config_loaded) {
+
         $all_script_dependencies[] = 'sagodent-lenis';
     } elseif ($lenis_library_loaded) {
+
         $all_script_dependencies[] = 'sagodent-lenis-library';
     }
 
     $all_script_loaded = sagodent_enqueue_local_script(
+
         'sagodent-all-script',
+
         '/assets/js/sagodent-all.js',
+
         array_values(
+
             array_unique($all_script_dependencies)
+
         ),
+
         true
+
     );
 
-
-    /* ========================================================
-     * 4.9. SAGODENT-FOOTER.JS
-     * DÙNG CHUNG TOÀN WEBSITE
-     * ========================================================
-     *
-     * File:
-     * /assets/js/sagodent-footer.js
-     *
-     * Mục đích:
-     * - Chứa interaction / animation riêng cho Footer.
-     * - Được nạp trên toàn bộ website.
-     * - Được nạp SAU sagodent-all.js.
-     *
-     * Script được đưa xuống footer.
-     * ======================================================== */
-
+    /* 4.9. sagodent-footer.js — toàn website */
     $footer_script_dependencies = array();
 
     if ($all_script_loaded) {
+
         $footer_script_dependencies[] = 'sagodent-all-script';
     } elseif ($lenis_config_loaded) {
+
         $footer_script_dependencies[] = 'sagodent-lenis';
     } elseif ($lenis_library_loaded) {
+
         $footer_script_dependencies[] = 'sagodent-lenis-library';
     }
 
     $footer_script_loaded = sagodent_enqueue_local_script(
+
         'sagodent-footer-script',
+
         '/assets/js/sagodent-footer.js',
+
         array_values(
+
             array_unique($footer_script_dependencies)
+
         ),
+
         true
+
     );
 
-
-    /* ========================================================
-     * 4.10. SAGODENT-VENEER.CSS
-     * CHỈ NẠP TRÊN TRANG VENEER
-     * ========================================================
-     *
-     * File:
-     * /assets/css/sagodent-veneer.css
-     *
-     * Mục đích:
-     * - Chứa toàn bộ giao diện riêng của trang Veneer.
-     * - Không ảnh hưởng những trang khác.
-     *
-     * File được nạp SAU sagodent-all.css để CSS của Veneer
-     * có thể ghi đè style chung khi cần.
-     * ======================================================== */
-
+    /* 4.10. Veneer CSS — chỉ trang Veneer */
     if (sagodent_is_veneer_page()) {
 
         $veneer_style_dependencies = array();
@@ -469,30 +327,21 @@ function sagodent_enqueue_assets()
         }
 
         sagodent_enqueue_local_style(
+
             'sagodent-veneer-style',
+
             '/assets/css/sagodent-veneer.css',
+
             array_values(
+
                 array_unique($veneer_style_dependencies)
+
             )
+
         );
     }
 
-
-    /* ========================================================
-     * 4.11. SAGODENT-VENEER.JS
-     * CHỈ NẠP TRÊN TRANG VENEER
-     * ========================================================
-     *
-     * File:
-     * /assets/js/sagodent-veneer.js
-     *
-     * Mục đích:
-     * - Chứa animation / interaction riêng cho trang Veneer.
-     * - Không chạy ở các trang khác.
-     *
-     * File được nạp SAU sagodent-footer.js.
-     * ======================================================== */
-
+    /* 4.11. Veneer JS — chỉ trang Veneer */
     if (sagodent_is_veneer_page()) {
 
         $veneer_script_dependencies = array();
@@ -512,154 +361,187 @@ function sagodent_enqueue_assets()
         }
 
         sagodent_enqueue_local_script(
+
             'sagodent-veneer-script',
+
             '/assets/js/sagodent-veneer.js',
+
             array_values(
+
                 array_unique($veneer_script_dependencies)
+
             ),
+
             true
+
+        );
+    }
+
+    /* 4.12. Implant Basic CSS — chỉ trang Implant Basic */
+    if (sagodent_is_implant_basic_page()) {
+
+        $implant_basic_style_dependencies = array();
+
+        if ($all_style_loaded) {
+
+            $implant_basic_style_dependencies[] = 'sagodent-all-style';
+        } elseif ($root_loaded) {
+
+            $implant_basic_style_dependencies[] = 'sagodent-root';
+        } else {
+
+            $implant_basic_style_dependencies[] = 'flatsome-child-style';
+        }
+
+        sagodent_enqueue_local_style(
+
+            'sagodent-implant-basic-style',
+
+            '/assets/css/sagodent-implant-basic.css',
+
+            array_values(
+
+                array_unique($implant_basic_style_dependencies)
+
+            )
+
+        );
+    }
+
+    /* 4.13. Implant Basic JS — chỉ trang Implant Basic */
+    if (sagodent_is_implant_basic_page()) {
+
+        $implant_basic_script_dependencies = array();
+
+        if ($footer_script_loaded) {
+
+            $implant_basic_script_dependencies[] = 'sagodent-footer-script';
+        } elseif ($all_script_loaded) {
+
+            $implant_basic_script_dependencies[] = 'sagodent-all-script';
+        } elseif ($lenis_config_loaded) {
+
+            $implant_basic_script_dependencies[] = 'sagodent-lenis';
+        } elseif ($lenis_library_loaded) {
+
+            $implant_basic_script_dependencies[] = 'sagodent-lenis-library';
+        }
+
+        sagodent_enqueue_local_script(
+
+            'sagodent-implant-basic-script',
+
+            '/assets/js/sagodent-implant-basic.js',
+
+            array_values(
+
+                array_unique($implant_basic_script_dependencies)
+
+            ),
+
+            true
+
         );
     }
 }
 
-
-/**
- * Priority 99:
- *
- * Cho tài nguyên Sagodent được đăng ký sau phần lớn
- * tài nguyên mặc định của Flatsome.
- */
 add_action(
+
     'wp_enqueue_scripts',
+
     'sagodent_enqueue_assets',
+
     99
+
 );
 
+/* 5. BODY CLASS */
 
-/* ============================================================
- * 5. BODY CLASS
- * ============================================================ */
-
-
-/**
- * Thêm class riêng vào <body>.
- *
- * Trang chủ:
- *
- * <body class="... sagodent-page">
- *
- * Trang Veneer:
- *
- * <body class="... sagodent-veneer-page">
- *
- * @param string[] $classes Danh sách class hiện tại.
- * @return string[]
- */
 function sagodent_body_class($classes)
+
 {
-    /**
-     * Class dành cho trang chủ Sagodent.
-     */
+
     if (sagodent_is_homepage()) {
+
         $classes[] = 'sagodent-page';
     }
 
-
-    /**
-     * Class dành riêng cho trang Veneer.
-     *
-     * Có thể dùng trong CSS:
-     *
-     * .sagodent-veneer-page .ten-class {
-     *     ...
-     * }
-     *
-     * Có thể dùng trong JavaScript:
-     *
-     * document.querySelector('.sagodent-veneer-page')
-     */
     if (sagodent_is_veneer_page()) {
+
         $classes[] = 'sagodent-veneer-page';
     }
 
-
     return array_values(
+
         array_unique($classes)
+
     );
 }
 
-
 add_filter(
+
     'body_class',
+
     'sagodent_body_class'
+
 );
 
-
-// 
-// add_filter('the_content', 'protect_ux_html_from_wpautop', 9);
-// function protect_ux_html_from_wpautop($content)
-// {
-//     // Nếu nội dung không có element HTML của Flatsome thì bỏ qua để tối ưu hiệu suất
-//     if (strpos($content, 'ux_html') === false) {
-//         return $content;
-//     }
-
-//     // Regex quét toàn bộ thẻ [ux_html], bất kể có chứa attributes (label, id, class...) hay không
-//     $content = preg_replace_callback('/(\[ux_html[^\]]*\])(.*?)(\[\/ux_html\])/is', function ($matches) {
-//         $opening_tag = $matches[1]; // [ux_html label="..."]
-//         $html_content = $matches[2]; // Nội dung HTML của bạn
-//         $closing_tag = $matches[3]; // [/ux_html]
-
-//         // Loại bỏ triệt để các dấu xuống dòng (\r, \n) bằng khoảng trắng
-//         $clean_html = preg_replace('/[\r\n]+/', ' ', $html_content);
-
-//         return $opening_tag . $clean_html . $closing_tag;
-//     }, $content);
-
-//     return $content;
-// }
-
-
-// remove_filter('the_content', 'wpautop');
-
-
-// functions.php của child theme
+/* 6. BẢO VỆ SHORTCODE KHỎI WPAUTOP */
 
 function my_ux_no_autop_tags()
+
 {
-    return array('text_box'); // đổi thành tag thật của bạn
+
+    return array('text_box'); // Đổi tag tại đây nếu cần.
+
 }
 
-// Bước 1: chạy TRƯỚC wpautop (priority 9 < 10)
+// Chạy trước wpautop.
 add_filter('the_content', 'my_shield_ux_html_before_wpautop', 9);
+
 function my_shield_ux_html_before_wpautop($content)
+
 {
+
     foreach (my_ux_no_autop_tags() as $tag) {
-        $pattern = '/\[' . preg_quote($tag, '/') . '([^\]]*)\](.*?)\[\/' . preg_quote($tag, '/') . '\]/s';
+
+        $pattern = '/\\[' . preg_quote($tag, '/') . '([^\\]]*)\\](.*?)\\[\\/' . preg_quote($tag, '/') . '\\]/s';
+
         $content = preg_replace_callback($pattern, function ($m) use ($tag) {
+
             $attrs   = $m[1];
+
             $inner   = $m[2];
-            $encoded = base64_encode($inner); // không còn xuống dòng -> wpautop "vô hại"
+
+            $encoded = base64_encode($inner); // Tạm mã hóa để wpautop không can thiệp.
+
             return '[' . $tag . $attrs . ']' . $encoded . '[/' . $tag . ']';
         }, $content);
     }
+
     return $content;
 }
 
-// Bước 2: chạy SAU wpautop, TRƯỚC do_shortcode (do_shortcode priority 11)
-// Add ở priority 10: các filter core cùng priority 10 (gồm wpautop) đã được add
-// từ lúc WP core khởi động, filter add trong functions.php sẽ nối vào SAU cùng
-// trong "hàng đợi" priority 10 -> nghĩa là chạy SAU wpautop, nhưng vẫn trước do_shortcode(11).
+// Khôi phục sau wpautop, trước do_shortcode.
 add_filter('the_content', 'my_unshield_ux_html_after_wpautop', 10);
+
 function my_unshield_ux_html_after_wpautop($content)
+
 {
+
     foreach (my_ux_no_autop_tags() as $tag) {
-        $pattern = '/\[' . preg_quote($tag, '/') . '([^\]]*)\](.*?)\[\/' . preg_quote($tag, '/') . '\]/s';
+
+        $pattern = '/\\[' . preg_quote($tag, '/') . '([^\\]]*)\\](.*?)\\[\\/' . preg_quote($tag, '/') . '\\]/s';
+
         $content = preg_replace_callback($pattern, function ($m) use ($tag) {
+
             $attrs   = $m[1];
+
             $decoded = base64_decode($m[2]);
+
             return '[' . $tag . $attrs . ']' . $decoded . '[/' . $tag . ']';
         }, $content);
     }
+
     return $content;
 }

@@ -1,0 +1,175 @@
+<!-- SAGODENT MENU HTML — LANGUAGE + SUBMENU -->
+<main id="--sgd-top" aria-label="Điều hướng Sagodent">
+
+    <div class="--sgd-scroll-progress" aria-hidden="true"></div>
+
+    <header class="--sgd-topbar">
+
+        <a class="--sgd-sagodent-logo" href="#--sgd-top" aria-label="Về đầu trang Sagodent">
+            <span class="--sgd-logo-swap">
+
+                <img class="--sgd-logo-white" src="http://sagodent.com/wp-content/uploads/2026/08/logo-white.png"
+                    alt="Sagodent - Dental education center">
+
+                <img class="--sgd-logo-blue" src="http://sagodent.com/wp-content/uploads/2026/08/logo-blu-01.png"
+                    alt="Sagodent - Dental education center">
+
+            </span>
+        </a>
+
+        <div class="--sgd-header-actions">
+
+            <!-- Link ngôn ngữ gốc: desktop/tablet giữ nguyên.
+                 Mobile chỉ ẩn chữ VN bằng CSS hiện có. -->
+            <a class="--sgd-language --sgd-language-link" href="#" aria-label="English">
+                <img class="--sgd-flag-us"
+                    src="https://sagodent.com/wp-content/uploads/2026/09/1788493543944_1387843300402958155_1387843300402958155_af10ec38ece6559846e52ee055d77457.jpg"
+                    alt="Tiếng Việt">
+
+                <span class="--sgd-language-label">VN</span>
+            </a>
+
+            <!-- CHỈ hiện trên điện thoại <= 600px. -->
+            <button class="--sgd-language-toggle" type="button" aria-label="Chọn ngôn ngữ" aria-expanded="false"
+                aria-controls="--sgd-language-dropdown">
+                <span aria-hidden="true"></span>
+            </button>
+
+            <!-- CHỈ hiện trên điện thoại khi bấm mũi tên. -->
+            <div class="--sgd-language-dropdown" id="--sgd-language-dropdown" aria-hidden="true">
+
+                <a class="--sgd-language-option --sgd-language-option-vn" href="#" aria-label="Tiếng Việt">
+                    <img class="--sgd-flag-vn"
+                        src="https://sagodent.com/wp-content/uploads/2026/09/1788493537780_1387843300402958155_1387843300402958155_6813b47d7cb216dce427a6d065133787.jpg"
+                        alt="English">
+                </a>
+
+            </div>
+
+            <button class="--sgd-menu-button" type="button" aria-expanded="false"
+                aria-controls="--sgd-sagodent-main-menu-panel">
+                MỤC CHÍNH
+                <span aria-hidden="true">III</span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <nav class="--sgd-menu-panel" id="--sgd-sagodent-main-menu-panel" aria-label="Mục chính" aria-hidden="true">
+
+        <a href="#intro">
+            <small>01</small> GIỚI THIỆU
+        </a>
+
+
+        <!-- KHÓA HỌC: giữ link chính + thêm nút xổ submenu riêng. -->
+        <div class="--sgd-menu-item --sgd-menu-item-has-submenu">
+
+            <div class="--sgd-menu-item-row">
+
+                <a class="--sgd-menu-main-link" href="#courses">
+                    <small>02</small>
+                    <span>KHÓA HỌC</span>
+                </a>
+
+                <button class="--sgd-submenu-toggle" type="button" aria-label="Mở submenu Khóa học"
+                    aria-expanded="false" aria-controls="--sgd-submenu-courses">
+                    <span aria-hidden="true"></span>
+                </button>
+
+            </div>
+
+
+            <div class="--sgd-submenu" id="--sgd-submenu-courses" aria-hidden="true">
+
+                <!-- Thay href="#" bằng URL trang khóa học tương ứng khi đã có link thật. -->
+
+                <a class="--sgd-submenu-link" href="https://sagodent.com/veneer/">
+                    VENEER
+                </a>
+
+                <a class="--sgd-submenu-link" href="#">
+                    BOPT
+                </a>
+
+                <a class="--sgd-submenu-link" href="">
+                    IMPLANT CƠ BẢN
+                </a>
+
+                <a class="--sgd-submenu-link" href="#">
+                    ROOT MEMBRANE
+                </a>
+
+                <a class="--sgd-submenu-link" href="#">
+                    IMPLANT PROSTHODONTICS
+                </a>
+
+                <a class="--sgd-submenu-link" href="#">
+                    IMPLANT NÂNG CAO
+                </a>
+
+                <a class="--sgd-submenu-link" href="#">
+                    ALL ON 4
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HOẠT ĐỘNG: thay THƯ VIỆN nhưng vẫn giữ link section #library hiện tại. -->
+        <div class="--sgd-menu-item --sgd-menu-item-has-submenu">
+
+            <div class="--sgd-menu-item-row">
+
+                <a class="--sgd-menu-main-link" href="#library">
+                    <small>03</small>
+                    <span>HOẠT ĐỘNG</span>
+                </a>
+
+                <button class="--sgd-submenu-toggle" type="button" aria-label="Mở submenu Hoạt động"
+                    aria-expanded="false" aria-controls="--sgd-submenu-activities">
+                    <span aria-hidden="true"></span>
+                </button>
+
+            </div>
+
+
+            <div class="--sgd-submenu" id="--sgd-submenu-activities" aria-hidden="true">
+
+                <!-- Thay href="#" bằng URL trang hoạt động tương ứng khi đã có link thật. -->
+
+                <a class="--sgd-submenu-link" href="#">
+                    SỰ KIỆN
+                </a>
+
+                <a class="--sgd-submenu-link" href="#">
+                    CỘNG ĐỒNG
+                </a>
+
+                <a class="--sgd-submenu-link" href="#">
+                    NGHIÊN CỨU
+                </a>
+
+                <a class="--sgd-submenu-link" href="#">
+                    SÁNG KIẾN CẢI TIẾN
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <a href="#id4">
+            <small>04</small> NHA KHOA ID-4
+        </a>
+
+        <a href="#contact">
+            <small>05</small> LIÊN HỆ
+        </a>
+
+    </nav>
+
+</main>

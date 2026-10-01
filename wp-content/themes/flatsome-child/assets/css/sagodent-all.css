@@ -7148,11 +7148,8 @@ body .--sgd-menu-panel .--sgd-menu-item-has-submenu.--sgd-submenu-open .--sgd-su
         outline: 0 !important;
     }
 
-    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-main-link:hover::after,
-    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-main-link:focus-visible::after,
-    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-has-submenu:hover .--sgd-menu-main-link::after,
-    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-has-submenu:focus-within .--sgd-menu-main-link::after,
-    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-has-submenu.--sgd-submenu-open .--sgd-menu-main-link::after {
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-has-submenu.--sgd-text-hover .--sgd-menu-main-link::after,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-main-link:focus-visible::after {
         opacity: 1 !important;
         transform: scaleX(1) !important;
     }
@@ -7173,7 +7170,6 @@ body .--sgd-menu-panel .--sgd-menu-item-has-submenu.--sgd-submenu-open .--sgd-su
         transition: background-color .22s ease, opacity .22s ease !important;
     }
 
-    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-submenu-toggle:hover,
     body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-submenu-toggle:focus-visible,
     body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-has-submenu.--sgd-submenu-open .--sgd-submenu-toggle {
         background: rgba(255, 255, 255, .10) !important;
@@ -7190,7 +7186,7 @@ body .--sgd-menu-panel .--sgd-menu-item-has-submenu.--sgd-submenu-open .--sgd-su
     body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-submenu {
         position: absolute !important;
         z-index: 30 !important;
-        top: calc(100% + 24px) !important;
+        top: calc(100% + 29px) !important;
         left: 50% !important;
         width: max-content !important;
         min-width: 230px !important;
@@ -7205,16 +7201,17 @@ body .--sgd-menu-panel .--sgd-menu-item-has-submenu.--sgd-submenu-open .--sgd-su
         overflow: visible !important;
         border: 1px solid var(--menu-border) !important;
         border-radius: 16px !important;
-        background: var(--menu-submenu-bg, rgba(7, 93, 152, .96)) !important;
-        -webkit-backdrop-filter: blur(4px) saturate(110%) !important;
-        backdrop-filter: blur(4px) saturate(110%) !important;
+        background: var(--menu-glass-bg) !important;
+        -webkit-backdrop-filter: blur(var(--menu-glass-blur)) saturate(var(--menu-glass-saturation)) !important;
+        backdrop-filter: blur(var(--menu-glass-blur)) saturate(var(--menu-glass-saturation)) !important;
         box-shadow: 0 18px 46px rgba(0, 0, 0, .24) !important;
+        color: var(--menu-foreground) !important;
         opacity: 0 !important;
         visibility: hidden !important;
         pointer-events: none !important;
         transform: translate(-50%, -8px) scale(.98) !important;
         transform-origin: top center !important;
-        transition: opacity .22s ease, transform .28s cubic-bezier(.22, 1, .36, 1), visibility .22s ease !important;
+        transition: opacity .22s ease, transform .28s cubic-bezier(.22, 1, .36, 1), background .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease, -webkit-backdrop-filter .35s ease, backdrop-filter .35s ease !important;
     }
 
     body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-has-submenu.--sgd-submenu-open>.--sgd-submenu {
@@ -7251,10 +7248,17 @@ body .--sgd-menu-panel .--sgd-menu-item-has-submenu.--sgd-submenu-open .--sgd-su
         white-space: nowrap !important;
         text-decoration: none !important;
         opacity: 1 !important;
-        visibility: visible !important;
+        visibility: hidden !important;
         transform: none !important;
-        pointer-events: auto !important;
+        pointer-events: none !important;
         transition: background-color .2s ease, transform .2s ease, opacity .2s ease !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-has-submenu.--sgd-submenu-open>.--sgd-submenu>.--sgd-submenu-link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-has-submenu.--sgd-submenu-open>.--sgd-submenu>.--sgd-submenu-link:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-has-submenu.--sgd-submenu-open>.--sgd-submenu>.--sgd-submenu-link:visited {
+        visibility: visible !important;
+        pointer-events: auto !important;
     }
 
     body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-submenu>.--sgd-submenu-link::after {
@@ -7417,8 +7421,8 @@ body .--sgd-menu-panel .--sgd-menu-item-has-submenu.--sgd-submenu-open .--sgd-su
         border: 0 !important;
         border-radius: 0 !important;
         background: rgba(255, 255, 255, .035) !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
+        -webkit-backdrop-filter: blur(var(--menu-glass-blur)) saturate(var(--menu-glass-saturation)) !important;
+        backdrop-filter: blur(var(--menu-glass-blur)) saturate(var(--menu-glass-saturation)) !important;
         box-shadow: none !important;
         opacity: 0 !important;
         visibility: hidden !important;
@@ -8175,5 +8179,108 @@ responsive;
 @media (max-width: 600px) {
     .sagodent-page .course-tabs button.course-tab--wide-mobile {
         grid-column: 1 / -1 !important;
+    }
+
+    .sagodent-page .course-tabs button.course-tab--wide-mobile+button {
+        border-right: 1px solid var(--navy-08) !important;
+    }
+
+    .sagodent-page .course-tabs button.course-tab--wide-mobile+button+button {
+        border-right: 0 !important;
+    }
+}
+
+
+/* ==========================================================================
+   SAGODENT — FINAL DESKTOP TEXT-ONLY HOVER + SUBMENU GLASS SYNC
+   2026-09-29
+   - Chỉ desktop > 900px.
+   - Hit-area hover ngang của tab khớp đúng chiều rộng chữ: padding ngang -> margin ngang.
+   - Underline chỉ xuất hiện khi hover/focus trực tiếp vào chữ/link.
+   - Dropdown submenu dùng cùng màu kính, blur, saturation và transition với topbar.
+   - Không thay đổi DOM, mobile/tablet hoặc logic khác.
+   ========================================================================== */
+
+@media (min-width: 901px) {
+
+    /* Tab thường: giữ nguyên khoảng cách thị giác nhưng vùng :hover chỉ còn đúng box chữ. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:visited,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:focus-visible {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        margin-right: clamp(10px, .76vw, 15px) !important;
+        margin-left: clamp(10px, .76vw, 15px) !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a::after {
+        right: 0 !important;
+        left: 0 !important;
+    }
+
+    /* Tab có submenu: vùng hover của link chính cũng khớp đúng chữ. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-row>.--sgd-menu-main-link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-row>.--sgd-menu-main-link:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-row>.--sgd-menu-main-link:visited,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-row>.--sgd-menu-main-link:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-row>.--sgd-menu-main-link:focus-visible {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        margin-right: 4px !important;
+        margin-left: clamp(10px, .76vw, 15px) !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-main-link::after {
+        right: 0 !important;
+        left: 0 !important;
+    }
+
+    /* Submenu có thể đang mở, nhưng underline chỉ được giữ khi pointer thật sự nằm trên chữ. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-has-submenu:not(.--sgd-text-hover) .--sgd-menu-main-link:not(:focus-visible)::after {
+        opacity: 0 !important;
+        transform: scaleX(.3) !important;
+    }
+
+    /* Đồng bộ trực tiếp submenu với glass system của topbar. */
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-submenu {
+        background: var(--menu-glass-bg) !important;
+        color: var(--menu-foreground) !important;
+        border-color: var(--menu-border) !important;
+        -webkit-backdrop-filter: blur(var(--menu-glass-blur)) saturate(var(--menu-glass-saturation)) !important;
+        backdrop-filter: blur(var(--menu-glass-blur)) saturate(var(--menu-glass-saturation)) !important;
+        transition: opacity .22s ease, transform .28s cubic-bezier(.22, 1, .36, 1), background .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease, -webkit-backdrop-filter .35s ease, backdrop-filter .35s ease !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-submenu>.--sgd-submenu-link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-submenu>.--sgd-submenu-link:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-submenu>.--sgd-submenu-link:visited {
+        color: var(--menu-foreground) !important;
+        transition: background-color .2s ease, transform .2s ease, opacity .2s ease, color .35s ease !important;
+    }
+}
+
+
+/* Desktop hẹp: giữ đúng spacing cũ sau khi chuyển padding thành margin. */
+
+@media (min-width: 901px) and (max-width: 1180px) {
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:visited,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline>a:focus-visible {
+        margin-right: clamp(5px, .55vw, 9px) !important;
+        margin-left: clamp(5px, .55vw, 9px) !important;
+    }
+
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-row>.--sgd-menu-main-link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-row>.--sgd-menu-main-link:link,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-row>.--sgd-menu-main-link:visited,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-row>.--sgd-menu-main-link:hover,
+    body .--sgd-topbar>.--sgd-desktop-center-group>.--sgd-menu-panel.--sgd-desktop-inline .--sgd-menu-item-row>.--sgd-menu-main-link:focus-visible {
+        margin-right: 2px !important;
+        margin-left: clamp(5px, .55vw, 9px) !important;
     }
 }
